@@ -4,22 +4,21 @@ $(document).ready(function() {
 	$('.div_subway_bottom').css({
 		'pointer-events' : 'none'
 	});
-	/*
+	$('.div_subway_bottom>input').prop('disabled', 'disabled');
+
+	// 지하철 체크
 	$('.chk_subway').change(function(){
-		$('.div_subway_bottom').css('pointer-events', 'unset').toggle();
-		$('.div_subway_mask').css('display', 'none !important').toggle();
-		
-		if ($('.chk_subway').prop('checked') == false) {
+		if($('.chk_subway').prop('checked') == false) {
+			$('input.input_subway.ui-autocomplete-input, input.input_foot').val('');
+			$('.div_subway_bottom>input').prop('disabled', 'disabled');
 			$('.div_subway_bottom').css('pointer-events', 'none');
-			$('.div_subway_mask').css('display', 'inline-block');
-		} else {
-			console.log('바발바');
+			$('.div_subway_mask').show();
+		}else{
+			$('.div_subway_bottom>input').prop('disabled', false);
 			$('.div_subway_bottom').css('pointer-events', 'unset');
-			$('.div_subway_mask').css('display', 'none !important');
+			$('.div_subway_mask').hide();
 		}
-		
 	});
-	*/
 	
 	// 지하철역 검색
     $(".input_subway").autocomplete({
@@ -176,20 +175,6 @@ $(document).ready(function() {
 		time: false,
 		clearButton: true,
 		minDate : new Date()
-	});
-
-	// 지하철 체크
-	$('.chk_subway').change(function(){
-		if($('.chk_subway').prop('checked') == false) {
-			$('input.input_subway.ui-autocomplete-input, input.input_foot').val('');
-			$('.div_subway_bottom>input').prop('disabled', 'disabled');
-			$('.div_subway_bottom').css('pointer-events', 'none');
-			$('.div_subway_mask').show();
-		}else{
-			$('.div_subway_bottom>input').prop('disabled', false);
-			$('.div_subway_bottom').css('pointer-events', 'unset');
-			$('.div_subway_mask').hide();
-		}
 	});
 
 

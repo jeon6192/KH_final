@@ -26,7 +26,9 @@ public class ApartmentServiceImpl implements ApartmentService {
 		
 		apartmentDAO.insert_aptComplex(aptComplexBean);
 		
+		
 		for (ApartmentBean apartmentBean : apartmentBeanList) {
+			System.out.println("아파트 아이디 : "+apartmentBean.getApart_id());
 			apartmentDAO.insert_apartment(apartmentBean);
 		}
 		

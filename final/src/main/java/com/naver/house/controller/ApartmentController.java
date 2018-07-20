@@ -49,7 +49,7 @@ public class ApartmentController {
 			aptComplexBean.setComplex_subway(0);
 		}
 		
-		String id1 = aptComplexBean.getComplex_pdate().replaceAll("-", "") + new Random().nextInt(1000);
+		String id1 = aptComplexBean.getComplex_pdate().substring(2).replaceAll("-", "") + new Random().nextInt(1000);
 		aptComplexBean.setComplex_id(Long.parseLong(id1));
 		
 		
@@ -71,14 +71,19 @@ public class ApartmentController {
 				for (int j = 1; j < 5; j++) {
 					
 					String id2 = id1 + (seq++);
-					apart.setApart_id(Long.parseLong(id2));
+					ApartmentBean apartBean = new ApartmentBean();
 					
-					apart.setComplex_id(Long.parseLong(id1));
+					apartBean.setApart_id(Long.parseLong(id2));
+					apartBean.setComplex_id(Long.parseLong(id1));
+					apartBean.setApart_ho(Integer.parseInt(Integer.toString(i) + "0" + j));
+					apartBean.setApart_dong(apart.getApart_dong());
+					apartBean.setApart_floor(apart.getApart_floor());
+					apartBean.setApart_area(apart.getApart_area());
+					apartBean.setApart_price(apart.getApart_price());
+					apartBean.setApart_room(apart.getApart_room());
+					apartBean.setApart_toilet(apart.getApart_toilet());
+					apartBean.setApart_interior(apart.getApart_interior());
 					
-					apart.setApart_ho(Integer.parseInt(Integer.toString(i) + "0" + j));
-					
-					
-					System.out.println("\n--------동---------- : "+apart.getApart_dong());
 					System.out.println("아파트 ID : "+apart.getApart_id());
 					System.out.println("단지고유 번호 : "+apart.getComplex_id());
 					System.out.println("동 : "+apart.getApart_dong());
@@ -90,7 +95,7 @@ public class ApartmentController {
 					System.out.println("화장실 : "+apart.getApart_toilet());
 					System.out.println("인테리어사진 : "+apart.getApart_interior());
 					
-					apartmentBeanList.add(apart);
+					apartmentBeanList.add(apartBean);
 				}
 			}
 			
@@ -98,6 +103,10 @@ public class ApartmentController {
 		
 		
 		Map<String, Object> apartMap = new HashMap<String, Object>();
+		
+		for (ApartmentBean apart : apartmentBeanList) {
+			System.out.println("111아파트 : "+apart.getApart_ho());
+		}
 		
 		apartMap.put("aptComplexBean", aptComplexBean);
 		apartMap.put("apartmentListBean", apartmentBeanList);

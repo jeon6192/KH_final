@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="complex">
+	<insert id="insert" parameterType="complex">
+		insert into apt_complex values(
+			#{complex_id}, #{complex_address}, #{complex_lat}, #{complex_lng}, #{complex_apartname}, 
+			#{complex_pdate}, #{complex_state}, #{complex_info}, #{complex_subway}, #{complex_station}, 
+			#{complex_foot} 
+		)		
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+

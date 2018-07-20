@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<!-- null인 경우 null값을 설정합니다 -->
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias type="com.naver.house.bean.ApartmentBean" alias="apart"/>
+		<typeAlias type="com.naver.house.bean.AptComplexBean" alias="complex"/>
+	</typeAliases>
+	
+	<!-- root-context.xml에서 멥퍼의 위치를 정해줌 -->
+
+</configuration>
+
+
+
+
+
+
+
+
+
+
+

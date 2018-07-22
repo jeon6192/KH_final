@@ -148,7 +148,6 @@
 									<input type="text" class="input_foot" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)" name="complex_foot">
 									&nbsp; <b>분</b>
 								 
-									<div class="div_subway_mask"></div>
 								</div>
 							</li>
 							

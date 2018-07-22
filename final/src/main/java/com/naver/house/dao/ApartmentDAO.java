@@ -19,8 +19,16 @@ public class ApartmentDAO {
 		sqlsession.insert("apart.insert",apartmentBean);
 	}
 	
+	public void insert_apartment2(List<ApartmentBean> apartmentBeanList) throws Exception {
+		for (ApartmentBean apart : apartmentBeanList) {
+			System.out.println(apart.getComplex_id());
+			System.out.println(apart.getApart_id());
+		}
+		sqlsession.insert("apart.insert2", apartmentBeanList);
+	}
+	
 	public void insert_aptComplex(AptComplexBean aptComplexBean) throws Exception {
-		sqlsession.insert("complex.insert",aptComplexBean);
+		sqlsession.insert("complex.insert", aptComplexBean);
 	}
 	
 	public AptComplexBean detail_aptComplex(int complex_id) throws Exception {

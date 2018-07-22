@@ -14,4 +14,5 @@ CREATE TABLE APT_COMPLEX(
 
 select * from APT_COMPLEX
 
+
 delete from APT_COMPLEX

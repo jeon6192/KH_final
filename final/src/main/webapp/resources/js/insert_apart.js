@@ -12,11 +12,11 @@ $(document).ready(function() {
 			$('input.input_subway.ui-autocomplete-input, input.input_foot').val('');
 			$('.div_subway_bottom>input').prop('disabled', 'disabled');
 			$('.div_subway_bottom').css('pointer-events', 'none');
-			$('.div_subway_mask').show();
+			$('.div_subway_bottom').animate({opacity: '0'}, 550);
 		}else{
 			$('.div_subway_bottom>input').prop('disabled', false);
 			$('.div_subway_bottom').css('pointer-events', 'unset');
-			$('.div_subway_mask').hide();
+			$('.div_subway_bottom').animate({opacity: '1'}, 550);
 		}
 	});
 	
@@ -109,6 +109,17 @@ $(document).ready(function() {
 
     	$('.div_detail_left').empty().append(left);
 		$('.div_detail_right').empty().append(right).append(right_script);
+		
+		// tab 키 이벤트 추가
+		$('.ul_dong_detail li>div>input').on('keydown', function(e) {
+			var index = $('.ul_dong_detail li>div>input').index(this);
+		    var code = e.which;
+		    if ( code == 13 || code == 9 ) {
+		        e.preventDefault();
+		        $(".ul_dong_detail li>div>input").eq((index+1)).focus();
+		    }
+		});
+		
 		
 		$('.div_dong_detail_img').css({
 			'width' : '58%', 

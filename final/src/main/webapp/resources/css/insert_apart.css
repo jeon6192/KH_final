@@ -248,15 +248,7 @@ li{
 	height: 90%;
 }
 .div_subway_bottom{
-	position: relative;
-}
-.div_subway_mask{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 75%;
-	height: 100%;
-	background-color: rgba(208, 208, 208, 0.7);
+	opacity: 0;
 }
 
 input.input_subway.ui-autocomplete-input, input.input_foot {

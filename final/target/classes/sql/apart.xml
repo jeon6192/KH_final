@@ -9,6 +9,16 @@
 		)		
 	</insert>
 	
+	<insert id="insert2" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index"  open="INSERT ALL " separator=" " close="SELECT * FROM APARTMENT" > 
+			into apartment values
+	        (
+				get_apart_seq, #{item.complex_id}, #{item.apart_dong}, #{item.apart_ho}, #{item.apart_floor}, 
+				#{item.apart_area}, #{item.apart_price}, #{item.apart_room}, #{item.apart_toilet}, #{item.apart_interior} 
+			)
+	    </foreach>
+	</insert>
+	
 </mapper>
 
 

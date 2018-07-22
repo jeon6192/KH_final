@@ -65,15 +65,15 @@ public class ApartmentController {
 		System.out.println("소요시간 : "+aptComplexBean.getComplex_foot());
 		
 		List<ApartmentBean> apartmentBeanList = new ArrayList<ApartmentBean>();
-		int seq = new Random().nextInt(100);
+		//int seq = new Random().nextInt(100);
 		for (ApartmentBean apart : apartListBean.getApartBeanList()) {
 			for (int i = 1; i <= apart.getApart_floor(); i++) {
 				for (int j = 1; j < 5; j++) {
 					
-					String id2 = id1 + (seq++);
+					//String id2 = id1 + (seq++);
 					ApartmentBean apartBean = new ApartmentBean();
 					
-					apartBean.setApart_id(Long.parseLong(id2));
+					//apartBean.setApart_id(Long.parseLong(id2));
 					apartBean.setComplex_id(Long.parseLong(id1));
 					apartBean.setApart_ho(Integer.parseInt(Integer.toString(i) + "0" + j));
 					apartBean.setApart_dong(apart.getApart_dong());
@@ -103,10 +103,6 @@ public class ApartmentController {
 		
 		
 		Map<String, Object> apartMap = new HashMap<String, Object>();
-		
-		for (ApartmentBean apart : apartmentBeanList) {
-			System.out.println("111아파트 : "+apart.getApart_ho());
-		}
 		
 		apartMap.put("aptComplexBean", aptComplexBean);
 		apartMap.put("apartmentListBean", apartmentBeanList);

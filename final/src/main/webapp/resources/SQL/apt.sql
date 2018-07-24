@@ -35,7 +35,7 @@ CREATE TABLE APARTMENT(
    APART_INTERIOR VARCHAR2(1000))
    
    
-   
+   drop table apartment
    
    select * from apartment
    
@@ -52,6 +52,25 @@ insert into apt_complex
 		insert into apt_complex 
 		values(15,'서울특별시 강남구 청담동',24.5,22.5,'우성아파트',sysdate,1,'좋은아파트 입니다','1','서울역',15)
 
+		
+		
+		select * from 
+(select rownum rnum, complex_address, complex_apartname, complex_pdate,
+	complex_subway, complex_station, complex_foot,minarea, maxarea, minprice,maxprice
+		from
+		(select c.complex_address, c.complex_apartname, c.complex_pdate,
+					c.complex_subway, c.complex_station, c.complex_foot,
+						min(a.apart_area) minarea ,max(a.apart_area) maxarea,
+						min(a.apart_price) minprice ,max(a.apart_price) maxprice
+			 from apt_complex c, apartment a
+			where c.complex_id = a.complex_id and 
+				c.complex_address like '%서울 중구%' 
+			group by c.complex_address, c.complex_apartname, c.complex_pdate,
+					c.complex_subway, c.complex_station, c.complex_foot
+				order by c.complex_pdate asc))
+				where rnum >= 1 and rnum <= 10
+/
 
 
+delete from apt_complex where complex_id = 180731571
 

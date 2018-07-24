@@ -27,9 +27,10 @@ BEGIN
 END get_apart_seq;
 
 
+   
 
 
-
+select * from apt_complex
 select * from APARTMENT;
 select count(*) from apartment where complex_id = 190711945
 select min(apart_price), max(apart_price) from apartment where complex_id = 190711945
@@ -39,6 +40,7 @@ select avg(apart_area), avg(apart_area) from apartment where complex_id = 190711
 select complex_id, count(*) from apartment group by(complex_id)
 
 
+
 select * from apartment 
 	where complex_id = (
 	select complex_id from apt_complex 
@@ -46,3 +48,12 @@ select * from apartment
 
 		
 delete from APARTMENT
+
+select * from 
+(select rownum rnum, complex_address, complex_apartname, complex_pdate,complex_state,
+	complex_subway, complex_station, complex_foot
+		from
+		(select * from apt_complex where complex_address like '¼­¿ï' 
+					order by complex_pdate asc))
+			where rnum >= 1 and rnum <= 10
+

@@ -14,6 +14,8 @@ public class AptComplexBean {
 	private int complex_subway;
 	private String complex_station;
 	private int complex_foot;
+	
+  
 	public long getComplex_id() {
 		return complex_id;
 	}

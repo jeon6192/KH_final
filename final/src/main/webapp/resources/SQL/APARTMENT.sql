@@ -31,7 +31,10 @@ END get_apart_seq;
 
 
 select * from APARTMENT;
-select count(*) from apartment
+select count(*) from apartment where complex_id = 190711945
+select min(apart_price), max(apart_price) from apartment where complex_id = 190711945
+select min(apart_area), max(apart_area) from apartment where complex_id = 190711945
+select avg(apart_area), avg(apart_area) from apartment where complex_id = 190711945
 
 select complex_id, count(*) from apartment group by(complex_id)
 

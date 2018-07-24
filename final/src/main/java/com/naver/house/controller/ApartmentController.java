@@ -41,24 +41,24 @@ public class ApartmentController {
 		
 		String addr = sido + gu + dong;
 		
-		System.out.println("³Ñ¾î¿Â°ª : " + addr);
+		System.out.println("ï¿½Ñ¾ï¿½Â°ï¿½ : " + addr);
 		
 		List<AptComplexBean> aptList = new ArrayList<AptComplexBean>();
 		
-		//ÇÑÆäÀÌÁö¿¡ Ãâ·ÂÇÒ ·¹ÄÚµå °³¼ö
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
 		int limit = 10;
 		
-		//ÃÑ ¾ÆÆÄÆ® ºÐ¾ç¼ö¸¦ °¡Á®¿È.
+		//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ð¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 		int listcount = service.getListCount("%"+addr+"%"); 
 		System.out.println("listcount : " + listcount);
 		
-		//ÃÑÆäÀÌÁö ¼ö
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 		int maxpage =(listcount + limit - 1)/limit;
 		
-		//ÇöÀç ÆäÀÌÁö¿¡ º¸¿©ÁÙ ½ÃÀÛ ÆäÀÌÁö ¼ö (1,11,21 µîµî..)
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ (1,11,21 ï¿½ï¿½ï¿½..)
 		int startpage = ((page-1)/10) * 10 +1;
 		
-		//ÇöÀç ÆäÀÌÁö¿¡¼­ º¸¿©ÁÙ ¸¶Áö¸· ÆäÀÌÁö ¼ö (10,20,30 µî...)
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ (10,20,30 ï¿½ï¿½...)
 		int endpage = startpage + 10 -1;
 		
 		
@@ -77,7 +77,7 @@ public class ApartmentController {
 		m.put("end", endrow);
 		m.put("addr","%"+addr+"%");
 		
-		System.out.println("addr ÀÇ ¹ë·ù °ª : " + m.get("addr"));
+		System.out.println("addr ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ : " + m.get("addr"));
 		aptList = service.getAptList(m);
 		
 		
@@ -88,6 +88,8 @@ public class ApartmentController {
 		aptListM.addObject("endpage",endpage);
 		aptListM.addObject("listcount",listcount);
 		aptListM.addObject("aptList",aptList);
+		
+		
 		
 		
 		return aptListM;

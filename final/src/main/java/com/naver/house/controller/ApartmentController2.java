@@ -19,8 +19,6 @@ import com.naver.house.service.ApartmentService2;
 
 @Controller
 public class ApartmentController2 {
-	public final static String PHARM_URL = "http://openapi.hira.or.kr/openapi/service/pharmacyInfoService/getParmacyBasisList";
-    public final static String KEY = "TVCsVr8g3adcmCcALi9bYrk2cLFJEr3fCn16ZYY0FYOtOs6n5lC%2BmB2sN2%2FjORFcTZNOwiHJtGRb39KL2Doqmw%3D%3D";
 	
 	@Autowired
 	private ApartmentService2 apartmentService;

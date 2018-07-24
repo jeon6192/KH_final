@@ -30,7 +30,7 @@ $(document).ready(function() {
 				data : request.term,
 				success : function(data) {
 					response($.map(data.DATA, function(v,i){
-	                    var text = v.station_nm;
+						var text = v.station_nm;
 	                    if ( text && ( !request.term || matcher.test(text) ) ) {
 	                        return {
 	                                label: v.station_nm,
@@ -70,7 +70,7 @@ $(document).ready(function() {
 		$('.li_info2').animate({opacity: '1'}, 550);
     	
     	$('.div_detail_left').css('background-color', '#d8d8d8');
-    	$('.div_apart_info_detail').css('border', '1px solid #dfdfdf');
+		$('.div_apart_info_detail').css('border', '1px solid #dfdfdf');
     	
     	var apart = [];
     	var left = '';
@@ -182,10 +182,24 @@ $(document).ready(function() {
 	
 
 	// datepicker
-	$('#date').bootstrapMaterialDatePicker({
+	$('#pdate').bootstrapMaterialDatePicker({
+		time: false,
+		clearButton: true,
+		minDate: new Date(new Date().getFullYear() + 1, new Date().getMonth(), new Date().getDate())
+	});
+	$('#sdate').bootstrapMaterialDatePicker({
+		time: false,
+		clearButton: true,
+		minDate : new Date(),
+	}).on('change', function(e, date){
+		$('#edate').bootstrapMaterialDatePicker('setMinDate', date);
+	});
+	$('#edate').bootstrapMaterialDatePicker({
 		time: false,
 		clearButton: true,
 		minDate : new Date()
+	}).on('change', function(e, date){
+		$('#pdate').bootstrapMaterialDatePicker('setMinDate', date);
 	});
 
 

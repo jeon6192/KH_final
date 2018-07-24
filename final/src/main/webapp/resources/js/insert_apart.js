@@ -32,9 +32,10 @@ $(document).ready(function() {
 					response($.map(data.DATA, function(v,i){
 						var text = v.station_nm;
 	                    if ( text && ( !request.term || matcher.test(text) ) ) {
+							var station = v.station_nm+'('+v.line_num+')';
 	                        return {
-	                                label: v.station_nm,
-	                                value: v.station_nm
+	                                label: station,
+	                                value: station
 	                        };
 	                    }
 					}));
@@ -69,7 +70,6 @@ $(document).ready(function() {
 		$('.li_info2').show();
 		$('.li_info2').animate({opacity: '1'}, 550);
     	
-    	$('.div_detail_left').css('background-color', '#d8d8d8');
 		$('.div_apart_info_detail').css('border', '1px solid #dfdfdf');
     	
     	var apart = [];
@@ -84,7 +84,8 @@ $(document).ready(function() {
     			apart[i] = front + i;
     		}
     		
-    		left += '<div class="div_apart_dong" id="detail_left'+i+'" onclick="select_apart('+i+')">'+apart[i]+
+			left += '<div class="div_apart_dong" id="detail_left'+i+'" onclick="select_apart('+i+')">'
+				+apart[i]+
     			'<input type="hidden" name="apartBeanList['+(i-1)+'].apart_dong" value="'+apart[i]+'"></div>';
     		
     		right += '<div class="div_dong_detail" id="detail_right'+i+'">'

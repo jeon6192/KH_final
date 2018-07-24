@@ -12,11 +12,11 @@
  		select * from event_win where user_no=#{user_no}
  	</select>
  	
- 	<select id ="getAptInfo" parameterType="int" resultType="apart">
+ 	<select id ="getAptInfo" parameterType="long" resultType="apart">
  		select * from apartment where apart_id=#{apart_id}
  	</select>
  	
- 	<select id ="getAptXinfo" parameterType="int" resultType="complex">
+ 	<select id ="getAptXinfo" parameterType="long" resultType="complex">
  		select * from APT_COMPLEX where complex_id=#{complex_id}
  	</select>
  	

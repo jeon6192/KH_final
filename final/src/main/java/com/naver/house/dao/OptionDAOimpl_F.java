@@ -19,16 +19,16 @@ public class OptionDAOimpl_F {
 	public int checkWinner(int user_no) throws Exception {
 		// TODO Auto-generated method stub
 		int checkresult=0;
-		int check1 =sqlsession.selectOne("Option_free.checkwinner1",user_no); //count�� �ϴ� �����ͺ�
+		int check1 =sqlsession.selectOne("Option_free.checkwinner1",user_no); //count占쏙옙 占싹댐옙 占쏙옙占쏙옙占싶븝옙
 		
 		if(check1==0) {
 			checkresult=1;
 		}else {
 			Event_winBean ew=sqlsession.selectOne("Option_free.getEvent_win",user_no);
 			int check2=ew.getEvent_con();
-			if(check2==1) { //���
+			if(check2==1) { //占쏙옙占�
 				checkresult=1;
-			}else {//�հ�
+			}else {//占쌌곤옙
 				checkresult=0;
 			}
 		}
@@ -40,7 +40,7 @@ public class OptionDAOimpl_F {
 		// TODO Auto-generated method stub
 		
 		Event_winBean ew=sqlsession.selectOne("Option_free.getEvent_win",user_no); 
-		int apart_id=ew.getApart_id();
+		long apart_id=ew.getApart_id();
 		return sqlsession.selectOne("Option_free.getAptInfo",apart_id);
 	}
 

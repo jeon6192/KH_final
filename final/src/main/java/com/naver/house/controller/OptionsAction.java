@@ -33,7 +33,7 @@ public class OptionsAction {
 		HttpSession session = request.getSession();
 		
 		//�α��� �� �Ѱ�������
-			session.setAttribute("user_no", 2);
+			session.setAttribute("user_no", 1);
 			int user_no=(Integer) session.getAttribute("user_no");
 			
 			//db���� Ȯ��

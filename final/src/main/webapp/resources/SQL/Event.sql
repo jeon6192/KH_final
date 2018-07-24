@@ -1,4 +1,4 @@
-
+drop table member
 
 
 create table Member(

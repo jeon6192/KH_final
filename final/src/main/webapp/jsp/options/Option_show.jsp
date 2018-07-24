@@ -9,6 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>집사자_옵션추가</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<style>
+	@font-face {
+		font-family: 'test';
+		src: url('./resources/fonts/MALGUN.TTF');
+		font-weight: normal;
+		font-style: normal;
+	}
+	
+	* {
+		font-family: test, sans-serif;
+	}
+</style>
 <script>
 function editgo(){
 	$('input:radio').prop("disabled",false);
@@ -283,8 +295,8 @@ $(document).ready(function(){
  <c:if test="${event_con==0 }">
  당첨 정보가 없습니다
  </c:if>
- <div>내 아파트 : ${apartXinfo.getComplex_apartname()} ${apartinfo.getApart_dong()}동 ${apartinfo.getApart_floor()}층  ${apartinfo.getApart_ho()} 호 
- 		주소 : ${apartXinfo.getComplex_address()} [${area} 평]
+ <div>내 아파트 : ${apartXinfo.getComplex_apartname()} ${apartinfo.getApart_dong()}동 ${apartinfo.getApart_ho()} 호 
+ 		주소 : ${apartXinfo.getComplex_address()} [${area} m²]
  		<input type="hidden" name="apart_id" value="${apartinfo.getApart_id()}"/>
  </div>
  	<table class="table">
@@ -439,7 +451,7 @@ $(document).ready(function(){
  			총 가격
  			</td>
  			<td colspan="3">
- 			얼마.<input type="text" name="nf_cost" id="nf_cost1" value="" Readonly>
+ 			얼마<input type="text" name="nf_cost" id="nf_cost1" value="" Readonly>
  			</td>
  		</tr>
  	</table>

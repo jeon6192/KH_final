@@ -4,7 +4,7 @@ public class Event_winBean {
 	
 	private int event_win_no;
 	private int user_no;
-	private int apart_id;
+	private long apart_id;
 	private int event_con;
 	
 	
@@ -20,10 +20,10 @@ public class Event_winBean {
 	public void setUser_no(int user_no) {
 		this.user_no = user_no;
 	}
-	public int getApart_id() {
+	public long getApart_id() {
 		return apart_id;
 	}
-	public void setApart_id(int apart_id) {
+	public void setApart_id(long apart_id) {
 		this.apart_id = apart_id;
 	}
 	public int getEvent_con() {

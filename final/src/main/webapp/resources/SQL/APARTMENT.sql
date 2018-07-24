@@ -25,7 +25,7 @@ BEGIN
   FROM dual;  
   return num;  
 END get_apart_seq;
-	
+
 
 
 

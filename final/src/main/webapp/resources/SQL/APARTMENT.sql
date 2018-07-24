@@ -27,13 +27,15 @@ BEGIN
 END get_apart_seq;
 	
 
+   
 
 
-
+select * from apt_complex
 select * from APARTMENT;
 select count(*) from apartment
 
 select complex_id, count(*) from apartment group by(complex_id)
+
 
 
 select * from apartment 
@@ -43,3 +45,12 @@ select * from apartment
 
 		
 delete from APARTMENT
+
+select * from 
+(select rownum rnum, complex_address, complex_apartname, complex_pdate,complex_state,
+	complex_subway, complex_station, complex_foot
+		from
+		(select * from apt_complex where complex_address like '¼­¿ï' 
+					order by complex_pdate asc))
+			where rnum >= 1 and rnum <= 10
+

@@ -1,11 +1,19 @@
 package com.naver.house.service;
 
-import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+
+import com.naver.house.bean.AptComplexBean;
 
 public interface ApartmentService {
 
-	public void insert_apart(Map<String, Object> apartMap) throws Exception;
-	
-	public Map<String, Object> detail_apart(int complex_id) throws Exception;
+
+
+	List<AptComplexBean> getAptList(HashMap<String, Object> m);
+
+
+	int getListCount(String addr);
+
+
 
 }

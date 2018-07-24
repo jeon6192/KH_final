@@ -114,14 +114,24 @@
 			</li>
 			
 			<li class="li_info3">
-				<div class="div_apart_pdate">
-					<div class="div_apart_pdate_span">
+				<div class="div_apart_date">
+					<div class="div_apart_date_span">
 						<span class="span_info">
 							분양 시기
 						</span>
 					</div>
 					<div class="div_apart_pdate_cal">
-						<input id="date" type="text" name="complex_pdate">
+						<input id="pdate" type="text" name="complex_pdate">
+					</div>
+					
+					<div class="div_apart_date_span">
+						<span class="span_info">
+							분양 시작 및 종료일
+						</span>
+					</div>
+					<div class="div_apart_sdate_cal">
+						<input id="sdate" type="text" name="complex_sdate"> ~ 
+						<input id="edate" type="text" name="complex_edate">
 					</div>
 				</div>
 				

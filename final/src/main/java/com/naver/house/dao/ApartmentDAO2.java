@@ -22,9 +22,9 @@ public class ApartmentDAO2 {
 	public void insert_apartment2(List<ApartmentBean> apartmentBeanList) throws Exception {
 		for (ApartmentBean apart : apartmentBeanList) {
 			System.out.println(apart.getComplex_id());
-			System.out.println(apart.getApart_id());
 		}
 		sqlSession.insert("apart.insert2", apartmentBeanList);
+		System.out.println("아파트 넣었음!");
 	}
 	
 	public void insert_aptComplex(AptComplexBean aptComplexBean) throws Exception {

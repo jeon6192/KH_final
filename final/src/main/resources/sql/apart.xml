@@ -10,7 +10,7 @@
 	</insert>
 	
 	<insert id="insert2" parameterType="java.util.List">
-		<foreach collection="list" item="item" index="index"  open="INSERT ALL " separator=" " close="SELECT * FROM dual" > 
+		<foreach collection="list" item="item" index="index"  open="INSERT ALL " separator=" " close="SELECT * FROM DUAL" > 
 			into apartment values
 	        (
 				get_apart_seq, #{item.complex_id}, #{item.apart_dong}, #{item.apart_ho}, #{item.apart_floor}, 

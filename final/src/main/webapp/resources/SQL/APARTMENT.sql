@@ -16,7 +16,6 @@ create sequence apart_seq
 	increment by 1
 	nomaxvalue
 
-
 create or replace
 FUNCTION get_apart_seq RETURN NUMBER AS 
 num NUMBER;
@@ -27,14 +26,20 @@ BEGIN
   return num;  
 END get_apart_seq;
 	
+
+
+
+
 select * from APARTMENT;
 select count(*) from apartment
 
 select complex_id, count(*) from apartment group by(complex_id)
+
 
 select * from apartment 
 	where complex_id = (
 	select complex_id from apt_complex 
 		where complex_apartname = '123')
 
+		
 delete from APARTMENT

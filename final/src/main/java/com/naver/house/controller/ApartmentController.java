@@ -3,8 +3,6 @@ package com.naver.house.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,113 +10,90 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.naver.house.bean.ApartListBean;
-import com.naver.house.bean.ApartmentBean;
 import com.naver.house.bean.AptComplexBean;
 import com.naver.house.service.ApartmentService;
 
 @Controller
 public class ApartmentController {
-	public final static String PHARM_URL = "http://openapi.hira.or.kr/openapi/service/pharmacyInfoService/getParmacyBasisList";
-    public final static String KEY = "TVCsVr8g3adcmCcALi9bYrk2cLFJEr3fCn16ZYY0FYOtOs6n5lC%2BmB2sN2%2FjORFcTZNOwiHJtGRb39KL2Doqmw%3D%3D";
 	
 	@Autowired
-	private ApartmentService apartmentService;
-	
-	
-	@RequestMapping("/main.com")
-	public ModelAndView mainPage() {
-		//return new ModelAndView("template");
-		return new ModelAndView("apart/test");
-	}
-	
-	@RequestMapping(value = "/apart_insertform.com")
-	public ModelAndView insertform_apart() {
+	private ApartmentService service;
+
+	@RequestMapping(value="/aptSearch.com")
+	public String aptSearch() {
+
 		
-		return new ModelAndView("template", "viewName", "apart/insert_aptcomplex.jsp");
+		
+		return "aptSearch/search";
 	}
 	
-	@RequestMapping(value = "/apart_insert.com")
-	public ModelAndView insert_apart(AptComplexBean aptComplexBean, 
-			ApartListBean apartListBean, 
-			@RequestParam(value="chk_subway", defaultValue="false") boolean chk_subway) throws Exception {
-		aptComplexBean.setComplex_state(0);
-		if (chk_subway) {
-			aptComplexBean.setComplex_subway(1);
-		} else {
-			aptComplexBean.setComplex_subway(0);
+	@RequestMapping(value = "/aptsearch_list.com")
+	public ModelAndView aptList(@RequestParam(value = "page", defaultValue = "1")int page, 
+			@RequestParam("sel1") String sido,
+			@RequestParam("sel2") String gu, @RequestParam("sel3") String dong) {
+		
+		if(gu != "") {
+			gu = " " + gu;
+		}
+		if(dong != "") {
+			dong = " " + dong;
 		}
 		
-		String id1 = aptComplexBean.getComplex_pdate().substring(2).replaceAll("-", "") + new Random().nextInt(1000);
-		aptComplexBean.setComplex_id(Long.parseLong(id1));
+		String addr = sido + gu + dong;
+		
+		System.out.println("³Ñ¾î¿Â°ª : " + addr);
+		
+		List<AptComplexBean> aptList = new ArrayList<AptComplexBean>();
+		
+		//ÇÑÆäÀÌÁö¿¡ Ãâ·ÂÇÒ ·¹ÄÚµå °³¼ö
+		int limit = 10;
+		
+		//ÃÑ ¾ÆÆÄÆ® ºÐ¾ç¼ö¸¦ °¡Á®¿È.
+		int listcount = service.getListCount("%"+addr+"%"); 
+		System.out.println("listcount : " + listcount);
+		
+		//ÃÑÆäÀÌÁö ¼ö
+		int maxpage =(listcount + limit - 1)/limit;
+		
+		//ÇöÀç ÆäÀÌÁö¿¡ º¸¿©ÁÙ ½ÃÀÛ ÆäÀÌÁö ¼ö (1,11,21 µîµî..)
+		int startpage = ((page-1)/10) * 10 +1;
+		
+		//ÇöÀç ÆäÀÌÁö¿¡¼­ º¸¿©ÁÙ ¸¶Áö¸· ÆäÀÌÁö ¼ö (10,20,30 µî...)
+		int endpage = startpage + 10 -1;
 		
 		
-		System.out.println("ë‹¨ì§€ê³ ìœ  ë²ˆí˜¸ : "+aptComplexBean.getComplex_id());
-		System.out.println("ì£¼ì†Œ : "+aptComplexBean.getComplex_address()+"(ë‚˜ì¤‘ì—)");
-		System.out.println("ìœ„ë„ : "+aptComplexBean.getComplex_lat()+"(ë‚˜ì¤‘ì—)");
-		System.out.println("ê²½ë„ : "+aptComplexBean.getComplex_lng()+"(ë‚˜ì¤‘ì—)");
-		System.out.println("ì•„íŒŒíŠ¸ëª… : "+aptComplexBean.getComplex_apartname());
-		System.out.println("ë¶„ì–‘ì‹œê¸° : "+aptComplexBean.getComplex_pdate());
-		System.out.println("ì†Œê°œê¸€ : "+aptComplexBean.getComplex_info());
-		System.out.println("ì—­ì„¸ê¶Œ : "+aptComplexBean.getComplex_subway());
-		System.out.println("ê·¼ì²˜ì—­ : "+aptComplexBean.getComplex_station());
-		System.out.println("ì†Œìš”ì‹œê°„ : "+aptComplexBean.getComplex_foot());
+		if(endpage > maxpage)
+		endpage = maxpage;
 		
-		List<ApartmentBean> apartmentBeanList = new ArrayList<ApartmentBean>();
-		//int seq = new Random().nextInt(100);
-		for (ApartmentBean apart : apartListBean.getApartBeanList()) {
-			for (int i = 1; i <= apart.getApart_floor(); i++) {
-				for (int j = 1; j < 5; j++) {
-					
-					//String id2 = id1 + (seq++);
-					ApartmentBean apartBean = new ApartmentBean();
-					
-					//apartBean.setApart_id(Long.parseLong(id2));
-					apartBean.setComplex_id(Long.parseLong(id1));
-					apartBean.setApart_ho(Integer.parseInt(Integer.toString(i) + "0" + j));
-					apartBean.setApart_dong(apart.getApart_dong());
-					apartBean.setApart_floor(apart.getApart_floor());
-					apartBean.setApart_area(apart.getApart_area());
-					apartBean.setApart_price(apart.getApart_price());
-					apartBean.setApart_room(apart.getApart_room());
-					apartBean.setApart_toilet(apart.getApart_toilet());
-					apartBean.setApart_interior(apart.getApart_interior());
-					
-					System.out.println("ì•„íŒŒíŠ¸ ID : "+apart.getApart_id());
-					System.out.println("ë‹¨ì§€ê³ ìœ  ë²ˆí˜¸ : "+apart.getComplex_id());
-					System.out.println("ë™ : "+apart.getApart_dong());
-					System.out.println("í˜¸ : "+apart.getApart_ho());
-					System.out.println("ì¸µ : "+apart.getApart_floor());
-					System.out.println("ë©´ì  : "+apart.getApart_area());
-					System.out.println("ê°€ê²© : "+apart.getApart_price());
-					System.out.println("ë°© : "+apart.getApart_room());
-					System.out.println("í™”ìž¥ì‹¤ : "+apart.getApart_toilet());
-					System.out.println("ì¸í…Œë¦¬ì–´ì‚¬ì§„ : "+apart.getApart_interior());
-					
-					apartmentBeanList.add(apartBean);
-				}
-			}
-			
-		}
+		if(endpage < page)
+			page = endpage;
 		
 		
-		Map<String, Object> apartMap = new HashMap<String, Object>();
+		HashMap<String, Object> m = new HashMap<String, Object>();
+		int startrow =(page-1)*limit + 1;
+		int endrow = startrow + limit - 1;
 		
-		apartMap.put("aptComplexBean", aptComplexBean);
-		apartMap.put("apartmentListBean", apartmentBeanList);
+		m.put("start", startrow);
+		m.put("end", endrow);
+		m.put("addr","%"+addr+"%");
 		
-		apartmentService.insert_apart(apartMap);
+		System.out.println("addr ÀÇ ¹ë·ù °ª : " + m.get("addr"));
+		aptList = service.getAptList(m);
 		
 		
-		return new ModelAndView("redirect:/apart_insertform.com");
-		//return new ModelAndView("redirect:/apart_list.com");
+		ModelAndView aptListM = new ModelAndView("aptSearch/search_list");
+		aptListM.addObject("page",page);
+		aptListM.addObject("maxpage",maxpage);
+		aptListM.addObject("startpage",startpage);
+		aptListM.addObject("endpage",endpage);
+		aptListM.addObject("listcount",listcount);
+		aptListM.addObject("aptList",aptList);
+		
+		
+		return aptListM;
 	}
 	
-	@RequestMapping(value = "/apart_detail.com")
-	public ModelAndView detail_apart(@RequestParam("complex_id") int complex_id, 
-			@RequestParam(value = "page", defaultValue = "1") int page) throws Exception {
-		
-		return new ModelAndView("template", "viewName", "apart/detail");
-	}
+	
+	
 	
 }

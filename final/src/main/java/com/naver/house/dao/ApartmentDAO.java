@@ -1,6 +1,6 @@
 package com.naver.house.dao;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -12,36 +12,23 @@ import com.naver.house.bean.AptComplexBean;
 
 @Repository
 public class ApartmentDAO {
-	@Autowired
-	private SqlSessionTemplate sqlsession;
-	
-	public void insert_apartment(ApartmentBean apartmentBean) throws Exception {
-		sqlsession.insert("apart.insert",apartmentBean);
-	}
-	
-	public void insert_apartment2(List<ApartmentBean> apartmentBeanList) throws Exception {
-		for (ApartmentBean apart : apartmentBeanList) {
-			System.out.println(apart.getComplex_id());
-			System.out.println(apart.getApart_id());
-		}
-		sqlsession.insert("apart.insert2", apartmentBeanList);
-	}
-	
-	public void insert_aptComplex(AptComplexBean aptComplexBean) throws Exception {
-		sqlsession.insert("complex.insert", aptComplexBean);
-	}
-	
-	public AptComplexBean detail_aptComplex(int complex_id) throws Exception {
-		AptComplexBean aptComplexBean = new AptComplexBean();
-		
-		return aptComplexBean;
-	}
-	
-	public List<ApartmentBean> detail_apart(int complex_id) throws Exception {
-		List<ApartmentBean> apartmentBeanList = new ArrayList<ApartmentBean>();
-		
-		return apartmentBeanList;
-	}
-	
 
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+
+
+
+
+
+	public List<AptComplexBean> getAptList(HashMap<String, Object> m) {
+		List<AptComplexBean> list = 
+				sqlSession.selectList("Search.aptList",m);
+		return list;
+	}
+
+
+
+	public int getListCount(String addr) {
+		return sqlSession.selectOne("Search.lsitCount",addr);
+	}
 }

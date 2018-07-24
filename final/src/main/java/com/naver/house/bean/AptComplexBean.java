@@ -12,8 +12,45 @@ public class AptComplexBean {
 	private int complex_subway;
 	private String complex_station;
 	private int complex_foot;
-
+	private int maxprice;			// 최대 가격 
+	private int minprice;			// 최소 가격
+	private int maxarea;			// 최대 면적
+	private int minarea;			// 최소 면적
 	
+	
+	
+	public int getMaxprice() {
+		return maxprice;
+	}
+
+	public void setMaxprice(int maxprice) {
+		this.maxprice = maxprice;
+	}
+
+	public int getMinprice() {
+		return minprice;
+	}
+
+	public void setMinprice(int minprice) {
+		this.minprice = minprice;
+	}
+
+	public int getMinarea() {
+		return minarea;
+	}
+
+	public void setMinarea(int minarea) {
+		this.minarea = minarea;
+	}
+
+	public int getMaxarea() {
+		return maxarea;
+	}
+
+	public void setMaxarea(int maxarea) {
+		this.maxarea = maxarea;
+	}
+
 	public long getComplex_id() {
 		return complex_id;
 	}

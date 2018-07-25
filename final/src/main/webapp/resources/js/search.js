@@ -205,11 +205,16 @@
 			"오산동", "우정읍", "장안면", "장지동", "정남면", "중동", "진안동", "청계동", "팔탄면",
 			"향남읍", "황계동");
 
+	
+	//서울, 경기 셀렉트박스에 담겨져있는 것들을 다시 2차원 배열로 담아준다
 	var sigungu = new Array(sigungu1, sigungu2, sigungu3, sigungu4, sigungu5,
 			sigungu6, sigungu7, sigungu8, sigungu9, sigungu10, sigungu11,
 			sigungu12, sigungu13, sigungu14, sigungu15, sigungu16, sigungu17);
 	console.log(sigungu);
-
+	
+	
+	
+	// 동도 시군구 와 마찬가지로   서울 26개 경기 32개 를 2차원 배열로 담아준다.
 	var dong = new Array(dong1, dong2, dong3, dong4, dong5, dong6, dong7,
 			dong8, dong9, dong10, dong11, dong12, dong13, dong14, dong15,
 			dong16, dong17, dong18, dong19, dong20, dong21, dong22, dong23,
@@ -219,14 +224,16 @@
 			gg12, gg13, gg14, gg15, gg16, gg17, gg18, gg19, gg20, gg21, gg22,
 			gg23, gg24, gg25, gg26, gg27, gg28, gg29, gg30, gg31);
 
+	
+	// 여기서 3차원 배열로 적어준다.
 	var donghap = new Array(dong, gg);
-
+		// 여기까지가 셀렉트를 적어주기 위한 것이다.
 	
 	
+	
+	
+	//여기서부터 체인지가 될때 마다 select1 옆에있는 select2 의 옵션 값을 바꿔준다.
 	$(function(){
-	
-	
-	
 	$(".select1").change(function() {
 		$('#sel1').val($('.select1 option:selected').text());
 		
@@ -257,6 +264,7 @@
 
 	
 	
+	//여기서부터 2가 체인지가 될때 마다 select2 옆에있는 select3 의 옵션 값을 바꿔준다.
 	$('.select2').change(function() {
 		$('#sel2').val($('.select2 option:selected').text());
 		

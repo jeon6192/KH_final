@@ -26,18 +26,4 @@
 				order by c.complex_pdate asc))
 				where rnum &gt; = #{start} and rnum &lt; = #{end}
 		</select>
-		
-		
-		
-		
-
-	
-	<!-- select * from 
-					(select rownum rnum, complex_address, complex_apartname, complex_pdate,complex_state,
-										 complex_subway, complex_station, complex_foot
-							from
-								(select * from apt_complex where complex_address like #{addr} 
-									order by complex_pdate asc))
-						where rnum &gt; = #{start} and rnum &lt; = #{end} -->
-	
 </mapper>

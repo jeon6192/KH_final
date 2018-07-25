@@ -8,7 +8,7 @@
 			select count(*) from apt_complex where complex_address like #{addr}
 		</select>
 		
-		<select id="aptList" resultType="complex" parameterType="java.util.Map">
+		<select id="aptList" resultType="complex2" parameterType="java.util.Map">
 				
 				select * from 
 	(select rownum rnum, complex_address, complex_apartname, complex_pdate,
@@ -23,7 +23,7 @@
 				c.complex_address like #{addr} 
 			group by c.complex_address, c.complex_apartname, c.complex_pdate,
 					c.complex_subway, c.complex_station, c.complex_foot
-				order by c.complex_pdate asc))
+				order by ${sort}))
 				where rnum &gt; = #{start} and rnum &lt; = #{end}
 		</select>
 	

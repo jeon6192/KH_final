@@ -286,3 +286,14 @@
 		$('#sel3').val($('.select3 option:selected').text());
 	});
 })
+
+
+$(document).ready(function () {
+
+	
+	
+	
+});
+
+
+

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.naver.house.bean.ApartmentBean;
 import com.naver.house.bean.AptComplexBean;
+import com.naver.house.bean.AptComplexBean2;
 
 @Repository
 public class ApartmentDAO {
@@ -20,8 +21,8 @@ public class ApartmentDAO {
 
 
 
-	public List<AptComplexBean> getAptList(HashMap<String, Object> m) {
-		List<AptComplexBean> list = 
+	public List<AptComplexBean2> getAptList(HashMap<String, Object> m) {
+		List<AptComplexBean2> list = 
 				sqlSession.selectList("Search.aptList",m);
 		return list;
 	}

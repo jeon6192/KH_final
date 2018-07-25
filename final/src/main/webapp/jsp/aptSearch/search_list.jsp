@@ -17,6 +17,13 @@
 
 <style>
 
+.asc{
+    display: inline-block;
+}
+.desc{
+    display: inline-block;
+}
+
 li{
     display: inline-block;
 }
@@ -39,7 +46,10 @@ display: inline-block;
 
 
 
-.buttonsort
+.buttonsortSubwayAsc, .buttonsortSubwayDesc,
+.buttonsortPriceAsc, .buttonsortPriceDesc,
+.buttonsortAreaAsc, .buttonsortAreaDesc,
+.buttonsortDateAsc, .buttonsortDateDesc
 {
    border: 0 none;
     background-color: transparent;
@@ -98,9 +108,7 @@ color : #3a72d8 !important;
 </style>
 <script>
 	$(function(){
-		
-		
-		 var sel1 = "${param.sel1}";
+		var sel1 = "${param.sel1}";
 		var sel2 = "${param.sel2}";
 		var sel3 = "${param.sel3}";
 		var select1 ="${param.select1}";
@@ -163,24 +171,59 @@ color : #3a72d8 !important;
 			var thisVal = $(this).val();
 			if(thisVal == select3){
 				$(this).prop('selected', true)
-				
-								
-				
 			}
 		})
 		
 		
 		
-	});
-	
-
+		//======== ajax 정렬된값 받아오기================================
+			
+			
+			
+		$('.buttonsort.asc').css('display', 'none');
+		
+		$('.buttonsort').click(function () {
+			var select1 = $('.select1').val();
+			var select2 = $('.select2').val();
+			var select3 = $('.select3').val();
+			
+			var sort = $(this).val();
+			var sido = $('#sel1').val().trim();
+			var gu = $('#sel2').val().trim();
+			var dong = $('#sel3').val().trim();
+			
+			
+			
+			if ($(this).siblings().css('display') == 'none') {
+				$(this).css('display', 'none');
+				$(this).siblings().css('display', 'block');
+			}
+			
+			$.ajax({
+				type : "GET",
+				url : "aptsearch_list.com",
+				data : {
+						"sort" : sort, "sel1" : sido, "sel2" : gu,
+						"sel3" : dong, "state" : "ajax",
+						"select1" : select1, "select2" : select2,
+						"select3" : select3,
+				},
+				success : function(result){
+					$('table:first').empty().prepend(result);
+				},
+				error : function(){
+					alert("에러");
+				}
+			});
+			return false;
+		});
+		
+		//========================================================
+		
+});
 </script>
 </head>
 <body>
-
-
-	
-	
 	<div class="search">
 	<form class="searchList" action="aptsearch_ok.com" method="GET">
 		<select class="select1" name="select1">
@@ -211,28 +254,37 @@ color : #3a72d8 !important;
 		</select>
 		 <button type="submit" class="button"><i class="fa fa-search"></i></button>
 		 
-		 <input type="hidden" id="sel1" name="sel1" value="">
-		 <input type="hidden" id="sel2" name="sel2" value="">
-		 <input type="hidden" id="sel3" name="sel3" value="">
+		 <input type="hidden" id="sel1" name="sel1" value="${addrMap.sido}">
+		 <input type="hidden" id="sel2" name="sel2" value="${addrMap.gu}">
+		 <input type="hidden" id="sel3" name="sel3" value="${addrMap.dong}">
 	</form>
 	</div>
-
 <p>넘어온 개수 : ${listcount}</p>
 
 <div class="apart_name">
 		<h3><span></span>매물</h3>
 		
 	<div class="order_by">
-	<ul>
-		<li><button class="buttonsort" type="button" onClick="sysdateSort()">분양시기  ▼  |</button></li>
-		<li><button class="buttonsort" type="button" onClick="priceSort()">가격  ▼  |</button></li>
-		<li><button class="buttonsort" type="button" onClick="areaSort()">면적  ▼  |</button></li>
-		<li><button class="buttonsort" type="button" onClick="subwaySort()">역세권  ▼ </button></li>
-	
-		<!-- <a href="#">분양시기</a><a href="#">가격</a><a href="#">면적</a><a href="#">역세권</a> -->
-	</ul>
+		<ul>
+			<li>
+				<button class="buttonsort desc" type="button" value="c.complex_pdate desc">분양시기  ▼  |</button>
+				<button class="buttonsort asc" type="button" value="c.complex_pdate asc">분양시기  ▲  |</button>
+			</li>
+			<li>
+				<button class="buttonsort desc" type="button" value="maxprice desc">가격  ▼  |</button>
+				<button class="buttonsort asc" type="button" value="maxprice asc">가격  ▲  |</button>
+			</li>
+			<li>
+				<button class="buttonsort desc" type="button" value="maxarea desc">면적  ▼  |</button>
+				<button class="buttonsort asc" type="button" value="maxarea asc">면적  ▲  |</button>
+			
+			</li>
+			<li>
+				<button class="buttonsort desc" type="button" value="c.complex_subway desc">역세권  ▼ </button>
+				<button class="buttonsort asc" type="button" value="c.complex_subway asc">역세권  ▲ </button>
+			</li>
+		</ul>
 	</div>
-		
 </div>
 
 <div class="list">
@@ -323,7 +375,7 @@ color : #3a72d8 !important;
 						이전&nbsp;
 					</c:if>
 					<c:if test="${page>1}">
-						<a href="./aptsearch_list.com?page=${page-1}&select1=${param.select1}&select2=${param.selec2}&select3=${param.select3}&sel1=${param.sel1}&sel2=${param.sel2}&sel3=${param.sel3}">이전</a>
+						<a href="./aptsearch_list.com?page=${page-1}&select1=${param.select1}&select2=${param.select2}&select3=${param.select3}&sel1=${param.sel1}&sel2=${param.sel2}&sel3=${param.sel3}">이전</a>
 					</c:if>
 					
 					<c:forEach var="a" begin="${startpage}" end="${endpage}">
@@ -331,7 +383,7 @@ color : #3a72d8 !important;
 							${a}
 						</c:if>
 						<c:if test="${a != page }">
-							<a href="./aptsearch_list.com?page=${a}&select1=${param.select1}&select2=${param.selec2}&select3=${param.select3}&sel1=${param.sel1}&sel2=${param.sel2}&sel3=${param.sel3}">${a}</a>
+							<a href="./aptsearch_list.com?page=${a}&select1=${param.select1}&select2=${param.select2}&select3=${param.select3}&sel1=${param.sel1}&sel2=${param.sel2}&sel3=${param.sel3}">${a}</a>
 						</c:if>
 					</c:forEach>
 					
@@ -339,7 +391,7 @@ color : #3a72d8 !important;
 						다음&nbsp;
 					</c:if>
 					<c:if test="${page<maxpage}">
-							<a href="./aptsearch_list.com?page=${page+1}&select1=${param.select1}&select2=${param.selec2}&select3=${param.select3}&sel1=${param.sel1}&sel2=${param.sel2}&sel3=${param.sel3}">다음</a>
+							<a href="./aptsearch_list.com?page=${page+1}&select1=${param.select1}&select2=${param.select2}&select3=${param.select3}&sel1=${param.sel1}&sel2=${param.sel2}&sel3=${param.sel3}">다음</a>
 					</c:if>
 				</td>
 			</tr>

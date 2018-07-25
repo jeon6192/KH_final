@@ -48,9 +48,9 @@ select * from apt_complex
 
 
 insert into apt_complex 
-		values(2,'¼­¿ïÆ¯º°½Ã °­³²±¸ °³Æ÷µ¿',24.5,22.5,'¿ì¼º¾ÆÆÄÆ®',sysdate,1,'ÁÁÀº¾ÆÆÄÆ® ÀÔ´Ï´Ù','1','¼­¿ï¿ª',15)
+		values(2,'ï¿½ï¿½ï¿½ï¿½Æ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',24.5,22.5,'ï¿½ì¼ºï¿½ï¿½ï¿½ï¿½Æ®',sysdate,1,'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ô´Ï´ï¿½','1','ï¿½ï¿½ï¿½ï¿ª',15)
 		insert into apt_complex 
-		values(15,'¼­¿ïÆ¯º°½Ã °­³²±¸ Ã»´ãµ¿',24.5,22.5,'¿ì¼º¾ÆÆÄÆ®',sysdate,1,'ÁÁÀº¾ÆÆÄÆ® ÀÔ´Ï´Ù','1','¼­¿ï¿ª',15)
+		values(15,'ï¿½ï¿½ï¿½ï¿½Æ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã»ï¿½ãµ¿',24.5,22.5,'ï¿½ì¼ºï¿½ï¿½ï¿½ï¿½Æ®',sysdate,1,'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ô´Ï´ï¿½','1','ï¿½ï¿½ï¿½ï¿ª',15)
 
 		
 		
@@ -64,10 +64,10 @@ insert into apt_complex
 						min(a.apart_price) minprice ,max(a.apart_price) maxprice
 			 from apt_complex c, apartment a
 			where c.complex_id = a.complex_id and 
-				c.complex_address like '%¼­¿ï Áß±¸%' 
+				c.complex_address like '%ì„œìš¸ ì¤‘êµ¬%' 
 			group by c.complex_address, c.complex_apartname, c.complex_pdate,
 					c.complex_subway, c.complex_station, c.complex_foot
-				order by c.complex_pdate asc))
+				order by maxprice desc))
 				where rnum >= 1 and rnum <= 10
 /
 

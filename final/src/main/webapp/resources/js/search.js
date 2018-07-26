@@ -232,26 +232,33 @@
 	
 	
 	
-	//여기서부터 체인지가 될때 마다 select1 옆에있는 select2 의 옵션 값을 바꿔준다.
+	//select1이 체인지 될때마다 select2 의 옵션 값을 바꿔준다.
 	$(function(){
 	$(".select1").change(function() {
+		
+		//값은 숫자가 넘어가기때문에 리스트화면에서 지역명을 뽑아줄 수 없기때문에
+			//타입 히든을 넣어 select1 의 선택된 값 텍스트를 넣어준다.
 		$('#sel1').val($('.select1 option:selected').text());
 		
 		var selectVal = $('.select1').val();
 		var inner = "";
 		var inner2 = "";
 
-		inner += "<option value=''>";
+		inner += "<option value='-1'>";
 		inner += "시/군/구";
 		inner += "</option>";
 
-		inner2 += "<option value=''>";
+		inner2 += "<option value='-1'>";
 		inner2 += "읍/면/동";
 		inner2 += "</option>";
 
 		for (var i = 0; i < sigungu[selectVal].length; i++) {
 			console.log(sigungu[selectVal][i]);
+			
+			//밸류에는 읍/면/동을 배열을 이용해서 넣기위해 숫자를 넣어준다. 
 			inner += "<option value=" + i + ">";
+			
+			//텍스트 값
 			inner += sigungu[selectVal][i];
 			inner += "</option>";
 
@@ -264,12 +271,12 @@
 
 	
 	
-	//여기서부터 2가 체인지가 될때 마다 select2 옆에있는 select3 의 옵션 값을 바꿔준다.
+	//2가 체인지가 될때 마다 select3 의 옵션 값을 바꿔준다.
 	$('.select2').change(function() {
 		$('#sel2').val($('.select2 option:selected').text());
 		
 		var inner3 = "";
-		inner3 += "<option value=''>";
+		inner3 += "<option value="+-1+">";
 		inner3 += "읍/면/동";
 		inner3 += "</option>";
 		
@@ -279,6 +286,7 @@
 		var selectVal2 = $('.select2').val();
 		for (var i = 0; i < donghap[selectVal1][selectVal2].length; i++) {
 			inner3 += "<option value=" + i + ">";
+			//3차원배열을이용해서 값을 넣어준다.
 			inner3 += donghap[selectVal1][selectVal2][i];
 			inner3 += "</option>"
 		}
@@ -291,17 +299,8 @@
 	});
 	
 	$('.select3').change(function() {
+		//값만 히든에 넣어서 보내준다.
 		$('#sel3').val($('.select3 option:selected').text());
 	});
 })
-
-
-$(document).ready(function () {
-
-	
-	
-	
-});
-
-
 

@@ -35,7 +35,6 @@ CREATE TABLE APARTMENT(
    APART_INTERIOR VARCHAR2(1000))
    
    
-   drop table apartment
    
    select * from apartment
    
@@ -56,17 +55,20 @@ insert into apt_complex
 		
 		select * from 
 (select rownum rnum, complex_address, complex_apartname, complex_pdate,
-	complex_subway, complex_station, complex_foot,minarea, maxarea, minprice,maxprice
+	complex_subway, complex_station, complex_foot,minarea, maxarea, minprice,maxprice,
+	complex_lat,complex_lng
 		from
 		(select c.complex_address, c.complex_apartname, c.complex_pdate,
 					c.complex_subway, c.complex_station, c.complex_foot,
 						min(a.apart_area) minarea ,max(a.apart_area) maxarea,
 						min(a.apart_price) minprice ,max(a.apart_price) maxprice
+						,c.complex_lat,c.complex_lng
 			 from apt_complex c, apartment a
 			where c.complex_id = a.complex_id and 
 				c.complex_address like '%서울 중구%' 
 			group by c.complex_address, c.complex_apartname, c.complex_pdate,
 					c.complex_subway, c.complex_station, c.complex_foot
+					,c.complex_lat,c.complex_lng
 				order by maxprice desc))
 				where rnum >= 1 and rnum <= 10
 /

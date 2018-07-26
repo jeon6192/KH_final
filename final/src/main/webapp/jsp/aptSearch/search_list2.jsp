@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
+<c:if test="${listcount == 0 }">
+		
+		
 		<thead>
 			<tr>
 				<th>분양시기</th>
@@ -14,6 +16,17 @@
 				<th>근처역/도보 소요시간</th>
 			</tr>
 		</thead>
+		<tbody>
+		<tr>
+			<td colspan="7" align="center">검색된 매물이 없습니다.<br>
+			다른 조건으로 검색하시기 바랍니다.</td>
+		</tr>
+		</tbody>
+</c:if>
+		
+		
+		<c:if test="${listcount !=0}">
+		
 		<tbody>
 			<c:forEach var = "aptList" items="${aptList}">
 			<tr>
@@ -84,3 +97,4 @@
 				</td>
 			</tr>
 		</tfoot>
+	</c:if>

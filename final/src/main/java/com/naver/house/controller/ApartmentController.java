@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.naver.house.bean.AptComplexBean2;
@@ -40,20 +41,27 @@ public class ApartmentController {
 		
 		
 		HttpSession session = request.getSession();
-		//ajax 에서 정렬 할 조건값을 받아온다.
+		// ajax 로 검색하는  조건이 아닐시 order by 값
 		String sort = "c.complex_pdate asc";
 		
-		if(gu != "") {
+		
+		
+		// 검색할때 지역 이름이 띄어쓰기 되있기 때문에 뛰어쓰기해준다. ex) 서울 강남구 개포동
+		// 시/도 만으로도 검색이되기때문에 gu 값이 널이면 gu 값을 띄어주지말고 gu 까지 검색했을시 gu 앞에 공백을 넣어준다
+		if(gu != "" ) {
 			gu = " " + gu;
 		}
+		
 		if(dong != "") {
 			dong = " " + dong;
 		}
 		
+		//합친값을 addr 에 넣어준다.
 		String addr = sido + gu + dong;
 		
 		System.out.println("주소 : " + addr);
 		
+		//조인을해서 뽑아오끼때문에 bean2를 새로 만들어서 받아온다.
 		List<AptComplexBean2> aptList = new ArrayList<AptComplexBean2>();
 		
 		//한페이지에 출력할 레코드 개수
@@ -61,10 +69,17 @@ public class ApartmentController {
 		
 		
 		//변경된 sort 값이 있는지 확인
+			
+		
+		
+		// 2. 세션에 솔트가있다면 sort 값을 기본 sort 값에 덮어씌어준다
 		if(session.getAttribute("sort") != null) {
 			sort = (String)session.getAttribute("sort").toString();
 		}
 		
+		
+		// 1. sort 가 param 값을오 넘어오지 않았다면 무시
+		// 넘어왔다면 sort 를 세션에 담아준다
 		if(request.getParameter("sort") != null) {
 			sort = request.getParameter("sort");
 			session.setAttribute("sort", sort);
@@ -74,7 +89,7 @@ public class ApartmentController {
 		System.out.println("sort 값 : " + sort);
 		
 		
-		//총 아파트 분양수를 가져옴
+		//총 아파트 분양수를 가져옴 검색 조건으로 양쪽에 % 를 붙여준다.
 		int listcount = service.getListCount("%"+addr+"%"); 
 		System.out.println("listcount : " + listcount);
 		

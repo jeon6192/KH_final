@@ -1,5 +1,7 @@
 package com.naver.house.bean;
 
+
+// 디비에서 가져올때 조인을 해서가져오기때문에 받아오기 쉽게 새로윤 AptComplexBean2 생성 
 public class AptComplexBean2 {
 
 	   private long complex_id;				//고유번호

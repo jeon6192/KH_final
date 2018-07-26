@@ -7,6 +7,13 @@
 <html>
 <head>
 <title>Insert title here</title>
+
+<!-- 지도 api  -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2e5f8108e51db54323c51d2a57a90ddb&libraries=services,clusterer,drawing"></script>
+
+
+
+<!-- 지도 api  -->
 <script src = "http://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="./resources/js/search.js"></script>
 
@@ -16,6 +23,21 @@
 
 
 <style>
+
+.cookie
+{
+	background-color : #E7E7E7;
+	min-height : 300px;
+}
+
+#map
+{
+	margin: 0 auto;
+    width: 60%;
+    height: 30em;
+
+}
+
 
 .asc{
     display: inline-block;
@@ -45,22 +67,18 @@ display: inline-block;
 
 
 
-
-.buttonsortSubwayAsc, .buttonsortSubwayDesc,
-.buttonsortPriceAsc, .buttonsortPriceDesc,
-.buttonsortAreaAsc, .buttonsortAreaDesc,
-.buttonsortDateAsc, .buttonsortDateDesc
+.buttonsort.desc, .buttonsort.asc
 {
    border: 0 none;
     background-color: transparent;
     cursor: pointer;
 }
-.button{
+.listbutton{
     width: 7%;
     height: 50px;
     border : none;
 }
-.button:hover{
+.listbutton:hover{
 	background-color : white;
 	background-color : #A6A6A6;
 }
@@ -72,8 +90,8 @@ display: inline-block;
    font-style: normal;
 }
 	*{ font-family: test;}
-	.searchList{
-		width : 100%;
+	.listSearch{
+	width : 100%;
 	height : 50px;
 	}
 	.search{
@@ -107,38 +125,153 @@ color : #3a72d8 !important;
 }
 </style>
 <script>
+
 	$(function(){
+		//map★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+		
+// 히든 타입으로 넘어온 주소의 텍스트값과 밸류값 받아온다.
+
+		// 텍스트값
 		var sel1 = "${param.sel1}";
 		var sel2 = "${param.sel2}";
 		var sel3 = "${param.sel3}";
+		// 벨류값
 		var select1 ="${param.select1}";
 		var select2 ="${param.select2}";
 		var select3 ="${param.select3}";
 		
+		var aptList = "${aptList}";
+		
+		
+	
+		
+		if(sel2 != ""){
+			sel2 = " " + sel2;
+		}
+		if(sel3 != ""){
+			sel3 = " " + sel3;			
+		}
+		var addr = sel1 + sel2 + sel3;
+		alert(addr);
+		
+	
+		
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };  
+
+	// 지도를 생성합니다    
+	var map = new daum.maps.Map(mapContainer, mapOption);
+	
+	//마커를 표시할 위치와 내용을 가지고있는 객체 배열
+	
+var positions = [
+    	{
+	for(let i = 0; i < aptList.length; i++) {
+    		   content: '<div>'+aptList[i].complex_apartname+'</div>', 
+    	        latlng: new daum.maps.LatLng(aptList[i].complex_lat, aptList[i].complex_lng) 
+		}
+    }
+];
+	
+	
+for (var i = 0; i < positions.length; i ++) {
+    // 마커를 생성합니다
+    var marker = new daum.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].latlng // 마커의 위치
+    });
+    
+    
+    var infowindow = new daum.maps.InfoWindow({
+        content: positions[i].content // 인포윈도우에 표시할 내용
+    });
+    daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+    daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+}
+
+// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+function makeOverListener(map, marker, infowindow) {
+    return function() {
+        infowindow.open(map, marker);
+    };
+}
+
+// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+function makeOutListener(infowindow) {
+    return function() {
+        infowindow.close();
+    };
+}
+
+
+
+
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new daum.maps.services.Geocoder();
+
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch(addr, function(result, status) {
+
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === daum.maps.services.Status.OK) {
+
+	        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new daum.maps.Marker({
+	            map: map,
+	        });
+
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});    
+
+		
+		
+		/////////////////////
+		
+		
+		
+		
 		$('.apart_name span').text(sel1+" "+ sel2+" "+sel3);
 		
+		
+		//select1 에 값들을 반복해서 실행해주고
 		$('.select1 option').each(function(){
+			
+			//thisVal 에 현재 선택된 밸류 값을 넣어준다. 하나씩 비교하기위해
 			 var thisVal = $(this).val();
+			
+			//현재선택된 밸류 값과 넘어온 밸류값과 비교
 			if(thisVal == select1){
+				
+				//같다면 현재 옵션값을 선택여부를 true 로 바꿔준다.
 				$(this).prop('selected', true);
 				
+				//select2 와 select3 에 값을 넣어주기위해 search.js 에서 했던것을 또해준다.
 				var inner = "";
 				var inner2 = "";
 
-				inner += "<option value=''>";
+				inner += "<option value="+-1+">";
 				inner += "시/군/구";
 				inner += "</option>";
 
-				inner2 += "<option value=''>";
+				inner2 += "<option value="+-1+">";
 				inner2 += "읍/면/동";
 				inner2 += "</option>";
 
+				
 				for (var i = 0; i < sigungu[thisVal].length; i++) {
 					inner += "<option value=" + i + ">";
 					inner += sigungu[thisVal][i];
 					inner += "</option>";
 
-				}
+				} 
 				$('.select2 option').remove();
 				$('.select2').append(inner);
 				$('.select3 option').remove();
@@ -146,6 +279,7 @@ color : #3a72d8 !important;
 			}
 		});
 		
+		//위와마찬가지
 		$('.select2 option').each(function(){
 			var selectVal1 = $('.select1').val();
 			var thisVal = $(this).val();
@@ -153,13 +287,16 @@ color : #3a72d8 !important;
 				$(this).prop('selected', true);
 				
 				var inner3 = "";
-				inner3 += "<option value=''>";
+				inner3 += "<option value="+-1+">";
 				inner3 += "읍/면/동";
 				inner3 += "</option>";
-				for (var i = 0; i < donghap[selectVal1][thisVal].length; i++) {
+				
+				if($('.select2').val() != -1){
+				 for (var i = 0; i < donghap[selectVal1][thisVal].length; i++) {
 					inner3 += "<option value=" + i + ">";
 					inner3 += donghap[selectVal1][thisVal][i];
 					inner3 += "</option>"
+					} 
 				}
 				
 				$('.select3 option').remove();
@@ -177,28 +314,49 @@ color : #3a72d8 !important;
 		
 		
 		//======== ajax 정렬된값 받아오기================================
-			
-			
-			
+			//처음 화면에서 desc 를 보여주기위해 display none 설정
 		$('.buttonsort.asc').css('display', 'none');
 		
+		
+		// select1 값 을 다시보내주는이유는 ajax 로 넘어올때 페이징 처리해주기 위해서다.페이징 이동할때 밸류값도 같이이동하기때문에.
 		$('.buttonsort').click(function () {
 			var select1 = $('.select1').val();
 			var select2 = $('.select2').val();
 			var select3 = $('.select3').val();
 			
+			// order by 에 필요한값을 버튼에 value 에 넣어놨다. sort 에 담아준다.
 			var sort = $(this).val();
-			var sido = $('#sel1').val().trim();
+		
+			// ajax 로 뽑아올때 필요한값들 게시판 조회할때 지역별로 조회하기때문에 다시 히든에 값을 담아서 보내준다.
+		/* 	var sido = $('#sel1').val().trim();
 			var gu = $('#sel2').val().trim();
-			var dong = $('#sel3').val().trim();
+			var dong = $('#sel3').val().trim(); */ 
+			
+
+		 	var sido = $('.select1 option:selected').text();
+			var gu = $('.select2 option:selected').text();
+			var dong = $('.select3 option:selected').text();
+			
+			if(gu == "시/군/구"){
+				gu = "";
+			}
+			if(dong == "읍/면/동"){
+				dong = "";
+			}
+			
+			console.log("시도 값은 : " + sido + gu + dong);
 			
 			
-			
+			// 현재 눌린객체가 none 이라면  형제 객체의 disaply 를 none 으로 설정
+				// 자기자신은 다시 블록으로 설정
 			if ($(this).siblings().css('display') == 'none') {
 				$(this).css('display', 'none');
 				$(this).siblings().css('display', 'block');
 			}
 			
+			
+			// 값들을 ajax 로보내준다.
+			//state 값이 ajax 면 ajax slq문으로 실행하기위해 state : ajax 를 넣어준다.
 			$.ajax({
 				type : "GET",
 				url : "aptsearch_list.com",
@@ -220,12 +378,51 @@ color : #3a72d8 !important;
 		
 		//========================================================
 		
-});
+			
+			$('.listSearch').submit(function(){
+				
+				var select1 = $('.select1').val();
+				var select2 = $('.select2').val();
+				var select3 = $('.select3').val();
+				var sel1 = $('.select1 option:selected').text();
+				var sel2 = $('.select2 option:selected').text();
+				var sel3 = $('.select3 option:selected').text();
+				
+				if(sel2 == "시/군/구"){
+					sel2 = "";
+				}
+				if(sel3 == "읍/면/동"){
+					sel3 = "";
+				}
+				$('.apart_name span').text(sel1+" "+ sel2+" "+sel3);
+				alert(sel1+sel2+sel3);
+				var url = "http://localhost:8088/house/aptsearch_list.com?select1="+select1+"&select2="+select2+"&select3="+select3+"&sel1="+sel1+"&sel2="+sel2+"&sel3="+sel3
+				history.pushState(null,null,url);
+				$.ajax({
+					type : "GET",
+					url : "aptsearch_list.com",
+					data : {
+					"sel1" : sel1, "sel2" : sel2,
+					"sel3" : sel3, "state" : "ajax",
+					"select1" : select1, "select2" : select2,
+					"select3" : select3,
+			},
+			success : function(result){
+				$('table:first').empty().prepend(result);
+			},
+			error : function(){
+				
+				alert("에러");
+			}
+		});
+				return false;
+	})
+})
 </script>
 </head>
 <body>
 	<div class="search">
-	<form class="searchList" action="aptsearch_ok.com" method="GET">
+	<form class="listSearch" action="aptsearch_list.com" method="GET">
 		<select class="select1" name="select1">
 			<option value="-1">시/도</option>
 			<option value="0">서울</option>
@@ -252,14 +449,21 @@ color : #3a72d8 !important;
 			<select class="select3" name="select3">
 			<option value="-1">읍/면/동</option>
 		</select>
-		 <button type="submit" class="button"><i class="fa fa-search"></i></button>
-		 
-		 <input type="hidden" id="sel1" name="sel1" value="${addrMap.sido}">
-		 <input type="hidden" id="sel2" name="sel2" value="${addrMap.gu}">
-		 <input type="hidden" id="sel3" name="sel3" value="${addrMap.dong}">
-	</form>
+		 <button type="submit" class="listbutton"><i class="fa fa-search"></i></button>
+		 <input type="hidden" id="sel1" name="sel1" value="">
+		 <input type="hidden" id="sel2" name="sel2" value="">
+		 <input type="hidden" id="sel3" name="sel3" value=""> 
+ 	</form>
 	</div>
-<p>넘어온 개수 : ${listcount}</p>
+	
+	<br>
+	<br>
+	
+	<div class="cookie">
+<div id="map"></div>
+	</div>
+
+
 
 <div class="apart_name">
 		<h3><span></span>매물</h3>
@@ -287,6 +491,8 @@ color : #3a72d8 !important;
 	</div>
 </div>
 
+
+
 <div class="list">
 <c:if test="${listcount == 0 }">
 <table class="table">
@@ -295,6 +501,8 @@ color : #3a72d8 !important;
 				<th>분양시기</th>
 				<th>주소</th>
 				<th>아파트명</th>
+				<th>가격</th>
+				<th>면적(㎡)</th>
 				<th>역세권</th>
 				<th>근처역/도보 소요시간</th>
 			</tr>
@@ -302,7 +510,7 @@ color : #3a72d8 !important;
 		
 		<tbody>
 		<tr>
-			<td colspan="5" align="center">검색된 매물이 없습니다.<br>
+			<td colspan="7" align="center">검색된 매물이 없습니다.<br>
 			다른 조건으로 검색하시기 바랍니다.</td>
 		</tr>
 		</tbody>

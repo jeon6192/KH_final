@@ -1,4 +1,4 @@
-$(function() {
+
 
 	var sido = new Array("서울특별시", "경기도", "인천광역시", "부산광역시", "대전광역시", "대구광역시",
 			"광주광역시", "울산광역시", "강원도", "충청남도", "충청북도", "경상남도", "경상북도", "전라남도",
@@ -205,11 +205,16 @@ $(function() {
 			"오산동", "우정읍", "장안면", "장지동", "정남면", "중동", "진안동", "청계동", "팔탄면",
 			"향남읍", "황계동");
 
+	
+	//서울, 경기 셀렉트박스에 담겨져있는 것들을 다시 2차원 배열로 담아준다
 	var sigungu = new Array(sigungu1, sigungu2, sigungu3, sigungu4, sigungu5,
 			sigungu6, sigungu7, sigungu8, sigungu9, sigungu10, sigungu11,
 			sigungu12, sigungu13, sigungu14, sigungu15, sigungu16, sigungu17);
 	console.log(sigungu);
-
+	
+	
+	
+	// 동도 시군구 와 마찬가지로   서울 26개 경기 32개 를 2차원 배열로 담아준다.
 	var dong = new Array(dong1, dong2, dong3, dong4, dong5, dong6, dong7,
 			dong8, dong9, dong10, dong11, dong12, dong13, dong14, dong15,
 			dong16, dong17, dong18, dong19, dong20, dong21, dong22, dong23,
@@ -219,26 +224,41 @@ $(function() {
 			gg12, gg13, gg14, gg15, gg16, gg17, gg18, gg19, gg20, gg21, gg22,
 			gg23, gg24, gg25, gg26, gg27, gg28, gg29, gg30, gg31);
 
+	
+	// 여기서 3차원 배열로 적어준다.
 	var donghap = new Array(dong, gg);
-
+		// 여기까지가 셀렉트를 적어주기 위한 것이다.
+	
+	
+	
+	
+	//select1이 체인지 될때마다 select2 의 옵션 값을 바꿔준다.
+	$(function(){
 	$(".select1").change(function() {
+		
+		//값은 숫자가 넘어가기때문에 리스트화면에서 지역명을 뽑아줄 수 없기때문에
+			//타입 히든을 넣어 select1 의 선택된 값 텍스트를 넣어준다.
 		$('#sel1').val($('.select1 option:selected').text());
 		
 		var selectVal = $('.select1').val();
 		var inner = "";
 		var inner2 = "";
 
-		inner += "<option value=''>";
+		inner += "<option value='-1'>";
 		inner += "시/군/구";
 		inner += "</option>";
 
-		inner2 += "<option value=''>";
+		inner2 += "<option value='-1'>";
 		inner2 += "읍/면/동";
 		inner2 += "</option>";
 
 		for (var i = 0; i < sigungu[selectVal].length; i++) {
 			console.log(sigungu[selectVal][i]);
+			
+			//밸류에는 읍/면/동을 배열을 이용해서 넣기위해 숫자를 넣어준다. 
 			inner += "<option value=" + i + ">";
+			
+			//텍스트 값
 			inner += sigungu[selectVal][i];
 			inner += "</option>";
 
@@ -251,11 +271,12 @@ $(function() {
 
 	
 	
+	//2가 체인지가 될때 마다 select3 의 옵션 값을 바꿔준다.
 	$('.select2').change(function() {
 		$('#sel2').val($('.select2 option:selected').text());
 		
 		var inner3 = "";
-		inner3 += "<option value=''>";
+		inner3 += "<option value="+-1+">";
 		inner3 += "읍/면/동";
 		inner3 += "</option>";
 		
@@ -265,6 +286,7 @@ $(function() {
 		var selectVal2 = $('.select2').val();
 		for (var i = 0; i < donghap[selectVal1][selectVal2].length; i++) {
 			inner3 += "<option value=" + i + ">";
+			//3차원배열을이용해서 값을 넣어준다.
 			inner3 += donghap[selectVal1][selectVal2][i];
 			inner3 += "</option>"
 		}
@@ -274,13 +296,11 @@ $(function() {
 		
 		
 	
-		
-
-		
-	
 	});
 	
 	$('.select3').change(function() {
+		//값만 히든에 넣어서 보내준다.
 		$('#sel3').val($('.select3 option:selected').text());
 	});
 })
+

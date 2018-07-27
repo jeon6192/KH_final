@@ -30,11 +30,12 @@ $(document).ready(function() {
 				data : request.term,
 				success : function(data) {
 					response($.map(data.DATA, function(v,i){
-	                    var text = v.station_nm;
+						var text = v.station_nm;
 	                    if ( text && ( !request.term || matcher.test(text) ) ) {
+							var station = v.station_nm+'('+v.line_num+')';
 	                        return {
-	                                label: v.station_nm,
-	                                value: v.station_nm
+	                                label: station,
+	                                value: station
 	                        };
 	                    }
 					}));
@@ -65,12 +66,16 @@ $(document).ready(function() {
     		$('.input_cpx_count').val('').focus();
     		return false;
 		}
+		if (back == '') {
+			alert('값을 입력해주세요');
+    		$('.input_cpx_count').val('').focus();
+    		return false;
+		}
 		
 		$('.li_info2').show();
 		$('.li_info2').animate({opacity: '1'}, 550);
     	
-    	$('.div_detail_left').css('background-color', '#d8d8d8');
-    	$('.div_apart_info_detail').css('border', '1px solid #dfdfdf');
+		$('.div_apart_info_detail').css('border', '1px solid #dfdfdf');
     	
     	var apart = [];
     	var left = '';
@@ -84,7 +89,8 @@ $(document).ready(function() {
     			apart[i] = front + i;
     		}
     		
-    		left += '<div class="div_apart_dong" id="detail_left'+i+'" onclick="select_apart('+i+')">'+apart[i]+
+			left += '<div class="div_apart_dong" id="detail_left'+i+'" onclick="select_apart('+i+')">'
+				+apart[i]+
     			'<input type="hidden" name="apartBeanList['+(i-1)+'].apart_dong" value="'+apart[i]+'"></div>';
     		
     		right += '<div class="div_dong_detail" id="detail_right'+i+'">'
@@ -173,8 +179,7 @@ $(document).ready(function() {
     	});
     	$('#detail_right1').css('display', 'block');
     	$('#detail_left1').css({
-			'background-color' : 'black', 
-			'color' : 'white'
+			'background-color' : '#cef6ff'
 		});
     	
     	
@@ -182,10 +187,24 @@ $(document).ready(function() {
 	
 
 	// datepicker
-	$('#date').bootstrapMaterialDatePicker({
+	$('#pdate').bootstrapMaterialDatePicker({
+		time: false,
+		clearButton: true,
+		minDate: new Date(new Date().getFullYear() + 1, new Date().getMonth(), new Date().getDate())
+	});
+	$('#sdate').bootstrapMaterialDatePicker({
+		time: false,
+		clearButton: true,
+		minDate : new Date(),
+	}).on('change', function(e, date){
+		$('#edate').bootstrapMaterialDatePicker('setMinDate', date);
+	});
+	$('#edate').bootstrapMaterialDatePicker({
 		time: false,
 		clearButton: true,
 		minDate : new Date()
+	}).on('change', function(e, date){
+		$('#pdate').bootstrapMaterialDatePicker('setMinDate', date);
 	});
 
 
@@ -262,6 +281,19 @@ function insert(){
 		return false;
 	}
 
+	if($('#pdate').val() == ''){
+		alert('insert pdate!');
+		return false;
+	}
+	if($('#sdate').val() == ''){
+		alert('insert sdate!');
+		return false;
+	}
+	if($('#edate').val() == ''){
+		alert('insert edate!');
+		return false;
+	}
+
 	var count = 0;
 	$('.ul_dong_detail li>div>input').each(function(){	
 		count++;
@@ -333,8 +365,7 @@ function select_apart(num) {
 	var id1 = '#detail_left' + num;
 	var id2 = '#detail_right' + num;
 	$(id1).css({
-		'background-color' : 'black', 
-		'color' : 'white'
+		'background-color' : '#cef6ff'
 	});
 	$(id2).css('display', 'block');
 }

@@ -10,8 +10,16 @@
 	</settings>
 
 	<typeAliases>
+		<typeAlias alias="ofb"
+		       type ="com.naver.house.bean.Option_fBean"/>  
+		<typeAlias alias="onfb"
+		       type ="com.naver.house.bean.Option_nfBean"/>
+		<typeAlias alias="event_winb"
+		       type="com.naver.house.bean.Event_winBean"/>
 		<typeAlias type="com.naver.house.bean.ApartmentBean" alias="apart"/>
+		<typeAlias type="com.naver.house.bean.ApartmentBean2" alias="apart2"/>
 		<typeAlias type="com.naver.house.bean.AptComplexBean" alias="complex"/>
+		<typeAlias type="com.naver.house.bean.AptComplexBean2" alias="complex2"/>
 	</typeAliases>
 	
 	<!-- root-context.xml에서 멥퍼의 위치를 정해줌 -->

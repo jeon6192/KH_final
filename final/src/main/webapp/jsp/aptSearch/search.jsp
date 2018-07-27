@@ -91,8 +91,8 @@
 	<form class="searchList" action="aptsearch_list.com" method="GET">
 		<select class="select1" name="select1">
 			<option value="-1">시/도</option>
-			<option value="0">서울특별시</option>
-			<option value="1">경기도</option>
+			<option value="0">서울</option>
+			<option value="1">경기</option>
 			<option value="2">인천광역시</option>
 			<option value="3">부산광역시</option>
 			<option value="4">대전광역시</option>

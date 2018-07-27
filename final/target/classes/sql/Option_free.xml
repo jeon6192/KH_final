@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace ="Option_free">
+ 
+ 	<select id="checkwinner1" parameterType="int" resultType="int">
+ 		select count(*) from event_win where user_no=#{user_no}
+ 	</select>
+ 	
+ 	<select id="getEvent_win" parameterType="int" resultType="event_winb">
+ 		select * from event_win where user_no=#{user_no}
+ 	</select>
+ 	
+ 	<select id ="getAptInfo" parameterType="long" resultType="apart">
+ 		select * from apartment where apart_id=#{apart_id}
+ 	</select>
+ 	
+ 	<select id ="getAptXinfo" parameterType="long" resultType="complex">
+ 		select * from APT_COMPLEX where complex_id=#{complex_id}
+ 	</select>
+ 	
+ 	<insert id="insertOF" parameterType="ofb">
+ 		<selectKey keyProperty="f_opkey" order="BEFORE" resultType="int">
+ 		select nvl(max(f_opkey),0)+1 from option_f
+ 		</selectKey>
+ 		insert into option_f values(#{f_opkey}, #{apart_id},#{user_no}, #{bedroom_closet}, #{kitchen_height},#{balcony},#{interior_color})
+
+ 	</insert>
+ 	
+ 	<select id="chekfirst" parameterType="int" resultType="int">
+ 		select count(user_no) from option_f where user_no=#{user_no}
+ 	</select>
+ 	
+ 	<select id="getFreeOp" parameterType="int" resultType="ofb">
+ 		select * from option_f where user_no=#{user_no}
+ 	</select>
+ 	
+ 	<update id="updateOF" parameterType="ofb">
+ 		update option_f set bedroom_closet=#{bedroom_closet}, kitchen_height=#{kitchen_height},
+ 					balcony=#{balcony}, interior_color=#{interior_color} where user_no=#{user_no}
+ 	</update>
+ </mapper>

@@ -24,6 +24,11 @@ public class ApartmentDAO {
 	public List<AptComplexBean2> getAptList(HashMap<String, Object> m) {
 		List<AptComplexBean2> list = 
 				sqlSession.selectList("Search.aptList",m);
+		for (AptComplexBean2 apart : list) {
+			System.out.println(apart.getComplex_lat());
+			System.out.println(apart.getComplex_lng());
+			System.out.println(apart.getComplex_apartname());
+		}
 		return list;
 	}
 
@@ -31,5 +36,11 @@ public class ApartmentDAO {
 
 	public int getListCount(String addr) {
 		return sqlSession.selectOne("Search.lsitCount",addr);
+	}
+
+
+
+	public List<AptComplexBean> getMapList() {
+		return sqlSession.selectList("Search.mapList");
 	}
 }

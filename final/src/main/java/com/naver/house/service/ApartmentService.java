@@ -16,5 +16,8 @@ public interface ApartmentService {
 	int getListCount(String addr);
 
 
+	List<AptComplexBean> getMapList();
+
+
 
 }

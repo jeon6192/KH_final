@@ -20,8 +20,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-
 <style>
 
 .cookie
@@ -125,7 +123,7 @@ color : #3a72d8 !important;
 }
 </style>
 <script>
-
+	var addr;
 	$(function(){
 		//map★★★★★★★★★★★★★★★★★★★★★★★★★★★★
 		
@@ -140,8 +138,6 @@ color : #3a72d8 !important;
 		var select2 ="${param.select2}";
 		var select3 ="${param.select3}";
 		
-		var aptList = "${aptList}";
-		
 		
 	
 		
@@ -151,85 +147,9 @@ color : #3a72d8 !important;
 		if(sel3 != ""){
 			sel3 = " " + sel3;			
 		}
-		var addr = sel1 + sel2 + sel3;
-		alert(addr);
+		addr = sel1 + sel2 + sel3;
 		
-	
-		
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	    mapOption = {
-	        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-	        level: 3 // 지도의 확대 레벨
-	    };  
-
-	// 지도를 생성합니다    
-	var map = new daum.maps.Map(mapContainer, mapOption);
-	
-	//마커를 표시할 위치와 내용을 가지고있는 객체 배열
-	
-var positions = [
-    	{
-	for(let i = 0; i < aptList.length; i++) {
-    		   content: '<div>'+aptList[i].complex_apartname+'</div>', 
-    	        latlng: new daum.maps.LatLng(aptList[i].complex_lat, aptList[i].complex_lng) 
-		}
-    }
-];
-	
-	
-for (var i = 0; i < positions.length; i ++) {
-    // 마커를 생성합니다
-    var marker = new daum.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: positions[i].latlng // 마커의 위치
-    });
-    
-    
-    var infowindow = new daum.maps.InfoWindow({
-        content: positions[i].content // 인포윈도우에 표시할 내용
-    });
-    daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-    daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-}
-
-// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-function makeOverListener(map, marker, infowindow) {
-    return function() {
-        infowindow.open(map, marker);
-    };
-}
-
-// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-function makeOutListener(infowindow) {
-    return function() {
-        infowindow.close();
-    };
-}
-
-
-
-
-
-	// 주소-좌표 변환 객체를 생성합니다
-	var geocoder = new daum.maps.services.Geocoder();
-
-	// 주소로 좌표를 검색합니다
-	geocoder.addressSearch(addr, function(result, status) {
-
-	    // 정상적으로 검색이 완료됐으면 
-	     if (status === daum.maps.services.Status.OK) {
-
-	        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
-
-	        // 결과값으로 받은 위치를 마커로 표시합니다
-	        var marker = new daum.maps.Marker({
-	            map: map,
-	        });
-
-	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-	        map.setCenter(coords);
-	    } 
-	});    
+		map();
 
 		
 		
@@ -313,12 +233,12 @@ function makeOutListener(infowindow) {
 		
 		
 		
-		//======== ajax 정렬된값 받아오기================================
+		//======== ajax 정렬된 값 받아오기================================
 			//처음 화면에서 desc 를 보여주기위해 display none 설정
 		$('.buttonsort.asc').css('display', 'none');
 		
 		
-		// select1 값 을 다시보내주는이유는 ajax 로 넘어올때 페이징 처리해주기 위해서다.페이징 이동할때 밸류값도 같이이동하기때문에.
+		// select1 값 을 다시보내주는이유는 ajax 로 넘어올때 벨류와 주소를 보내주고 검색결과를 받아오기 위해서다
 		$('.buttonsort').click(function () {
 			var select1 = $('.select1').val();
 			var select2 = $('.select2').val();
@@ -326,17 +246,14 @@ function makeOutListener(infowindow) {
 			
 			// order by 에 필요한값을 버튼에 value 에 넣어놨다. sort 에 담아준다.
 			var sort = $(this).val();
-		
-			// ajax 로 뽑아올때 필요한값들 게시판 조회할때 지역별로 조회하기때문에 다시 히든에 값을 담아서 보내준다.
-		/* 	var sido = $('#sel1').val().trim();
-			var gu = $('#sel2').val().trim();
-			var dong = $('#sel3').val().trim(); */ 
 			
 
+			//현재 셀렉트 옵션에 담겨있는값도 보내준다 
 		 	var sido = $('.select1 option:selected').text();
 			var gu = $('.select2 option:selected').text();
 			var dong = $('.select3 option:selected').text();
 			
+			//검색 조건에 맞춰 값을 보낸다.
 			if(gu == "시/군/구"){
 				gu = "";
 			}
@@ -344,6 +261,7 @@ function makeOutListener(infowindow) {
 				dong = "";
 			}
 			
+			//확인
 			console.log("시도 값은 : " + sido + gu + dong);
 			
 			
@@ -355,8 +273,9 @@ function makeOutListener(infowindow) {
 			}
 			
 			
+			
 			// 값들을 ajax 로보내준다.
-			//state 값이 ajax 면 ajax slq문으로 실행하기위해 state : ajax 를 넣어준다.
+			//state 값이 null 이 아니면 list2로 값을 보내고 list2 값을 list1 에 prepend 해준다 
 			$.ajax({
 				type : "GET",
 				url : "aptsearch_list.com",
@@ -379,23 +298,33 @@ function makeOutListener(infowindow) {
 		//========================================================
 		
 			
+			//list 화면에서 검색 할 시
 			$('.listSearch').submit(function(){
-				
 				var select1 = $('.select1').val();
 				var select2 = $('.select2').val();
 				var select3 = $('.select3').val();
+				
+				//여기서도 search 에서 값 보내준것처럼 select 박스에 있는 값의 text 부분을 hidden 으로 보내준다.
 				var sel1 = $('.select1 option:selected').text();
 				var sel2 = $('.select2 option:selected').text();
 				var sel3 = $('.select3 option:selected').text();
 				
+				/// 보낼 값들을 정리해주고
 				if(sel2 == "시/군/구"){
 					sel2 = "";
 				}
 				if(sel3 == "읍/면/동"){
 					sel3 = "";
 				}
+				
+				addr = sel1 + sel2 + sel3;
+				
+				map();
+				//여기서 보낼값들도 아파트 검색한 네임span 에 넣어준다.
 				$('.apart_name span').text(sel1+" "+ sel2+" "+sel3);
-				alert(sel1+sel2+sel3);
+				
+				//ajax 로보낼땐 주소값이 변경되지않기때문에 새로고침할시에 처음검색한 데이터로 이동한다.
+				//그걸방지하기위해 history.pushState() 을 사용하여 ajax 로 보내지만 주소값 이 변경되게 만든다.
 				var url = "http://localhost:8088/house/aptsearch_list.com?select1="+select1+"&select2="+select2+"&select3="+select3+"&sel1="+sel1+"&sel2="+sel2+"&sel3="+sel3
 				history.pushState(null,null,url);
 				$.ajax({
@@ -418,6 +347,95 @@ function makeOutListener(infowindow) {
 				return false;
 	})
 })
+
+
+
+function map(){		
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 5 // 지도의 확대 레벨
+	    };  
+
+	// 지도를 생성합니다    
+	var map = new daum.maps.Map(mapContainer, mapOption);
+	
+	//마커를 표시할 위치와 내용을 가지고있는 객체 배열
+	
+	
+var positions = [
+    		<c:forEach items="${mapList}" var="list">
+    	{
+    		content :'<div>${list.complex_apartname}</div>',
+	        latlng : new daum.maps.LatLng(${list.complex_lat},${list.complex_lng}),
+	     
+    },
+  
+    			</c:forEach>
+];
+var imageSrc = "./resources/image/mansion.png";
+//"http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"
+	
+  var iwRemoveable = true;
+	
+for (var i = 0; i < positions.length; i ++) {
+    //마커 이미지의 이미지 크기 입니다.
+    var imageSize = new daum.maps.Size(20, 30); 
+    //마커이미지를 생성합니다.
+    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
+    
+    
+    
+    // 마커를 생성합니다
+     var marker = new daum.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].latlng, // 마커의 위치
+        image : markerImage, // 마커 이미지
+        clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+    });
+    
+    console.log("here" + positions[i].content);
+    //마커에 표시할 인포윈도우 생성합니다.
+    
+    var infowindow = new daum.maps.InfoWindow({
+        content: positions[i].content,
+        removable : iwRemoveable
+    });
+    
+    daum.maps.event.addListener(marker, 'click', function(){
+        // 마커 위에 인포윈도우를 표시합니다
+        infowindow.open(map, marker);  
+  });
+    
+}//end for
+
+
+
+
+
+
+
+
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new daum.maps.services.Geocoder();
+
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch(addr, function(result, status) {
+
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === daum.maps.services.Status.OK) {
+
+	        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } // end if
+	}); // end geocoder
+}//end function map()
+
+
 </script>
 </head>
 <body>

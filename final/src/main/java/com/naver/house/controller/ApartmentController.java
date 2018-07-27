@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.naver.house.bean.AptComplexBean;
 import com.naver.house.bean.AptComplexBean2;
 import com.naver.house.service.ApartmentService;
 
@@ -63,6 +65,10 @@ public class ApartmentController {
 		
 		//조인을해서 뽑아오끼때문에 bean2를 새로 만들어서 받아온다.
 		List<AptComplexBean2> aptList = new ArrayList<AptComplexBean2>();
+		
+		// 마커찍어줄 맵리스트를가져온다.
+		List<AptComplexBean>mapList = new ArrayList<AptComplexBean>();
+		
 		
 		//한페이지에 출력할 레코드 개수
 		int limit = 10;
@@ -121,6 +127,7 @@ public class ApartmentController {
 		
 		System.out.println("addr : " + m.get("addr"));
 		aptList = service.getAptList(m);
+		mapList = service.getMapList();
 		
 		
 		
@@ -137,6 +144,7 @@ public class ApartmentController {
 		aptListM.addObject("endpage",endpage);
 		aptListM.addObject("listcount",listcount);
 		aptListM.addObject("aptList",aptList);
+		aptListM.addObject("mapList",mapList);
 		
 		Map<String, String> addrMap = new HashMap<String, String>();
 		addrMap.put("sido", sido);

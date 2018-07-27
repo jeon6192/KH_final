@@ -27,5 +27,10 @@ public class ApartmentServiceImpl implements ApartmentService{
 		return apartmentDAO.getListCount(addr);
 	}
 
+	@Override
+	public List<AptComplexBean> getMapList() {
+		return apartmentDAO.getMapList();
+	}
+
 
 }

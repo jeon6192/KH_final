@@ -2,14 +2,8 @@
  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="apart">
-	<insert id="insert" parameterType="apart">
-		insert into apartment values(
-			#{apart_id}, #{complex_id}, #{apart_dong}, #{apart_ho}, #{apart_floor}, 
-			#{apart_area}, #{apart_price}, #{apart_room}, #{apart_toilet}, #{apart_interior} 
-		)		
-	</insert>
 	
-	<insert id="insert2" parameterType="java.util.List">
+	<insert id="insert" parameterType="java.util.List">
 		<foreach collection="list" item="item" index="index"  open="INSERT ALL " separator=" " close="SELECT * FROM DUAL" > 
 			into apartment values
 	        (
@@ -18,6 +12,22 @@
 			)
 	    </foreach>
 	</insert>
+
+	<select id="select" parameterType="int" resultType="apart">
+		select * from apartment where complex_id = #{complex_id}
+	</select>
+
+	<select id="selectDong" resultType="apart2" parameterType="java.util.Map">
+		select complex_id, apart_dong, apart_floor, apart_area,  
+			apart_room, apart_toilet, apart_interior, 
+			min(apart_price) minprice, max(apart_price) maxprice
+		from apartment
+		where complex_id = #{complex_id} and apart_dong = #{apart_dong}
+		group by complex_id, apart_dong, apart_floor, apart_area, 
+			apart_room, apart_toilet, apart_interior	
+	</select>
+
+
 	
 </mapper>
 

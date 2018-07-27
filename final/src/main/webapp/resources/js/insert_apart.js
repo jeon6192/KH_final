@@ -66,6 +66,11 @@ $(document).ready(function() {
     		$('.input_cpx_count').val('').focus();
     		return false;
 		}
+		if (back == '') {
+			alert('값을 입력해주세요');
+    		$('.input_cpx_count').val('').focus();
+    		return false;
+		}
 		
 		$('.li_info2').show();
 		$('.li_info2').animate({opacity: '1'}, 550);
@@ -174,8 +179,7 @@ $(document).ready(function() {
     	});
     	$('#detail_right1').css('display', 'block');
     	$('#detail_left1').css({
-			'background-color' : 'black', 
-			'color' : 'white'
+			'background-color' : '#cef6ff'
 		});
     	
     	
@@ -277,6 +281,19 @@ function insert(){
 		return false;
 	}
 
+	if($('#pdate').val() == ''){
+		alert('insert pdate!');
+		return false;
+	}
+	if($('#sdate').val() == ''){
+		alert('insert sdate!');
+		return false;
+	}
+	if($('#edate').val() == ''){
+		alert('insert edate!');
+		return false;
+	}
+
 	var count = 0;
 	$('.ul_dong_detail li>div>input').each(function(){	
 		count++;
@@ -348,8 +365,7 @@ function select_apart(num) {
 	var id1 = '#detail_left' + num;
 	var id2 = '#detail_right' + num;
 	$(id1).css({
-		'background-color' : 'black', 
-		'color' : 'white'
+		'background-color' : '#cef6ff'
 	});
 	$(id2).css('display', 'block');
 }

@@ -18,6 +18,7 @@
 		       type="com.naver.house.bean.Event_winBean"/>
 		<typeAlias type="com.naver.house.bean.ApartmentBean" alias="apart"/>
 		<typeAlias type="com.naver.house.bean.AptComplexBean" alias="complex"/>
+		<typeAlias type="com.naver.house.bean.AptComplexBean2" alias="complex2"/>
 	</typeAliases>
 	
 	<!-- root-context.xml에서 멥퍼의 위치를 정해줌 -->

@@ -5,10 +5,15 @@
 	<insert id="insert" parameterType="complex">
 		insert into apt_complex values(
 			#{complex_id}, #{complex_address}, #{complex_lat}, #{complex_lng}, #{complex_apartname}, 
+			#{complex_sdate}, #{complex_edate}, 
 			#{complex_pdate}, #{complex_state}, #{complex_info}, #{complex_subway}, #{complex_station}, 
 			#{complex_foot} 
 		)		
 	</insert>
+
+	<select id="select" parameterType="int" resultType="complex">
+		select * from apt_complex where complex_id = #{complex_id}
+	</select>
 	
 </mapper>
 

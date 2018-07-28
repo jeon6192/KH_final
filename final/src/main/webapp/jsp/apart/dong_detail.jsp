@@ -3,6 +3,35 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<style>
+	.div.interior{
+	    width: 100%;
+	    height: 250px;
+	    padding: 15px 30px;
+	}
+	.w3-content{
+	    width: 90%;
+	    max-width: 300px !important;
+	    height: 85% !important;
+	    max-height: 200px;
+	    margin: 0;
+	    background-color: black;
+	}
+	.interior.text{
+	    width: 100%;
+	    height: 15%;
+	}
+	.span.interior{
+		font-size: 17px;
+	}
+	.mySlides{
+		height: 100%;
+		width: auto;
+	}
+	
+</style>
+
+
 <div class="apt_info">
 	
 	
@@ -51,11 +80,13 @@
 	
 	
 </div>
-<div class="apt_interior">
-	<div class="div interior">
-		<span class="span interior"></span>
+
+<div class="div interior">
+	<div class="interior text">
+		<span class="span interior">인테리어 사진</span>
 	</div>
 	
+	<!-- 이미지 URL을 split 메서드를 통해 잘라서 보여줌 -->
 	<c:set var="interior_array" value="${fn:split(apart.apart_interior,' ')}"/>
 	<c:if test="${fn:length(apart.apart_interior) > 0}">
 		<div class="w3-content w3-display-container">
@@ -65,24 +96,30 @@
 			<button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
 			<button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
 		</div>
+		<script>
+			var slideIndex = 1;
+			showDivs(slideIndex);
+			
+			function plusDivs(n) {
+			  showDivs(slideIndex += n);
+			}
+			
+			function showDivs(n) {
+			  var i;
+			  var x = document.getElementsByClassName("mySlides");
+			  if (n > x.length) {slideIndex = 1}    
+			  if (n < 1) {slideIndex = x.length}
+			  for (i = 0; i < x.length; i++) {
+			     x[i].style.display = "none";  
+			  }
+			  x[slideIndex-1].style.display = "block";  
+			}
+		</script>
 	</c:if>
-	<script>
-		var slideIndex = 1;
-		showDivs(slideIndex);
-		
-		function plusDivs(n) {
-		  showDivs(slideIndex += n);
-		}
-		
-		function showDivs(n) {
-		  var i;
-		  var x = document.getElementsByClassName("mySlides");
-		  if (n > x.length) {slideIndex = 1}    
-		  if (n < 1) {slideIndex = x.length}
-		  for (i = 0; i < x.length; i++) {
-		     x[i].style.display = "none";  
-		  }
-		  x[slideIndex-1].style.display = "block";  
-		}
-	</script>
+	<c:if test="${fn:length(apart.apart_interior) <= 0}">
+		<b>등록된 사진이 없습니다.</b>
+	</c:if>
+	
 </div>
+	
+	

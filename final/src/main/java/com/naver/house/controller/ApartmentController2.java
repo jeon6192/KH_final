@@ -2,11 +2,11 @@ package com.naver.house.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -154,7 +154,7 @@ public class ApartmentController2 {
 		List<ApartmentBean> apartmentBeanList = (List<ApartmentBean>) apartMap.get("apartmentBeanList");
 		System.out.println("사이즈 : "+apartmentBeanList.size());
 		
-		Set<Integer> apartSet = new HashSet<Integer>();
+		Set<Integer> apartSet = new TreeSet<Integer>();
 		for (ApartmentBean apart : apartmentBeanList) {
 			apartSet.add(apart.getApart_dong());
 		}

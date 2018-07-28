@@ -33,6 +33,7 @@
 		
 		
 		
+		
 		<select id="mapList" resultType="complex">
 			select complex_apartname, complex_address, complex_lat, complex_lng
 				from apt_complex

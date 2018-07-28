@@ -1,14 +1,14 @@
 @charset "UTF-8";
 
+
+html{
+	overflow: hidden;
+}
 ::-webkit-scrollbar-track {
     background-color: white;
 }
 
-::-webkit-scrollbar {
-    width: 0.2em;
-    height: 0.1em;
-}
-::-webkit-scrollbar:hover{
+::-webkit-scrollbar{
     width: 0.7em;
     height: 0.4em;
 }
@@ -71,10 +71,10 @@ li{
 }
 @media (max-width: 1024px){
     .left_menu{
-        width: 70px;
+        width: 60px;
     }
     .contents{
-        margin-left: 70px;
+        margin-left: 60px;
     }
     .left_menu.text{
         display: none;
@@ -137,7 +137,7 @@ a img{
     z-index: 1;
     width: 100px;
     padding: 0;
-    left: 70px;
+    left: 60px;
     top: 0;
     background-color: #343c49;
 }
@@ -196,7 +196,6 @@ a img{
 .apt_info{
     width: 100%;
     text-align: center;
-    margin-top: 50px;
     height: 180px;
     padding-bottom: 20px;
 }
@@ -207,16 +206,45 @@ a img{
     margin: 5px 5px;
     padding: 15px 10px 10px 10px;
     background-color: white;
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.14);
 }
 .apt_info>div>img{
     max-width: 80px;
     width: 90%;
 }
+
+
+.apt_dong{
+	width: 100%;
+	height: 50px;
+    font-size: 30px;
+    text-align: center;
+    padding: 0px 30px;
+    margin: 20px 0px;
+}
+.div.interior{
+    width: 100%;
+    height: 250px;
+    padding: 15px 30px;
+}
 .w3-content{
     width: 90%;
-    max-width: 500px !important;
-    height: 90% !important;
+    max-width: 300px !important;
+    height: 85% !important;
+    max-height: 200px;
+    margin: 0 !important;
+    background-color: black;
+}
+.interior.text{
+    width: 100%;
+    height: 15%;
+}
+.span.interior{
+	font-size: 17px;
+}
+.mySlides{
+	height: 100%;
+	width: auto;
 }
 .w3-display-left{
     left: 5%;
@@ -224,7 +252,63 @@ a img{
 .w3-display-right{
     right: 5%;
 }
-
+.detail.cpx{
+	padding: 15px 65px;
+    margin-top: 50px;
+    color: black;
+}
+.div.cpx_aptname{
+	width: 100%;
+	height: 45px;
+	box-sizing: border-box;
+	padding: 5px;
+	border-bottom: 1px solid #343c49;
+}
+.div.apticon{
+	display: inline-block;
+	width: 35px;
+	min-width: 35px;
+	height: 35px;
+	float: left;
+}
+.div.apticon>img{
+	width: 35px;
+	height: 35px;
+}
+.div.aptname{
+	display: inline-block;
+	height: 35px;
+	font-size: 25px;
+	padding-left: 5px;
+}
+.cpx_text{
+    width: 100%;
+    height: 28px;
+    margin: 10px 0px;
+    background-color: #8ce1ff;
+    border-radius: 10px;
+    padding: 0px 5px;
+    line-height: 28px;
+}
+.span.cpx{
+	font-size: 17px;
+}
+.cpx.info{
+	width: 100%;
+	height: 300px;
+	margin-top: 30px;
+	border-top: 1px solid #343c49;
+}
+.cpx.household, .cpx.addr, .cpx.subway, .cpx.pdate, .cpx.aptinfo{
+	width: 100%;
+	height: 50px;
+    font-weight: 500;
+}
+.div.household, .div.addr, .div.subway, .div.date{
+	box-sizing: border-box;
+	width: 49%;
+	display: inline-block;
+}
 
 
 @media (max-width: 660px){
@@ -243,18 +327,20 @@ a img{
 .apt_price, .apt_area, .apt_floor, .apt_room, .apt_toilet{
     position: relative;
 }
+.apt.info.text{
+	width: 100%;
+	height: 20%;
+	min-height: 20px;
+}
 .div.dong_detail{
     width: 100%;
-    height: 30%;
+    height: 25%;
+    min-height: 20px;
+    line-height: 2.5;
     position: absolute;
     left: 0;
     bottom: 0;
     box-sizing: border-box;
-}
-.div.interior{
-    width: 100%;
-    height: 230px;
-    padding: 5px;
 }
 
 
@@ -311,3 +397,46 @@ a img{
     }
 }
 
+
+
+
+.map_wrap>button{
+    position: absolute;
+    top: 0;
+    left: 38%;
+    z-index: 1;
+    font-size: 1.2em;
+    height: 28px;
+    border: 1px solid black;
+    background-color: white;
+    padding: 3px 5px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px;
+}
+
+.map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
+.map_wrap {position:relative;width:100%;height:350px;}
+#category {position:absolute;top:10px;left:10px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
+#category li {float:left;list-style: none;width:40px;px;border-right:1px solid #acacac;padding:3px 0;text-align: center; cursor: pointer;font-size: 10px;}
+#category li.on {background: #eee;}
+#category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
+#category li:last-child{margin-right:0;border-right:0;}
+#category li span {display: block;margin:0 auto 3px;width:25px;height: 26px;}
+#category li .category_bg {background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
+#category li .bank {background-position: -10px 0;}
+#category li .mart {background-position: -10px -36px;}
+#category li .pharmacy {background-position: -10px -72px;}
+#category li .oil {background-position: -10px -108px;}
+#category li .cafe {background-position: -10px -144px;}
+#category li .store {background-position: -10px -180px;}
+#category li.on .category_bg {background-position-x:-46px;}
+.placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
+.placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
+.placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
+.placeinfo_wrap .after {content:'';position:relative;margin-left:-12px;left:50%;width:22px;height:12px;background:url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+.placeinfo a, .placeinfo a:hover, .placeinfo a:active{color:#fff;text-decoration: none;}
+.placeinfo a, .placeinfo span {display: block;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+.placeinfo span {margin:5px 5px 0 5px;cursor: default;font-size:13px;}
+.placeinfo .title {font-weight: bold; font-size:14px;border-radius: 6px 6px 0 0;margin: -1px -1px 0 -1px;padding:10px; color: #fff;background: #d95050;background: #d95050 url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
+.placeinfo .tel {color:#0f7833;}
+.placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}

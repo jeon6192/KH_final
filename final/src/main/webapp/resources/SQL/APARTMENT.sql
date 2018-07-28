@@ -13,6 +13,8 @@ CREATE TABLE APARTMENT(
 	APART_INTERIOR VARCHAR2(1000)
 )
 
+drop sequence apart_seq
+
 create sequence apart_seq
 	start with 1
 	increment by 1

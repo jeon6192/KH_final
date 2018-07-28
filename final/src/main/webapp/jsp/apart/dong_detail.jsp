@@ -3,67 +3,45 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<style>
-	.div.interior{
-	    width: 100%;
-	    height: 250px;
-	    padding: 15px 30px;
-	}
-	.w3-content{
-	    width: 90%;
-	    max-width: 300px !important;
-	    height: 85% !important;
-	    max-height: 200px;
-	    margin: 0;
-	    background-color: black;
-	}
-	.interior.text{
-	    width: 100%;
-	    height: 15%;
-	}
-	.span.interior{
-		font-size: 17px;
-	}
-	.mySlides{
-		height: 100%;
-		width: auto;
-	}
-	
-</style>
 
-
+<div class="apt_dong">
+	${apart.apart_dong} 동
+</div>
 <div class="apt_info">
-	
-	
 	<div class="apt_area">
-		<img alt="면적" src="./resources/image/ruler.png">
+		<div class="apt info text">면적</div>
+		<img alt="면적" src="./resources/image/blueprint.png">
 		<br><br>
 		<div class="div dong_detail">
-		${apart.apart_area} m²
+			${apart.apart_area} m²
 		</div>
 	</div>
 	<div class="apt_floor">
+		<div class="apt info text">층</div>
 		<img alt="층" src="./resources/image/stairs.png">
 		<br><br>
 		<div class="div dong_detail">
-		${apart.apart_floor} 층
+			${apart.apart_floor} 층
 		</div>
 	</div>
 	<div class="apt_room">
+		<div class="apt info text">방 개수</div>
 		<img alt="방" src="./resources/image/bed.png">
 		<br><br>
 		<div class="div dong_detail">
-		${apart.apart_room} 개
+			${apart.apart_room} 개
 		</div>
 	</div>
 	<div class="apt_toilet">
-		<img alt="화장실" src="./resources/image/toilet.png"> 
+		<div class="apt info text">화장실 개수</div>
+		<img alt="화장실" src="./resources/image/shower.png"> 
 		<br><br>
 		<div class="div dong_detail">
-		${apart.apart_toilet} 개
+			${apart.apart_toilet} 개
 		</div>
 	</div>
 	<div class="apt_price">
+		<div class="apt info text">가격</div>
 		<img alt="가격" src="./resources/image/piggy-bank.png">
 		<br><br>
 		<div class="div dong_detail">

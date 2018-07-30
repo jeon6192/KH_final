@@ -1,3 +1,5 @@
+drop table apt_complex
+
 CREATE TABLE APT_COMPLEX(
 	COMPLEX_ID NUMBER PRIMARY KEY,
 	COMPLEX_ADDRESS VARCHAR2(300) NOT NULL,
@@ -19,3 +21,4 @@ select * from APT_COMPLEX
 
 delete from APT_COMPLEX
 
+select count(*) from APARTMENT where complex_id = 19072520;

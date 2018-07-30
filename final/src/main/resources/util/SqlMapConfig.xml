@@ -20,6 +20,10 @@
 		<typeAlias type="com.naver.house.bean.ApartmentBean2" alias="apart2"/>
 		<typeAlias type="com.naver.house.bean.AptComplexBean" alias="complex"/>
 		<typeAlias type="com.naver.house.bean.AptComplexBean2" alias="complex2"/>
+		<typeAlias alias="M"
+		            type="com.naver.house.bean.MemberBean" />
+		<typeAlias type="com.naver.house.bean.AdminBean"
+		            alias="A"/>
 	</typeAliases>
 	
 	<!-- root-context.xml에서 멥퍼의 위치를 정해줌 -->

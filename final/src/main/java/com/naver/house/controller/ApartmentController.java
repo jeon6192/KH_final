@@ -28,9 +28,6 @@ public class ApartmentController {
 
 	@RequestMapping(value="/aptSearch.com")
 	public String aptSearch() {
-
-		
-		
 		return "aptSearch/search";
 	}
 	

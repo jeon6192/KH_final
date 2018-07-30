@@ -24,6 +24,8 @@
 		            type="com.naver.house.bean.MemberBean" />
 		<typeAlias type="com.naver.house.bean.AdminBean"
 		            alias="A"/>
+		<typeAlias type="com.naver.house.bean.EW_AND_AptBean" alias="ewaptb"/>
+		<typeAlias type="com.naver.house.bean.OptionsInfoBean" alias="opinfo"/>
 	</typeAliases>
 	
 	<!-- root-context.xml에서 멥퍼의 위치를 정해줌 -->

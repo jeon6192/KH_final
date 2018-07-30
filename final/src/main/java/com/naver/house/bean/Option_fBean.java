@@ -4,7 +4,7 @@ public class Option_fBean {
 	
 	
 	private int f_opkey;
-	private int apart_id;
+	private long apart_id;
 	private int user_no;
 	private int bedroom_closet;
 	private int kitchen_height;
@@ -17,10 +17,10 @@ public class Option_fBean {
 	public void setF_opkey(int f_opkey) {
 		this.f_opkey = f_opkey;
 	}
-	public int getApart_id() {
+	public long getApart_id() {
 		return apart_id;
 	}
-	public void setApart_id(int apart_id) {
+	public void setApart_id(long apart_id) {
 		this.apart_id = apart_id;
 	}
 	public int getUser_no() {

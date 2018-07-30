@@ -38,7 +38,7 @@ public class ApartmentController2 {
 	@RequestMapping(value = "/apart_insertform.com")
 	public ModelAndView insertform_apart() {
 		
-		return new ModelAndView("template", "viewName", "apart/insert_aptcomplex.jsp");
+		return new ModelAndView("apart/insert_aptcomplex");
 	}
 	
 	@RequestMapping(value = "/apart_insert.com")
@@ -112,6 +112,7 @@ public class ApartmentController2 {
 					apartBean.setApart_price(price);
 					apartBean.setApart_room(apart.getApart_room());
 					apartBean.setApart_toilet(apart.getApart_toilet());
+					apartBean.setApart_direction(apart.getApart_direction());
 					apartBean.setApart_interior(apart.getApart_interior());
 					
 					System.out.println("아파트 ID : "+apart.getApart_id());
@@ -123,6 +124,7 @@ public class ApartmentController2 {
 					System.out.println("가격 : "+price);
 					System.out.println("방 : "+apart.getApart_room());
 					System.out.println("화장실 : "+apart.getApart_toilet());
+					System.out.println("집방향 : "+apart.getApart_direction());
 					System.out.println("인테리어사진 : "+apart.getApart_interior());
 					
 					apartmentBeanList.add(apartBean);

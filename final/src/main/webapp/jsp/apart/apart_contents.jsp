@@ -13,13 +13,12 @@
 		<!-- Daum Map -->
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4d8e47b00c2f9c5701d6a158cfe8df08&libraries=services,clusterer,drawing"></script>
 		
-		<!-- <script src="./resources/js/apart_contents.js"></script> -->
 		<script src="${pageContext.request.contextPath}/resources/js/apart_contents.js"></script>
-		<!-- <link rel="stylesheet" href="./resources/css/apart_contents.css"> -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/apart_contents.css">
 		
 		<!-- Image Silder -->
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		
 	</head>
 	<body>
 	
@@ -104,6 +103,12 @@
 						<div class="div aptname">
 							${cpx.complex_apartname}
 						</div>
+						<div class="div sell-btn">
+							<div class="button-4">
+								<div class="eff-4"></div>
+								<a href="#" onclick="sellInLots();"> 분양 신청 </a>
+							</div>
+						</div>
 					</div>
 					
 					
@@ -142,8 +147,9 @@
 					            편의점
 					        </li>      
 					    </ul>
+					    <script src="${pageContext.request.contextPath}/resources/js/apart_contents_map.js"></script>
 					</div>
-					<script src="${pageContext.request.contextPath}/resources/js/apart_contents_map.js"></script>
+					
 					
 					
 					

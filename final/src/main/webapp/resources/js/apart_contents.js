@@ -153,3 +153,8 @@ function showApt(dong) {
 
 }
 
+// 분양신청
+function sellInLots(){
+    let cpx_id = $('#cpx_id').val();
+    location.href = '?complex_id=' + cpx_id;
+}

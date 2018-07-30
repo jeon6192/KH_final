@@ -6,4 +6,17 @@
 <mapper namespace="expertBoard">
 
 
+
+<select id="boardNum" resultType="int">
+	select nvl(max(eb_num),0) + 1 from expertBoard
+</select>
+
+<insert id="insertBoard" parameterType="eb">
+	insert into expertBoard
+		(eb_num, eb_source, eb_subject, eb_content, eb_date, eb_file)
+		values(
+			#{eb_num}, #{eb_source}, #{eb_subject}, #{eb_content}, sysdate, #{eb_file}
+		)
+		
+</insert>
 </mapper>

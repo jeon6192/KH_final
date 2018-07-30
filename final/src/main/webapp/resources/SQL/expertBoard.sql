@@ -16,7 +16,7 @@ create table expertBoard(
 
 
 
-drop table expertBoard
 select * from expertBoard
+
 
 

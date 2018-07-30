@@ -89,7 +89,7 @@ UPLOADCARE_LOCALE_TRANSLATIONS = {
 </head>
 <body>
 		<div class="board">
-			<form action="./expertBoard_write.com" method="post">
+			<form action="./expertBoard_write_ok.com" method="post">
 				<table class="table">
 					<tr>
 						<th>제목</th>
@@ -112,7 +112,7 @@ UPLOADCARE_LOCALE_TRANSLATIONS = {
 					
 					<tr>
 						<th>내용</th>
-						<td><textarea rows="30" cols="50" class="textarea">
+						<td><textarea rows="30" cols="50" class="textarea" name="eb_content">
 						</textarea></td>
 					</tr>		
 				</table>	

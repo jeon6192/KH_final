@@ -243,8 +243,10 @@ public class OptionsAction {
 	
 	
 	@RequestMapping(value="/downoptions.op")
-	public ModelAndView optionfiledown (HttpServletRequest request,HttpServletResponse response,
+	public void optionfiledown (HttpServletRequest request,HttpServletResponse response,
 			@RequestParam(value="aptXid",defaultValue="0") int complex_id) throws Exception{
+		
+		System.out.println(request.getContextPath());
 		
 		String filePath="C:\\Users\\LG\\Desktop\\spring_workspace\\final\\src\\main\\webapp\\resources\\optionfiles\\";
 
@@ -252,6 +254,7 @@ public class OptionsAction {
 		
 		AptComplexBean aptname=opserviceF.getAptXinfo(complex_id);
 		String aptname2=aptname.getComplex_apartname();
+		aptname2=aptname2.trim();
 		//페이지에 찍어보기
 		
 		ModelAndView mv=new ModelAndView("template", "viewName", "options/checkDONGS.jsp");
@@ -502,7 +505,7 @@ public class OptionsAction {
 		FileOutputStream fileoutputstream=new FileOutputStream(filePath+fileName);
 		workbook.write(fileoutputstream);
 		fileoutputstream.close();
-		/*
+		
 		request.setCharacterEncoding("utf-8");
 		
 		byte fileByte[]=FileUtils.readFileToByteArray(new File(filePath+fileName));
@@ -515,10 +518,8 @@ public class OptionsAction {
 		response.getOutputStream().write(fileByte);
 		response.getOutputStream().flush();
 		response.getOutputStream().close();
-		//다운
 		
-		*/
-		return mv;	
+		
 	}
 	
 }

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="house_event">
+	
+	
+	<insert id="insertEvent" parameterType="Event_list">
+	insert into values(event_no_seq.nextval,#{user_no},#{event_day},#{Apart_id},0)
+	</insert>
+	
+	<update id="fail" parameterType="int">
+	update  event_list set event_check=2 where event_no=#{event_no}
+	</update>
+	
+	<update id="win" parameterType="int">
+	update  event_list set event_check=1 where event_no=#{event_no}
+	</update>
+	
+	<select id="apt_list" resultType="complex">
+	select * from apt_complex order by complex_id
+	</select>
+	
+	<select id="apt_list_end" resultType="complex">
+	select * from apt_complex where complex_state =1 or complex_state =2 order by complex_id
+	</select>
+	
+	<select id="apt_list_play" resultType="complex">
+	select * from apt_complex where complex_state=0 order by complex_id
+	</select>
+	
+	<select id="apt_event_detail" parameterType="int" resultType="apart">
+	select * from APARTMENT where complex_id =#{id}
+	</select>
+	
+	<select id="apt_event_detail_name" parameterType="int" resultType="complex">
+	select * from apt_complex where complex_id=#{id}
+	</select>
+	
+	<select id="event_list_count" parameterType="int" resultType="int">
+	select count(*) from event_list where complex_id=#{id}
+	</select>
+	
+	<select id="event_aptcount" parameterType="int" resultType="int">
+	select count(*) from apartment where complex_id =#{id}
+	</select>
+	
+	
+	<select id="search_list" parameterType="hashmap" resultType="complex">
+	select * from apt_complex
+	
+	
+	<if test='state.equals("1")'>
+
+		<if test='search.equals("1")'>
+		where complex_address like #{keyword}
+		</if>
+		<if test='search.equals("2")'>
+		where complex_apartname like #{keyword}
+		</if>
+	</if>
+	
+	<if test='state.equals("3")'>
+	
+	where complex_state =0
+		<if test='search.equals("1")'>
+		and complex_address like #{keyword}
+		</if>
+		<if test='search.equals("2")'>
+		and complex_apartname like #{keyword}
+		</if>
+	</if>
+	
+	<if test='state.equals("2")'>
+	where (complex_state=1 or complex_state=2)
+		<if test='search.equals("1")'>
+		and complex_address like #{keyword}
+		</if>
+		<if test='search.equals("2")'>
+		and complex_apartname like #{keyword}
+		</if>
+	</if>
+	</select>
+</mapper>

@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,7 @@ public class ApartmentController2 {
 	
 	@RequestMapping("/main.com")
 	public ModelAndView mainPage() {
-		//return new ModelAndView("template");
-		return new ModelAndView("apart/test");
+		return new ModelAndView("main");
 	}
 	
 	@RequestMapping(value = "/apart_insertform.com")

@@ -34,18 +34,18 @@
         <li><a href="#restaurant-menu" class="page-scroll">정보</a></li>
         <li><a href="#portfolio" class="page-scroll">Q&A</a></li>
         <c:if test="${!empty sessionScope.id}">
-        <c:if test="${sessionScope.id!='admin' }">
-        <li><a href="member_edit.nhn" class="page-scroll">마이페이지</a></li>
-        <li><a href="member_logout.nhn" class="page-scroll">로그아웃</a></li>
-        </c:if>
+	        <c:if test="${sessionScope.id!='admin' }">
+		        <li><a href="member_edit.nhn" class="page-scroll">마이페이지</a></li>
+		        <li><a href="member_logout.nhn" class="page-scroll">로그아웃</a></li>
+	        </c:if>
         </c:if>
         <c:if test="${sessionScope.id=='admin'}">
-        <li><a href="admin_detail.nhn" class="page-scroll">관리자 페이지</a></li>
-        <li><a href="member_logout.nhn" class="page-scroll">로그아웃</a></li>
+	        <li><a href="admin_detail.nhn" class="page-scroll">관리자 페이지</a></li>
+	        <li><a href="member_logout.nhn" class="page-scroll">로그아웃</a></li>
         </c:if>
         <c:if test="${empty sessionScope.id}">
-        <li><a href="member_login.nhn" class="page-scroll">로그인</a></li>
-        <li><a href="join_check.nhn" class="page-scroll">회원가입</a></li>
+	        <li><a href="member_login.nhn" class="page-scroll">로그인</a></li>
+	        <li><a href="join_check.nhn" class="page-scroll">회원가입</a></li>
         </c:if>
         
       </ul>

@@ -20,3 +20,8 @@ select * from expertBoard
 
 
 
+select * from
+(select rownum rnum, eb_num, eb_source, eb_subject, eb_content, eb_readcount, eb_date, eb_file
+from
+(select * from expertBoard order by eb_num))
+where rnum >= 1 and rnum <= 10

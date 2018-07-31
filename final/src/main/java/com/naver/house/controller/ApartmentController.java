@@ -18,16 +18,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.naver.house.bean.AptComplexBean;
 import com.naver.house.bean.AptComplexBean2;
+import com.naver.house.bean.ExpertBoardBean;
 import com.naver.house.service.ApartmentService;
+import com.naver.house.service.ExpertBoardService;
 
 @Controller
 public class ApartmentController {
 	
 	@Autowired
 	private ApartmentService service;
+	@Autowired
+	private ExpertBoardService service2;
 
 	@RequestMapping(value="/aptSearch.com")
-	public String aptSearch() {
+	public String aptSearch(HttpServletRequest request) {
+		
+		ExpertBoardBean list =  service2.getNewBoard();
+		
+		request.setAttribute("expert", list);
+		
+		System.out.println("제목은 : "+list.getEb_subject());
 		return "aptSearch/search";
 	}
 	

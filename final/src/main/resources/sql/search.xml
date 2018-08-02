@@ -11,21 +11,21 @@
 		<select id="aptList" resultType="complex2" parameterType="java.util.Map">
 				
 				select * from 
-	(select rownum rnum, complex_address, complex_apartname, complex_pdate,
+	(select rownum rnum, complex_id, complex_state, complex_address, complex_apartname, complex_pdate,
 	complex_subway, complex_station, complex_foot,minarea, maxarea, minprice,maxprice,
 	complex_lat,complex_lng
 		from
-		(select c.complex_address, c.complex_apartname, c.complex_pdate,
+		(select c.complex_id, c.complex_address, c.complex_apartname, c.complex_pdate, c.complex_state,
 					c.complex_subway, c.complex_station, c.complex_foot,
 						min(a.apart_area) minarea ,max(a.apart_area) maxarea,
 						min(a.apart_price) minprice ,max(a.apart_price) maxprice
 						,c.complex_lat,c.complex_lng
 			 from apt_complex c, apartment a
-			where c.complex_id = a.complex_id and 
-				c.complex_address like #{addr} 
-			group by c.complex_address, c.complex_apartname, c.complex_pdate,
+			where c.complex_id = a.complex_id and
+ 				c.complex_address like #{addr} 
+			group by c.complex_id, c.complex_address, c.complex_apartname, c.complex_pdate,
 					c.complex_subway, c.complex_station, c.complex_foot
-					,c.complex_lat,c.complex_lng
+					,c.complex_lat,c.complex_lng, c.complex_state
 				order by ${sort}))
 				where rnum &gt; = #{start} and rnum &lt; = #{end}
 		</select>
@@ -35,7 +35,7 @@
 		
 		
 		<select id="mapList" resultType="complex">
-			select complex_apartname, complex_address, complex_lat, complex_lng
+			select complex_Id, complex_apartname, complex_address, complex_lat, complex_lng
 				from apt_complex
 					where complex_state = 0
 		</select>

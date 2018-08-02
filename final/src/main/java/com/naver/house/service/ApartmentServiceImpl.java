@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.naver.house.bean.AptComplexBean;
 import com.naver.house.bean.AptComplexBean2;
+import com.naver.house.bean.ExpertBoardBean;
 import com.naver.house.dao.ApartmentDAO;
 
 @Service

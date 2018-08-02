@@ -43,6 +43,7 @@ select * from apt_complex
 
 
 
+update apt_complex set complex_state = 1 where complex_subway = 1
 
 
 insert into apt_complex 

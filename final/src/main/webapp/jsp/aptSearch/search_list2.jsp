@@ -14,6 +14,7 @@
 				<th>면적(㎡)</th>
 				<th>역세권</th>
 				<th>근처역/도보 소요시간</th>
+				<th>분양상태</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,12 +28,24 @@
 		
 		<c:if test="${listcount !=0}">
 		
+		<thead>
+			<tr>
+				<th>분양시기</th>
+				<th>주소</th>
+				<th>아파트명</th>
+				<th>가격</th>
+				<th>면적(㎡)</th>
+				<th>역세권</th>
+				<th>근처역/도보 소요시간</th>
+				<th>분양상태</th>
+			</tr>
+		</thead>
 		<tbody>
 			<c:forEach var = "aptList" items="${aptList}">
 			<tr>
 				<td>${aptList.complex_pdate}</td>
 				<td>${aptList.complex_address}</td>
-				<td>${aptList.complex_apartname}</td>
+				<td><a href="apart_contents.com?complex_id=${aptList.complex_id}">${aptList.complex_apartname}</a></td>
 				<c:choose>
 				<c:when test="${aptList.minprice == aptList.maxprice}">
 				<td>${aptList.maxprice}만원</td>
@@ -65,12 +78,28 @@
 			</c:otherwise>
 		</c:choose>
 				
+		
+			<c:choose>
+			<c:when test="${aptList.complex_state == 0}"> 
+				<td>분양 대기</td>
+			</c:when>
+			
+			<c:when test="${aptList.complex_state == 1}">
+			<td>분양 진행중</td>
+			</c:when>
+			
+			
+			<c:when test="${aptList.complex_state == 2}">
+			<td>분양 완료</td>
+			</c:when>
+		</c:choose>
+				
 			</tr>
 </c:forEach>
 		</tbody>
 		
 		<tfoot>
-			<tr class="h30 lime cneter btn">
+			<tr class="pageBtn" align="center">
 				<td colspan="5">
 					<c:if test="${page<=1}">
 						이전&nbsp;

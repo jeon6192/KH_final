@@ -10,8 +10,11 @@ CREATE TABLE APARTMENT(
 	APART_PRICE NUMBER NOT NULL,
 	APART_ROOM NUMBER NOT NULL,
 	APART_TOILET NUMBER NOT NULL,
+	APART_DIRECTION VARCHAR2(50) NOT NULL, 
 	APART_INTERIOR VARCHAR2(1000)
 )
+
+drop sequence apart_seq
 
 create sequence apart_seq
 	start with 1
@@ -30,6 +33,13 @@ END get_apart_seq;
 
 
    
+   select complex_id, apart_dong, apart_floor, apart_area,  
+			apart_room, apart_toilet, apart_direction, apart_interior, 
+			min(apart_price) minprice, max(apart_price) maxprice
+		from apartment
+		where complex_id = 190730463 and apart_dong = 101
+		group by complex_id, apart_dong, apart_floor, apart_area, 
+			apart_room, apart_toilet, apart_direction, apart_interior
 
 
 select * from apt_complex

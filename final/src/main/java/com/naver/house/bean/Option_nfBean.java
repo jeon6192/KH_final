@@ -3,7 +3,7 @@ package com.naver.house.bean;
 public class Option_nfBean {
 	
 	private int nf_opkey;
-	private int apart_id;
+	private long apart_id;
 	private int user_no;
 	private int floor_type;
 	private int main_room_slide;
@@ -22,10 +22,10 @@ public class Option_nfBean {
 	public void setNf_pkey(int nf_opkey) {
 		this.nf_opkey = nf_opkey;
 	}
-	public int getApart_id() {
+	public long getApart_id() {
 		return apart_id;
 	}
-	public void setApart_id(int apart_id) {
+	public void setApart_id(long apart_id) {
 		this.apart_id = apart_id;
 	}
 	public int getUser_no() {

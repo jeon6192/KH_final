@@ -11,14 +11,14 @@
  		#{kitchen_shelf},#{builtin_ref},#{builtin_kref},#{showerbooth},#{sys_air},#{nf_cost})
  </insert>
  
- <select id="getNfreeOp" parameterType="int" resultType="onfb">
- 		select * from option_nf where user_no=#{user_no}
+ <select id="getNfreeOp" parameterType="long" resultType="onfb">
+ 		select * from option_nf where apart_id=#{apt_id}
  </select>
  
  <update id="updateONF" parameterType="onfb">
  		update option_nf set floor_type=#{floor_type}, main_room_slide=#{main_room_slide}, dressroom=#{dressroom},
  							cooktop=#{cooktop}, kitchen_shelf=#{kitchen_shelf}, builtin_ref=#{builtin_ref},
  							builtin_kref=#{builtin_kref}, showerbooth=#{showerbooth}, sys_air=#{sys_air},
- 							nf_cost=#{nf_cost} where user_no=#{user_no}
+ 							nf_cost=#{nf_cost} where apart_id=#{apart_id}
  	</update>
  </mapper>

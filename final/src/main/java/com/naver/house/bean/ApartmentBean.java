@@ -10,6 +10,7 @@ public class ApartmentBean {
 	private int apart_price;
 	private int apart_room;
 	private int apart_toilet;
+	private String apart_direction;
 	private String apart_interior;
 
 	
@@ -85,6 +86,14 @@ public class ApartmentBean {
 		this.apart_toilet = apart_toilet;
 	}
 
+	public String getApart_direction() {
+		return apart_direction;
+	}
+	
+	public void setApart_direction(String apart_direction) {
+		this.apart_direction = apart_direction;
+	}
+	
 	public String getApart_interior() {
 		return apart_interior;
 	}
@@ -92,5 +101,7 @@ public class ApartmentBean {
 	public void setApart_interior(String apart_interior) {
 		this.apart_interior = apart_interior;
 	}
+
+	
 
 }

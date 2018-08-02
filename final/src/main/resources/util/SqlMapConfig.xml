@@ -10,18 +10,38 @@
 	</settings>
 
 	<typeAliases>
-		<typeAlias alias="ofb"
-		       type ="com.naver.house.bean.Option_fBean"/>  
-		<typeAlias alias="onfb"
-		       type ="com.naver.house.bean.Option_nfBean"/>
-		<typeAlias alias="event_winb"
-		       type="com.naver.house.bean.Event_winBean"/>
+		<typeAlias type ="com.naver.house.bean.Option_fBean" alias="ofb"/>  
+		<typeAlias type ="com.naver.house.bean.Option_nfBean" alias="onfb"/>
+		<typeAlias type="com.naver.house.bean.OptionsInfoBean" alias="opinfo"/>
+		
+		<typeAlias type="com.naver.house.bean.Event_list" alias="Event_list"/>
+		<typeAlias type="com.naver.house.bean.Event_winBean" alias="event_winb"/>
+
+		<typeAlias type="com.naver.house.bean.EW_AND_AptBean" alias="ewaptb"/>
+
 		<typeAlias type="com.naver.house.bean.ApartmentBean" alias="apart"/>
 		<typeAlias type="com.naver.house.bean.ApartmentBean2" alias="apart2"/>
 		<typeAlias type="com.naver.house.bean.AptComplexBean" alias="complex"/>
 		<typeAlias type="com.naver.house.bean.AptComplexBean2" alias="complex2"/>
-		<typeAlias type="com.naver.house.bean.ExpertBoardBean" alias="eb"/>
+    <typeAlias type="com.naver.house.bean.ExpertBoardBean" alias="eb"/>
+
+		<typeAlias type="com.naver.house.bean.MemberBean" alias="M" />
+		<typeAlias type="com.naver.house.bean.AdminBean" alias="A"/>
+
+		<typeAlias type="com.naver.house.bean.Article" alias="Article" />
+    <typeAlias type="com.naver.house.bean.AttachFile" alias="AttachFile" />
+    <typeAlias type="com.naver.house.bean.Comment" alias="Comment"/>
+
+		<typeAlias type="com.naver.house.bean.ApartInfoDocBean" alias="infoDocbean" />	
+		<typeAlias type="com.naver.house.bean.ApartInfoPolicyBean" alias="infoPolicybean" />
+		<typeAlias type="com.naver.house.bean.ApartInfoEtcBean" alias="infoEtcbean" />
+		
 	</typeAliases>
+
+	<mappers>
+        <!-- <mapper resource="net/my/mybatis/UserMapper.xml" /> -->
+        <mapper resource="net/my/mybatis/BoardMapper.xml" />
+    </mappers>
 	
 	<!-- root-context.xml에서 멥퍼의 위치를 정해줌 -->
 

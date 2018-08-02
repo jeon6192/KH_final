@@ -17,7 +17,7 @@ create table expertBoard(
 
 
 select * from expertBoard
-
+select * from board6
 
 
 select * from

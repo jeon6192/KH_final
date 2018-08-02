@@ -56,6 +56,16 @@ public class ExpertBoardServiceImpl implements ExpertBoardService {
 		return expertBoardDAO.getNewBoard();
 	}
 
+	@Override
+	public void boardEdit(ExpertBoardBean ebb) {
+		 expertBoardDAO.boardEdit(ebb);
+	}
+
+	@Override
+	public void expertBoardDelete(int num) {
+		expertBoardDAO.expertBoardDelete(num);
+	}
+
 
 
 

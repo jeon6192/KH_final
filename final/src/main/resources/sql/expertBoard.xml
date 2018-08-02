@@ -13,9 +13,9 @@
 
 <insert id="insertBoard" parameterType="eb">
 	insert into expertBoard
-		(eb_num, eb_source, eb_subject, eb_content, eb_date, eb_file)
+		(eb_num, eb_source, eb_subject, eb_content,eb_readcount, eb_date, eb_file)
 		values(
-			#{eb_num}, #{eb_source}, #{eb_subject}, #{eb_content}, sysdate, #{eb_file}
+			#{eb_num}, #{eb_source}, #{eb_subject}, #{eb_content}, #{eb_readcount}, sysdate, #{eb_file}
 		)
 		
 </insert>
@@ -46,5 +46,16 @@
 	select * from expertboard where eb_num  = (select max(eb_num) from expertboard)
 
 </select>
+
+<update id="boardEdit" parameterType="eb">
+	update expertBoard set eb_subject = #{eb_subject}, eb_source = #{eb_source}, eb_content = #{eb_content}, eb_file = #{eb_file}
+			where eb_num = #{eb_num}
+
+</update>
+
+<delete id="expertBoardDelete" parameterType="int">
+	delete expertBoard where eb_num = #{num}
+</delete>
+
 
 </mapper>

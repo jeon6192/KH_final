@@ -66,7 +66,7 @@
 	</div>
 
 	<div class="list">
-		<c:if test="${liscount == 0}">
+		<c:if test="${listcount == 0}">
 			<table class="table">
 			<thead>
 			<tr>
@@ -79,13 +79,20 @@
 		</thead>
 		<tbody>
 			<tr>
-			<td colspan="5" align="center">등록된 글이 없습니다.<br>
-					
+				<td colspan="5" align="center">등록된 글이 없습니다.<br>
 			</tr>
 		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="5" style="text-align: right"><a
+				href="./expertBoard_write.com">[글쓰기]</a></td>
+			</tr>
+		</tfoot>
 			</table>
 		</c:if>
 	</div>
+	
+	
 	<div class="list">
 		<c:if test="${listcount !=0 }">
 		<table class="table">
@@ -122,7 +129,7 @@
 		</c:forEach>
 		</tbody>
 		<tfoot>
-			<tr class="h30 lime cneter btn">
+			<tr class="pageBtn" align="center">
 				<td colspan="5">
 					<c:if test="${page<=1}">
 						이전&nbsp;

@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,11 +32,17 @@ public class ApartmentController {
 	@RequestMapping(value="/aptSearch.com")
 	public String aptSearch(HttpServletRequest request) {
 		
+		int listcount = service2.getListCount();
+		
+		System.out.println("게시판 글의 수 는 : "+ listcount);
+		
+		
 		ExpertBoardBean list =  service2.getNewBoard();
 		
+		request.setAttribute("listcount", listcount);
 		request.setAttribute("expert", list);
 		
-		System.out.println("제목은 : "+list.getEb_subject());
+		//System.out.println("제목은 : "+list.getEb_subject());
 		return "aptSearch/search";
 	}
 	

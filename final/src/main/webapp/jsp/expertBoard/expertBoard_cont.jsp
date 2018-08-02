@@ -82,6 +82,11 @@
    		border-bottom: 1px solid #aaa;
     	padding: 1%;
 	}
+	
+	.btn{
+		float: right;
+    	width: 60%;
+	}
 </style>
 </head>
 <body>
@@ -102,7 +107,7 @@
 					 등록일 : ${bcont.eb_date}
 					</span>
 					<span>
-					|| 조회수 : ${bcont.eb_readcount}
+					 조회수 : ${bcont.eb_readcount}
 					</span>
 				</dd>
 			</dl>
@@ -123,13 +128,13 @@
 	
 	<div class="btn">
 	<input type="button" value="수정" class="input_button" 
-onclick="location.href='board_cont.nhn?num=${boarddata.board_num}&page=${page}&state=edit'">
+onclick="location.href='expertBoard_cont.com?num=${bcont.eb_num}&page=${page}&state=edit'">
 
 	<input type="button" value="삭제" class="input_button" 
-onclick="location.href='board_cont.nhn?num=${boarddata.board_num}&page=${page}&state=del'">
+onclick="location.href='expertBoard_del.com?num=${bcont.eb_num}&page=${page}'">
 
 	<input type="button" value="목록" class="input_button" 
-onclick="location.href='board_list.nhn?&page=${page}'">
+onclick="location.href='expertBoard_list.com?&page=${page}'">
 	</div>
 	
 	

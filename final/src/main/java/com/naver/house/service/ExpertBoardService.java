@@ -22,4 +22,8 @@ public interface ExpertBoardService {
 
 	ExpertBoardBean getNewBoard();
 
+	void boardEdit(ExpertBoardBean ebb);
+
+	void expertBoardDelete(int num);
+
 }

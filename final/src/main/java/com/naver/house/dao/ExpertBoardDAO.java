@@ -51,4 +51,14 @@ public class ExpertBoardDAO {
 	}
 
 
+	public void boardEdit(ExpertBoardBean ebb) {
+		sqlSession.update("expertBoard.boardEdit",ebb);
+	}
+
+
+	public void expertBoardDelete(int num) {
+		sqlSession.delete("expertBoard.expertBoardDelete",num);
+	}
+
+
 }

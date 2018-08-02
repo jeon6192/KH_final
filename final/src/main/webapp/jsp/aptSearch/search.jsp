@@ -62,22 +62,38 @@
 	min-height : 300px;
 	}
 	.interest{
+	margin-top: 1%;
 	min-height : 250px;
-	width : 40%;
+	width : 50%;
 	margin-left : 10%;
 	}
 	
 	.expert-column{
+	margin-top: 1%;
 	min-height : 250px;
-	width : 40%;
+	width : 20%;
 	margin-right : 10%;
 	}
 	
 	.interest, .expert-column{
 	    float: left;
 	}
+
+	h2{
+		display: inline-block;
+	}	
+	span{
+		display: inline-block;
+		margin-left: 50%;
+	}
 	
+	.border{
+		border-bottom: 1px solid black;
+	}
 	
+	a{
+		text-decoration : none;
+	}
 	
 </style>
 </head>
@@ -134,11 +150,27 @@
 		</div>
 
 		
-		<c:set var="expert" value="${expert}" />
+		
+			
+		
+		
+		<c:if test="${listcount == 0}">
 			<div class="expert-column">
-		<h2>전문가 칼럼</h2>
-			<a href="expertBoard_cont.com?num=${expert.eb_num}&page=1&state=cont"><p>${expert.eb_subject}</p></a>		
+			<div class="border">
+		<h2>등록된 글이 없습니다.</h2><span><a href="expertBoard_list.com">글쓰기</a></span>
+			</div>		
 		</div>
+		</c:if>
+			
+		<c:if test="${listcount != 0}">
+		
+			<div class="expert-column">
+			<div class="border">
+		<h2>전문가 칼럼</h2><span><a href="expertBoard_list.com">더보기</a></span>
+			</div>		
+			<a href="expertBoard_cont.com?num=${expert.eb_num}&page=1&state=cont"><p>${expert.eb_subject}</p></a>
+		</div>
+	</c:if>
 	</div>
 </body>
 </html>

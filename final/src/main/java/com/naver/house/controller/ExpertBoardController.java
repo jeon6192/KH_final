@@ -1,9 +1,12 @@
 package com.naver.house.controller;
 
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -95,6 +98,7 @@ public class ExpertBoardController {
 				@RequestParam("state") String state
 			){
 		
+		System.out.println("num 값은 : " + num);
 		if(state.equals("cont")) {
 			service.expertBoardHit(num);
 		}
@@ -106,8 +110,41 @@ public class ExpertBoardController {
 		
 		if(state.equals("cont")) {
 			contM.setViewName("expertBoard/expertBoard_cont");
+		}else if(state.equals("edit")) {
+			contM.setViewName("expertBoard/expertBoard_modify");
 		}
 		return contM;
 	}
+	
+	@RequestMapping(value= "/expertBoard_edit_ok.com",method=RequestMethod.POST)
+	public String expertBoard_edit_ok(ExpertBoardBean ebb, @RequestParam("page") int page)
+	throws Exception{
+		
+		service.boardEdit(ebb);
+		
+		return "redirect:/expertBoard_cont.com?num="+ebb.getEb_num() + "&page=" + page + "&state=cont";
+	}
+	
+	
+	//삭제하기
+	@RequestMapping(value = "/expertBoard_del.com")
+	public String expertBoard_del_ok(@RequestParam("num") int num,
+			@RequestParam(value = "page", defaultValue = "1") int page, HttpServletResponse response)
+	throws Exception{
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		service.expertBoardDelete(num);
+		
+		out.println("<script>");
+		out.println("alert('삭제되었습니다.')");
+		out.println("</script>");
+		
+		
+		return "redirect:/expertBoard_list.com?page="+page;
+	}
+	
+	
+	
 	
 }

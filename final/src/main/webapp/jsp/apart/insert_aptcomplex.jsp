@@ -34,7 +34,6 @@
 	</head>
 	
 	<body>
-		<jsp:include page="../header.jsp"/>
 	
 		<form action="./apart_insert.com" method="post" id="insert_apt" onsubmit="return insert();">	
 		<ul class="ul_insert">

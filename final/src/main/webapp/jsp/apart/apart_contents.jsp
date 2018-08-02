@@ -2,10 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>​
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
 		<title>Insert title here</title>
 		
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -19,9 +19,11 @@
 		<!-- Image Silder -->
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
 	</head>
 	<body>
-	
+		<jsp:include page="../header.jsp"/>
 		<c:set var="cpx" value="${apartMap.aptComplexBean}"/>
 		<c:set var="aptList" value="${apartMap.apartmentBeanList}"/>
 		<div id="wrapper">
@@ -30,7 +32,7 @@
 				<div class="left_menu text">
 					<ul class="ul left">
 						<li class="li text cpx">
-							<a href="#" onclick="showCpx(); return false;">
+							<a href="#" class="active" onclick="showCpx(); return false;">
 								단지 정보
 							</a>
 						</li>
@@ -56,7 +58,7 @@
 				<div class="left_menu icon">
 					<ul class="ul left">
 						<li class="li icon cpx">
-							<a href="#" onclick="showCpx(); return false;">
+							<a href="#" class="active" onclick="showCpx(); return false;">
 								<img class="img_cpx" alt="단지 정보" src="./resources/image/apt_complex_s.png">
 								<img class="img_cpx2" alt="단지 정보" src="./resources/image/apt_complex.png">
 							</a>
@@ -95,6 +97,7 @@
 					<input type="hidden" id="cpx_lng" value="${cpx.complex_lng}">
 					<input type="hidden" id="cpx_id" value="${cpx.complex_id}">
 					<input type="hidden" id="apt_name" value="${cpx.complex_apartname}">
+					<input type="hidden" id="cpx_edate" value="${cpx.complex_edate}">
 					
 					<div class="div cpx_aptname">
 						<div class="div apticon">
@@ -103,7 +106,12 @@
 						<div class="div aptname">
 							${cpx.complex_apartname}
 						</div>
-						<div class="div sell-btn">
+						<div class="div timer-btn">
+							<span class="span timer-name">
+								신청 종료 : -  
+							</span>
+							<span class="span timer">
+							</span>
 							<div class="button-4">
 								<div class="eff-4"></div>
 								<a href="#" onclick="sellInLots();"> 분양 신청 </a>
@@ -119,6 +127,7 @@
 						<div id="cpx_map" style="width: 95%; height: 330px; margin: 0 auto;">
 						</div>
 						
+						<!-- <button onclick="searchCpx();">주변 아파트 검색</button> --> 
 						<button onclick="panTo()">${cpx.complex_apartname}로 이동</button> 
 						
 						<ul id="category">
@@ -205,8 +214,6 @@
 						
 					</div>
 					
-					
-					
 						
 				</div>
 				
@@ -226,27 +233,29 @@
 		
 		
 		<div class="footer">
-			<div class="ul bottom">
-				<div class="li bottom cpx">
-					<a href="#" onclick="showCpx(); return false;">
+			<ul class="ul bottom">
+				<li class="li bottom cpx">
+					<a href="#" class="active" onclick="showCpx(); return false;">
 						단지 정보
 					</a>
-				</div>
-				<div class="li bottom apt">
+				</li>
+				<li class="li bottom apt">
 					아파트 정보
-				</div>
+				</li>
 				<c:forEach var="dong" items="${dongList}" varStatus="i">
-					<div>
+					<li>
 						<a href="#" onclick="showApt(${dong}); return false;">
 							${dong}동
 						</a>
-					</div>
+					</li>
 				</c:forEach>
-				<div class="actFoot">
+				<li class="actFoot">
 					Test~~
-				</div>
-			</div>
+				</li>
+			</ul>
 		</div>
+		
+		
 		
 	</body>
 </html>

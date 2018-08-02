@@ -15,7 +15,7 @@ $(document).ready(function(){
         $('.' + className + '>a>span').css('color', 'white');
     }, function(){
         var className = $(this).attr('class');
-        $('.' + className + '>a>span').css('color', '#ababab');
+        $('.' + className + '>a>span').css('color', 'black');
     });
 
     // text
@@ -25,7 +25,7 @@ $(document).ready(function(){
         });
     }, function(){
         $(this).css({
-            'color' : '#ababab'
+            'color' : 'black'
         });
     });
 
@@ -35,7 +35,7 @@ $(document).ready(function(){
         });
     }, function(){
         $(this).css({
-            'color' : '#ababab'
+            'color' : 'black'
         });
     });
 
@@ -45,7 +45,7 @@ $(document).ready(function(){
         });
     }, function(){
         $(this).css({
-            'color' : '#ababab'
+            'color' : 'black'
         });
     });
 
@@ -79,9 +79,11 @@ $(document).ready(function(){
         });
     }, function(){
         $(this).css({
-            'color' : '#ababab'
+            'color' : 'black'
         });
     });
+
+
 
     const aptLength = $('.ul.apt.icon>li').length;
     for (let i = 0; i < aptLength; i++) {
@@ -99,7 +101,7 @@ $(document).ready(function(){
 
 
     // 클릭시 active
-    var aTag = $('.left_menu>div>ul>li>a');
+    var aTag = $('.left_menu>div>ul>li>a:not(.li.icon.apt>a)');
     $(aTag).click(function(){
         $('.left_menu>div>ul>li>a').removeClass("active"); 
 
@@ -121,9 +123,58 @@ $(document).ready(function(){
         }
     });
 
+    var aTag2 = $('.ul.bottom>.li.bottom>a');
+    $(aTag2).click(function(){
+        $('.ul.bottom>.li.bottom>a').removeClass("active"); 
+
+        let thisClass = $(this).parent().attr('class').substr(-3);
+        if (thisClass == 'cpx') {
+            $('.li.text.cpx>a').addClass('active');
+            $('.li.icon.cpx>a').addClass('active');
+            $('.img_apart').show();
+            $('.img_apart2').hide();
+            $('.img_cpx').hide();
+            $('.img_cpx2').show();
+        } else {
+            $('.li.text.apt>a').addClass('active');
+            $('.li.icon.apt>a').addClass('active');
+            $('.img_cpx').show();
+            $('.img_cpx2').hide();
+            $('.img_apart').hide();
+            $('.img_apart2').show();
+        }
+    });
+
+
+    // Timer!
+    var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime();
+
+    var x = setInterval(function() {
+
+        var now = new Date().getTime();
+        
+        var distance = countDownDate - now;
+        
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        $('.span.timer').text(days + "일 " + hours + "시간 "
+        + minutes + "분 " + seconds + "초 ");
+
+        if (distance < 100000000) {
+            $('.span.timer').css('color', 'red');
+        }
+        if (distance < 0) {
+            clearInterval(x);
+            $('.span.timer-name').text('');
+            $('.span.timer').html('<b>분양신청 종료</b>');
+            $('.button-4').hide();
+        }
+    }, 1000);
 
     
-
     
 }); // document.ready ///////////
 
@@ -156,5 +207,5 @@ function showApt(dong) {
 // 분양신청
 function sellInLots(){
     let cpx_id = $('#cpx_id').val();
-    location.href = '?complex_id=' + cpx_id;
+    location.href = './insertEvent.ev?complex_id=' + cpx_id;
 }

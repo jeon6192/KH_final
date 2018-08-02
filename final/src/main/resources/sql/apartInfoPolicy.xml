@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Test">
+	<insert id="infoPolicy_insert" parameterType="infoPolicybean">
+		insert into APART_INFO_POLICY
+		(INFO_POLICY_NUM, Admin_no, INFO_POLICY_SUB, INFO_POLICY_VISIT, INFO_POLICY_DATE, INFO_POLICY_FILE, INFO_POLICY_CONT, INFO_POLICY_ORIGINAL) values 
+		(INFO_POLICY_num_seq.nextval, #{Admin_no}, #{INFO_POLICY_SUB}, 0, SYSDATE, #{INFO_POLICY_FILE , jdbcType = VARCHAR}, #{INFO_POLICY_CONT}, #{INFO_POLICY_ORIGINAL , jdbcType = VARCHAR})
+	</insert>
+	
+	<select id="infoPolicy_count" resultType="int">
+		select count(*) from APART_INFO_POLICY
+	</select>
+	
+	<select id="infoPolicy_list" parameterType="map" resultType="infoPolicybean">
+   
+   <![CDATA[
+   	select *
+   	from
+   		(select rownum rnum,INFO_POLICY_NUM,Admin_no,INFO_POLICY_SUB,INFO_POLICY_VISIT,INFO_POLICY_DATE,INFO_POLICY_FILE,INFO_POLICY_CONT,INFO_POLICY_ORIGINAL
+   		from
+   			(select rownum rnum,INFO_POLICY_NUM,Admin_no,INFO_POLICY_SUB,INFO_POLICY_VISIT,INFO_POLICY_DATE,INFO_POLICY_FILE,INFO_POLICY_CONT,INFO_POLICY_ORIGINAL
+   		from
+   			APART_INFO_POLICY order by INFO_POLICY_DATE desc
+   		))
+   	where rnum >= ((#{page}-1)*#{limit}+1) and rnum <= (#{page} * #{limit})
+   ]]>
+   
+	</select>
+	
+	<update id="infoPolicy_hit" parameterType="int">
+		update APART_INFO_POLICY
+		set
+		INFO_POLICY_VISIT = INFO_POLICY_VISIT+1
+		where
+		INFO_POLICY_NUM=#{INFO_POLICY_NUM}
+	</update>
+	
+	<select id="infoPolicy_cont" resultType="infoPolicybean" parameterType="int">
+		select * from APART_INFO_POLICY
+		where INFO_POLICY_NUM=#{INFO_POLICY_NUM}
+	</select>
+	
+	<update id="infoPolicy_edit" parameterType="infoPolicybean">
+		update APART_INFO_POLICY
+		set
+		INFO_POLICY_SUB = #{INFO_POLICY_SUB},
+		INFO_POLICY_CONT = #{INFO_POLICY_CONT},
+		INFO_POLICY_FILE = #{INFO_POLICY_FILE , jdbcType = VARCHAR},
+		INFO_POLICY_ORIGINAL = #{INFO_POLICY_ORIGINAL, jdbcType = VARCHAR}
+		where INFO_POLICY_NUM = #{INFO_POLICY_NUM}
+	</update>
+	
+	<delete id="infoPolicy_delete" parameterType="int">
+		delete from APART_INFO_POLICY
+		where INFO_POLICY_NUM = #{INFO_POLICY_NUM}
+	</delete>
+	
+	<select id="infoPolicyfind_cnt" parameterType="java.util.Map" resultType="int">
+		select count(*) from APART_INFO_POLICY
+		
+		<!-- MyBatis 동적 SQL문
+			<where>
+		 -->
+		<where>
+			<!-- 검색 조건이 없는경우 -->
+			<if test = "find_field==''"></if>
+			<!-- 검색 조건이 제목인 경우 -->
+			<if test = "find_field=='INFO_POLICY_SUB'">
+				INFO_POLICY_SUB like #{find_name}
+			</if>
+			<!-- 검색 조건이 제목+내용인 경우 -->
+			<if test = "find_field=='INFO_POLICY_SubCont'">
+				INFO_POLICY_SUB like #{find_name} or INFO_POLICY_CONT like #{find_name}
+			</if>
+			<!-- 검색 조건이 내용인 경우 -->
+			<if test = "find_field=='INFO_POLICY_CONT'">
+				INFO_POLICY_CONT like #{find_name}
+			</if>
+		</where>
+	</select>
+	
+	<select id="infoPolicy_find" parameterType="java.util.Map" resultType="infoPolicybean">
+   
+   	select * 
+   	from 
+   		(select rownum rnum,INFO_POLICY_NUM,Admin_no,INFO_POLICY_SUB,INFO_POLICY_VISIT,INFO_POLICY_DATE,INFO_POLICY_FILE,INFO_POLICY_CONT,INFO_POLICY_ORIGINAL <!-- rownum rnum은 페이징 처리를 위해 필요. 서브퀴리를 통해 가로를 해서 rownum을 불러올 수 있음 -->
+   		 from
+   			 (select rownum rnum,INFO_POLICY_NUM,Admin_no,INFO_POLICY_SUB,INFO_POLICY_VISIT,INFO_POLICY_DATE,INFO_POLICY_FILE,INFO_POLICY_CONT,INFO_POLICY_ORIGINAL from 
+   			APART_INFO_POLICY 
+   		
+   			<!-- MyBatis 동적 SQL문 -->
+			<where>
+				<!-- 검색 조건이 없는경우 -->
+				<if test = "find_field==''"></if>
+				<!-- 검색 조건이 제목인 경우 -->
+				<if test = "find_field=='INFO_POLICY_SUB'">
+					INFO_POLICY_SUB like #{find_name}
+				</if>
+				<!-- 검색 조건이 제목+내용인 경우 -->
+				<if test = "find_field=='INFO_POLICY_SubCont'">
+					INFO_POLICY_SUB like #{find_name} or INFO_POLICY_CONT like #{find_name}
+				</if>
+				<!-- 검색 조건이 내용인 경우 -->
+				<if test = "find_field=='INFO_POLICY_CONT'">
+					INFO_POLICY_CONT like #{find_name}
+				</if>
+			</where> 
+			order by INFO_POLICY_DATE desc
+			 
+		))
+    <![CDATA[	where rnum >= ((#{page}-1)*5+1) and rnum <= (#{page} * 5)]]>
+   </select>
+</mapper>

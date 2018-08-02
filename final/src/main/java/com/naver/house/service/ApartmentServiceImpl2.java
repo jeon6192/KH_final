@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.naver.house.bean.ApartmentBean;
 import com.naver.house.bean.ApartmentBean2;
 import com.naver.house.bean.AptComplexBean;
+import com.naver.house.bean.AptComplexBean2;
 import com.naver.house.dao.ApartmentDAO2;
 
 @Service
@@ -51,6 +52,13 @@ public class ApartmentServiceImpl2 implements ApartmentService2 {
 		ApartmentBean2 apartmentBean2 = apartmentDAO.detail_apart2(complex_id, apart_dong);
 		
 		return apartmentBean2;
+	}
+
+	@Override
+	public List<AptComplexBean2> searchCpx(Map<String, Double> searchCpxMap) throws Exception {
+		List<AptComplexBean2> searchCpxList = apartmentDAO.searchCpx(searchCpxMap);
+				
+		return searchCpxList;
 	}
 
 

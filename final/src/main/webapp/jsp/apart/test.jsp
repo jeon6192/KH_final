@@ -43,10 +43,17 @@
 					$('.direction-t').not(this).removeClass('activeArrow');
 					$(this).toggleClass('activeArrow');
 				});
+				
+				
+				/* $(window).scroll(function(){
+					console.log($(window).scrollTop());
+				}); */
+				
 			})
 		</script>
 	</head>
 	<body>
+		<jsp:include page="../header.jsp"/>
 		<div class="div-direction">
 		
 			<ul class="dong-direction">
@@ -62,6 +69,11 @@
 			</ul>
 		
 		</div>
+		
+		<br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br>
+		<br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br>
 		
 	</body>
 </html>

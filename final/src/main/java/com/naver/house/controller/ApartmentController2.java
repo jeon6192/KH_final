@@ -8,19 +8,23 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.naver.house.bean.ApartListBean;
 import com.naver.house.bean.ApartmentBean;
 import com.naver.house.bean.ApartmentBean2;
 import com.naver.house.bean.AptComplexBean;
+import com.naver.house.bean.AptComplexBean2;
 import com.naver.house.service.ApartmentService2;
 
 @Controller
@@ -30,6 +34,10 @@ public class ApartmentController2 {
 	private ApartmentService2 apartmentService;
 	
 	
+	@RequestMapping("/apart_test.com")
+	public String testPage() {
+		return "apart/test";
+	}
 	@RequestMapping("/main.com")
 	public ModelAndView mainPage() {
 		return new ModelAndView("main");
@@ -185,6 +193,21 @@ public class ApartmentController2 {
 		
 		
 		return mav;
+	}
+	
+	@RequestMapping(value= {"/search_cpx.com"},method=RequestMethod.POST,headers="Accept=*/*",produces = "application/json")
+	@ResponseBody
+	public List<AptComplexBean2> search_cpx(@RequestParam Map<String,Object> searchLocation) throws Exception {
+		System.out.println(searchLocation.get("swLat"));
+		Map<String, Double> searchCpxMap = new HashMap<String, Double>();
+		searchCpxMap.put("swLat", Double.parseDouble(searchLocation.get("swLat").toString()));
+		searchCpxMap.put("swLng", Double.parseDouble(searchLocation.get("swLng").toString()));
+		searchCpxMap.put("neLat", Double.parseDouble(searchLocation.get("neLat").toString()));
+		searchCpxMap.put("neLng", Double.parseDouble(searchLocation.get("neLng").toString()));
+		
+		List<AptComplexBean2> searchCpxList = apartmentService.searchCpx(searchCpxMap);
+		return searchCpxList;
+		
 	}
 	
 	

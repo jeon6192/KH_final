@@ -39,7 +39,7 @@
           <div class="intro-text">
             <h1>House</h1>
             <p>아파트 분양 사이트에 오신걸 환영합니다.</p>
-            <a href="#about" class="btn btn-custom btn-lg page-scroll">아파트 분양정보 보러가기</a> </div>
+            <a href="./aptSearch.com" class="btn btn-custom btn-lg page-scroll">아파트 분양정보 보러가기</a> </div>
         </div>
       </div>
     </div>

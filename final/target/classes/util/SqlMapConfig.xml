@@ -27,7 +27,19 @@
 		<typeAlias type="com.naver.house.bean.MemberBean" alias="M" />
 		<typeAlias type="com.naver.house.bean.AdminBean" alias="A"/>
 
+		<typeAlias type="com.naver.house.bean.Article" alias="Article" />
+        <typeAlias type="com.naver.house.bean.AttachFile" alias="AttachFile" />
+        <typeAlias type="com.naver.house.bean.Comment" alias="Comment"/>
+
+		<typeAlias type="com.naver.house.bean.ApartInfoDocBean" alias="infoDocbean" />	
+		<typeAlias type="com.naver.house.bean.ApartInfoPolicyBean" alias="infoPolicybean" />
+		<typeAlias type="com.naver.house.bean.ApartInfoEtcBean" alias="infoEtcbean" />
 	</typeAliases>
+
+	<mappers>
+        <!-- <mapper resource="net/my/mybatis/UserMapper.xml" /> -->
+        <mapper resource="net/my/mybatis/BoardMapper.xml" />
+    </mappers>
 	
 	<!-- root-context.xml에서 멥퍼의 위치를 정해줌 -->
 

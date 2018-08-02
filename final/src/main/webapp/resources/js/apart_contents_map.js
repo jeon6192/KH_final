@@ -34,15 +34,6 @@
 	// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
 	infowindow.open(map, marker); 
     
-	//중심으로 이동
-	function panTo() {
-	    // 이동할 위도 경도 위치를 생성합니다 
-	    var moveLatLon = new daum.maps.LatLng(cpxLat, cpxLng);
-	    
-	    // 지도 중심을 부드럽게 이동시킵니다
-	    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
-	    map.panTo(moveLatLon);            
-	}   
 	
 	// 카테고리 검색
 	// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
@@ -204,7 +195,7 @@ function onClickCategory() {
 
     placeOverlay.setMap(null);
 
-    if (className === 'on') {
+    if (className === 'onn') {
         currCategory = '';
         changeCategoryClass();
         removeMarker();
@@ -226,6 +217,50 @@ function changeCategoryClass(el) {
     }
 
     if (el) {
-        el.className = 'on';
+        el.className = 'onn';
     } 
 } 
+
+//중심으로 이동
+function panTo() {
+    // 이동할 위도 경도 위치를 생성합니다 
+    var moveLatLon = new daum.maps.LatLng(cpxLat, cpxLng);
+    
+    // 지도 중심을 부드럽게 이동시킵니다
+    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+    map.panTo(moveLatLon);            
+}
+
+// 주변 아파트 검색
+function searchCpx() {
+    // 지도의 현재 영역을 얻어옵니다 
+    var bounds = map.getBounds();
+
+    var swLatLng = bounds.getSouthWest(); 
+    var neLatLng = bounds.getNorthEast(); 
+
+    var searchLocation = {'swLat' : swLatLng.getLat(), 'swLng' : swLatLng.getLng(), 
+                    'neLat' : neLatLng.getLat(), 'neLng' : neLatLng.getLng()};
+    console.log(searchLocation);
+    
+    $.ajax({
+        type : 'POST', 
+        dataType : 'json', 
+        data : searchLocation,
+        url : "./search_cpx.com",
+        success : function(data) {
+            console.log(data);
+        },
+        error : function() {
+            console.log('error');
+        }
+    });
+}
+
+function removeMarkers() {
+    for (var i = 0; i < markers.length; i++) {
+		markers[i].setMap(null);
+	}
+	foundMarkers = [];
+	infoContentArr = [];
+}

@@ -43,7 +43,7 @@ body{
     margin: 0;
     color: #4c5667;
     overflow-x: hidden !important;
-    font-size: 0.95rem;
+    font-size: 14px;
 }
 #wrapper>div>div>ul{
     list-style: none;
@@ -89,7 +89,7 @@ li{
 .left_menu{
     height: 100%;
     position: fixed;
-    background: #343c49;
+    background: rgba(46, 117, 182, 1);
     z-index: 2;
 }
 .contents{
@@ -109,14 +109,14 @@ li{
 
 ul>li>a{
     text-decoration: none !important;
-    color: #ababab;
+    color: black;
     display: block;
     width: 100%;
     height: 100%;
 }
-.left_menu>div>ul>li>.active{
+.left_menu>div>ul>li>.active, .ul.bottom>.li.bottom>.active{
     color: white !important;
-    background-color: #3f4858 !important;
+    background-color: rgba(0, 32, 96, 1) !important;
 }
 
 
@@ -139,7 +139,7 @@ a img{
     padding: 0;
     left: 60px;
     top: 0;
-    background-color: #343c49;
+    background-color: #2e75b6;
 }
 .ul.apt.icon>li{
     display: none;
@@ -177,7 +177,7 @@ a img{
 }
 
 
-.img_cpx2{
+.img_cpx{
     display: none;
 }
 .img_apart2{
@@ -190,7 +190,7 @@ a img{
     width: 100%;
 }
 
-.apt.detail{
+.detail.apt{
     display: none;
 }
 .apt-info{
@@ -289,6 +289,10 @@ a img{
     margin-top: 50px;
     color: black;
 }
+.detail.cpx, .detail.apt{
+    max-width: 1000px;
+    margin: 0 auto;
+}
 .div.cpx_aptname{
 	width: 100%;
 	height: 45px;
@@ -300,8 +304,7 @@ a img{
     display: inline-block;
 }
 .div.apticon{
-	width: 10%;
-	min-width: 35px;
+	width: 35px;
 	height: 35px;
 	float: left;
 }
@@ -310,28 +313,33 @@ a img{
 	height: 35px;
 }
 .div.aptname{
-	height: 35px;
+    height: 35px;
+    line-height: 35px;
 	font-size: 25px;
     padding-left: 5px;
     box-sizing: border-box;
-    width: 73%;
+    width: auto;
 }
-.div.sell-btn{
-    width: 15%;
+.div.timer-btn{
+    float: right;
+    color: black;
+}
+.span.timer{
     text-align: right;
+    line-height: 35px;
+    font-weight: 500;
 }
 .cpx_text{
-    width: 100%;
-    height: 28px;
+    width: 98%;
+    height: 25px;
     margin: 10px 0px;
-    background-color: #343c49;
+    background-color: #2e75b6;
     color: white;
-    border-radius: 5px;
     padding: 0px 5px;
-    line-height: 28px;
+    line-height: 25px;
 }
 .span.cpx{
-	font-size: 17px;
+	font-size: 15px;
 }
 .cpx.info{
 	width: 100%;
@@ -378,11 +386,11 @@ a img{
     width: 100%;
     height: 50px;
     position: fixed;
-    background: #343c49;
+    background: #2e75b6;
     bottom: 0;
     overflow: -webkit-paged-x;
 }
-.footer>div{
+.footer>ul{
     width: 100%;
     margin: 0;
     padding: 0px 3px;
@@ -392,23 +400,23 @@ a img{
 .li.bottom.apt{
     color: white
 }
-.footer>div>div{
+.footer>ul>li{
     float: left;
     width: 140px;
     height: 100%;
     text-align: center;
 }
-.footer>div>div a{
+.footer>ul>li a{
     color: white;
     display: block;
     padding: 2px 4px;
 }
-.footer>div>div.actFoot{
+.footer>ul>li.actFoot{
     background-color: #4CAF50;
 }
 
 
-@media (max-width: 450px){
+@media only screen and (max-width: 450px){
     .footer{
         display: block;
     }
@@ -418,13 +426,59 @@ a img{
     .contents{
         margin: 0;
     }
+    #category{
+        display: none;
+    }
+    span.span.timer-name{
+        font-size: 0;
+    }
+    .div.aptname{
+        font-size: 14px;
+    }
+    .div.cpx_aptname{
+        font-size: 12px;
+    }
+    .apt-info>div{
+        font-size: 13px;
+    }
+    .apt-info>div>div:last-child{
+        font-size: 15px;
+    }
+    .detail.cpx{
+        height: 1200pxsaswwqwqwwwtqtqtqtq;
+    }
 }
 @media (min-width: 450px){
     .footer{
         display: none;
     }
 }
-
+@media (max-width: 850px){
+    
+    .div.household, .div.addr, .div.subway, .div.date{
+        width: 98%;
+    }
+    .map_wrap>button{
+        display: none;
+    }
+}
+@media (max-width: 776px){
+    .div.apticon{
+        width: 18%;
+    }
+    .div.aptname{
+        width: 80%;
+    }
+    .div.cpx_aptname{
+        height: 80px;
+    }
+    .div.timer-btn{
+        float: left;
+    }
+    span.span.timer-name{
+        font-size: 0;
+    }
+}
 
 
 
@@ -447,7 +501,7 @@ a img{
 .map_wrap {position:relative;width:100%;height:350px;}
 #category {position:absolute;top:10px;left:10px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
 #category li {float:left;list-style: none;width:40px;border-right:1px solid #acacac;padding:3px 0;text-align: center; cursor: pointer;font-size: 10px;}
-#category li.on {background: #eee;}
+#category li.onn {background: #eee;}
 #category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
 #category li:last-child{margin-right:0;border-right:0;}
 #category li span {display: block;margin:0 auto 3px;width:25px;height: 26px;}
@@ -458,7 +512,7 @@ a img{
 #category li .oil {background-position: -10px -108px;}
 #category li .cafe {background-position: -10px -144px;}
 #category li .store {background-position: -10px -180px;}
-#category li.on .category_bg {background-position-x:-46px;}
+#category li.onn .category_bg {background-position-x:-46px;}
 .placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
 .placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
 .placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
@@ -475,13 +529,13 @@ a img{
     padding: 0;
     height: 33px;
     border: 2px solid #34495e;
-    float: left;
+    float: right;
     text-align: center;
     cursor: pointer;
     position: relative;
     box-sizing: border-box;
     overflow: hidden;
-    margin: 0;
+    margin-left: 20px;
 }
 .button-4 a{
     font-family: arial;

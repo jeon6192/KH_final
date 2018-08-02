@@ -81,6 +81,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="../header.jsp"/>
 	<div class="bg-img">
 		
 	

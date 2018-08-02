@@ -323,7 +323,7 @@ $(".sys_air").change(function(){
  			<td> 거실 발코니 확장 </td>
  			<td>
  				<label><input type="radio" name="balcony" id="balcony" value="1">확 장</label>
- 				<label><input type="radio" name="balcony" id="balcony" value="2">비 확 장</label>
+ 				<label><input type="radio" name="balcony" id="balcony" value="0">비 확 장</label>
  			</td>
  			<td>
  			
@@ -349,7 +349,7 @@ $(".sys_air").change(function(){
  			</td>
  			<td>
  	
- 				<input type="text" name="floor_type_cost" id="floor_type_cost" value="" Readonly>
+ 				<input type="text" name="floor_type_cost" id="floor_type_cost" value="0" Readonly>
  			  
  			</td>
  		</tr>
@@ -361,7 +361,7 @@ $(".sys_air").change(function(){
  				<label><input type="radio" name="main_room_slide" class="main_room_slide" id="main_room_slide" value="0" checked> 선택 없음 </label>
  			</td>
  			<td>
- 				<input type="text" name="main_room_slide_cost" id="main_room_slide_cost" value="" Readonly>
+ 				<input type="text" name="main_room_slide_cost" id="main_room_slide_cost" value="0" Readonly>
  			</td>
  		</tr>
  		<tr>
@@ -388,8 +388,8 @@ $(".sys_air").change(function(){
  		<tr>
  			<td> 주방 선반 </td>
  			<td>
- 				<label><input type="radio" name="kitchen_shelf" class="kitchen_shelf" id="kitchen_shelf" value="1"> 기본 형  </label>
- 				<label><input type="radio" name="kitchen_shelf" class="kitchen_shelf" id="kitchen_shelf" value="2"> 하이브리드 쿡탑 </label>
+ 				<label><input type="radio" name="kitchen_shelf" class="kitchen_shelf" id="kitchen_shelf" value="1"> 캐슬미드웨이 선반  </label>
+ 				<label><input type="radio" name="kitchen_shelf" class="kitchen_shelf" id="kitchen_shelf" value="2">  기본 형 </label>
  				<label><input type="radio" name="kitchen_shelf" class="kitchen_shelf" id="kitchen_shelf" value="0" checked> 선택 없음 </label>
  			</td>
  			<td>

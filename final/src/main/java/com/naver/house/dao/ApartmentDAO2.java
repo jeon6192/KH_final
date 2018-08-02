@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.naver.house.bean.ApartmentBean;
 import com.naver.house.bean.ApartmentBean2;
 import com.naver.house.bean.AptComplexBean;
+import com.naver.house.bean.AptComplexBean2;
 
 @Repository
 public class ApartmentDAO2 {
@@ -46,6 +47,12 @@ public class ApartmentDAO2 {
 		ApartmentBean2 apartmentBean2 = sqlSession.selectOne("apart.selectDong", apartMap);
 		
 		return apartmentBean2;
+	}
+	
+	public List<AptComplexBean2> searchCpx(Map<String, Double> searchCpxMap) throws Exception {
+		List<AptComplexBean2> searchCpxList = sqlSession.selectList("complex.searchCpx", searchCpxMap);
+		
+		return searchCpxList;
 	}
 	
 

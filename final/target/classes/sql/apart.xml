@@ -8,7 +8,7 @@
 			into apartment values
 	        (
 				get_apart_seq, #{item.complex_id}, #{item.apart_dong}, #{item.apart_ho}, #{item.apart_floor}, 
-				#{item.apart_area}, #{item.apart_price}, #{item.apart_room}, #{item.apart_toilet}, #{item.apart_interior} 
+				#{item.apart_area}, #{item.apart_price}, #{item.apart_room}, #{item.apart_toilet}, #{item.apart_direction}, #{item.apart_interior} 
 			)
 	    </foreach>
 	</insert>
@@ -19,12 +19,12 @@
 
 	<select id="selectDong" resultType="apart2" parameterType="java.util.Map">
 		select complex_id, apart_dong, apart_floor, apart_area,  
-			apart_room, apart_toilet, apart_interior, 
+			apart_room, apart_toilet, apart_direction, apart_interior, 
 			min(apart_price) minprice, max(apart_price) maxprice
 		from apartment
 		where complex_id = #{complex_id} and apart_dong = #{apart_dong}
 		group by complex_id, apart_dong, apart_floor, apart_area, 
-			apart_room, apart_toilet, apart_interior	
+			apart_room, apart_toilet, apart_direction, apart_interior
 	</select>
 
 

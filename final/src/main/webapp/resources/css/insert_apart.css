@@ -137,7 +137,8 @@ li{
 	display: block;
 	width: 100%;
 	height: 50% !important;
-	text-align: center !important;
+	padding-left: 25%;
+    text-align: left !important;
 }
 
 .div_cpx_btn>button, .div_last>button, .uploadcare--widget__button_type_open {
@@ -342,4 +343,39 @@ span#counter {
 
 .div_cpx_info_text {
     position: relative;
+}
+.uploadcare--widget__file-size{
+	opacity: 0;
+}
+.mdi:before, .mdi-set{
+	font-size: 20px;
+}
+.div-direction{
+	width: 35% !important;
+	height: auto !important;
+	box-sizing: border-box !important;
+	padding: 0.2em;
+	float: right !important;
+	margin-right: 0.5em;
+	line-height: 0;
+}
+.dong-direction{
+	width: 100%;
+	height: 100%;
+	padding: 0 !important;
+}
+.dong-direction>li{
+	list-style: none;
+	width: 33%;
+	height: 33%;
+	display: inline;
+	float: left;
+}
+.direction-t{
+	text-decoration: none;
+	color: black;
+}
+.activeArrow{
+	color: #47e088;
+	text-shadow: 1px 1px 5px #4a4a4a;
 }

@@ -22,3 +22,23 @@ select * from APT_COMPLEX
 delete from APT_COMPLEX
 
 select count(*) from APARTMENT where complex_id = 19072520;
+
+update apt_complex set complex_info = '1234' where complex_id = 190730463
+
+
+
+select c.complex_id, c.complex_address, c.complex_lat, c.complex_lng, c.complex_apartname, 
+c.complex_sdate, c.complex_edate, c.complex_pdate, c.complex_state, c.complex_info, 
+c.complex_subway, c.complex_station, c.complex_foot, min(a.apart_area) minarea, 
+max(a.apart_area) maxarea, min(a.apart_price) minprice, max(a.apart_price) minprice 
+from apt_complex c, apartment a 
+where c.complex_id = a.complex_id
+and 
+complex_lat between 37.564419258914214 and 126.98306723531553
+and complex_lng between 37.57631185331255 and 127.02037688702883
+and complex_id != 190730463
+group by c.complex_id, c.complex_address, c.complex_lat, c.complex_lng, c.complex_apartname, 
+c.complex_sdate, c.complex_edate, c.complex_pdate, c.complex_state, c.complex_info, 
+c.complex_subway, c.complex_station, c.complex_foot
+		
+		

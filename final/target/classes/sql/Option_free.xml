@@ -7,12 +7,16 @@
  	<select id="checkwinner1" parameterType="int" resultType="int">
  		select count(*) from event_win where user_no=#{user_no}
  	</select>
- 	
  	<select id="getEvent_win" parameterType="int" resultType="event_winb">
- 		select * from event_win where user_no=#{user_no}
+ 		select * from event_win where user_no=#{user_no} and event_con=0
  	</select>
  	
- 	<select id ="getAptInfo" parameterType="long" resultType="apart">
+ 	<select id="getWinList" parameterType="int" resultType="ewaptb">
+ 		select event_win_no, user_no, apart_id, event_con, complex_id,apart_dong, apart_ho from event_win natural join apartment
+ 		 where user_no=#{user_no} and event_con=0
+ 	</select>
+ 	
+ 	<select id ="getAptinfo" parameterType="long" resultType="apart">
  		select * from apartment where apart_id=#{apart_id}
  	</select>
  	
@@ -28,16 +32,77 @@
 
  	</insert>
  	
- 	<select id="chekfirst" parameterType="int" resultType="int">
- 		select count(user_no) from option_f where user_no=#{user_no}
+ 	<select id="chekfirst" parameterType="long" resultType="int">
+ 		select count(apart_id) from (select * from option_f natural join option_nf) where apart_id=#{apt_id}
  	</select>
  	
- 	<select id="getFreeOp" parameterType="int" resultType="ofb">
- 		select * from option_f where user_no=#{user_no}
+ 	<select id="getFreeOp" parameterType="long" resultType="ofb">
+ 		select * from option_f where apart_id=#{apt_id}
  	</select>
  	
  	<update id="updateOF" parameterType="ofb">
  		update option_f set bedroom_closet=#{bedroom_closet}, kitchen_height=#{kitchen_height},
- 					balcony=#{balcony}, interior_color=#{interior_color} where user_no=#{user_no}
+ 					balcony=#{balcony}, interior_color=#{interior_color} where apart_id=#{apart_id}
  	</update>
+ 	<select id="getAptXList" resultType="complex" parameterType="java.util.Map">
+ 	select * 
+		from
+			(select 
+				rownum rnum,
+				complex_id,
+				complex_address,
+				complex_lat,
+				complex_lng,
+				complex_apartname,
+				complex_sdate,
+				complex_edate,
+				complex_pdate,
+				complex_state,
+				complex_info
+			from (select * from APT_COMPLEX 
+			<where>
+ 			<if test='searchtype.equals("addr")'>
+ 				 complex_address like #{searchContent}
+ 			</if>
+ 			<if test='searchtype.equals("aptname")'>
+ 				 complex_apartname like #{searchContent}
+ 			</if>
+ 			
+ 		</where>
+			order by complex_edate desc))
+		<![CDATA[where rnum >= ((#{page}-1)*#{limit}+1) and rnum <= (#{page}*#{limit}) ]]>
+ 	</select>
+ 	
+ 	<select id="getAptXListCount" resultType="int" parameterType="java.util.Map">
+ 		select count(*) from APT_COMPLEX
+ 		<where>
+ 			<if test='searchtype.equals("addr")'>
+ 				 complex_address like #{searchContent}
+ 			</if>
+ 			<if test='searchtype.equals("aptname")'>
+ 				 complex_apartname like #{searchContent}
+ 			</if>
+ 			
+ 		</where>
+ 	</select>
+ 	
+ 	<select id="getOptionInfo" resultType="opinfo" parameterType="int">
+ 		select *
+		from OPTION_F opf inner join OPTION_NF opnf
+	 on opf.apart_id=opnf.apart_id
+	 right outer join apartment apt
+		on opnf.apart_id=apt.apart_id
+		inner join event_win ew
+		on ew.apart_id = apt.apart_id
+		inner join member m
+		on ew.user_no = m.user_no
+		inner join apt_complex cx
+		on apt.complex_id= cx.complex_id
+	where cx.complex_id=#{complex_id} and ew.event_con=0
+ 	</select>
+ 	
+ 	<select id="getDongInfo" resultType="int" parameterType="int">
+ 		select distinct apart_dong from apartment where complex_id=#{compex_id}
+ 	</select>
+ 	
  </mapper>

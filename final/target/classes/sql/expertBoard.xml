@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?><!--  SQL 맵퍼 파일은 xml이기 때문에 제일 먼저 xml 선언이 옵니다. -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="expertBoard">
+
+
+
+<select id="boardNum" resultType="int">
+	select nvl(max(eb_num),0) + 1 from expertBoard
+</select>
+
+<insert id="insertBoard" parameterType="eb">
+	insert into expertBoard
+		(eb_num, eb_source, eb_subject, eb_content,eb_readcount, eb_date, eb_file)
+		values(
+			#{eb_num}, #{eb_source}, #{eb_subject}, #{eb_content}, #{eb_readcount}, sysdate, #{eb_file}
+		)
+		
+</insert>
+
+<select id="getListCount" resultType="int">
+	select count(eb_num) from expertBoard
+</select>
+
+<select id="getBoardList" resultType="eb" parameterType="java.util.Map">
+	select * from 
+		(select rownum rnum, eb_num, eb_source, eb_subject, eb_content, eb_readcount, eb_date, eb_file
+			from 
+				(select * from expertBoard order by eb_num desc))
+			where rnum &gt;= #{start} and rnum &lt;= #{end}
+</select>
+
+<update id="expertBoardHit" parameterType="int">
+		update expertBoard
+			set eb_readcount = eb_readcount + 1
+			where eb_num = #{num}
+</update>
+
+<select id="expertBoardCont" parameterType="int" resultType="eb">
+	select * from expertBoard where eb_num = #{num}
+</select>
+
+<select id="newBoard" resultType="eb">
+	select * from expertboard where eb_num  = (select max(eb_num) from expertboard)
+
+</select>
+
+<update id="boardEdit" parameterType="eb">
+	update expertBoard set eb_subject = #{eb_subject}, eb_source = #{eb_source}, eb_content = #{eb_content}, eb_file = #{eb_file}
+			where eb_num = #{eb_num}
+
+</update>
+
+<delete id="expertBoardDelete" parameterType="int">
+	delete expertBoard where eb_num = #{num}
+</delete>
+
+
+</mapper>

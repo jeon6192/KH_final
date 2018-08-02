@@ -22,6 +22,11 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <style>
 
+.all{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
 .cookie
 {
 	background-color : #E7E7E7;
@@ -366,7 +371,7 @@ function map(){
 var positions = [
     		<c:forEach items="${mapList}" var="list">
     	{
-    		content :'<div>${list.complex_apartname}</div>',
+    		content :'<a href="apart_contents.com?complex_id=${list.complex_id}"<div>${list.complex_apartname}</div></a>',
 	        latlng : new daum.maps.LatLng(${list.complex_lat},${list.complex_lng}),
 	     
     },
@@ -393,27 +398,16 @@ for (var i = 0; i < positions.length; i ++) {
         image : markerImage, // 마커 이미지
         clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
     });
-    
-    console.log("here" + positions[i].content);
+    var iwRemoveable = true;
     //마커에 표시할 인포윈도우 생성합니다.
-    
     var infowindow = new daum.maps.InfoWindow({
         content: positions[i].content,
         removable : iwRemoveable
     });
     
-    daum.maps.event.addListener(marker, 'click', function(){
-        // 마커 위에 인포윈도우를 표시합니다
-        infowindow.open(map, marker);  
-  });
+    daum.maps.event.addListener(marker, 'click', showInfoListener(map, marker, infowindow));
     
 }//end for
-
-
-
-
-
-
 
 
 	// 주소-좌표 변환 객체를 생성합니다
@@ -435,10 +429,19 @@ for (var i = 0; i < positions.length; i ++) {
 	}); // end geocoder
 }//end function map()
 
+function showInfoListener(map, marker, infowindow){
+    // 마커 위에 인포윈도우를 표시합니다
+    return function(){
+    	infowindow.open(map, marker);  
+    }
+}
+
+
 
 </script>
 </head>
 <body>
+<div class="all">
 	<div class="search">
 	<form class="listSearch" action="aptsearch_list.com" method="GET">
 		<select class="select1" name="select1">
@@ -523,6 +526,7 @@ for (var i = 0; i < positions.length; i ++) {
 				<th>면적(㎡)</th>
 				<th>역세권</th>
 				<th>근처역/도보 소요시간</th>
+				<th>분양상태</th>
 			</tr>
 		</thead>
 		
@@ -550,6 +554,7 @@ for (var i = 0; i < positions.length; i ++) {
 				<th>면적(㎡)</th>
 				<th>역세권</th>
 				<th>근처역/도보 소요시간</th>
+				<th>분양상태</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -557,7 +562,7 @@ for (var i = 0; i < positions.length; i ++) {
 			<tr>
 				<td>${aptList.complex_pdate}</td>
 				<td>${aptList.complex_address}</td>
-				<td>${aptList.complex_apartname}</td>
+				<td><a href="apart_contents.com?complex_id=${aptList.complex_id}">${aptList.complex_apartname}</a></td>
 				<c:choose>
 				<c:when test="${aptList.minprice == aptList.maxprice}">
 				<td>${aptList.maxprice}만원</td>
@@ -589,13 +594,27 @@ for (var i = 0; i < positions.length; i ++) {
 					<td></td>
 			</c:otherwise>
 		</c:choose>
-				
+		
+		<c:choose>
+			<c:when test="${aptList.complex_state == 0}"> 
+				<td>분양 대기</td>
+			</c:when>
+			
+			<c:when test="${aptList.complex_state == 1}">
+			<td>분양 진행중</td>
+			</c:when>
+			
+			
+			<c:when test="${aptList.complex_state == 2}">
+			<td>분양 완료</td>
+			</c:when>
+		</c:choose>
 			</tr>
 </c:forEach>
 		</tbody>
 		
 		<tfoot>
-			<tr class="h30 lime cneter btn">
+			<tr class="pageBtn" align="center">
 				<td colspan="5">
 					<c:if test="${page<=1}">
 						이전&nbsp;
@@ -625,6 +644,7 @@ for (var i = 0; i < positions.length; i ++) {
 	</table>
 </c:if>
 
+	</div>
 </div>
 </body>
 </html>

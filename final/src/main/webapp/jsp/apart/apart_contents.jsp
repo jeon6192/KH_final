@@ -97,7 +97,9 @@
 					<input type="hidden" id="cpx_lng" value="${cpx.complex_lng}">
 					<input type="hidden" id="cpx_id" value="${cpx.complex_id}">
 					<input type="hidden" id="apt_name" value="${cpx.complex_apartname}">
+					<input type="hidden" id="cpx_sdate" value="${cpx.complex_sdate}">
 					<input type="hidden" id="cpx_edate" value="${cpx.complex_edate}">
+					<input type="hidden" id="user_id" value="${id}">
 					
 					<div class="div cpx_aptname">
 						<div class="div apticon">
@@ -108,7 +110,7 @@
 						</div>
 						<div class="div timer-btn">
 							<span class="span timer-name">
-								신청 종료 : -  
+								신청 종료 : 
 							</span>
 							<span class="span timer">
 							</span>
@@ -127,8 +129,8 @@
 						<div id="cpx_map" style="width: 95%; height: 330px; margin: 0 auto;">
 						</div>
 						
-						<!-- <button onclick="searchCpx();">주변 아파트 검색</button> --> 
-						<button onclick="panTo()">${cpx.complex_apartname}로 이동</button> 
+						<button onclick="searchCpx();">주변 아파트 검색</button> 
+						<%-- <button onclick="panTo()">${cpx.complex_apartname}로 이동</button> --%> 
 						
 						<ul id="category">
 					        <li id="BK9" data-order="0"> 
@@ -189,6 +191,9 @@
 							<div class="cpx subway">
 								<c:if test="${cpx.complex_subway != 0}">
 									${cpx.complex_station} &nbsp;&nbsp; <b>${cpx.complex_foot} 분</b>
+								</c:if>
+								<c:if test="${cpx.complex_subway == 0}">
+									등록된 정보가 없습니다.
 								</c:if>
 							</div>
 						</div>

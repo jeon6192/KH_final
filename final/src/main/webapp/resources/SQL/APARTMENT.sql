@@ -41,7 +41,6 @@ END get_apart_seq;
 		group by complex_id, apart_dong, apart_floor, apart_area, 
 			apart_room, apart_toilet, apart_direction, apart_interior
 
-
 select * from apt_complex
 select * from APARTMENT
 select count(*) from apartment where complex_id = 190711945

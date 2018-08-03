@@ -147,31 +147,41 @@ $(document).ready(function(){
 
 
     // Timer!
-    var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime();
+    var countDownDate = new Date($('#cpx_edate').val()).getTime();
+    var startDate = new Date($('#cpx_sdate').val()).getTime();
 
     var x = setInterval(function() {
 
         var now = new Date().getTime();
-        
-        var distance = countDownDate - now;
-        
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-        $('.span.timer').text(days + "일 " + hours + "시간 "
-        + minutes + "분 " + seconds + "초 ");
 
-        if (distance < 100000000) {
-            $('.span.timer').css('color', 'red');
-        }
-        if (distance < 0) {
-            clearInterval(x);
+        if ( (startDate - now) > 0) {
+
             $('.span.timer-name').text('');
-            $('.span.timer').html('<b>분양신청 종료</b>');
+            $('.span.timer').html('<b>분양신청일은 ' + $('#cpx_sdate').val().substr(0, 10) + ' 입니다</b>');
             $('.button-4').hide();
+        } else {
+            var distance = countDownDate - now;
+            
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            $('.span.timer').text(days + "일 " + hours + "시간 "
+            + minutes + "분 " + seconds + "초 ");
+    
+            if (distance < 100000000) {
+                $('.span.timer').css('color', 'red');
+            }
+            if (distance < 0) {
+                clearInterval(x);
+                $('.span.timer-name').text('');
+                $('.span.timer').html('<b>분양신청 종료</b>');
+                $('.button-4').hide();
+            }
+
         }
+        
     }, 1000);
 
     
@@ -206,6 +216,14 @@ function showApt(dong) {
 
 // 분양신청
 function sellInLots(){
+    let user_id = $('#user_id').val();
     let cpx_id = $('#cpx_id').val();
-    location.href = './insertEvent.ev?complex_id=' + cpx_id;
+
+    console.log($.trim(user_id));
+    
+    if( $.trim(user_id) == '') {
+        alert('로그인 후 이용해 주세요');
+    } else {
+        location.href = './insertEvent.ev?complex_id=' + cpx_id;
+    }
 }

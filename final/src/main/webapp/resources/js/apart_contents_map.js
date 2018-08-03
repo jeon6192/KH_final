@@ -247,7 +247,7 @@ function searchCpx() {
         type : 'POST', 
         dataType : 'json', 
         data : searchLocation,
-        url : "./search_cpx.com",
+        url : "./search.com2",
         success : function(data) {
             console.log(data);
         },

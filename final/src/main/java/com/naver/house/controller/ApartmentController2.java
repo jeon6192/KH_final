@@ -195,7 +195,8 @@ public class ApartmentController2 {
 		return mav;
 	}
 	
-	@RequestMapping(value= {"/search_cpx.com"},method=RequestMethod.POST,headers="Accept=*/*",produces = "application/json")
+	@RequestMapping(value= {"/search.com2"},method=RequestMethod.POST,
+			headers="Accept=*/*",produces = "application/json")
 	@ResponseBody
 	public List<AptComplexBean2> search_cpx(@RequestParam Map<String,Object> searchLocation) throws Exception {
 		System.out.println(searchLocation.get("swLat"));

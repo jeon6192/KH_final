@@ -232,6 +232,10 @@ function panTo() {
 }
 
 // 주변 아파트 검색
+var positions = [];
+var markers = [];
+var selectedMarker = null;
+
 function searchCpx() {
     // 지도의 현재 영역을 얻어옵니다 
     var bounds = map.getBounds();
@@ -249,8 +253,40 @@ function searchCpx() {
         dataType : 'json', 
         data : searchLocation,
         url : "./search_cpx.net",
+        beforeSend : function() {
+            removeMarkers();
+        },
         success : function(data) {
             console.log(data);
+
+            for (var i = 0; i < data.length; i++) {
+                positions.push({title : data[i].complex_apartname, 
+                    latlng : new daum.maps.LatLng(data[i].complex_lat, data[i].complex_lng)});
+            }
+
+            console.log(positions);
+
+            //var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+            var imageSrc = "https://i.pinimg.com/originals/dd/be/1f/ddbe1f911d676f198bdfc9b2346ac1e4.gif"; 
+
+            for (var i = 0; i < positions.length; i ++) {
+                var imageSize = new daum.maps.Size(35, 43); 
+                
+                var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize); 
+                
+                markers.push(new daum.maps.Marker({
+                    map: map, // 마커를 표시할 지도
+                    position: positions[i].latlng, // 마커를 표시할 위치
+                    title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                    image : markerImage, // 마커 이미지 
+                    clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+                }));
+
+
+                addMarkerClickEvent(markers[i], imageSrc, imageSize, data[i]);
+
+                
+            }
         },
         error : function() {
             console.log('error');
@@ -258,10 +294,44 @@ function searchCpx() {
     });
 }
 
+function addMarkerClickEvent(marker, imageSrc, imageSize, data) {
+    // marker에 click event 추가
+    daum.maps.event.addListener(marker, 'click', function() {
+        // 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
+        // 마커의 이미지를 클릭 이미지로 변경합니다
+        if (!selectedMarker || selectedMarker !== marker) {
+
+            // 클릭된 마커 객체가 null이 아니면
+            // 클릭된 마커의 이미지를 기본 이미지로 변경하고
+            !!selectedMarker && selectedMarker.setImage(new daum.maps.MarkerImage(imageSrc, imageSize));
+
+            // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경합니다
+            marker.setImage(new daum.maps.MarkerImage(imageSrc, new daum.maps.Size(45, 55)));
+        }
+
+        // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
+        selectedMarker = marker;
+
+
+        new daum.maps.InfoWindow({
+            content : '<div style="width: 150px; height: 100%; text-align: center;">'
+                + '<button type="button" style="width: 80px; height: 21px; font-size: 9pt; border: 1px solid black;' 
+                + 'background-color: white;" onclick="compareCpx('+data.complex_id+')">비교하기</button></div>', 
+            removable : true
+        }).open(map, marker);
+    });
+}
+
 function removeMarkers() {
     for (var i = 0; i < markers.length; i++) {
-		markers[i].setMap(null);
-	}
-	foundMarkers = [];
-	infoContentArr = [];
+        markers[i].setMap(null);
+    }
+
+    positions = [];
+    markers = [];
+    selectedMarker = null;
+}
+
+function compareCpx(complex_id) {
+    
 }

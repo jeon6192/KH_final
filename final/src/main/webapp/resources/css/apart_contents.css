@@ -402,6 +402,7 @@ a img{
     position: fixed;
     background: #2e75b6;
     bottom: 0;
+    display: none;
 }
 .footer>ul{
     width: 100%;
@@ -477,11 +478,6 @@ a img{
         line-height: 25px !important;
     }
 
-}
-@media (min-width: 450px){
-    .footer{
-        display: none;
-    }
 }
 @media (max-width: 850px){
     

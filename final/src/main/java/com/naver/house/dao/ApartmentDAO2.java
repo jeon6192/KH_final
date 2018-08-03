@@ -54,6 +54,6 @@ public class ApartmentDAO2 {
 		
 		return searchCpxList;
 	}
-	
+
 
 }

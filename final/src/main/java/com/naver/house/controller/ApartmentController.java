@@ -32,6 +32,10 @@ public class ApartmentController {
 	@RequestMapping(value="/aptSearch.com")
 	public String aptSearch(HttpServletRequest request) {
 		
+		
+		
+		AptComplexBean2 newapt = service.getNewApt();
+		
 		int listcount = service2.getListCount();
 		
 		System.out.println("게시판 글의 수 는 : "+ listcount);
@@ -39,6 +43,7 @@ public class ApartmentController {
 		
 		ExpertBoardBean list =  service2.getNewBoard();
 		
+		request.setAttribute("newapt", newapt);
 		request.setAttribute("listcount", listcount);
 		request.setAttribute("expert", list);
 		
@@ -140,6 +145,8 @@ public class ApartmentController {
 		System.out.println("addr : " + m.get("addr"));
 		aptList = service.getAptList(m);
 		mapList = service.getMapList();
+		
+		
 		
 		
 		

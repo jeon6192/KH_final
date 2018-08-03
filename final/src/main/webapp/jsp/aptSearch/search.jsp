@@ -48,6 +48,7 @@
 	}
 	
 	.select1,.select2,.select3{
+	color : black;
 	width: 30%;
 	height : 100%;
 	float : left;
@@ -64,8 +65,8 @@
 	.interest{
 	margin-top: 1%;
 	min-height : 250px;
-	width : 50%;
-	margin-left : 10%;
+	width: 30%;
+    margin-left: 25%;
 	}
 	
 	.expert-column{
@@ -95,6 +96,14 @@
 		text-decoration : none;
 	}
 	
+	.name{
+	}
+	.price{
+	}
+	
+	.newAptImg{
+	    margin-left: 50%;
+	}
 </style>
 </head>
 <body>
@@ -144,15 +153,24 @@
 	
 	<div class="cookie">
 		<div class="interest">
-		<h2>최근 본 단지</h2>
+		
+	<div class="name"> 
+		<font style="font-size: 20px;">새로 등록된 아파트</font>
 		<div class="name">
-			<strong>아파트 이름</strong>		
+			<strong><a style="color: #2490af; font-size: 28px;" href="apart_contents.com?complex_id=${newapt.complex_id}">${newapt.complex_apartname}</a></strong>		
+		</div>
+	</div>
+		<div class="price">
+			<div style="color : black; font-weight : bold">평수 : ${newapt.maxarea} ㎡</div>
+			<div style="color : black; font-weight : bold"> 분양가 : ${newapt.minprice} 만원</div>
+		</div>
+		
+		<div class="newAptImg">
+			<img src="./resources/image/apartment.png">
 		</div>
 		</div>
 
 		
-		
-			
 		
 		
 		<c:if test="${listcount == 0}">
@@ -167,9 +185,9 @@
 		
 			<div class="expert-column">
 			<div class="border">
-		<h2>전문가 칼럼</h2><span><a href="expertBoard_list.com">더보기</a></span>
+		<h2 style="color: #2490af;">전문가 칼럼</h2><a style="color : black; float: right;" href="expertBoard_list.com">더보기 ▶</a>
 			</div>		
-			<a href="expertBoard_cont.com?num=${expert.eb_num}&page=1&state=cont"><p>${expert.eb_subject}</p></a>
+			<a class= "subject" href="expertBoard_cont.com?num=${expert.eb_num}&page=1&state=cont"><p style="color : black;">${expert.eb_subject}</p></a>
 		</div>
 	</c:if>
 	</div>

@@ -33,5 +33,10 @@ public class ApartmentServiceImpl implements ApartmentService{
 		return apartmentDAO.getMapList();
 	}
 
+	@Override
+	public AptComplexBean2 getNewApt() {
+		return apartmentDAO.getNewApt();
+	}
+
 
 }

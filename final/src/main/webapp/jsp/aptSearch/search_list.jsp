@@ -23,8 +23,9 @@
 <style>
 
 .all{
-    margin-top: 5%;
+    margin-top: 1%;
     margin-bottom: 5%;
+    color: black;
 }
 
 .cookie
@@ -371,21 +372,19 @@ function map(){
 var positions = [
     		<c:forEach items="${mapList}" var="list">
     	{
-    		content :'<a href="apart_contents.com?complex_id=${list.complex_id}"<div>${list.complex_apartname}</div></a>',
+    		content :'<a style="color : black" href="apart_contents.com?complex_id=${list.complex_id}"<div>${list.complex_apartname}</div></a>',
 	        latlng : new daum.maps.LatLng(${list.complex_lat},${list.complex_lng}),
-	     
     },
-  
     			</c:forEach>
 ];
-var imageSrc = "./resources/image/mansion.png";
+var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 //"http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"
 	
   var iwRemoveable = true;
 	
-for (var i = 0; i < positions.length; i ++) {
+for (var i = 0; i < positions.length; i ++) {"http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
     //마커 이미지의 이미지 크기 입니다.
-    var imageSize = new daum.maps.Size(20, 30); 
+    var imageSize = new daum.maps.Size(30, 40); 
     //마커이미지를 생성합니다.
     var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize);
     
@@ -405,6 +404,7 @@ for (var i = 0; i < positions.length; i ++) {
         removable : iwRemoveable
     });
     
+    //마커에 클릭이벤트 등록합니다.
     daum.maps.event.addListener(marker, 'click', showInfoListener(map, marker, infowindow));
     
 }//end for
@@ -441,6 +441,7 @@ function showInfoListener(map, marker, infowindow){
 </script>
 </head>
 <body>
+<jsp:include page="../header.jsp"/> 
 <div class="all">
 	<div class="search">
 	<form class="listSearch" action="aptsearch_list.com" method="GET">
@@ -562,7 +563,7 @@ function showInfoListener(map, marker, infowindow){
 			<tr>
 				<td>${aptList.complex_pdate}</td>
 				<td>${aptList.complex_address}</td>
-				<td><a href="apart_contents.com?complex_id=${aptList.complex_id}">${aptList.complex_apartname}</a></td>
+				<td><a style="color: #2a6496;" href="apart_contents.com?complex_id=${aptList.complex_id}">${aptList.complex_apartname}</a></td>
 				<c:choose>
 				<c:when test="${aptList.minprice == aptList.maxprice}">
 				<td>${aptList.maxprice}만원</td>
@@ -615,12 +616,12 @@ function showInfoListener(map, marker, infowindow){
 		
 		<tfoot>
 			<tr class="pageBtn" align="center">
-				<td colspan="5">
+				<td colspan="8">
 					<c:if test="${page<=1}">
 						이전&nbsp;
 					</c:if>
 					<c:if test="${page>1}">
-						<a href="./aptsearch_list.com?page=${page-1}&select1=${param.select1}&select2=${param.select2}&select3=${param.select3}&sel1=${param.sel1}&sel2=${param.sel2}&sel3=${param.sel3}">이전</a>
+						<a style="color : #2a6496" href="./aptsearch_list.com?page=${page-1}&select1=${param.select1}&select2=${param.select2}&select3=${param.select3}&sel1=${param.sel1}&sel2=${param.sel2}&sel3=${param.sel3}">이전</a>
 					</c:if>
 					
 					<c:forEach var="a" begin="${startpage}" end="${endpage}">
@@ -628,15 +629,15 @@ function showInfoListener(map, marker, infowindow){
 							${a}
 						</c:if>
 						<c:if test="${a != page }">
-							<a href="./aptsearch_list.com?page=${a}&select1=${param.select1}&select2=${param.select2}&select3=${param.select3}&sel1=${param.sel1}&sel2=${param.sel2}&sel3=${param.sel3}">${a}</a>
+							<a style="color : #2a6496" href="./aptsearch_list.com?page=${a}&select1=${param.select1}&select2=${param.select2}&select3=${param.select3}&sel1=${param.sel1}&sel2=${param.sel2}&sel3=${param.sel3}">${a}</a>
 						</c:if>
 					</c:forEach>
 					
-					<c:if test="${page>=maxpage }">
+					<c:if test="${page>=maxpage}">
 						다음&nbsp;
 					</c:if>
 					<c:if test="${page<maxpage}">
-							<a href="./aptsearch_list.com?page=${page+1}&select1=${param.select1}&select2=${param.select2}&select3=${param.select3}&sel1=${param.sel1}&sel2=${param.sel2}&sel3=${param.sel3}">다음</a>
+							<a style="color : #2a6496" href="./aptsearch_list.com?page=${page+1}&select1=${param.select1}&select2=${param.select2}&select3=${param.select3}&sel1=${param.sel1}&sel2=${param.sel2}&sel3=${param.sel3}">다음</a>
 					</c:if>
 				</td>
 			</tr>

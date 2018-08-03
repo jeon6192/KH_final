@@ -26,9 +26,6 @@
 		group by complex_id, apart_dong, apart_floor, apart_area, 
 			apart_room, apart_toilet, apart_direction, apart_interior
 	</select>
-
-
-	
 </mapper>
 
 

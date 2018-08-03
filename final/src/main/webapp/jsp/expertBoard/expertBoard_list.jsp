@@ -35,7 +35,7 @@
 		height: 9em;
 	}
 	
-	h1{
+	.subject{
 		color: white;
     	line-height: 3.6em;
     	text-align: center;
@@ -55,14 +55,18 @@
     	margin: 0 auto;
     	margin-top: 5%;
 	}
+	.table{
+		color : black;
+	}
 </style>
 
 </head>
 <body>
+<jsp:include page="../header.jsp"/>
 	<div class="all">
 
 	<div class="top">
-			<h1>전문가 칼럼</h1>
+			<h1 class=subject>전문가 칼럼</h1>
 	</div>
 
 	<div class="list">
@@ -114,7 +118,7 @@
 					<c:set var="num" value="${num-1}"/>
 				</td>
 				<td>
-					<a href="./expertBoard_cont.com?num=${list.eb_num}&page=${page}&state=cont">${list.eb_subject}</a>
+					<a style="color : #2a6496" href="./expertBoard_cont.com?num=${list.eb_num}&page=${page}&state=cont">${list.eb_subject}</a>
 				</td>
 				<td>
 					${list.eb_source}
@@ -135,7 +139,7 @@
 						이전&nbsp;
 					</c:if>
 					<c:if test="${page > 1 }">												<!-- 현재나는 2페이지다.  -->
-						<a href="./expertBoard_list.com?page=${page-1}">이전</a>&nbsp;					<!--  이전눌렀을 때 현재페이지 - 1 할 수 있게 정의 -->
+						<a style="color: #2a6496;" href="./expertBoard_list.com?page=${page-1}">이전</a>&nbsp;					<!--  이전눌렀을 때 현재페이지 - 1 할 수 있게 정의 -->
 					</c:if>
 					
 				<c:forEach var="a" begin="${startpage}" end="${endpage}">				<!--  1부터 10 a 의변수에넣고 -->
@@ -143,20 +147,20 @@
 						${a}
 					</c:if>
 					<c:if test="${a!=page }">
-						<a href="./expertBoard_list.com?page=${a}">${a}</a>&nbsp;			<!--  내가누른 그페이지로 이동하게 해준다. -->
+						<a style="color : #2a6496" href="./expertBoard_list.com?page=${a}">${a}</a>&nbsp;			<!--  내가누른 그페이지로 이동하게 해준다. -->
 					</c:if>
 				</c:forEach>
 					<c:if test="${page >= maxpage }">
 					&nbsp;다음
 				</c:if>
 				<c:if test="${page < maxpage }">
-					<a href="./expertBoard_list.com?page=${page+1 }">다음</a>&nbsp;
+					<a style="color : #2a6496" href="./expertBoard_list.com?page=${page+1 }">다음</a>&nbsp;
 					</c:if>
 				</td>
 			</tr>
 				<tr>
-			<td colspan="5" style="text-align: right"><a
-				href="./expertBoard_write.com">[글쓰기]</a></td>
+			<td colspan="5" style="text-align: right">
+			<a style="color : #2a6496" href="./expertBoard_write.com">[글쓰기]</a></td>
 			</tr>
 		</tfoot>
 		</table>

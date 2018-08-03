@@ -20,6 +20,9 @@ public interface ApartmentService {
 	List<AptComplexBean> getMapList();
 
 
+	AptComplexBean2 getNewApt();
+
+
 
 
 

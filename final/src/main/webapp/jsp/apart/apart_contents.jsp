@@ -69,12 +69,12 @@
 								<img class="img_apart2" alt="아파트 정보" src="./resources/image/apart.png">
 							</a>
 							
-							<ul class="ul apt icon">
-								<li class="li apt icon">
+							<ul class="ul icon apt">
+								<li class="li icon apt">
 									아파트 정보
 								</li>
 								<c:forEach var="dong" items="${dongList}" varStatus="i">
-									<li>
+									<li class="li icon apt">
 										<a href="#" onclick="showApt(${dong}); return false;">
 											${dong}동
 										</a>
@@ -127,8 +127,8 @@
 						<div id="cpx_map" style="width: 95%; height: 330px; margin: 0 auto;">
 						</div>
 						
-						<!-- <button onclick="searchCpx();">주변 아파트 검색</button> --> 
-						<button onclick="panTo()">${cpx.complex_apartname}로 이동</button> 
+						<button onclick="searchCpx();">주변 아파트 검색</button> 
+						<%-- <button onclick="panTo()">${cpx.complex_apartname}로 이동</button> --%>
 						
 						<ul id="category">
 					        <li id="BK9" data-order="0"> 
@@ -231,28 +231,21 @@
 			
 		</div>
 		
-		
 		<div class="footer">
-			<ul class="ul bottom">
-				<li class="li bottom cpx">
-					<a href="#" class="active" onclick="showCpx(); return false;">
-						단지 정보
-					</a>
-				</li>
-				<li class="li bottom apt">
+			<div class="div bottom">
+				<a href="#" class="active" onclick="showCpx(); return false;">
+					단지 정보
+				</a>
+				<span class="footer-span">
 					아파트 정보
-				</li>
+				</span>
 				<c:forEach var="dong" items="${dongList}" varStatus="i">
-					<li>
-						<a href="#" onclick="showApt(${dong}); return false;">
-							${dong}동
-						</a>
-					</li>
+					<a href="#" onclick="showApt(${dong}); return false;">
+						${dong}동
+					</a>
 				</c:forEach>
-				<li class="actFoot">
-					Test~~
-				</li>
-			</ul>
+				
+			</div>
 		</div>
 		
 		

@@ -195,15 +195,16 @@ public class ApartmentController2 {
 		return mav;
 	}
 	
-	@RequestMapping(value= {"/search_cpx.com"},method=RequestMethod.POST,headers="Accept=*/*",produces = "application/json")
+	@RequestMapping(value= {"/search_cpx.net"},method=RequestMethod.POST,headers="Accept=*/*",produces = "application/json")
 	@ResponseBody
 	public List<AptComplexBean2> search_cpx(@RequestParam Map<String,Object> searchLocation) throws Exception {
 		System.out.println(searchLocation.get("swLat"));
-		Map<String, Double> searchCpxMap = new HashMap<String, Double>();
+		Map<String, Object> searchCpxMap = new HashMap<String, Object>();
 		searchCpxMap.put("swLat", Double.parseDouble(searchLocation.get("swLat").toString()));
 		searchCpxMap.put("swLng", Double.parseDouble(searchLocation.get("swLng").toString()));
 		searchCpxMap.put("neLat", Double.parseDouble(searchLocation.get("neLat").toString()));
 		searchCpxMap.put("neLng", Double.parseDouble(searchLocation.get("neLng").toString()));
+		searchCpxMap.put("complex_id", searchLocation.get("complex_id"));
 		
 		List<AptComplexBean2> searchCpxList = apartmentService.searchCpx(searchCpxMap);
 		return searchCpxList;

@@ -101,21 +101,22 @@ $(document).ready(function(){
 
 
     // 클릭시 active
-    var aTag = $('.left_menu>div>ul>li>a:not(.li.icon.apt>a)');
+    var aTag = $('.left_menu>ul>li a:not(.li.icon.apt>a), .li.icon.apt>a');
     $(aTag).click(function(){
-        $('.left_menu>div>ul>li>a').removeClass("active"); 
+        $('.left_menu>ul>li a, .li.icon.apt>a').removeClass("active"); 
 
+        $(this).addClass('active');
         let thisClass = $(this).parent().attr('class').substr(-3);
+        console.log(thisClass);
         if (thisClass == 'cpx') {
             $('.li.text.cpx>a').addClass('active');
             $('.li.icon.cpx>a').addClass('active');
+            $('.img_cpx').hide();
+            $('.img_cpx2').show()
             $('.img_apart').show();
             $('.img_apart2').hide();
-            $('.img_cpx').hide();
-            $('.img_cpx2').show();
+            ;
         } else {
-            $('.li.text.apt>a').addClass('active');
-            $('.li.icon.apt>a').addClass('active');
             $('.img_cpx').show();
             $('.img_cpx2').hide();
             $('.img_apart').hide();
@@ -123,26 +124,19 @@ $(document).ready(function(){
         }
     });
 
-    var aTag2 = $('.ul.bottom>.li.bottom>a');
-    $(aTag2).click(function(){
-        $('.ul.bottom>.li.bottom>a').removeClass("active"); 
+    /*
+    $('.ul.apt.icon>li>a').click(function(){
+        console.log('??');
+        $('.img_cpx').show();
+        $('.img_cpx2').hide();
+        $(this).addClass('active');
+    });
+    */
 
-        let thisClass = $(this).parent().attr('class').substr(-3);
-        if (thisClass == 'cpx') {
-            $('.li.text.cpx>a').addClass('active');
-            $('.li.icon.cpx>a').addClass('active');
-            $('.img_apart').show();
-            $('.img_apart2').hide();
-            $('.img_cpx').hide();
-            $('.img_cpx2').show();
-        } else {
-            $('.li.text.apt>a').addClass('active');
-            $('.li.icon.apt>a').addClass('active');
-            $('.img_cpx').show();
-            $('.img_cpx2').hide();
-            $('.img_apart').hide();
-            $('.img_apart2').show();
-        }
+    var aTag2 = $('.div.bottom>a');
+    $(aTag2).click(function(){
+        $('.div.bottom>a').removeClass("active");
+        $(this).addClass('active');
     });
 
 

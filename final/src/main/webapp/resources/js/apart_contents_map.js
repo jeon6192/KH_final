@@ -238,16 +238,17 @@ function searchCpx() {
 
     var swLatLng = bounds.getSouthWest(); 
     var neLatLng = bounds.getNorthEast(); 
+    var complex_id = $('#cpx_id').val();
 
     var searchLocation = {'swLat' : swLatLng.getLat(), 'swLng' : swLatLng.getLng(), 
-                    'neLat' : neLatLng.getLat(), 'neLng' : neLatLng.getLng()};
+                    'neLat' : neLatLng.getLat(), 'neLng' : neLatLng.getLng(), 'complex_id' : complex_id};
     console.log(searchLocation);
     
     $.ajax({
         type : 'POST', 
         dataType : 'json', 
         data : searchLocation,
-        url : "./search_cpx.com",
+        url : "./search_cpx.net",
         success : function(data) {
             console.log(data);
         },

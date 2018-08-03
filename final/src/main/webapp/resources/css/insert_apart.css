@@ -26,9 +26,11 @@
 .ul_insert {
 	border: 1px solid #c7c7c7;
 	border-radius: 5px;
-	width: 1000px;
+	width: 90%;
+    min-width: 600px;
+    max-width: 1200px;
 	margin: 0 auto;
-	margin-top: 20%;
+	margin-top: 70px;
 	padding: 0;
 	box-shadow: 0 0 13px rgba(33, 33, 33, 0.3);
 	box-sizing: border-box;

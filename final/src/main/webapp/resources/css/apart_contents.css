@@ -89,7 +89,7 @@ li{
 .left_menu{
     height: 100%;
     position: fixed;
-    background: rgba(46, 117, 182, 1);
+    background: #2e75b6;
     z-index: 2;
 }
 .contents{
@@ -114,9 +114,24 @@ ul>li>a{
     width: 100%;
     height: 100%;
 }
-.left_menu>div>ul>li>.active, .ul.bottom>.li.bottom>.active{
+.left_menu>div>div>.active, .div.bottom>.active, .ul.left>li .active{
     color: white !important;
-    background-color: rgba(0, 32, 96, 1) !important;
+    background-color: #0085ff;
+}
+.div.bottom{
+    background-color: #2e75b6;
+    overflow: auto;
+    white-space: nowrap;
+}
+.div.bottom>a, span.footer-span{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+.div.bottom>a:hover{
+    background-color: white;
+    color: black !important;
 }
 
 
@@ -132,7 +147,7 @@ a img{
     padding-left: 10% !important;
     display: none;
 }
-.ul.apt.icon{
+.ul.icon.apt{
     position: absolute;
     z-index: 1;
     width: 100px;
@@ -285,8 +300,7 @@ a img{
     height: 32px;
 }
 .detail.cpx{
-	padding: 15px 65px;
-    margin-top: 50px;
+	padding: 15px 35px;
     color: black;
 }
 .detail.cpx, .detail.apt{
@@ -384,11 +398,10 @@ a img{
 
 .footer{
     width: 100%;
-    height: 50px;
+    height: 45px;
     position: fixed;
     background: #2e75b6;
     bottom: 0;
-    overflow: -webkit-paged-x;
 }
 .footer>ul{
     width: 100%;
@@ -438,15 +451,32 @@ a img{
     .div.cpx_aptname{
         font-size: 12px;
     }
+    .apt-info{
+        height: auto;
+    }
     .apt-info>div{
         font-size: 13px;
+        width: 95%;
     }
     .apt-info>div>div:last-child{
         font-size: 15px;
     }
     .detail.cpx{
-        height: 1200pxsaswwqwqwwwtqtqtqtq;
+        height: 1200px;
     }
+    .button-4{
+        width: 60px !important;
+        height: 25px !important;
+    }
+    .eff-4{
+        width: 60px !important;
+        height: 25px !important;
+    }
+    .button-4 a{
+        font-size: 11px !important;
+        line-height: 25px !important;
+    }
+
 }
 @media (min-width: 450px){
     .footer{
@@ -499,7 +529,7 @@ a img{
 
 .map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap {position:relative;width:100%;height:350px;}
-#category {position:absolute;top:10px;left:10px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
+#category {position:absolute;top:10px;left:10px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 1;}
 #category li {float:left;list-style: none;width:40px;border-right:1px solid #acacac;padding:3px 0;text-align: center; cursor: pointer;font-size: 10px;}
 #category li.onn {background: #eee;}
 #category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}

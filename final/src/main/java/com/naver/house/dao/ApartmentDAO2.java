@@ -49,7 +49,7 @@ public class ApartmentDAO2 {
 		return apartmentBean2;
 	}
 	
-	public List<AptComplexBean2> searchCpx(Map<String, Double> searchCpxMap) throws Exception {
+	public List<AptComplexBean2> searchCpx(Map<String, Object> searchCpxMap) throws Exception {
 		List<AptComplexBean2> searchCpxList = sqlSession.selectList("complex.searchCpx", searchCpxMap);
 		
 		return searchCpxList;

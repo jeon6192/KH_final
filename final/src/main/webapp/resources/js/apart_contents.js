@@ -28,6 +28,7 @@ $(document).ready(function(){
             'color' : 'black'
         });
     });
+    
 
     $('.li.text.apt>a').hover(function(){
         $(this).css({

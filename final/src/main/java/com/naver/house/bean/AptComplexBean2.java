@@ -99,7 +99,7 @@ public class AptComplexBean2 {
 	      this.complex_edate = complex_edate;
 	   }
 	   public String getComplex_pdate() {
-	      return complex_pdate;
+		   return complex_pdate.substring(0,10);
 	   }
 	   public void setComplex_pdate(String complex_pdate) {
 	      this.complex_pdate = complex_pdate;

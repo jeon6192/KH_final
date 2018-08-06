@@ -34,14 +34,14 @@ public class ApartmentServiceImpl2 implements ApartmentService2 {
 	@Override
 	public Map<String, Object> detail_complex(int complex_id) throws Exception {
 		Map<String, Object> apartMap = new HashMap<String, Object>();
-		AptComplexBean aptComplexBean = new AptComplexBean();
+		AptComplexBean2 aptComplexBean2 = new AptComplexBean2();
 		List<ApartmentBean> apartmentBeanList = new ArrayList<ApartmentBean>();
 		
-		aptComplexBean = apartmentDAO.detail_aptComplex(complex_id);
+		aptComplexBean2 = apartmentDAO.detail_aptComplex(complex_id);
 		apartmentBeanList = apartmentDAO.detail_apart(complex_id);
 		
 		
-		apartMap.put("aptComplexBean", aptComplexBean);
+		apartMap.put("aptComplexBean", aptComplexBean2);
 		apartMap.put("apartmentBeanList", apartmentBeanList);
 		
 		return apartMap;

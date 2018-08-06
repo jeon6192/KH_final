@@ -6,45 +6,105 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 		
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		
-		
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<style>
+			.compare-table {
+			    border-collapse: collapse;
+			    border-spacing: 0;
+			    width: 100%;
+			    border: 1px solid #ddd;
+			    color: black;
+			}
+			
+			.compare-table th, .compare-table td {
+			    text-align: center !important;
+			    padding: 16px !important;
+			}
+			
+			
+			.compare-table th:first-child, .compare-table td:first-child {
+			    text-align: left;
+			}
+			
+			.compare-table tr:nth-child(even) {
+			    background-color: #f2f2f2
+			}
+			
+			.compare-table .fa-check {
+			    color: green;
+			}
+			
+			.compare-table .fa-remove {
+			    color: red;
+			}
 		</style>
 	</head>
 	<body>
 		<jsp:include page="../header.jsp"/>
 		
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-		  Launch demo modal
-		</button>
-		
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        ...
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Save changes</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
+		  <h2>Comparison Table</h2>
+
+			<table class="compare-table">
+			  <tr>
+			    <th style="width:40%">Features</th>
+			    <th style="width:30%">Basic</th>
+			    <th style="width:30%">Pro</th>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-remove"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-remove"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			</table>
 		
 	</body>
 </html>

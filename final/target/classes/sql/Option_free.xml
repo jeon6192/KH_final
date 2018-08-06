@@ -105,4 +105,11 @@
  		select distinct apart_dong from apartment where complex_id=#{compex_id}
  	</select>
  	
+ 	<select id="getCheckInList" parameterType="int" resultType="Event_list">
+ 		select * from event_list where user_no=#{user_no} 
+ 	</select>
+ 	
+ 	<select id="getEWInList" parameterType="int" resultType="elaptb">
+ 		select * from event_list where user_no=#{user_no} 
+ 	</select>
  </mapper>

@@ -18,6 +18,7 @@
 		<typeAlias type="com.naver.house.bean.Event_winBean" alias="event_winb"/>
 
 		<typeAlias type="com.naver.house.bean.EW_AND_AptBean" alias="ewaptb"/>
+<typeAlias type="com.naver.house.bean.EL_AND_AptBean" alias="elaptb"/>
 
 		<typeAlias type="com.naver.house.bean.ApartmentBean" alias="apart"/>
 		<typeAlias type="com.naver.house.bean.ApartmentBean2" alias="apart2"/>

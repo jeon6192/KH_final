@@ -235,6 +235,7 @@ function panTo() {
 var positions = [];
 var markers = [];
 var selectedMarker = null;
+var ajaxData = {};
 
 function searchCpx() {
     // 지도의 현재 영역을 얻어옵니다 
@@ -257,7 +258,8 @@ function searchCpx() {
             removeMarkers();
         },
         success : function(data) {
-            console.log(data);
+            ajaxData = data;
+            console.log(ajaxData);
 
             for (var i = 0; i < data.length; i++) {
                 positions.push({title : data[i].complex_apartname, 
@@ -314,9 +316,14 @@ function addMarkerClickEvent(marker, imageSrc, imageSize, data) {
 
 
         new daum.maps.InfoWindow({
+            /*
             content : '<div style="width: 150px; height: 100%; text-align: center;">'
                 + '<button type="button" style="width: 80px; height: 21px; font-size: 9pt; border: 1px solid black;' 
                 + 'background-color: white;" onclick="compareCpx('+data.complex_id+')">비교하기</button></div>', 
+                */
+            content : '<div style="width: 150px; height: 30px; text-align: center;">'
+                + '<button type="button" class="w3-button w3-black"'
+                + 'onclick="compareCpx('+data.complex_id+')">'+data.complex_apartname+'</button></div>', 
             removable : true
         }).open(map, marker);
     });
@@ -333,5 +340,26 @@ function removeMarkers() {
 }
 
 function compareCpx(complex_id) {
+    var findCpx = ajaxData.find((item, index) => {
+        return item.complex_id === complex_id;
+    });
+    $('.compare-addr').empty().append(findCpx.complex_address);
+    $('.compare-pdate').empty().append(findCpx.complex_pdate);
+    if (findCpx.complex_subway != 1) {
+        $('.compare-subway').html('<i class="fa fa-remove"></i>');
+    } else {
+        $('.compare-subway').empty().append(findCpx.complex_station + ' ' + findCpx.complex_foot + '분');
+    }
+    
+    $('.compare-price').empty().append(findCpx.minprice + ' ~ ' + findCpx.maxprice + '만원');
+    $('.compare-area').empty().append(findCpx.minarea + ' ~ ' + findCpx.maxarea + '㎡');
     
 }
+
+// Compare Button (Modal)
+$(document).on('click', '.w3-button.w3-black', function(){
+    $('#id01').show();
+});
+$(document).on('click', '.w3-button.w3-display-topright', function(){
+    $('#id01').hide();
+});

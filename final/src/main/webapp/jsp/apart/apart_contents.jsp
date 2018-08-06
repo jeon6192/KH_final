@@ -19,6 +19,7 @@
 		<!-- Image Silder -->
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 	</head>
@@ -127,7 +128,7 @@
 						<div id="cpx_map" style="width: 95%; height: 330px; margin: 0 auto;">
 						</div>
 						
-						<button onclick="searchCpx();">주변 아파트 검색</button> 
+						<button class="searchCpx-button" onclick="searchCpx();">주변 아파트 검색</button> 
 						<%-- <button onclick="panTo()">${cpx.complex_apartname}로 이동</button> --%>
 						
 						<ul id="category">
@@ -211,15 +212,64 @@
 							</div>
 						</div>
 						
-						
 					</div>
 					
 						
 				</div>
 				
+				<!-- Compare Modal Contents -->
+				<div id="id01" class="w3-modal">
+					<div class="w3-modal-content">
+						<div class="w3-container">
+							<span class="w3-button w3-display-topright">&times;</span>
+							
+							<div id="compare-contents-div">
+								<table class="compare-table">
+									<tr>
+										<th style="width:40%">Features</th>
+										<th style="width:30%">${cpx.complex_apartname}</th>
+										<th style="width:30%">Pro</th>
+									</tr>
+									<tr>
+										<td>주소</td>
+										<td>${cpx.complex_address}</td>
+										<td class="compare-addr"></td>
+									</tr>
+									<tr>
+										<td>분양시기</td>
+										<td>${cpx.complex_pdate}</td>
+										<td class="compare-pdate"></td>
+									</tr>
+									<tr>
+										<td>역세권</td>
+										<td>
+											<c:if test="${cpx.complex_subway!=1}">
+												<i class="fa fa-remove"></i>
+											</c:if>
+											<c:if test="${cpx.complex_subway==1}">
+												${cpx.complex_station} &nbsp; ${cpx.complex_foot}분
+											</c:if>
+										</td>
+										<td class="compare-subway"></td>
+									</tr>
+									<tr>
+										<td>가격</td>
+										<td>${cpx.minprice} ~ ${cpx.maxprice} 만원</td>
+										<td class="compare-price"></td>
+									</tr>
+									<tr>
+										<td>면적</td>
+										<td>${cpx.minarea} ~ ${cpx.maxarea} ㎡</td>
+										<td class="compare-area"></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				
 				
 				<div class="detail apt">
-				
 				
 					
 				</div>

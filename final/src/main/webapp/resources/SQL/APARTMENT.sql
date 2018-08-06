@@ -90,3 +90,16 @@ select * from
 				order by ${sort}))
 				where rnum &gt; = #{start} and rnum &lt; = #{end}
 			
+
+select c.complex_id, c.complex_address, c.complex_lat, c.complex_lng, c.complex_apartname, 
+	c.complex_sdate, c.complex_edate, c.complex_pdate, c.complex_state, c.complex_info, 
+	c.complex_subway, c.complex_station, c.complex_foot, min(a.apart_area) minarea, 
+	max(a.apart_area) maxarea, min(a.apart_price) minprice, max(a.apart_price) maxprice 
+from apt_complex c, apartment a 
+where c.complex_id = 190730463
+group by c.complex_id, c.complex_address, c.complex_lat, c.complex_lng, c.complex_apartname, 
+	c.complex_sdate, c.complex_edate, c.complex_pdate, c.complex_state, c.complex_info, 
+	c.complex_subway, c.complex_station, c.complex_foot
+	
+	
+select max(apart_price) from apartment where complex_id = 190730463;

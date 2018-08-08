@@ -41,7 +41,7 @@
 		padding-top: 7%;
 		}
 	.bg-img{
-		background-image : url("./resources/image/city.jpg");
+		background-image : url("./resources/image/city3.jpg");
 		min-height : 500px;
 	}
 	
@@ -72,6 +72,7 @@
 	min-height : 250px;
 	width : 20%;
 	margin-right : 10%;
+	margin-top: 1.5%;
 	}
 	
 	.interest, .expert-column{

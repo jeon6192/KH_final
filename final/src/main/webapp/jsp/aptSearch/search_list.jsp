@@ -107,7 +107,7 @@ display: inline-block;
 	.search{
 		margin : 0 auto;
 		width : 50%;
-		padding-top: 7%;
+		padding-top: 3%;
 		}
 
 

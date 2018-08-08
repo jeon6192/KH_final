@@ -4,6 +4,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+<!--  폰 화면 최적화 하기 위한 것 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src = "http://code.jquery.com/jquery-3.3.1.js"></script>
@@ -37,11 +40,6 @@
 		width : 50%;
 		padding-top: 7%;
 		}
-
-
-	
-	
-	
 	.bg-img{
 		background-image : url("./resources/image/city.jpg");
 		min-height : 500px;
@@ -70,7 +68,7 @@
 	}
 	
 	.expert-column{
-	margin-top: 1%;
+	margin-top: 1.5%;
 	min-height : 250px;
 	width : 20%;
 	margin-right : 10%;
@@ -97,12 +95,52 @@
 	}
 	
 	.name{
+		margin-top : 1.5%
 	}
 	.price{
 	}
 	
 	.newAptImg{
 	    margin-left: 50%;
+	}
+	.expertImg{
+	    float: right;
+	    margin-top: 6%;
+	}
+	
+	@media only screen and (max-width : 380px){
+		.live{
+		  width : 100%;
+		  font : weight : bold;
+		 }
+		 
+		 .select1, .select2, .select3{
+			width : 100%;
+			height : 60%;
+			background: transparent;
+    		border-bottom: none;
+		}
+		.button{
+			width: 20%;
+    		height: 60%;
+    		border : 1px solid #b4b1b1;
+    		float : right;
+    		background: transparent;
+		}
+		
+		.bg-img{
+		height: 0;
+		background-image : url("./resources/image/mseoul.jpg");
+	    background-size: 100% 100%;
+	    
+	}
+		.cookie{
+			display : none;
+			}
+		.fa-search:before{
+			color: black;
+			}
+			
 	}
 </style>
 </head>
@@ -113,7 +151,7 @@
 	
 	<div class="search">
 	<p class="text">
-	<img src="http://nimg1.kbstar.com/img/kbland/web/main/main_txt.png">
+	<img class="live" src="http://nimg1.kbstar.com/img/kbland/web/main/main_txt.png">
 	</p>
 	<form class="searchList" action="aptsearch_list.com" method="GET">
 		<select class="select1" name="select1">
@@ -155,9 +193,9 @@
 		<div class="interest">
 		
 	<div class="name"> 
-		<font style="font-size: 20px;">새로 등록된 아파트</font>
+		<font style="font-size: 20px; color: #2490af; font-weight: bold;">새로 등록된 아파트</font>
 		<div class="name">
-			<strong><a style="color: #2490af; font-size: 28px;" href="apart_contents.com?complex_id=${newapt.complex_id}">${newapt.complex_apartname}</a></strong>		
+			<a style="color: #31708f; font-size: 28px;" href="apart_contents.com?complex_id=${newapt.complex_id}">${newapt.complex_apartname}</a>		
 		</div>
 	</div>
 		<div class="price">
@@ -166,7 +204,7 @@
 		</div>
 		
 		<div class="newAptImg">
-			<img src="./resources/image/apartment.png">
+			<img src="./resources/image/apartment2.png">
 		</div>
 		</div>
 
@@ -183,13 +221,19 @@
 			
 		<c:if test="${listcount != 0}">
 		
+		
+		
 			<div class="expert-column">
 			<div class="border">
-		<h2 style="color: #2490af;">전문가 칼럼</h2><a style="color : black; float: right;" href="expertBoard_list.com">더보기 ▶</a>
+		<h2 style="color: #2490af; font-size : 20px; font-weight: bold;">전문가 칼럼</h2><a style="color : black; float: right;" href="expertBoard_list.com">더보기 ▶</a>
 			</div>		
 			<a class= "subject" href="expertBoard_cont.com?num=${expert.eb_num}&page=1&state=cont"><p style="color : black;">${expert.eb_subject}</p></a>
+			<div class="expertImg2">
+			<img class="expertImg" src="./resources/image/meeting.png">
+			</div>
 		</div>
 	</c:if>
 	</div>
+	
 </body>
 </html>

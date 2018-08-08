@@ -8,6 +8,11 @@
 <head>
 <title>Insert title here</title>
 
+
+<!--  폰 화면 최적화 하기 위한 것 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 <!-- 지도 api  -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2e5f8108e51db54323c51d2a57a90ddb&libraries=services,clusterer,drawing"></script>
 
@@ -80,7 +85,8 @@ display: inline-block;
 .listbutton{
     width: 7%;
     height: 50px;
-    border : none;
+    background: white;
+    border: 1px solid;
 }
 .listbutton:hover{
 	background-color : white;
@@ -108,6 +114,7 @@ display: inline-block;
 	
 
 	.select1,.select2,.select3{
+	background: white;
 	width: 30%;
 	height : 100%;
 	float : left;
@@ -121,12 +128,47 @@ display: inline-block;
 
 	.table{
 	margin : 0 auto;
-	width : 80%;
+	width: 80% !important;
+	  
 	}
 
 span{
 color : #3a72d8 !important;
 }
+
+
+	@media only screen and (max-width: 380px){
+		 th:nth-child(4), td:nth-child(4), th:nth-child(5), td:nth-child(5), th:nth-child(6), td:nth-child(6), th:nth-child(7), td:nth-child(7){
+			display: none;
+		}
+		.table{
+		    width: 95% !important;
+		}
+		
+		.order_by>ul>li:nth-child(4){
+			display : none;
+		}
+		#map{
+		    width: 95%;
+		}
+		
+		.select1, .select2, .select3{
+			width : 100%;
+			height : 60%;
+			background: transparent;
+		}
+		
+		.cookie{
+			margin-top : 10%;
+		}
+		.listbutton{
+			width: 20%;
+    		height: 60%;
+    		border : 1px solid #b4b1b1;
+    		float : right;
+		}
+		
+	}
 </style>
 <script>
 	var addr;

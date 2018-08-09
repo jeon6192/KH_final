@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.naver.house.bean.ApartmentBean;
 import com.naver.house.bean.AptComplexBean;
+import com.naver.house.bean.EL_AND_AptBean;
 import com.naver.house.bean.EW_AND_AptBean;
+import com.naver.house.bean.Event_list;
 import com.naver.house.bean.Event_winBean;
 import com.naver.house.bean.Option_fBean;
 import com.naver.house.bean.Option_nfBean;
@@ -106,6 +108,18 @@ public class OptionServiceImpleF implements OptionServiceF{
 	public List<Integer> getDongInfo(int complex_id) {
 		// TODO Auto-generated method stub
 		return ofdao.getDongInfo(complex_id);
+	}
+
+	@Override
+	public List<Event_list> checkEventIn(int user_no) {
+		// TODO Auto-generated method stub
+		return ofdao.getCheckEventIn(user_no);
+	}
+
+	@Override
+	public List<EL_AND_AptBean> getEventInList(int user_no) {
+		// TODO Auto-generated method stub
+		return ofdao.getELIn(user_no);
 	}
 	
 }

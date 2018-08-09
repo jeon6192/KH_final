@@ -249,6 +249,9 @@ $(document).ready(function() {
 		time: false,
 		clearButton: true,
 		minDate: new Date(new Date().getFullYear() + 1, new Date().getMonth(), new Date().getDate())
+	}).on('change', function(e, date){
+		$('#sdate').bootstrapMaterialDatePicker('setMaxDate', date);
+		$('#edate').bootstrapMaterialDatePicker('setMaxDate', date);
 	});
 	$('#sdate').bootstrapMaterialDatePicker({
 		time: false,

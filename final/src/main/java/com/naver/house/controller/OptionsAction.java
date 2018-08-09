@@ -2,6 +2,7 @@ package com.naver.house.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,44 +24,69 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.naver.house.bean.ApartmentBean;
 import com.naver.house.bean.AptComplexBean;
+import com.naver.house.bean.EL_AND_AptBean;
 import com.naver.house.bean.EW_AND_AptBean;
+import com.naver.house.bean.Event_list;
 import com.naver.house.bean.Event_winBean;
 import com.naver.house.bean.Option_fBean;
 import com.naver.house.bean.Option_nfBean;
 import com.naver.house.bean.OptionsInfoBean;
 import com.naver.house.bean.OptionsInfoSBean;
 import com.naver.house.service.OptionServiceF;
-import com.naver.house.service.OptionServiceNF;
 
 @Controller
 public class OptionsAction {
 	@Autowired
 	private OptionServiceF opserviceF;
-	private OptionServiceNF opserivceNF;
-	
 	
 	@RequestMapping(value="/optionView.op")
 	public ModelAndView optionView(HttpServletRequest request)throws Exception{
-		ModelAndView oV=new ModelAndView("template","viewName", "options/Option_main.jsp");
+		ModelAndView oV=new ModelAndView("options/Option_main");
 		HttpSession session=request.getSession();
 		
 		//로그인 시 넘겨줄정보
 		int user_no=(Integer) session.getAttribute("user_no");
-		
+		AptComplexBean aptX;
+		System.out.println("?????????????1");
+		//신청 했던 목록
 		List<Event_winBean> event_con=opserviceF.checkWinner(user_no); //event_win에 state 0 인 리스트 가져옴
 		
-		if(event_con!=null) {
+		System.out.println("?????????????2");
+		
+		List<Event_list> event_inlist=opserviceF.checkEventIn(user_no);
+		
+		System.out.println("?????????????3");
+		System.out.println("사이즈 : " + event_inlist.size());
+		
+		if(event_inlist.size()!=0) {
+			System.out.println("신청한 것 목록 잇음");
+			List<EL_AND_AptBean> EList;
+			EList=opserviceF.getEventInList(user_no);
+			for(EL_AND_AptBean b: EList) {
+				aptX=opserviceF.getAptXinfo(b.getComplex_id());
+				
+				b.setComplex_state(aptX.getComplex_state());
+				b.setComplex_address(aptX.getComplex_address());
+				b.setComplex_edate(aptX.getComplex_edate());
+				b.setComplex_apartname(aptX.getComplex_apartname());
+			}
+			oV.addObject("EventInList",EList);
+			oV.addObject("eventIn_con",1);
+		}else {
+			System.out.println("없어요?");
+			oV.addObject("eventIn_con",0);
+		}
+		
+		if(event_con.size()!=0) {
 			//당첨 확정
-			System.out.println("당첨자맞음");
+			System.out.println("당첨123자맞음ㅋㅋ");
 			List<EW_AND_AptBean> winList;
 			winList=opserviceF.getWinList(user_no); 
-			AptComplexBean aptX;
 			for(EW_AND_AptBean a:winList){
 				aptX=opserviceF.getAptXinfo(a.getComplex_id());
 				a.setComplex_address(aptX.getComplex_address());
@@ -68,29 +94,38 @@ public class OptionsAction {
 				a.setComplex_edate(aptX.getComplex_edate());
 			}
 			oV.addObject("winList",winList); //List들 보여줌
-			
+			oV.addObject("event_con",1);
 
 		}else {
 			oV.addObject("event_con",0);
 		}
+		
 		return oV;
 	}
 	
 	@RequestMapping(value="/option.op")
-	public ModelAndView optionpage(HttpServletRequest request, long apt_id)throws Exception {
+	public ModelAndView optionpage(HttpServletRequest request,HttpServletResponse response, @RequestParam(value="apt_id", defaultValue="-1") long apt_id)throws Exception {
 		//??신청 기간 후 조회만 가능하게 함?
 		
-		ModelAndView mv=new ModelAndView( "template","viewName", "options/Option_insert.jsp");
+		ModelAndView mv=new ModelAndView( "options/Option_insert");
 		HttpSession session = request.getSession();
-
+		PrintWriter out=response.getWriter();
+		
+		if(apt_id==-1) {
+			out.println("<script>");
+			out.println("alert('당첨 정보 없음')");
+			out.println("history.back()");
+			out.println("</script>");
+		}
+		
 		int user_no=(Integer) session.getAttribute("user_no");
 				
 				//신청 한 적 있는지 확인
 				int first_check=opserviceF.checkFirst(apt_id);
 				if(first_check==0) {//옵션 신청 처음->신청 페이지
-					mv=new ModelAndView( "template","viewName", "options/Option_insert.jsp");
+					mv=new ModelAndView(  "options/Option_insert");
 				}else {	//옵션 신청 한 적 있음->조회 페이지
-					mv=new ModelAndView( "template","viewName", "options/Option_show.jsp");
+					mv=new ModelAndView(  "options/Option_show");
 					Option_fBean freeOp=opserviceF.getFreeOp(apt_id);
 					Option_nfBean nfreeOp=opserviceF.getNfreeOp(apt_id);
 					mv.addObject("freeOp",freeOp);
@@ -127,7 +162,7 @@ public class OptionsAction {
 		onfbean.setNf_cost(totalcost);
 		opserviceF.set_option(ofbean,onfbean); //합침
 		
-		ModelAndView mv=new ModelAndView("template", "viewName", "options/Option_show.jsp");
+		ModelAndView mv=new ModelAndView( "options/Option_show");
 		Gson gson=new Gson();  //gson으로 객체들 json타입 만들어 주기
 		
 		String foJson=gson.toJson(ofbean);
@@ -156,10 +191,12 @@ public class OptionsAction {
 		onfbean.setUser_no(user_no);
 		
 		System.out.println(" ACTION update 실행중");
-		int totalcost=Integer.parseInt(request.getParameter("nf_cost"));
+		/*
+		 * int totalcost=Integer.parseInt(request.getParameter("nf_cost"));
 		onfbean.setNf_cost(totalcost);
+		*/
 		opserviceF.set_optionupdate(ofbean,onfbean); 
-		ModelAndView mv=new ModelAndView("template", "viewName", "options/Option_show.jsp");
+		ModelAndView mv=new ModelAndView("options/Option_show");
 		Gson gson=new Gson(); //gson으로 객체들 json타입 만들어 주기
 		
 		String foJson=gson.toJson(ofbean);
@@ -187,7 +224,7 @@ public class OptionsAction {
 			@RequestParam(value="searchContent",defaultValue="") String searchContent,
 			@RequestParam(value="state",defaultValue="") String state
 			)throws Exception{
-		ModelAndView mv=new ModelAndView("template", "viewName", "options/Option_adminShow.jsp"); 
+		ModelAndView mv=new ModelAndView("options/Option_adminShow"); 
 		ModelAndView mva=new ModelAndView("options/Option_adminShowAJAX");
 		
 		System.out.println("ajax로 넘어온 값들 " +searchtype + searchContent + page + state );
@@ -248,7 +285,7 @@ public class OptionsAction {
 		
 		System.out.println(request.getContextPath());
 		
-		String filePath="C:\\Users\\LG\\Desktop\\spring_workspace\\final\\src\\main\\webapp\\resources\\optionfiles\\";
+		String filePath="C:\\Users\\user1\\git\\KH_final2\\final\\src\\main\\webapp\\resources\\optionfiles\\";
 
 		//List<dataType> data="데이터 담을 리스트";
 		
@@ -257,7 +294,7 @@ public class OptionsAction {
 		aptname2=aptname2.trim();
 		//페이지에 찍어보기
 		
-		ModelAndView mv=new ModelAndView("template", "viewName", "options/checkDONGS.jsp");
+		ModelAndView mv=new ModelAndView( "options/checkDONGS");
 		
 		List<OptionsInfoBean> opb=new ArrayList<OptionsInfoBean>(); //가져온 정보들
 		opb =opserviceF.getOptionInfo(complex_id);
@@ -280,7 +317,8 @@ public class OptionsAction {
 		}
 		
 //25개 --14개
-	
+		//complex에서  cxid, 아파트이름 , 주소 가져와야함
+		
 		
 		for(OptionsInfoBean eachBean: opb) {
 			
@@ -288,9 +326,9 @@ public class OptionsAction {
 			ex1.setUser_no(eachBean.getUser_no());
 			ex1.setTel(eachBean.getTel());
 			ex1.setApart_id(eachBean.getApart_id());
-			ex1.setComplex_id(eachBean.getComplex_id());
-			ex1.setComplex_apartname(eachBean.getComplex_apartname());
-			ex1.setAddress(eachBean.getAddress());
+			ex1.setComplex_id(complex_id);
+			ex1.setComplex_apartname(aptname.getComplex_apartname());
+			ex1.setAddress(aptname.getComplex_address());
 			ex1.setApart_dong(eachBean.getApart_dong());
 			ex1.setApart_ho(eachBean.getApart_ho());
 			ex1.setApart_area(eachBean.getApart_area());
@@ -509,6 +547,7 @@ public class OptionsAction {
 		request.setCharacterEncoding("utf-8");
 		
 		byte fileByte[]=FileUtils.readFileToByteArray(new File(filePath+fileName));
+				
 		
 		
 		response.setContentLength(fileByte.length);

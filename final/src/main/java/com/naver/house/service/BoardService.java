@@ -16,6 +16,12 @@ public interface BoardService {
 	  * 게시판 목록
 	  */
 	public ArrayList<Article> getArticleList(String boardCd, String searchWord, int start, int end);
+	
+	 /*
+	  * 게시판 목록
+	  */
+	public ArrayList<Article> getHitList(String boardCd, String searchWord, int start, int end);
+	
 	 /*
 	  * 특정 게시판의 총 게시물 갯수 구하기
 	  */
@@ -116,5 +122,7 @@ public interface BoardService {
      * 첨부 파일 삭제 
      */
     public void deleteFile(Integer attachFileNo);
+    
+	public int getTotalRecord1(String boardCd, String searchWord);
 
 }

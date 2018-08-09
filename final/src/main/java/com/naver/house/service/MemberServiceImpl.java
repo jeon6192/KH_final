@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.naver.house.bean.AdminBean;
+import com.naver.house.bean.Article;
 import com.naver.house.bean.MemberBean;
 import com.naver.house.dao.MemberDAOImpl;
 
@@ -105,6 +106,20 @@ public class MemberServiceImpl implements MemberService {
 		MemberBean mem= new MemberBean();
 		mem=memDAO.getInfo(id);
 		return mem;
+	}
+
+
+	@Override
+	public MemberBean findpassword(Map pm) {
+		return memDAO.findpassword(pm);
+	}
+
+
+	@Override
+	public List<Article> getqnaList(String id) throws Exception {
+		List<Article> list = new ArrayList<Article>();
+		list = memDAO.getqnalist(id);
+		return list;
 	}
 	
 	

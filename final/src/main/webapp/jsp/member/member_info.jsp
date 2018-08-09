@@ -44,54 +44,114 @@ $(document).ready(function(){
 })
 
 
-
-
-
-
-
 </script>
 
 
 <style>
-	#member_info{padding-top: 200px; padding-left: 200px;  margin: 0 auto; 
-				width:1200px;}
-	tr>td{
-		font-size:13pt;
-	}
-	tr>th{
-	font-size:15pt;
-	}
-	
-	#postcode{
-		margin-bottom:5px;
-	}
-				
-	#tel1{
-		margin-top:-10px;
-		margin-left:-90px;
-	}
-	
-	#tel2{
-		margin-left:-90px;
-	}
-	
-	#tel3{
-		margin-left:10px;
-	}
-	
-	input[type=reset]{
-	
-	background-color : #555555;
+#member_info {
+	margin-top: 10%;
+	margin-bottom: auto ! important;
+	margin-left: auto ! important;
+	margin-right: auto !important;
+	width: 50%;
+	height: 100%;
+}
+
+tr>td {
+	font-size: 13pt;
+}
+
+tr>th {
+	font-size: 15pt;
+}
+
+#member_info input[type=button] {
+	margin-bottom: 0.5em;
+	background-color: #CCCCCC;
+	color: black;
+	border: 2px solid white;
+	padding: 7px;
+	border-radius: 1em;
+	height: 35px;
+}
+
+#info_menu {
+	text-align: center
+}
+
+
+
+#info_menu input[type=reset] {
+	background-color: #555555;
 	color: white;
-	border :  2px solid white;
-	padding:10px;
-	border-radius:1em;
+	border: 2px solid white;
+	padding: 10px;
+	border-radius: 1em;
 	width: 130px;
-	margin-left: 400px;
+}
+
+#tel1 {
+	 margin-top: -10px;
+	margin-left: -100px; 
 	
 }
+
+#tel2 {
+	margin-left: -100px;
+	
+}
+
+#tel3 {
+	 margin-left: 10px;
+	
+}
+
+@media ( max-width :380px) {
+	#member_info {
+		/* display: inline-block; */
+		margin-top: 30%;
+		margin-bottom: auto ! important;
+		/* margin-left: auto ! important; */
+		margin-right: auto !important;
+		width: 100%;
+		font-size: 9pt;
+		margin-top: 30%;
+		height:110%;
+	}
+	table>tbody, th, td{
 		
-</style>	
+		 display: block;
+	/* position: relative; */ */
+	width:100%
+		
+	}
+	#id,#address1,#address3{
+	margin-top: 0.2%;
+	}
+	#name{
+		margin-top: 0.6%;
+	}
+	#postcode{
+		margin-top: 2%;
+	}
+	#tel1{
+	margin-left:-6px;
+	}
+	#tel2{
+	margin-left:2px
+	}
+	.form-group{
+	display:inline-block
+	}
+	
+	
+
+
+	#info_menu input[type=reset] {
+	
+	width: 100px;
+}
+</style>
 </head>
 <body>
 <input type = "hidden" id = "homelesschecked" value = "${memberinfo.homelessTerm}">

@@ -1,42 +1,42 @@
 ///// map
-    var cpxLat = $('#cpx_lat').val();
-    var cpxLng = $('#cpx_lng').val();
+var cpxLat = $('#cpx_lat').val();
+var cpxLng = $('#cpx_lng').val();
 
-	var container = document.getElementById('cpx_map'); //지도를 담을 영역의 DOM 레퍼런스
-	var options = { //지도를 생성할 때 필요한 기본 옵션
-		center: new daum.maps.LatLng(cpxLat, cpxLng), //지도의 중심좌표.
-		level: 5 //지도의 레벨(확대, 축소 정도)
-	};
+var container = document.getElementById('cpx_map'); //지도를 담을 영역의 DOM 레퍼런스
+var options = { //지도를 생성할 때 필요한 기본 옵션
+    center: new daum.maps.LatLng(cpxLat, cpxLng), //지도의 중심좌표.
+    level: 5 //지도의 레벨(확대, 축소 정도)
+};
 
-    var map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
+var map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+var markerPosition  = new daum.maps.LatLng(cpxLat, cpxLng); 
+
+// 마커를 생성합니다
+var marker = new daum.maps.Marker({
+    position: markerPosition
+});
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
+
+var aptName = $('#apt_name').val();
+
+var iwContent = '<div style="padding:5px; width:150px;text-align:center;">'+aptName+'</div>', 
+iwPosition = new daum.maps.LatLng(cpxLat, cpxLng); //인포윈도우 표시 위치입니다
+
+// 인포윈도우를 생성합니다
+var infowindow = new daum.maps.InfoWindow({
+    position : iwPosition, 
+    content : iwContent 
+});
     
-    var markerPosition  = new daum.maps.LatLng(cpxLat, cpxLng); 
+// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+infowindow.open(map, marker); 
 
-    // 마커를 생성합니다
-    var marker = new daum.maps.Marker({
-        position: markerPosition
-    });
 
-    // 마커가 지도 위에 표시되도록 설정합니다
-    marker.setMap(map);
-    
-    var aptName = $('#apt_name').val();
-
-    var iwContent = '<div style="padding:5px; width:150px;text-align:center;">'+aptName+'</div>', 
-    iwPosition = new daum.maps.LatLng(cpxLat, cpxLng); //인포윈도우 표시 위치입니다
-
-	// 인포윈도우를 생성합니다
-	var infowindow = new daum.maps.InfoWindow({
-	    position : iwPosition, 
-	    content : iwContent 
-	});
-	  
-	// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-	infowindow.open(map, marker); 
-    
-	
-	// 카테고리 검색
-	// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
+// 카테고리 검색
+// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
 var placeOverlay = new daum.maps.CustomOverlay({zIndex:1}), 
     contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
     markers = [], // 마커를 담을 배열입니다
@@ -109,7 +109,6 @@ function displayPlaces(places) {
     // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
     // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
     var order = document.getElementById(currCategory).getAttribute('data-order');
-
     
 
     for ( var i=0; i<places.length; i++ ) {
@@ -232,24 +231,61 @@ function panTo() {
 }
 
 // 주변 아파트 검색
+var positions = [];
+var markers = [];
+var selectedMarker = null;
+var ajaxData = {};
+
 function searchCpx() {
     // 지도의 현재 영역을 얻어옵니다 
     var bounds = map.getBounds();
 
     var swLatLng = bounds.getSouthWest(); 
     var neLatLng = bounds.getNorthEast(); 
+    var complex_id = $('#cpx_id').val();
 
     var searchLocation = {'swLat' : swLatLng.getLat(), 'swLng' : swLatLng.getLng(), 
-                    'neLat' : neLatLng.getLat(), 'neLng' : neLatLng.getLng()};
+                    'neLat' : neLatLng.getLat(), 'neLng' : neLatLng.getLng(), 'complex_id' : complex_id};
     console.log(searchLocation);
     
     $.ajax({
         type : 'POST', 
         dataType : 'json', 
         data : searchLocation,
-        url : "./search_cpx.com",
+        url : "./search_cpx.net",
+        beforeSend : function() {
+            removeMarkers();
+        },
         success : function(data) {
-            console.log(data);
+            ajaxData = data;
+            console.log(ajaxData);
+
+            for (var i = 0; i < data.length; i++) {
+                positions.push({title : data[i].complex_apartname, 
+                    latlng : new daum.maps.LatLng(data[i].complex_lat, data[i].complex_lng)});
+            }
+
+            console.log(positions);
+
+            //var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+            var imageSrc = "https://i.pinimg.com/originals/dd/be/1f/ddbe1f911d676f198bdfc9b2346ac1e4.gif"; 
+
+            for (var i = 0; i < positions.length; i ++) {
+                var imageSize = new daum.maps.Size(35, 43); 
+                
+                var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize); 
+                
+                markers.push(new daum.maps.Marker({
+                    map: map, // 마커를 표시할 지도
+                    position: positions[i].latlng, // 마커를 표시할 위치
+                    title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                    image : markerImage, // 마커 이미지 
+                    clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+                }));
+
+                addMarkerClickEvent(markers[i], imageSrc, imageSize, data[i]);
+                
+            }
         },
         error : function() {
             console.log('error');
@@ -257,10 +293,68 @@ function searchCpx() {
     });
 }
 
+function addMarkerClickEvent(marker, imageSrc, imageSize, data) {
+    // marker에 click event 추가
+    daum.maps.event.addListener(marker, 'click', function() {
+        // 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
+        // 마커의 이미지를 클릭 이미지로 변경합니다
+        if (!selectedMarker || selectedMarker !== marker) {
+
+            // 클릭된 마커 객체가 null이 아니면
+            // 클릭된 마커의 이미지를 기본 이미지로 변경하고
+            !!selectedMarker && selectedMarker.setImage(new daum.maps.MarkerImage(imageSrc, imageSize));
+
+            // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경합니다
+            marker.setImage(new daum.maps.MarkerImage(imageSrc, new daum.maps.Size(45, 55)));
+        }
+
+        // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
+        selectedMarker = marker;
+
+
+        new daum.maps.InfoWindow({
+            content : '<div style="width: 150px; height: 100%; text-align: center;">'
+                + '<button type="button" class="w3-button w3-black"'
+                + 'onclick="compareCpx('+data.complex_id+')">'+data.complex_apartname+'</button></div>', 
+            removable : true
+        }).open(map, marker);
+    });
+}
+
 function removeMarkers() {
     for (var i = 0; i < markers.length; i++) {
-		markers[i].setMap(null);
-	}
-	foundMarkers = [];
-	infoContentArr = [];
+        markers[i].setMap(null);
+    }
+
+    positions = [];
+    markers = [];
+    selectedMarker = null;
 }
+
+function compareCpx(complex_id) {
+    var findCpx = ajaxData.find((item, index) => {
+        return item.complex_id === complex_id;
+    });
+
+    $('.compare-aptname').empty().append(findCpx.complex_apartname);
+    $('.compare-addr').empty().append(findCpx.complex_address);
+    $('.compare-pdate').empty().append(findCpx.complex_pdate);
+    if (findCpx.complex_subway != 1) {
+        $('.compare-subway').html('<i class="fa fa-remove"></i>');
+    } else {
+        $('.compare-subway').empty().append(findCpx.complex_station + ' ' + findCpx.complex_foot + '분');
+    }
+    
+    $('.compare-price').empty().append(findCpx.minprice + ' ~ ' + findCpx.maxprice + '만원');
+    $('.compare-area').empty().append(findCpx.minarea + ' ~ ' + findCpx.maxarea + '㎡');
+    $('.compare-cnt').empty().append(findCpx.cnt + ' 세대');
+    
+}
+
+// Compare Button (Modal)
+$(document).on('click', '.w3-button.w3-black', function(){
+    $('#id01').show();
+});
+$(document).on('click', '.w3-button.w3-display-topright', function(){
+    $('#id01').hide();
+});

@@ -1,5 +1,6 @@
 package com.naver.house.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.naver.house.bean.AdminBean;
+import com.naver.house.bean.Article;
 import com.naver.house.bean.MemberBean;
 
 
@@ -87,6 +89,21 @@ public class MemberDAOImpl {
 
 	public MemberBean getInfo(String id) {
 		return sqlsession.selectOne("member_info",id);
+	}
+
+
+
+	public MemberBean findpassword(Map pm) {
+		return (MemberBean)sqlsession.selectOne("password_find",pm);
+
+	}
+
+
+
+	public List<Article> getqnalist(String id) {
+		List<Article> list = new ArrayList<Article>();
+		list = sqlsession.selectList("member_qnalist",id);
+		return list;
 	}
 	
 	

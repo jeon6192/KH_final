@@ -14,6 +14,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 	<!-- 스프링 jdbc 즉 스프링으로 oracle 디비 연결 -->
+<!-- 	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass"
@@ -24,17 +25,17 @@
 		<property name="password" value="tiger" />
 	</bean>
 	
+	 -->
+	<!-- aws -->
 	
-	<!-- aws 
-	
-	<bean id="dataSource"
+	  <bean id="dataSource"
             class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
       <property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
       <property name="url" value="jdbc:oracle:thin:@webtest.cxkwgqu8gkaf.ap-northeast-2.rds.amazonaws.com:1521:ORCL" />
       <property name="username" value="test" />
       <property name="password" value="testtest" />
    </bean> 
-   -->
+    
 
 	<!-- 마이바티스 환경 설정 파일의 매퍼 파일 위치 설정을 여기에서 했습니다. sql 폴더에 있는 xml를 모두 맵퍼로 만들겠다라는 
 		의미 -->

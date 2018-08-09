@@ -90,7 +90,6 @@ function Postcode() {
 	         url : "./member_idcheck.nhn",
 	         cache : false,
 	         success: function(data){
-	        	 console.log(data);
 	            if (data == -1) {//중복 아이디가 없으면
 	               msg = 'ID 사용가능';
 	              checkconfirm = true;
@@ -147,18 +146,21 @@ function Postcode() {
 	    	  return false;
 	      }
 	      
-	      
-	      
-	      
-	      
-	      
+
 	     }
 	
 	
 </script>
 <style>
 	
-	#join_wrap{padding-top: 200px; padding-left: 100px;  margin: 0 auto; 
+	#tel4{
+	width:10%
+	}
+	
+	#tel3, #tel2, #tel4{ display:inline-block;}
+	#join_wrap{
+	 
+	margin: 10% auto; 
 	}
 	tr>td{
 		font-size:13pt;
@@ -204,19 +206,33 @@ function Postcode() {
 	width: 130px;
 	
 } 
+	
+	@media(max-width:380px){
+	
+	
+	#join_wrap{
+	width:100% !important; 
+	margin: 30% auto; 
+	}
 
-	#tel1{
-		margin-top:-10px;
-		margin-left:-90px;
+	#join_t{
+	width:50% !important;
+	margin-left:none;
+	margin:auto; 
 	}
 	
-	#tel2{
-		margin-left:-90px;
+	tr>th{
+	font-size:10pt;
+	display:block !important;
+	
+	}
+	h2{
+	font-size:12pt !important;
 	}
 	
-	#tel3{
-		margin-left:10px;
-	}
+}
+	
+	
 </style>
 </head>
 <body>
@@ -272,16 +288,13 @@ function Postcode() {
          <tr id="tel">
             <th>휴대전화번호</th>
             <td>
-            <div class="form-group" id=tel1>
-        	<label for="gender1" class="col-sm-2 control-label"></label>
-        	<div class="col-sm-2">;
-            
-            <select class="form-control selcls" id="tel1" name = "tel1">
-				<option>010</option>
-				<option>019</option>
-			</select>
-			</div>
-			</div>
+      
+        	
+	            <select class="form-control selcls" id="tel4">
+					<option>010</option>
+					<option>019</option>
+				</select>
+		
                <input name="tel2" id="tel2" size="10" maxlength="4" class="input_box">
                 <input name="tel3" id="tel3" size="10" maxlength="4" class="input_box">
             </td>

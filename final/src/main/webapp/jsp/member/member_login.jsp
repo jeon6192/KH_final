@@ -18,29 +18,60 @@
     <!-- Custom Style -->
     <link href="css/style.css" rel="stylesheet">
  
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></scri.row>.containerpt>
-    <![endif]-->
+  
 
 <title>Insert title here</title>
 <style>
+#passwordFindOk{
+text-align:center;
+
+}
+
 .page-header{
 padding-top: 192px;
 width:25%;
 text-align: center;
 }
 
-body{
-padding-left: 900px;
 
+#loginOk{
+	width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.row{
+	margin: 0 auto;
+    width: 30%;
+    margin-top: 200px;
+    min-width: 300px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+.img-responsive{
+	display: inline !important;
+}
+.form-group{
+	width: 100%;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+#form-group2{
+	text-align: center;
+}
+
+
+.modal-title{
+text-align:center;
+}
+
+@media(max-width:800px){
+	body{
+		padding-left: none;
+
+		}
 }
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<link rel = "stylesheet" type = "text/css" href="./resources/css/admin.css"/>
-
 <script>
 	/*비번 찾기 팝업창*/
 	function pwd_find(){
@@ -73,12 +104,15 @@ function check(){
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
-	<div class="container">
+	<div class="container" id = "loginOk">
+	
       <div class="row">
-        <div class="page-header">
-          <h2>집사자</h2>
+        <div class="col-md-12">
+        <p>
+<img src="resources/image/house.png" class="img-responsive" alt="" />
+         </p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-12">
           <div class="login-box well">
         <form method="post" action="member_login_ok.nhn" onsubmit="return check()">
             <legend>로그인</legend>
@@ -88,7 +122,7 @@ function check(){
             </div>
             <div class="form-group">
                 <label for="password">비밀번호</label>
-                <input name="pwd" id="password"  placeholder="Password" type="password" class="form-control" />
+                <input name="password" id="password"  placeholder="Password" type="password" class="form-control" />
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="Login" />
@@ -97,55 +131,66 @@ function check(){
             <div class="form-group">
                 <a href="join_check.nhn" class="btn btn-default btn-block m-t-md"> 회원가입</a>
             </div>
+            
+            <div class="content">
+        <div data-toggle="modal" data-target="#modal" class="title m-b-md">
+          	  비밀번호를 잊어버리셨나요?
+        </div>
+    </div>
         </form>
           </div>
         </div>
       </div>
     </div>
+    
+    
+ <!-- Modal HTML Markup -->
+<div id="modal" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">비밀번호 찾기</h1>
+            </div>
+            <div class="modal-body" id = "modal-body">
+                <form class="form-horizontal" role="form" method="POST" action="password_find_ok.nhn">
+                    
+                    <div class="form-group" id = "form-group" >
+                        <label for="email" class="control-label">아이디</label>
+                        <div>
+                            <input id="id" name ="id" type="text" class="form-control"  autofocus>
+                        </div>
+                    </div>
+ 
+                    <div class="form-group" id = "form-group1" >
+                        <label for="password" class="control-label">이름</label>
+                        <div>
+                            <input id="name" type="text" class="form-control" name="name">
+                        </div>
+                    </div>
+ 
+                    
+ 
+                    <div class="form-group" id = "form-group2">
+                        <div id = "findStart">
+                            <button type="submit" class="btn btn-primary" id="btn btn-primary">
+                                	찾기
+                            </button>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
  
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="http://code.jquery.com/jquery-latest.js"></script>
 	
-	<%-- 
-	
-	<div id = "login_wrap">
-		<h2 class= "login_title">로그인</h2>
-		<form method ="post" action="member_login_ok.nhn" onsubmit="return check()">
-			<table id = "login_t">
-				<tr>
-					<th>아이디</th>
-					<td><input name = "id" id="id" size = "20" class="input_box"
-						<c:if test="${!empty saveid}"> 
-						value="${saveid}"
-				</c:if>
-				></tr>
-				
-				<tr>
-					<th>비밀번호</th>
-					<td><input type = "password" name = "pwd" id="pwd" size = "20" class="input_box"></td>
-				</tr>
-				<tr>
-					<th>아이디기억하기</th>
-					<td><input type="checkbox" name="saveid" id="saveid"
-					<c:if test="${!empty saveid}">
-					checked
-					</c:if>
-					></td>
-				</tr>
-			
-			</table>
-			
-			
-			<div id = "login_menu">
-				<input type = "submit" value= "로그인" class="input_button">
-				<input type = "reset" value= "취소" class="input_buttonon" onclick="$('#id').focus();">
-				<input type = "button" value = "회원가입" class="input_button" onclick="location='join_check.nhn'">
-				<input type = "button" value="비번찾기" class="input_button" onclick="pwd_find()">
-			</div>
-		</form>	
-	</div>
- --%>
 </body>
 </html>

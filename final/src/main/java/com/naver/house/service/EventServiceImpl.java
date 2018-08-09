@@ -7,10 +7,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.naver.house.bean.AptComplexBean;
 import com.naver.house.bean.ApartmentBean;
+import com.naver.house.bean.AptComplexBean;
 import com.naver.house.bean.Event_list;
 import com.naver.house.bean.Event_winBean;
+import com.naver.house.bean.Event_winBean2;
 import com.naver.house.dao.EventDAOImpl;
 
 @Service
@@ -99,10 +100,10 @@ public class EventServiceImpl implements EventService{
 
 
 	@Override
-	public List<Event_winBean> getEvent_winlist(int no) {
+	public List<Event_winBean2> getEvent_winlist(HashMap<String,Object> m) {
 		// TODO Auto-generated method stub
-		List<Event_winBean> list = new ArrayList<Event_winBean>();
-		list = eventDAO.getEvent_winlist(no);
+		List<Event_winBean2> list = new ArrayList<Event_winBean2>();
+		list = eventDAO.getEvent_winlist(m);
 		return list;
 	}
 
@@ -120,6 +121,86 @@ public class EventServiceImpl implements EventService{
 		List<AptComplexBean> list =new ArrayList<AptComplexBean>();
 		list = eventDAO.searchEvnet(map);
 		return list;
+	}
+
+
+	@Override
+	public List<ApartmentBean> list_playapt(int no) {
+		// TODO Auto-generated method stub
+		
+		List<ApartmentBean> list = new ArrayList<ApartmentBean>();
+		list = eventDAO.list_playapt(no);
+		return list;
+	}
+
+
+	@Override
+	public List<Event_list> event_list(int complex_id) {
+		// TODO Auto-generated method stub
+		
+		List<Event_list> list = new ArrayList<Event_list>();
+		list = eventDAO.event_list(complex_id);
+		return list;
+	}
+
+
+	@Override
+	public void insertEvent_win(Event_winBean e) {
+		// TODO Auto-generated method stub
+		eventDAO.insertEvent_win(e);
+	}
+
+
+	@Override
+	public List<Event_list> event_list_totalcount(int complex_id) {
+		// TODO Auto-generated method stub
+		List<Event_list> list = new ArrayList<Event_list>();
+		list = eventDAO.event_list_totalcount(complex_id);
+		return list;
+	}
+
+
+	@Override
+	public void update_win(HashMap m) {
+		// TODO Auto-generated method stub
+		eventDAO.update_win(m);
+	}
+
+
+	@Override
+	public void update_lose(HashMap m) {
+		// TODO Auto-generated method stub
+		eventDAO.update_lose(m);
+	}
+
+
+	@Override
+	public void update_apart_user_no(HashMap m) {
+		// TODO Auto-generated method stub
+		eventDAO.update_apart_user_no(m);
+	}
+
+
+	@Override
+	public List<Event_winBean2> event_win_list(int complex_id) {
+		// TODO Auto-generated method stub
+		List<Event_winBean2> list = new ArrayList<Event_winBean2>();
+		list = eventDAO.event_win_list(complex_id);
+		return list;
+	}
+
+
+	@Override
+	public void eventwin_up(HashMap m) {
+		// TODO Auto-generated method stub
+		eventDAO.eventwin_up(m);
+	}
+
+
+	@Override
+	public void eventwin_down(HashMap m) {
+		// TODO Auto-generated method stub
+		eventDAO.eventwin_down(m);
 	}
 
 }

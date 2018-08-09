@@ -35,10 +35,37 @@ public class BoardServiceImpl implements BoardService{
    
         return boardMapper.getArticleList(hashmap);
     }
+    
+    /*
+     * 게시판 목록
+     */
+    public ArrayList<Article> getHitList(String boardCd, String searchWord, int start, int end) {
+    	  Integer startRownum = start;
+    	  Integer endRownum = end;
+ 
+        HashMap<String, String> hashmap = new HashMap<String, String>();
+        hashmap.put("boardCd", boardCd);
+        hashmap.put("searchWord", searchWord);
+        hashmap.put("start", startRownum.toString());
+        hashmap.put("end", endRownum.toString());
+   
+        return boardMapper.getHitList(hashmap);
+    }
     /*
      * 특정 게시판의 총 게시물 갯수 구하기
      */
     public int getTotalRecord(String boardCd, String searchWord) {
+     HashMap<String,String> hashmap = new HashMap<String,String>();
+     hashmap.put("boardCd", boardCd);
+     hashmap.put("searchWord", searchWord);
+     
+     return boardMapper.getTotalRecord(hashmap);
+    }
+    
+    /*
+     * 특정 게시판의 총 게시물 갯수 구하기
+     */
+    public int getTotalRecord1(String boardCd, String searchWord) {
      HashMap<String,String> hashmap = new HashMap<String,String>();
      hashmap.put("boardCd", boardCd);
      hashmap.put("searchWord", searchWord);

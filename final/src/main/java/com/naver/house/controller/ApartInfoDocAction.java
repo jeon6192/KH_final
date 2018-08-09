@@ -33,7 +33,7 @@ public class ApartInfoDocAction {
 	@Resource(name="infoDocService")
 	private ApartInfoDocService infoDocService;
 	
-	private String saveFolder = "C:\\sts\\spring6_mvc_board4_final2\\src\\main\\webapp\\resources\\upload";
+	private String saveFolder = "C:\\Users\\user1\\git\\KH_final2\\final\\src\\main\\webapp\\resources\\upload\\";
 	
 	@RequestMapping(value="/main.nhn")
 	public String main() {

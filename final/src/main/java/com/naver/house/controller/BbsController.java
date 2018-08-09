@@ -4,6 +4,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,13 +23,12 @@ import com.naver.house.bean.WebContants;
 import com.naver.house.service.BoardService;
  
 @Controller
-@RequestMapping("/bbs")
 public class BbsController {
  
     @Autowired
     private BoardService boardService;
    
-    @RequestMapping(value="/list", method={RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value="/list.nhn", method={RequestMethod.GET, RequestMethod.POST})
     public String list(String boardCd,
       Integer curPage,
       String searchWord,
@@ -68,11 +70,57 @@ public class BbsController {
      model.addAttribute("lastPage", lastPage);
      model.addAttribute("pageLinks", pageLinks);
      model.addAttribute("curPage", curPage);//curPage는 null 값이면 1로 만들어야 하므로
-     
+    
      return "bbs/list"; 
     }
     
-    @RequestMapping(value="/write", method=RequestMethod.GET)
+    @RequestMapping(value="/hit_list.nhn", method={RequestMethod.GET, RequestMethod.POST})
+    public String list1(String boardCd,
+      Integer curPage,
+      String searchWord,
+      Model model) throws Exception{
+       
+     if (boardCd == null) boardCd = "free";
+     if (curPage == null) curPage = 1;
+     if (searchWord == null) searchWord = "";
+     
+     int numPerPage = 5;// 페이지당 레코드 수 지정
+     int pagePerBlock = 5;// 페이지 링크의 그룹(block)의 크기 지정
+     
+     int totalRecord = boardService.getTotalRecord1(boardCd, searchWord);
+     
+     PagingHelper pagingHelper = new PagingHelper(totalRecord, curPage, numPerPage, pagePerBlock);  
+     boardService.setPagingHelper(pagingHelper);
+     
+     int start = pagingHelper.getStartRecord();
+     int end = pagingHelper.getEndRecord();
+
+     ArrayList<Article> list = boardService.getHitList(boardCd, searchWord, start, end);
+     String boardNm = boardService.getBoardNm(boardCd);
+     Integer no = boardService.getListNo();
+     Integer prevLink = boardService.getPrevLink();
+     Integer nextLink = boardService.getNextLink();
+     Integer firstPage = boardService.getFirstPage();
+     Integer lastPage = boardService.getLastPage();
+     int[] pageLinks = boardService.getPageLinks();
+     
+     // 목록을 위한 데이터
+     model.addAttribute("hit_list", list);
+     model.addAttribute("boardNm", boardNm);
+     model.addAttribute("boardCd", boardCd);//boardCd는 null 값이면 free로 만들어야 하므로
+     
+     model.addAttribute("no", no);
+     model.addAttribute("prevLink", prevLink);
+     model.addAttribute("nextLink", nextLink);
+     model.addAttribute("firstPage", firstPage);
+     model.addAttribute("lastPage", lastPage);
+     model.addAttribute("pageLinks", pageLinks);
+     model.addAttribute("curPage", curPage);//curPage는 null 값이면 1로 만들어야 하므로
+     
+     return "inc/hit_list"; 
+    }
+    
+    @RequestMapping(value="/write.nhn", method=RequestMethod.GET)
     public String write(String boardCd, Model model) throws Exception {
        
         //게시판 이름
@@ -84,9 +132,10 @@ public class BbsController {
    
     @RequestMapping(value="/write", method=RequestMethod.POST)
     public String write(Article article,
-      MultipartHttpServletRequest mpRequest) throws Exception {
-     
-     article.setUser_no(1);
+      MultipartHttpServletRequest mpRequest, String id,HttpServletRequest request) throws Exception {
+    	HttpSession session=request.getSession();
+    	id=(String) session.getAttribute("id");
+     article.setId(id);
      boardService.insert(article);
      article.setArticleNo(boardService.getNewArticle().getArticleNo());
      
@@ -97,6 +146,7 @@ public class BbsController {
       mf.transferTo(new File(WebContants.BASE_PATH + filename));
      }
      
+
      //파일데이터 삽입
      int size = fileList.size();
      for (int i = 0; i < size; i++) {
@@ -114,16 +164,16 @@ public class BbsController {
       boardService.insertAttachFile(attachFile);
      }     
      
-     return "redirect:/bbs/list?boardCd=" + article.getBoardCd();
+     return "redirect:/list.nhn?boardCd=" + article.getBoardCd();
     }
 
-    @RequestMapping(value="/view", method=RequestMethod.GET)
+    @RequestMapping(value="/view.nhn", method=RequestMethod.GET)
 
     public String view(int articleNo,
       String boardCd,
       Integer curPage,
       String searchWord,
-      Model model) throws Exception {
+      Model model, String id,HttpServletRequest request,Article article) throws Exception {
      
      int numPerPage = 10;// 페이지당 레코드 수 지정
      int pagePerBlock = 10;// 페이지 링크의 그룹(block)의 크기 지정
@@ -160,6 +210,11 @@ public class BbsController {
      
      boardService.increaseHit(articleNo);//조회수 증가
      
+     HttpSession session=request.getSession();
+ 	id=(String) session.getAttribute("id");
+ 	article.setId(id);
+ 	article.setArticleNo(boardService.getNewArticle().getArticleNo());
+  
      //상세보기
      Article thisArticle = boardService.getArticle(articleNo);
      Article prevArticle = boardService.getPrevArticle(articleNo, boardCd, searchWord);
@@ -181,17 +236,21 @@ public class BbsController {
       String boardCd, 
       Integer curPage, 
       String searchWord, 
-      String memo) throws Exception {
+      String memo, /*int admin_no,*/HttpServletRequest request) throws Exception {
       
      Comment comment = new Comment();
      comment.setMemo(memo);
-     comment.setADMIN_no(1);
      comment.setArticleNo(articleNo);
      boardService.insertComment(comment);
      
+/*  	HttpSession session=request.getSession();
+	admin_no=(int) session.getAttribute("admin_no");
+	comment.setAdmin_no(admin_no);
+	boardService.insertComment(comment);
+	comment.setArticleNo(boardService.getNewArticle().getArticleNo());*/
      //searchWord = URLEncoder.encode(searchWord,"UTF-8");
      
-     return "redirect:/bbs/view?articleNo=" + articleNo + 
+     return "redirect:/view.nhn?articleNo=" + articleNo + 
       "&boardCd=" + boardCd + 
       "&curPage=" + curPage + 
       "&searchWord=" + searchWord;
@@ -211,7 +270,7 @@ public class BbsController {
      boardService.updateComment(comment);
      //searchWord = URLEncoder.encode(searchWord, "UTF-8");
      
-     return "redirect:/bbs/view?articleNo=" + articleNo + 
+     return "redirect:/view.nhn?articleNo=" + articleNo + 
       "&boardCd=" + boardCd + 
       "&curPage=" + curPage + 
       "&searchWord=" + searchWord;
@@ -229,7 +288,7 @@ public class BbsController {
      
      //searchWord = URLEncoder.encode(searchWord,"UTF-8");
      
-     return "redirect:/bbs/view?articleNo=" + articleNo + 
+     return "redirect:/view.nhn?articleNo=" + articleNo + 
       "&boardCd=" + boardCd + 
       "&curPage=" + curPage + 
       "&searchWord=" + searchWord;
@@ -244,12 +303,12 @@ public class BbsController {
      
      boardService.delete(articleNo);
      
-     return "redirect:/bbs/list?boardCd=" + boardCd + 
+     return "redirect:/list.nhn?boardCd=" + boardCd + 
      "&curPage=" + curPage + 
      "&searchWord=" + searchWord;
     } 
    
-    @RequestMapping(value="/modify", method=RequestMethod.GET)
+    @RequestMapping(value="/modify.nhn", method=RequestMethod.GET)
     public String update(int articleNo,
             String boardCd,
             Model model) throws Exception {
@@ -293,7 +352,7 @@ public class BbsController {
       attachFile.setArticleNo(article.getArticleNo());
       boardService.insertAttachFile(attachFile);
      }  
-     return "redirect:/bbs/view?articleNo=" + article.getArticleNo() + 
+     return "redirect:/view.nhn?articleNo=" + article.getArticleNo() + 
     		    "&boardCd=" + article.getBoardCd() + 
     		    "&curPage=" + curPage +
     		    "&searchWord=" + searchWord;
@@ -316,7 +375,7 @@ public class BbsController {
      
      //searchWord = URLEncoder.encode(searchWord,"UTF-8");
      
-     return "redirect:/bbs/view?articleNo=" + articleNo + 
+     return "redirect:/view.nhn?articleNo=" + articleNo + 
       "&boardCd=" + boardCd + 
       "&curPage=" + curPage + 
       "&searchWord=" + searchWord;

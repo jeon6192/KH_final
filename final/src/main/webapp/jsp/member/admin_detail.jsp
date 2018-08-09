@@ -5,51 +5,56 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Insert title here</title>
 <style>
 
-#detail_menu input[type=reset] {
+#detail_menu >input{
 	 
 	background-color : #555555;
 	color: white;
 	border :  2px solid white;
-	padding:10px;
+	/* padding:10px; */
 	border-radius:1em;
 	width: 130px;
-	margin-left:1100px;
+	height:50px;
+	text-align:center ! important;
+	/* margin-left:1100px; */
+	margin-bottom: auto ! important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	
+}
+
+#detail_menu{
+	text-align:center;
 }
 
 	
-	
 	#memberlist{
-	width:900px;
-	
+	width:60%;
+	text-align:center;
+	margin-top: 200px;
+	margin-bottom: auto ! important;
+	margin-left: auto !important;
+	margin-right: auto !important;
 	}
 	
 	table{
-		margin-left:700px;
-		padding-top: 200px;
+		/* margin-left:700px;
+		padding-top: 200px; */
 	}
 	
 	h2{
-		padding-left:700px;
-		padding-top: 200px;
+		/* padding-left:700px;
+		padding-top: 200px; */
 		
 	}
 	
-	#tel1{
-		margin-top:-10px;
-		margin-left:-100px;
-	}
 	
-	#tel2{
-		margin-left:-90px;
-	}
-	
-	#tel3{
-		margin-left:10px;
-	}
+}
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>

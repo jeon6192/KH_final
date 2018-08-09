@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
 </head>
 <style>
@@ -29,19 +29,38 @@ th {
 }
 
 .top {
-	margin-top: 92px;
+	margin-top: 30px;
 }
 
 h4 {
 	text-align: center
 }
 
-.headbtn {
-	border-radius: 6px
-}
+
 </style>
 <script src = "http://code.jquery.com/jquery-latest.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<style>
+#cc{
+	background-color: #002060 ;
+}
+</style>
 <script>
+
+	function listss() {
+		
+		$.ajax({
+			type : "post",
+			url : "event_list_all.ev",
+			success : function(data) {
+				$('.head_ajax').empty();
+				$('.head_ajax').append(data);
+			}
+		})
+	}
+	
+	
 	function play() {
 
 		$.ajax({
@@ -69,22 +88,22 @@ h4 {
 	function search(){
 		
 		var state = $('#state').val();
-		var search = $('#search').val();
 		var keyword = $('#keyword').val();
-		alert(state);
-		alert(search);
-		alert(keyword);
 		
 		$.ajax({
 			type: "post",
 			url : "searchEvent.ev",
-			data:{"state":state,"search":search,"keyword":keyword},
+			data:{"state":state,"keyword":keyword},
 			success:function(data){
 				$('.head_ajax').empty();
 				$('.head_ajax').append(data);
 			}
 		})
 	}
+	
+	$(".filebtn").click(function(){
+        location.href='./downoptions.op?aptXid='+$(this).val();
+     })
 
 	
 </script>
@@ -94,55 +113,86 @@ h4 {
 	</p>
 	<br>
 	
+	
 	<p class="top">
 	<h4>
-		<input type="button" onclick="location.reload();" class="headbtn"
-			value="아파트 분양 정보">  <input type="button" onclick="end();"
-			class="headbtn" value="분양이 끝난 아파트 정보">  <input
-			type="button" onclick="play();" class="headbtn"
-			value="현재 분양중인 아파트 정보">
+		<input type="button" onclick="listss();" class="btn btn-success btn-filter"value="전체">  
+		<input type="button" onclick="play();" class="btn btn-warning btn-filter" value="분양중">
+		<input type="button" onclick="end();"class="btn btn-danger btn-filter" value="분양끝"> 
+		
 	</h4>
 	</p>
-	<p>
-		<h4 style="text-align: center;">
-		<select id="search" style="height: 100%;">
-		<option value="1">주소</option>
-		<option value="2">아파트 명</option>
-		</select>
-		<input type="text" id="keyword" name="keyword" size="10" style="height: 100%;">
-		<input type="button" id="searchbtn" value="검색하기" style="height: 100%" onclick="search();">
-	</h4>
-	</p>
-	<div class="head_ajax">
-		<input type="hidden" name="state" value="1" id="state">
-		<p>
-		<h1 class="head">아파트 분양 정보</h1>
-		</p>
-		<table>
-			<tr>
-				<th>분양 아파트 주소</th>
-				<th>분양 아파트 명</th>
-				<th>아파트 분양일</th>
-				<th>아파트 당첨일</th>
-			</tr>
-			
-			<c:forEach var="apt" items="${list}">
-				<tr>
+	
+	
+		
+	<div class="container-fluid">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <h2 class="text-center pull-left" style="padding-left: 30px;"> <span class="glyphicon glyphicon-list-alt"> </span> Details </h2>
+          </div>
+          <div class="col-xs-9 col-sm-9 col-md-9">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+              <div class="col-xs-12 col-md-4">
+                <label> Search </label>
+                <div class="form-group">
+                  <div class="input-group">
+                    <input type="text" class="form-control input-md" name="keyword" id="keyword" placeholder="아파트명">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-md btn-info" id="searchbtn" onclick="search();"> <span class=" glyphicon glyphicon-search"></span></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-body table-responsive">
+      <div class="head_ajax">
+      <input type="hidden" name="state" value="1" id="state">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="text-center"> 분양 아파트 주소 </th>
+              <th class="text-center"> 분양 아파트 명 </th>
+              <th class="text-center"> 아파트 분양일 </th>
+              <th class="text-center"> 아파트 당첨일 </th>
+              <th class="text-center"> 아파트 옵션 현황 </th>
+            </tr>
+          </thead>
+
+          <tbody>
+          	<c:forEach var="apt" items="${list}">
+          	<tr class="edit" id="detail">
 				
-					<td>${apt.complex_address }</td>
-					<td><a href="apartdetail.ev?complex_id=${apt.complex_id }">${apt.complex_apartname }</a>
+					<td class="text-center">${apt.complex_address }</td>
+					<td class="text-center"><a href="apartdetail.ev?complex_id=${apt.complex_id }">${apt.complex_apartname }</a>
 					</td>
-					<td>${apt.complex_sdate }~ ${apt.complex_edate}</td>
+					<td class="text-center">${apt.complex_sdate }~ ${apt.complex_edate}</td>
 					<c:if test="${apt.complex_state == 0 }">
-						<td>${apt.complex_pdate}</td>
+						<td class="text-center">${apt.complex_pdate}</td>
+						<td class="text-center"> x </td>
 					</c:if>
 
 					<c:if test="${apt.complex_state != 0 }">
-						<td colspan="2"><label>분양 마감</label></td>
+						<td class="text-center">분양 마감</td>
+						<td class="text-center"> 
+						<input type="image" class="filebtn" value="${bo.getComplex_id()}" src="resources/img/excel.png" width="44px" height="26px">
+					<%-- 	<button id="filebtn" class="filebtn" value="${bo.getComplex_id()}">파일</button> --%>
+						</td>
 					</c:if>
 				</tr>
-			</c:forEach>
-		</table>
-	</div>
+          	</c:forEach>
+          	 </tbody>
+        </table>
+        </div>
+      </div>
+     </div>
+    </div>
+    
+      
 </body>
 </html>

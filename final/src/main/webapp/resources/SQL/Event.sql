@@ -33,12 +33,12 @@ create table Member(
  	Event_no number primary key,
  	user_no number,
  	Event_day date,
- 	Apart_id number,
+ 	complex_id number,
  	Event_check number,
  	FOREIGN KEY (user_no)     
   	REFERENCES Member (user_no),
-  	FOREIGN KEY (Apart_id)     
-  	REFERENCES APARTMENT (Apart_id)    
+  	FOREIGN KEY (complex_id)     
+  	REFERENCES apt_complex (complex_id)    
  );
  
  create sequence event_no_seq;

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import com.naver.house.bean.ApartmentBean;
 import com.naver.house.bean.AptComplexBean;
+import com.naver.house.bean.EL_AND_AptBean;
 import com.naver.house.bean.EW_AND_AptBean;
+import com.naver.house.bean.Event_list;
 import com.naver.house.bean.Event_winBean;
 import com.naver.house.bean.Option_fBean;
 import com.naver.house.bean.Option_nfBean;
@@ -92,5 +94,15 @@ public class OptionDAOimpl_F {
 	public List<Integer> getDongInfo(int complex_id) {
 		// TODO Auto-generated method stub
 		return sqlsession.selectList("Option_free.getDongInfo",complex_id);
+	}
+
+	public List<Event_list> getCheckEventIn(int user_no) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList("Option_free.getCheckInList",user_no);
+	}
+
+	public List<EL_AND_AptBean> getELIn(int user_no) {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList("Option_free.getEWInList",user_no);
 	}
 }

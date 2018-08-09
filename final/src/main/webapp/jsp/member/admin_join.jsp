@@ -15,40 +15,37 @@
 
 
 
-#join_wrap{padding-top: 200px; padding-left: 100px;  margin: 0 auto; text-align:center
-	/* background: url(resources/img/intro-bg.jpg) no-repeat center center;  배경화면 이미지*/}
+	#join_wrap{
+	padding-top: 200px; 
+	margin: 0 auto; 
+	text-align:center;
+	width:100%;
+	height:100%;
+	}
 	
 	
 	th{
-	font-size:15pt;
-	margin-left:300px;
+		font-size:15pt;
+		text-align:center;
 	}
+	
 	th>td{
 		margin:10em;
 	}
 	#join_t{
-		width: 25%;
+		width: 20%;
+		text-align:center;	
 		margin: 0 auto;
-		margin-right:850px;
-		margin-bottom:50px;
-		margin-top:50px;
-	}
 	
-	/*  #Admin_code{
-	 margin-bottom:2em;
-	 margin-top:5em; 
-	 margin-left:2em; 
+		margin-left: auto !important;
+		margin-right: auto !important; 
 		
 	}
 	
-	#Admin_name{
-	 margin-top:5em; 
-	 margin-left:2em; 
-		
-	} */
+	
 	 
 	#join_menu{
-	text-align:center
+	text-align:center;
 	}
 	
 	#join_menu input[type=submit]{
@@ -81,21 +78,30 @@
 	}
 	th{
 	width: 50%;
-	float: right;
 	}
 	td{
-	width: 50%;
+	width: 50%; 
 	
 	}
-	.input_box{
+	
+@media(max-width:380px){
+	
+	#join_menu{
+	text-align:center;
+	margin:auto;
+	
+	}
+	#join_t{
+	width: 90%;
+	text-align:center;
+	margin:auto;
 	}
 	
-
+	
+}
 	
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-
-
 
 <script>
 	function check(){

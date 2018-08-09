@@ -13,7 +13,7 @@ public interface ApartmentService2 {
 	
 	public ApartmentBean2 detail_apart(int complex_id, int apart_dong) throws Exception;
 	
-	public List<AptComplexBean2> searchCpx(Map<String, Double> searchCpxMap) throws Exception;
+	public List<AptComplexBean2> searchCpx(Map<String, Object> searchCpxMap) throws Exception;
 
 
 }

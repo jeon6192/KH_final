@@ -1,3 +1,5 @@
+drop table APART_INFO_ETC
+
 create table APART_INFO_ETC(
 	INFO_ETC_NUM number(10) primary key,
 	Admin_no number(30) ,
@@ -6,7 +8,8 @@ create table APART_INFO_ETC(
 	INFO_ETC_DATE date not null,
 	INFO_ETC_FILE varchar2(100),
 	INFO_ETC_CONT varchar2(500) not null,
-	INFO_ETC_ORIGINAL varchar2(100)
+	INFO_ETC_ORIGINAL varchar2(100), 
+	CONSTRAINT id_CONS2 foreign key (Admin_no) references Admin(Admin_no)
 );
 
 

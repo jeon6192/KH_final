@@ -1,6 +1,14 @@
 @charset "UTF-8";
 
 
+@font-face {
+   font-family: 'test';
+   src: url('../../fonts/MALGUN.TTF');
+   font-weight: normal;
+   font-style: normal;
+}
+	*{ font-family: test;}
+
 .board{
 	    border: 1px solid #ddd;
 	    width: 60%;

@@ -21,6 +21,10 @@ select * from apartment;
 select event_win_no, ew.user_no, apt.apart_id, event_con, complex_id,apart_dong, apart_ho from event_win ew , apartment apt
  		 where ew.apart_id=apt.apart_id and ew.user_no=2 and event_con=0
  		 
+
+delete from apartment
+delete from apt_complex
+
 drop sequence apart_seq
 ALTER TABLE apartment ADD FOREIGN KEY (user_no) REFERENCES member (user_no);
 

@@ -8,6 +8,8 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,7 +129,9 @@ public class ApartmentController2 {
 	
 	@RequestMapping(value = "/apart_contents.com",  method = RequestMethod.GET)
 	public ModelAndView detail_apart(@RequestParam("complex_id") int complex_id, 
-			@RequestParam(value = "page", defaultValue = "1") int page) throws Exception {
+			HttpServletRequest request , HttpServletResponse response, @RequestParam(value = "page", defaultValue = "1") int page) throws Exception {
+		
+		
 		ModelAndView mav = new ModelAndView("apart/apart_contents");
 		
 		Map<String, Object> apartMap = apartmentService.detail_complex(complex_id);

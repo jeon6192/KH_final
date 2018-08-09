@@ -141,6 +141,4 @@ public class AptComplexBean2 {
 		public void setCnt(int cnt) {
 			this.cnt = cnt;
 		}
-	   
-	   
-	}
+}

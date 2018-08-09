@@ -9,91 +9,23 @@
 <title>Insert title here</title>
 <script src = "http://code.jquery.com/jquery-3.3.1.js"></script>
 
+
+<link href="./resources/css/expertCss/expertBoard_cont.css" rel="stylesheet" type="text/css">
+	
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <style>
- @font-face {
-   font-family: 'test';
-   src: url('./resources/fonts/MALGUN.TTF');
-   font-weight: normal;
-   font-style: normal;
-}
 
-
-	h1{
-		color: white;
-    	line-height: 3.6em;
-    	text-align: center;
-	}
-	 
-	img{
-		width : 100%
-	}
-	
-	.all{
-		margin-top : 5%;
-		margin-bottom : 5%;
-	
-	}
-	
-	 .top{
-		margin : 0 auto;
-		width : 60%;
-		background-image :url(./resources/image/background.jpg);
-		height: 9em;
-	}
-	
-	.head{
-	    height: 8em;
-		width: 60%;
-	    margin: 0 auto;
-	    margin-top: 3%;
-	    border-bottom: 1px solid #aaa;
-    	border-top: 1px solid #aaa;
-    	
-	}
-	dl{
-   		 margin: 0 auto;
-   	  	 margin-top: 3%;
-	}
-	dt{
-		font-size : 24px
-	}
-	dd{
-	margin-top: 1%;
-	}
-	
-	.file{
-		width : 10%;
-		
-	}
-	
-	.body{
-		width: 60%;
-    	margin: 0 auto;
-	}
-	
-	.foot{
-	    width: 60%;
- 	    margin: 0 auto;
-   		margin-top: 2%;
-   		border-bottom: 1px solid #aaa;
-    	padding: 1%;
-	}
-	
-	.btn{
-		float: right;
-    	width: 60%;
-	}
 </style>
 </head>
 <body>
 	
 <div class="all">
 	<div class="top">
-			<h1>전문가 칼럼</h1>
+			<h1 class="h12">전문가 칼럼</h1>
 	</div>
 	<div class=view>
 		<c:set var="bcont" value="${bcont}"/>
@@ -126,20 +58,22 @@
 		</div>
 	</div>
 	
-	<div class="btn">
+	
+	
+	<div class="btnList">
+	        <%-- <c:if test="${!empty Admin_id}"> --%>
 	<input type="button" value="수정" class="input_button" 
 onclick="location.href='expertBoard_cont.com?num=${bcont.eb_num}&page=${page}&state=edit'">
 
 	<input type="button" value="삭제" class="input_button" 
 onclick="location.href='expertBoard_del.com?num=${bcont.eb_num}&page=${page}'">
-
+				        <%-- </c:if> --%>
 	<input type="button" value="목록" class="input_button" 
 onclick="location.href='expertBoard_list.com?&page=${page}'">
 	</div>
 	
 	
 </div>
-
 
 </body>
 </html>

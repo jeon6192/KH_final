@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 
 <script src = "http://code.jquery.com/jquery-3.3.1.js"></script>
-<link href="./resources/css/expertBoardWhite.css" rel="stylesheet" type="text/css">
+<link href="./resources/css/expertCss/expertBoardWhite.css" rel="stylesheet" type="text/css">
 
 <!-- 파일 api  -->
 <script charset="utf-8" src="//ucarecdn.com/libs/widget/3.3.0/uploadcare.full.min.js"></script>

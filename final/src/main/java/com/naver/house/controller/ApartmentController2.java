@@ -122,8 +122,7 @@ public class ApartmentController2 {
 		apartmentService.insert_apart(apartMap);
 		
 		
-		return new ModelAndView("redirect:/apart_insertform.com");
-		//return new ModelAndView("redirect:/apart_list.com");
+		return new ModelAndView("redirect:/aptSearch.com");
 	}
 	
 	@RequestMapping(value = "/apart_contents.com",  method = RequestMethod.GET)

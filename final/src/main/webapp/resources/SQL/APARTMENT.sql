@@ -14,6 +14,7 @@ CREATE TABLE APARTMENT(
 	APART_INTERIOR VARCHAR2(1000), 
 	user_no NUMBER REFERENCES Member(user_no)
 )
+
 drop table event_list;
 select * from event_list;
 alter t

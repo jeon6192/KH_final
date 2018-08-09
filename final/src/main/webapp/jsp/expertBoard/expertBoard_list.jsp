@@ -8,57 +8,16 @@
 <title>Insert title here</title>
 <script src = "http://code.jquery.com/jquery-3.3.1.js"></script>
 
-<!-- 부트스트랩  -->
+<!-- font -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- 부트스트랩  -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!-- 부트스트랩  -->
 
-<style>
-  @font-face {
-   font-family: 'test';
-   src: url('./resources/fonts/MALGUN.TTF');
-   font-weight: normal;
-   font-style: normal;
-}
-		
-	.all{
-		margin-top : 5%;
-		margin-bottom : 5%;
-	
-	}
-		
-	 .top{
-		margin : 0 auto;
-		width : 60%;
-		background-image :url(./resources/image/background.jpg);
-		height: 9em;
-	}
-	
-	.subject{
-		color: white;
-    	line-height: 3.6em;
-    	text-align: center;
-	}
-	 
-		
-	th{
-	    background: #f6f6f6;
-	}
-		
-	img{
-		width : 100%
-	}
-	
-	.list{
-		width: 60%;
-    	margin: 0 auto;
-    	margin-top: 5%;
-	}
-	.table{
-		color : black;
-	}
-</style>
+<!-- 참조하고 있는 css 파일 -->
+<link rel="stylesheet" href="./resources/css/expertCss/expertBoard_list.css">
 
 </head>
 <body>
@@ -158,10 +117,13 @@
 					</c:if>
 				</td>
 			</tr>
+			
+	        <%-- <c:if test="${!empty Admin_id}"> --%>
 				<tr>
 			<td colspan="5" style="text-align: right">
 			<a style="color : #2a6496" href="./expertBoard_write.com">[글쓰기]</a></td>
 			</tr>
+			<%-- </c:if> --%>
 		</tfoot>
 		</table>
 	</c:if>

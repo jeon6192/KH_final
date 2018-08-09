@@ -10,140 +10,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src = "http://code.jquery.com/jquery-3.3.1.js"></script>
+
+<!-- 참조하는 js 파일  -->
 <script src="./resources/js/search.js"></script>
+
+<!-- font -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
 
-.button{
-    width: 7%;
-    height: 50px;
-    border: 0;
-}
-.button:hover{
-	background-color : white;
-	background-color : #A6A6A6;
-}
-
-@font-face {
-   font-family: 'test';
-   src: url('./resources/fonts/MALGUN.TTF');
-   font-weight: normal;
-   font-style: normal;
-}
-	*{ font-family: test;}
-	.searchList{
-		width : 100%;
-	height : 50px;
-	}
-	.search{
-		margin : 0 auto;
-		width : 50%;
-		padding-top: 7%;
-		}
-	.bg-img{
-		background-image : url("./resources/image/city3.jpg");
-		min-height : 500px;
-	}
-	
-	.select1,.select2,.select3{
-	color : black;
-	width: 30%;
-	height : 100%;
-	float : left;
-	font-size: 19px;
-    font-weight: bold;
-   	border: none;
-    border-left: 1px solid #b1b1b1;
-	}
-	
-	.cookie{
-	background-color : #E7E7E7;
-	min-height : 300px;
-	}
-	.interest{
-	margin-top: 1%;
-	min-height : 250px;
-	width: 30%;
-    margin-left: 25%;
-	}
-	
-	.expert-column{
-	margin-top: 1.5%;
-	min-height : 250px;
-	width : 20%;
-	margin-right : 10%;
-	margin-top: 1.5%;
-	}
-	
-	.interest, .expert-column{
-	    float: left;
-	}
-
-	h2{
-		display: inline-block;
-	}	
-	span{
-		display: inline-block;
-		margin-left: 50%;
-	}
-	
-	.border{
-		border-bottom: 1px solid black;
-	}
-	
-	a{
-		text-decoration : none;
-	}
-	
-	.name{
-		margin-top : 1.5%
-	}
-	.price{
-	}
-	
-	.newAptImg{
-	    margin-left: 50%;
-	}
-	.expertImg{
-	    float: right;
-	    margin-top: 6%;
-	}
-	
-	@media only screen and (max-width : 380px){
-		.live{
-		  width : 100%;
-		  font : weight : bold;
-		 }
-		 
-		 .select1, .select2, .select3{
-			width : 100%;
-			height : 60%;
-			background: transparent;
-    		border-bottom: none;
-		}
-		.button{
-			width: 20%;
-    		height: 60%;
-    		border : 1px solid #b4b1b1;
-    		float : right;
-    		background: transparent;
-		}
-		
-		.bg-img{
-		height: 0;
-		background-image : url("./resources/image/mseoul.jpg");
-	    background-size: 100% 100%;
-	    
-	}
-		.cookie{
-			display : none;
-			}
-		.fa-search:before{
-			color: black;
-			}
-			
-	}
-</style>
+<!-- 참조하는 css 파일  -->
+<link rel="stylesheet" href="./resources/css/search.css">
 </head>
 <body>
 	<jsp:include page="../header.jsp"/>
@@ -154,8 +29,8 @@
 	<p class="text">
 	<img class="live" src="http://nimg1.kbstar.com/img/kbland/web/main/main_txt.png">
 	</p>
-	<form class="searchList" action="aptsearch_list.com" method="GET">
-		<select class="select1" name="select1">
+	<form id="searchForm" class="searchList" action="aptsearch_list.com" method="GET">
+		<select class="select1" name="select1" id="select1">
 			<option value="-1">시/도</option>
 			<option value="0">서울</option>
 			<option value="1">경기</option>

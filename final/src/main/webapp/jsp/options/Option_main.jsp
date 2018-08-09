@@ -86,7 +86,7 @@ body{margin:0}
     background-color: #ebebeb;
     padding-top:30px}
    
-   .left-menu li{ width:100%; height:40px; margin:auto; text-align:center; font-size:20px;font-family: 'test'}
+  .left-menu li{ width:100%; height:40px; margin:auto; text-align:center; font-size:20px;font-family: 'test'; line-height: 40px;}
   
    .text1{color:white; background-color:#002060; }
     .left-menu a{color:white}

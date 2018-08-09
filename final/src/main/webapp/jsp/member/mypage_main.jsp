@@ -107,7 +107,7 @@
 			</span>
 		</span>
 		
-		<span id = qnaList style = "cursor:pointer" onclick="window.location.href='member_qnalist.nhn'">
+		<span id = qnaList style = "cursor:pointer" onclick="window.location.href='member_qnalist.nhn?id=${id}'">
 			<span id = qnaCircle>
 				<p>Q & A</p>
 			</span>

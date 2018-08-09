@@ -15,11 +15,12 @@ CREATE TABLE APARTMENT(
 	user_no NUMBER REFERENCES Member(user_no)
 )
 
-drop table event_list;
-select * from event_list;
-alter t
+select * from event_win
 select * from apartment;
 
+select event_win_no, ew.user_no, apt.apart_id, event_con, complex_id,apart_dong, apart_ho from event_win ew , apartment apt
+ 		 where ew.apart_id=apt.apart_id and ew.user_no=2 and event_con=0
+ 		 
 drop sequence apart_seq
 ALTER TABLE apartment ADD FOREIGN KEY (user_no) REFERENCES member (user_no);
 
@@ -60,6 +61,7 @@ select avg(apart_area), avg(apart_area) from apartment where complex_id = 190711
 select complex_id, count(*) from apartment group by(complex_id)
 
 
+select * from APT_COMPLEX where complex_id=190731596
 
 select * from apartment 
 	where complex_id = (

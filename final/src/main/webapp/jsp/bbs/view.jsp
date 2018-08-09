@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -87,6 +87,7 @@
   
  }
  
+ 
 //]]>
 </script>  
 <script>
@@ -119,6 +120,9 @@ function print(printArea)
 		win.close();
 }
 </script> 
+<script>
+	
+</script>
 </head>
 <body>
 
@@ -142,6 +146,8 @@ function print(printArea)
  <tr>
   <th style="width: 50px;  color:#2e75b6;">TITLE</th>
   <th style="text-align: left;  color: #555;">${thisArticle.title }</th>
+  <th style="width: 50px;  color:#2e75b6;">WRITER</th>
+  <th style="width: 80px;  color: #555;">${thisArticle.id}</th>
   <th style="width: 50px;  color:#2e75b6;">DATE</th>
   <th style="width: 130px;color: #555;">${thisArticle.writeDateTime }</th>
  </tr> 
@@ -163,12 +169,14 @@ function print(printArea)
  <div class="comments">
   <h4>관리자</h4>
   <h5>${comment.regdate }</h5>
+   <c:if test="${sessionScope.id=='admin'}">
   <h6>
    <a href="javascript:updateComment('${comment.commentNo }')">수정</a> |
    <a href="javascript:deleteComment('${comment.commentNo }')">삭제</a>
   </h6>
+  </c:if>
   <p id="comment${comment.commentNo }">${comment.htmlMemo }</p>
-  
+   <c:if test="${sessionScope.id=='admin'}">
   <div class="modify-comment">
    <form id="modifyCommentForm${comment.commentNo }" action="commentUpdate" method="post" style="display: none;">
    <p>
@@ -187,10 +195,11 @@ function print(printArea)
    </div>
    </form>
   </div>
+  </c:if>
  </div>
  </c:forEach>
+ <c:if test="${sessionScope.id=='admin'}">
  <!--  덧글 반복 끝 -->
- 
  <form id="addCommentForm" action="commentAdd" method="post">
   <p style="margin: 0;padding: 0;">
    <input type="hidden" name="articleNo" value="${param.articleNo }" />
@@ -201,11 +210,12 @@ function print(printArea)
   <div id="addComment">
    <textarea name="memo" rows="7" cols="50"></textarea>
   </div>
+
   <div style="text-align: right;">
-   <input type="submit" value="덧글남기기" class="btn"/>
+   <input type="submit" value="덧글남기기" class="btn" onclick=""/>
   </div>
- </form>
- 
+</form>
+</c:if>
  <div id="next-prev">
   <c:if test="${nextArticle != null }">
    <p>다음글 : <a href="javascript:goView('${nextArticle.articleNo }')">${nextArticle.title }</a></p>
@@ -214,16 +224,20 @@ function print(printArea)
    <p>이전글 : <a href="javascript:goView('${prevArticle.articleNo }')">${prevArticle.title }</a></p>
   </c:if>
  </div>
- 
+  
  <div id="view-menu">
   <div class="fl">
+      <c:if test="${sessionScope.id!='admin'}">
    <input type="button" value="수정" onclick="goModify()" class="btn"/>
+   </c:if>
    <input type="button" value="삭제" onclick="goDelete()" class="btn"/>
   </div>
   <div class="fr">   
   <input type = "button" value="인쇄하기" OnClick="print(document.getElementById('printArea').innerHTML)" class="btn" id="print"/>
    <input type="button" value="목록" onclick="goList('${param.curPage }')" class="btn"/>
+       <c:if test="${sessionScope.id!='admin'}">
    <input type="button" value="새글쓰기" onclick="goWrite()" class="btn"/>
+   </c:if>
   </div>  
  </div>
   
@@ -231,8 +245,9 @@ function print(printArea)
  <tr>
   <th style="width: 60px; color:#2e75b6;">NO</th>
   <th style="color:#2e75b6;">TITLE</th>
-  <th style="width: 84px; color:#2e75b6;">DATE</th>
-  <th style="width: 60px; color:#2e75b6;">HIT</th>
+  <th style="width: 74px; color:#2e75b6;">WRITER</th>
+  <th style="width: 63px; color:#2e75b6;">DATE</th>
+  <th style="width: 30px; color:#2e75b6;">HIT</th>
  </tr>
  <!--  반복 구간 시작 -->
  <c:forEach var="article" items="${list }" varStatus="status"> 
@@ -256,6 +271,7 @@ function print(printArea)
     <span class="bbs-strong">[${article.commentNum }]</span>
    </c:if>
   </td>
+  <td style="text-align: center;">${article.id}</td> 
   <td style="text-align: center; ">${article.writeDate }</td>
   <td style="text-align: center;">${article.hit }</td>
  </tr>
@@ -287,9 +303,11 @@ function print(printArea)
   
  </div> 
  
+ <c:if test="${sessionScope.id!='admin'}">
  <div id="list-menu" style="text-align:  right;">
   <input type="button" value="새글쓰기" onclick="goWrite()" class="btn"/>
  </div>
+ </c:if>
   <div id="search" style="text-align: center;">
   <form id="searchForm" action="./list.nhn" method="get" style="margin: 0;padding: 0;">
    <p style="margin: 0;padding: 0;">

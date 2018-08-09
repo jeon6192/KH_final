@@ -5,27 +5,71 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-<link href="resources/css/bbs.css" rel="stylesheet">
 <style>
+	@font-face{
+  		font-family : 'NanumGothic';
+  		src : url(../fonts/NanumGothic.ttf) format('truetype');
+	}
+	body{
+		font-family: NanumGothic
+	}
 	td {width:1000px}
 	th {width:400px}
 	table {border-collapse:collapse}
+	.infowrap{
+    	padding-top: 12%; width:1000px; padding-bottom:5%;  margin: 0 auto;
+	}
+	#inhr{width:100%}
+	#ohr{margin-top:20px}
+	#ohr hr{background-color: #2e75b6;}
+	#infoEtccont_menu input[type=button] {background-color:white; border:1.5px solid #008CBA; }
+	.prevnexttable {
+		border-collapse:seperate;
+		border-spacing: 0.5%;
+		text-align: left;
+		line-height: 1%;
+		width:100%;
+		border-top:1px solid #747474;
+		margin : 20px 10px;
+	}
+	.prevnexttable th{
+		width:20%;
+		padding:10px;
+		font-weight:bold;
+		vertical-align:top;
+		text-align:right;
+		border-bottom: 1px solid #ccc;
+	}
+	.prevnexttable td{
+		width: 80%;
+		padding: 10px;
+		vertical-align:top;
+		border-bottom:1px solid #ccc;
+	}
 </style>
 </head>
 <body>
-<div id="infoEtccont_wrap" style="width:600px">
-<h2 class="infoEtccont_title" style="width:370px">
-
-<input type="button" value="필요서류" onclick="location='infoDoc_list.nhn?page=1'">
-<input type="button" value="정책" onclick="location='infoPolicy_list.nhn?page=1'">
-<input type="button" value="기타정보" onclick="location='infoEtc_list.nhn?page=1'">
+<div class="infowrap">
+	<h2>정보 게시판</h2>
+	<form>
+		<input type="button" value="필요서류" onclick="location='infoDoc_list.nhn?page=1'" style="border:none">
+		<input type="button" value="정책" onclick="location='infoPolicy_list.nhn?page=1'" style="border:none">
+		<input type="button" value="기타정보" onclick="location='infoEtc_list.nhn?page=1'" style="background:#2e75b6;color:white;border:none">
 	    		
 		<br>
-		<hr>
 		
-게시물 내용보기</h2>
+	</form> 
+	
+	<div id="ohr">
+		<hr id="inhr">
+	</div>
+	
+	<h4>게시물 내용보기</h4>
+	
+<div id="infoEtccont_wrap" style="width:600px">
 
 <table id="infoEtccont_t" border="1">
 <tr>
@@ -59,11 +103,13 @@
 <br>
 	
 	<div id="infoEtccont_menu" style="margin-left:200px">
+	<c:if test="${empty infoDoc.Admin_no}">
 		<input type="button" value="수정" class="input_button"
 		onclick="location='infoEtc_cont.nhn?infoEtc_num=${infoEtc.INFO_ETC_NUM}&state=edit'">
 		
 		<input type="button" value="삭제" class="input_button"
 		onclick="location='infoEtc_cont.nhn?infoEtc_num=${infoEtc.INFO_ETC_NUM}&state=del'">
+	</c:if>
 		
 		<input type="button" value="목록" class="input_button"
 		onclick="location='infoEtc_list.nhn?page=1'">
@@ -71,10 +117,9 @@
 </div>
 
 <br>
-<hr>
 <br>
 
-<table border="1">
+<table class="prevnexttable">
 	<tr>
 		<th>▲이전글</th>
 		<c:if test="${! empty RnumPrev.INFO_ETC_SUB}">
@@ -108,5 +153,6 @@
 		</c:if>
 	</tr>
 </table>
+</div>
 </body>
 </html>

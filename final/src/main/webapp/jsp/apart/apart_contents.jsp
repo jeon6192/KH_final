@@ -214,12 +214,6 @@
 							</div>
 						</div>
 						
-						<div class="div menu">
-							<div class="button-4">
-								<div class="eff-4"></div>
-								<a href="#" onclick="window.history.back();"> 목록 </a>
-							</div>
-						</div>
 						
 					</div>
 					

@@ -4,6 +4,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,7 +70,7 @@ public class BbsController {
      model.addAttribute("lastPage", lastPage);
      model.addAttribute("pageLinks", pageLinks);
      model.addAttribute("curPage", curPage);//curPage는 null 값이면 1로 만들어야 하므로
-     
+    
      return "bbs/list"; 
     }
     
@@ -126,14 +129,13 @@ public class BbsController {
        
         return "bbs/writeform";
     }
-    
-    
    
     @RequestMapping(value="/write", method=RequestMethod.POST)
     public String write(Article article,
-      MultipartHttpServletRequest mpRequest) throws Exception {
-     
-     article.setUser_no(1);
+      MultipartHttpServletRequest mpRequest, String id,HttpServletRequest request) throws Exception {
+    	HttpSession session=request.getSession();
+    	id=(String) session.getAttribute("id");
+     article.setId(id);
      boardService.insert(article);
      article.setArticleNo(boardService.getNewArticle().getArticleNo());
      
@@ -144,6 +146,7 @@ public class BbsController {
       mf.transferTo(new File(WebContants.BASE_PATH + filename));
      }
      
+
      //파일데이터 삽입
      int size = fileList.size();
      for (int i = 0; i < size; i++) {
@@ -170,7 +173,7 @@ public class BbsController {
       String boardCd,
       Integer curPage,
       String searchWord,
-      Model model) throws Exception {
+      Model model, String id,HttpServletRequest request,Article article) throws Exception {
      
      int numPerPage = 10;// 페이지당 레코드 수 지정
      int pagePerBlock = 10;// 페이지 링크의 그룹(block)의 크기 지정
@@ -207,6 +210,11 @@ public class BbsController {
      
      boardService.increaseHit(articleNo);//조회수 증가
      
+     HttpSession session=request.getSession();
+ 	id=(String) session.getAttribute("id");
+ 	article.setId(id);
+ 	article.setArticleNo(boardService.getNewArticle().getArticleNo());
+  
      //상세보기
      Article thisArticle = boardService.getArticle(articleNo);
      Article prevArticle = boardService.getPrevArticle(articleNo, boardCd, searchWord);
@@ -228,14 +236,18 @@ public class BbsController {
       String boardCd, 
       Integer curPage, 
       String searchWord, 
-      String memo) throws Exception {
+      String memo, /*int admin_no,*/HttpServletRequest request) throws Exception {
       
      Comment comment = new Comment();
      comment.setMemo(memo);
-     comment.setADMIN_no(1);
      comment.setArticleNo(articleNo);
      boardService.insertComment(comment);
      
+/*  	HttpSession session=request.getSession();
+	admin_no=(int) session.getAttribute("admin_no");
+	comment.setAdmin_no(admin_no);
+	boardService.insertComment(comment);
+	comment.setArticleNo(boardService.getNewArticle().getArticleNo());*/
      //searchWord = URLEncoder.encode(searchWord,"UTF-8");
      
      return "redirect:/view.nhn?articleNo=" + articleNo + 

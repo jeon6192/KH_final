@@ -69,6 +69,7 @@ public class OptionsAction {
 			EList=opserviceF.getEventInList(user_no);
 			for(EL_AND_AptBean b: EList) {
 				aptX=opserviceF.getAptXinfo(b.getComplex_id());
+				
 				b.setComplex_state(aptX.getComplex_state());
 				b.setComplex_address(aptX.getComplex_address());
 				b.setComplex_edate(aptX.getComplex_edate());
@@ -284,7 +285,7 @@ public class OptionsAction {
 		
 		System.out.println(request.getContextPath());
 		
-		String filePath="C:\\Users\\LG\\Desktop\\spring_workspace\\final\\src\\main\\webapp\\resources\\optionfiles\\";
+		String filePath="C:\\Users\\user1\\git\\KH_final2\\final\\src\\main\\webapp\\resources\\optionfiles\\";
 
 		//List<dataType> data="데이터 담을 리스트";
 		

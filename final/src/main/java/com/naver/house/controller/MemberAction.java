@@ -100,11 +100,12 @@ public class MemberAction {
 		   AdminBean ad = new AdminBean();
 		   
 		   System.out.println(this.memberService.admin_idcheck(id));
-		   if(this.memberService.admin_idcheck(id)!=0) {
+		   if(this.memberService.admin_idcheck(id)!=0) { // Admin 일 때
 			   ad=this.memberService.adminCheck(id);
 			   if(ad.getAdmin_pwd().equals(password)) {//비번이 같을 때
 				   session.setAttribute("id", id);
 				  
+				   System.out.println(ad.getAdmin_no());
 				   session.setAttribute("Admin_no",ad.getAdmin_no());
 				   
 		  
@@ -116,7 +117,7 @@ public class MemberAction {
 				   out.println("history.go(-1)");
 				   out.println("</script>");
 			   }
-		   }else if(this.memberService.user_idcheck(id)!=0) {
+		   }else if(this.memberService.user_idcheck(id)!=0) { // 일반유저 일 때
 			   m =this.memberService.userCheck(id);
 			   if(m.getPassword().equals(password)) {//비번이 같을 때
 				   session.setAttribute("id", id);
@@ -368,7 +369,7 @@ public class MemberAction {
 	
 
 	@RequestMapping(value = "/member_qnalist.nhn")
-	public ModelAndView qnalist(ModelAndView mv,@RequestParam("user_id")String id) throws Exception{
+	public ModelAndView qnalist(ModelAndView mv,@RequestParam("id")String id) throws Exception{
 		List<Article> list = new ArrayList<Article>(); 
 		list = memberService.getqnaList(id);
 		 mv.setViewName("member/member_qnalist");

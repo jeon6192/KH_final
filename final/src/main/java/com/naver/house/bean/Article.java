@@ -8,7 +8,7 @@ public class Article {
  private String boardCd;
  private String title;
  private String content;
- private int User_no;
+ private String id;
  private int hit;
  private Date regdate;
  private int attachFileNum;
@@ -52,13 +52,13 @@ public class Article {
  public void setContent(String content) {
   this.content = content;
  }
- public int getUser_no() {
-  return User_no;
- }
- public void setUser_no(int User_no) {
-  this.User_no = User_no;
- }
- public int getHit() {
+ public String getId() {
+	return id;
+}
+public void setId(String id) {
+	this.id = id;
+}
+public int getHit() {
   return hit;
  }
  public void setHit(int hit) {

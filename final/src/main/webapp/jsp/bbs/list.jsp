@@ -118,9 +118,9 @@ function print(printArea)
  <tr>
   <th style="width: 60px; color:#2e75b6;">NO</th>
   <th style="color:#2e75b6;">TITLE</th>
- <!--  <th style="width: 14px;">WRITER</th> -->
-  <th style="width: 84px; color:#2e75b6;">DATE</th>
-  <th style="width: 60px; color:#2e75b6;">HIT</th>
+  <th style="width: 74px; color:#2e75b6;">WRITER</th>
+  <th style="width: 63px; color:#2e75b6;">DATE</th>
+  <th style="width: 30px; color:#2e75b6;">HIT</th>
  </tr>
  </thead>
  <tbody>
@@ -137,7 +137,7 @@ function print(printArea)
     <span class="bbs-strong">[${article.commentNum }]</span>
    </c:if>
   </td>
- <%--  <td style="text-align: center;">${article.User_no }</td> --%>
+  <td style="text-align: center;">${article.id}</td> 
   <td style="text-align: center;">${article.writeDate }</td>
   <td style="text-align: center;">${article.hit }</td>
  </tr>
@@ -171,7 +171,9 @@ function print(printArea)
  </div>
  
  <div id="list-menu" style="text-align:  right;">
+    <c:if test="${sessionScope.id!='admin'}">
 <input type="button" value="새글쓰기" onclick="goWrite()" class="btn"/>
+</c:if>
   <input type = "button" value="인쇄하기" OnClick="print(document.getElementById('printArea').innerHTML)" class="btn" id="print"/>
  </div>
   <div id="search" style="text-align: center;">

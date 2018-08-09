@@ -1,15 +1,17 @@
 -- 게시글
 CREATE TABLE article (
-    articleno NUMBER,
-    User_no	NUMBER,
+    articleno NUMBER PRIMARY KEY,
+    id	varchar2(30),
     boardcd varchar2(20),
     title varchar2(200) NOT NULL,
     content CLOB,
     hit NUMBER,
     regdate DATE,
-    CONSTRAINT PK_ARTICLE PRIMARY KEY(articleno)
+   	CONSTRAINT id_CONS foreign key (id) references member(id)
 );
- 
+
+select * from ARTICLE;
+
 drop table article;
 
 -- 게시글 번호 생성기
@@ -51,10 +53,11 @@ commit
 create table comments(
 	commentno number,
 	articleno number,
-	ADMIN_no NUMBER,
+	Admin_no NUMBER,
 	memo varchar2(4000),
 	regdate date,
-	constraint PK_COMMENTS PRIMARY KEY(commentno)
+	constraint PK_COMMENTS PRIMARY KEY(commentno),
+	CONSTRAINT Admin_no foreign key (Admin_no) references Admin(Admin_no)
 );
 
 drop table comments
@@ -64,3 +67,10 @@ create sequence SEQ_COMMENTS
 	start with 1;
 	
 drop sequence comments
+
+select * from comments
+
+SELECT * FROM article  where rownum <= 5 order by hit desc
+
+SELECT * FROM (select * from article order by hit desc) 
+where rownum <= 5 

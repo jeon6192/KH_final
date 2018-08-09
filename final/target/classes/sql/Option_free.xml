@@ -12,8 +12,8 @@
  	</select>
  	
  	<select id="getWinList" parameterType="int" resultType="ewaptb">
- 		select event_win_no, user_no, apart_id, event_con, complex_id,apart_dong, apart_ho from event_win natural join apartment
- 		 where user_no=#{user_no} and event_con=0
+	 select event_win_no, ew.user_no, apt.apart_id, event_con, complex_id,apart_dong, apart_ho from event_win ew , apartment apt
+ 		 where ew.apart_id=apt.apart_id and ew.user_no=#{user_no} and event_con=0
  	</select>
  	
  	<select id ="getAptinfo" parameterType="long" resultType="apart">

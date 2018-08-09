@@ -7,12 +7,12 @@
 <mapper namespace="net.my.mybatis.BoardMapper">
  
     <select id="getArticleList" parameterType="hashmap" resultType="Article">
- SELECT articleno, title, regdate, hit, attachfilenum, commentnum 
+ SELECT articleno, title, regdate, hit, id, attachfilenum, commentnum 
   FROM (
    SELECT rownum r, a.* 
     FROM (
      SELECT 
-      a.articleno, title, a.regdate, hit, 
+      a.articleno, title, a.regdate, hit, id,
       count(distinct(f.attachfileno)) attachfilenum,
       count(distinct(c.commentno)) commentnum
      FROM 
@@ -25,7 +25,7 @@
      AND (title LIKE '%${searchWord}%' OR
      content LIKE '%${searchWord}%')
      </if>
-     GROUP BY a.articleno, title, a.regdate, hit 
+     GROUP BY a.articleno, title, a.regdate, id, hit 
      ORDER BY articleno DESC
     ) a
   )
@@ -58,9 +58,9 @@
  </select> 
  
     <insert id="insert" parameterType="Article">
-        INSERT INTO article (articleno, boardcd, title, content,  hit, regdate)
+        INSERT INTO article (articleno, boardcd, title, content, id, hit, regdate)
         VALUES
-        (seq_article.nextval, #{boardCd}, #{title}, #{content}, 0, sysdate)
+        (seq_article.nextval, #{boardCd}, #{title}, #{content}, #{id}, 0, sysdate)
     </insert>
  
     <update id="update" parameterType="Article">
@@ -85,7 +85,7 @@
     </resultMap>
    
     <select id="getArticle" parameterType="int" resultMap="ArticleClob">
-        SELECT articleno, title, content,<!--  User_no, --> hit, regdate
+        SELECT articleno, title, content,<!--  id, --> hit, id, regdate
         FROM article
         WHERE articleno = #{articleNo}
     </select>
@@ -110,7 +110,7 @@
  </select>
  
  <select id="getNewArticle" resultType="Article">
-  SELECT articleno, title, content, <!-- User_no, --> hit, regdate
+  SELECT articleno, title, content, <!-- id, --> hit, id, regdate
   FROM (SELECT * FROM ARTICLE ORDER BY articleno DESC) 
   WHERE ROWNUM = 1
  </select> 
@@ -131,8 +131,8 @@
   DELETE FROM attachfile WHERE attachfileno = #{attachFileNo}
  </delete>
  <insert id="insertComment" parameterType="Comment">
-  INSERT INTO comments (commentno, articleno, memo, regdate)
-  VALUES (seq_comments.nextval, #{articleNo},  #{memo}, sysdate)
+  INSERT INTO comments (commentno, articleno, <!-- admin_no, --> memo, regdate)
+  VALUES (seq_comments.nextval, #{articleNo}, <!-- #{admin_no}, --> #{memo}, sysdate)
  </insert>
  
  <update id="updateComment" parameterType="Comment">
@@ -144,13 +144,13 @@
  </delete>
  
  <select id="getComment" parameterType="int" resultType="Comment">
-  SELECT commentno,articleno,ADMIN_no,memo,regdate 
+  SELECT commentno,articleno, memo,regdate 
   FROM comments 
   WHERE commentno = #{commentNo}
  </select>
  
  <select id="getCommentList" parameterType="int" resultType="Comment">
-  SELECT commentno, articleno, ADMIN_no, memo, regdate
+  SELECT commentno, articleno, memo, regdate
   FROM comments
   WHERE articleno = #{articleNo}
   ORDER BY commentno DESC

@@ -2,12 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper  namespace="win">
+
+	<insert id="insertEvent_win" parameterType="event_winb">
+		insert into event_win values(event_win_no_seq.nextval,#{User_no},#{Apart_id},#{event_con})
+	</insert>
 	
-	<select id="event_win_list" parameterType="int" resultType="event_winb">
-	select * from event_win where complex_id=#{id}
+	<select id="event_list_win" parameterType="int" resultType="event_winb2">
+	select a.apart_dong,a.apart_ho,b.name,b.id,c.event_con,a.apart_id,c.user_no
+ 	from apartment a, member b, EVENT_WIN c
+	 where a.user_no=b.user_no
+ 	and  a.user_no=c.user_no
+	and a.complex_id=#{complex_id}
+	 
+	</select>
+	
+	<select id="win_search_list" parameterType="hashmap" resultType="event_winb2">
+	select a.apart_id,a.apart_dong,a.apart_ho,b.name,b.id,c.event_con,c.user_no
+ 	from apartment a, member b, EVENT_WIN c
+	 where a.user_no=b.user_no
+ 	 and a.user_no=c.user_no
+	 and a.complex_id=#{complex_id}
+	 and b.name like #{keyword}
 	</select>
 	
 	<select id="event_win_count" parameterType="int" resultType="int">
 	select count(*) from event_win where complex_id=#{id}
 	</select>
+	
+	<select id="playlist_apart" parameterType="int" resultType="apart">
+	select * from apartment where complex_id=#{complex_id} and user_no is null
+	</select>
+	
+	<update id="eventwin_up" parameterType="hashmap">
+	update event_win set event_con =1 where apart_id=#{apart_id} and user_no = #{user_no} 
+	</update>
+	<update id="eventwin_down" parameterType="hashmap">
+	update event_win set event_con =2 where apart_id=#{apart_id} and user_no = #{user_no} 
+	</update>
+	
 </mapper>

@@ -23,6 +23,7 @@ public class ApartmentServiceImpl2 implements ApartmentService2 {
 	@Override
 	public void insert_apart(Map<String, Object> apartMap) throws Exception {
 		AptComplexBean aptComplexBean = (AptComplexBean) apartMap.get("aptComplexBean");
+		@SuppressWarnings("unchecked")
 		ArrayList<ApartmentBean> apartmentBeanList = (ArrayList<ApartmentBean>) apartMap.get("apartmentListBean");
 		
 		apartmentDAO.insert_aptComplex(aptComplexBean);

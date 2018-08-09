@@ -4,11 +4,15 @@
 <mapper namespace="apart">
 	
 	<insert id="insert" parameterType="java.util.List">
+		<selectKey resultType="int" keyProperty="complex_id" order="BEFORE">
+			select nvl(max(complex_id),0) from apt_complex
+		</selectKey>
 		<foreach collection="list" item="item" index="index"  open="INSERT ALL " separator=" " close="SELECT * FROM DUAL" > 
 			into apartment values
 	        (
-				get_apart_seq, #{item.complex_id}, #{item.apart_dong}, #{item.apart_ho}, #{item.apart_floor}, 
-				#{item.apart_area}, #{item.apart_price}, #{item.apart_room}, #{item.apart_toilet}, #{item.apart_direction}, #{item.apart_interior} 
+				get_apart_seq, #{complex_id}, #{item.apart_dong}, #{item.apart_ho}, #{item.apart_floor}, 
+				#{item.apart_area}, #{item.apart_price}, #{item.apart_room}, #{item.apart_toilet}, #{item.apart_direction}, 
+				#{item.apart_interior}, NULL 
 			)
 	    </foreach>
 	</insert>

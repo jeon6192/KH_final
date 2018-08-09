@@ -1,42 +1,42 @@
 ///// map
-    var cpxLat = $('#cpx_lat').val();
-    var cpxLng = $('#cpx_lng').val();
+var cpxLat = $('#cpx_lat').val();
+var cpxLng = $('#cpx_lng').val();
 
-	var container = document.getElementById('cpx_map'); //지도를 담을 영역의 DOM 레퍼런스
-	var options = { //지도를 생성할 때 필요한 기본 옵션
-		center: new daum.maps.LatLng(cpxLat, cpxLng), //지도의 중심좌표.
-		level: 5 //지도의 레벨(확대, 축소 정도)
-	};
+var container = document.getElementById('cpx_map'); //지도를 담을 영역의 DOM 레퍼런스
+var options = { //지도를 생성할 때 필요한 기본 옵션
+    center: new daum.maps.LatLng(cpxLat, cpxLng), //지도의 중심좌표.
+    level: 5 //지도의 레벨(확대, 축소 정도)
+};
 
-    var map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
+var map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+var markerPosition  = new daum.maps.LatLng(cpxLat, cpxLng); 
+
+// 마커를 생성합니다
+var marker = new daum.maps.Marker({
+    position: markerPosition
+});
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
+
+var aptName = $('#apt_name').val();
+
+var iwContent = '<div style="padding:5px; width:150px;text-align:center;">'+aptName+'</div>', 
+iwPosition = new daum.maps.LatLng(cpxLat, cpxLng); //인포윈도우 표시 위치입니다
+
+// 인포윈도우를 생성합니다
+var infowindow = new daum.maps.InfoWindow({
+    position : iwPosition, 
+    content : iwContent 
+});
     
-    var markerPosition  = new daum.maps.LatLng(cpxLat, cpxLng); 
+// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+infowindow.open(map, marker); 
 
-    // 마커를 생성합니다
-    var marker = new daum.maps.Marker({
-        position: markerPosition
-    });
 
-    // 마커가 지도 위에 표시되도록 설정합니다
-    marker.setMap(map);
-    
-    var aptName = $('#apt_name').val();
-
-    var iwContent = '<div style="padding:5px; width:150px;text-align:center;">'+aptName+'</div>', 
-    iwPosition = new daum.maps.LatLng(cpxLat, cpxLng); //인포윈도우 표시 위치입니다
-
-	// 인포윈도우를 생성합니다
-	var infowindow = new daum.maps.InfoWindow({
-	    position : iwPosition, 
-	    content : iwContent 
-	});
-	  
-	// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-	infowindow.open(map, marker); 
-    
-	
-	// 카테고리 검색
-	// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
+// 카테고리 검색
+// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
 var placeOverlay = new daum.maps.CustomOverlay({zIndex:1}), 
     contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
     markers = [], // 마커를 담을 배열입니다
@@ -109,7 +109,6 @@ function displayPlaces(places) {
     // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
     // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
     var order = document.getElementById(currCategory).getAttribute('data-order');
-
     
 
     for ( var i=0; i<places.length; i++ ) {
@@ -284,9 +283,7 @@ function searchCpx() {
                     clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
                 }));
 
-
                 addMarkerClickEvent(markers[i], imageSrc, imageSize, data[i]);
-
                 
             }
         },
@@ -316,12 +313,7 @@ function addMarkerClickEvent(marker, imageSrc, imageSize, data) {
 
 
         new daum.maps.InfoWindow({
-            /*
             content : '<div style="width: 150px; height: 100%; text-align: center;">'
-                + '<button type="button" style="width: 80px; height: 21px; font-size: 9pt; border: 1px solid black;' 
-                + 'background-color: white;" onclick="compareCpx('+data.complex_id+')">비교하기</button></div>', 
-                */
-            content : '<div style="width: 150px; height: 30px; text-align: center;">'
                 + '<button type="button" class="w3-button w3-black"'
                 + 'onclick="compareCpx('+data.complex_id+')">'+data.complex_apartname+'</button></div>', 
             removable : true
@@ -343,6 +335,8 @@ function compareCpx(complex_id) {
     var findCpx = ajaxData.find((item, index) => {
         return item.complex_id === complex_id;
     });
+
+    $('.compare-aptname').empty().append(findCpx.complex_apartname);
     $('.compare-addr').empty().append(findCpx.complex_address);
     $('.compare-pdate').empty().append(findCpx.complex_pdate);
     if (findCpx.complex_subway != 1) {
@@ -353,6 +347,7 @@ function compareCpx(complex_id) {
     
     $('.compare-price').empty().append(findCpx.minprice + ' ~ ' + findCpx.maxprice + '만원');
     $('.compare-area').empty().append(findCpx.minarea + ' ~ ' + findCpx.maxarea + '㎡');
+    $('.compare-cnt').empty().append(findCpx.cnt + ' 세대');
     
 }
 

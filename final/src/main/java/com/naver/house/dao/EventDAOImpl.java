@@ -8,16 +8,19 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.naver.house.bean.AptComplexBean;
 import com.naver.house.bean.ApartmentBean;
+import com.naver.house.bean.AptComplexBean;
 import com.naver.house.bean.Event_list;
 import com.naver.house.bean.Event_winBean;
+import com.naver.house.bean.Event_winBean2;
 
 @Repository
 public class EventDAOImpl {
 
 	@Autowired
 	private SqlSessionTemplate sqlsession;
+	
+	
 
 	/* 분양 현황 상세정보 */
 	public List<Event_list> getEventlist(int no) {
@@ -86,10 +89,10 @@ public class EventDAOImpl {
 		return count;
 	}
 	
-	public List<Event_winBean> getEvent_winlist(int no){
+	public List<Event_winBean2> getEvent_winlist(HashMap<String,Object> m){
 		
-		List<Event_winBean> list = new ArrayList<Event_winBean>();
-		list = sqlsession.selectList("event_list_win",no);
+		List<Event_winBean2> list = new ArrayList<Event_winBean2>();
+		list = sqlsession.selectList("win_search_list",m);
 		return list;
 	}
 	
@@ -101,5 +104,60 @@ public class EventDAOImpl {
 		List<AptComplexBean> list = new ArrayList<AptComplexBean>();
 		list = sqlsession.selectList("search_list",map);
 		return list;
+	}
+
+	public List<ApartmentBean> list_playapt(int no) {
+		// TODO Auto-generated method stub
+		List<ApartmentBean> list = new ArrayList<ApartmentBean>();
+		list = sqlsession.selectList("playlist_apart",no);
+		return list;
+	}
+
+	public List<Event_list> event_list(int complex_id) {
+		List<Event_list> list = new ArrayList<Event_list>();
+		list = sqlsession.selectList("event_list",complex_id);
+		return list;
+	}
+
+	public void insertEvent_win(Event_winBean e) {
+		// TODO Auto-generated method stub
+		sqlsession.insert("insertEvent_win",e);
+	}
+
+	public List<Event_list> event_list_totalcount(int complex_id) {
+		// TODO Auto-generated method stub
+		List<Event_list> list = new ArrayList<Event_list>();
+		list = sqlsession.selectList("event_list_totalcount",complex_id);
+		return list;
+	}
+	
+	public void update_win(HashMap m) {
+		sqlsession.insert("update_win",m);
+	}
+	
+	public void update_lose(HashMap m) {
+		sqlsession.insert("update_lose",m);
+	}
+
+	public void update_apart_user_no(HashMap m) {
+		// TODO Auto-generated method stub
+		sqlsession.update("update_apart_user_no",m);
+	}
+
+	public List<Event_winBean2> event_win_list(int complex_id) {
+		// TODO Auto-generated method stub
+		List<Event_winBean2> list = new ArrayList<Event_winBean2>();
+		list =sqlsession.selectList("event_list_win",complex_id);
+		return list;
+	}
+
+	public void eventwin_up(HashMap m) {
+		// TODO Auto-generated method stub
+		sqlsession.insert("eventwin_up",m);
+	}
+
+	public void eventwin_down(HashMap m) {
+		// TODO Auto-generated method stub
+		sqlsession.insert("eventwin_down",m);
 	}
 }

@@ -4,10 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="Keywords" content="게시판 목록" />
 <meta name="Description" content="게시판 목록" />
 <link rel="stylesheet" href="./resources/css/screen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="./resources/css/screen_min.css" type="text/css" media="screen" />
 <title>${boardNm }</title>
 <script type="text/javascript">
 //<![CDATA[
@@ -29,7 +34,48 @@
   
  }
 //]]>
-</script>  
+
+$(function(){
+    
+	$.ajax ({
+		url : "hit_list.nhn",
+		success : function(data){
+			$("#hit_list").append(data);
+		}
+	})
+	
+	
+	
+})
+
+
+
+</script> 
+<script>
+function print(printArea)
+{
+		win = window.open(); 
+		self.focus(); 
+		win.document.open();
+		
+		/*
+			1. div 안의 모든 태그들을 innerHTML을 사용하여 매개변수로 받는다.
+			2. window.open() 을 사용하여 새 팝업창을 띄운다.
+			3. 열린 새 팝업창에 기본 <html><head><body>를 추가한다.
+			4. <body> 안에 매개변수로 받은 printArea를 추가한다.
+			5. window.print() 로 인쇄
+			6. 인쇄 확인이 되면 팝업창은 자동으로 window.close()를 호출하여 닫힘
+		*/
+		win.document.write('<html><style>');
+		win.document.write('body, td {font-falmily: Verdana; font-size: 10pt;}');
+		win.document.write('</style></haed><body>');
+		win.document.write(printArea);
+ 		win.document.write('</body></html>');
+		win.document.close();
+		win.print();
+		win.close();
+}
+</script> 
 </head>
 <body>
 
@@ -38,7 +84,7 @@
  <div id="header">
   <%@ include file="../header.jsp" %>
  </div>
-<div id="wrap" style="padding-top: 200px; padding-left: 100px;  margin: 0 auto; /* background: url(resources/img/intro-bg.jpg) no-repeat center center;  */">
+<div id="wrap">
 <%--  <div id="main-menu">
   <%@ include file="../inc/main-menu.jsp" %>
  </div> --%>
@@ -48,17 +94,36 @@
    <div id="url-navi">BBS</div> -->
 
 <!-- 본문 시작 -->   
-
-<h1>Q&A게시판</h1>
-<div id="bbs">
- <table>
+<div id="text1">Q&A게시판</div>
+<hr class="two">
+<span class="qna_cont">분양과 관련하여</span> <span>궁금한 점을 자유롭게 문의바랍니다.</span>
+<br>
+<br>
+<div style="float:right;"><a class="a_cont" href="./main.com">House</a>&nbsp;>&nbsp;<a class="a_cont" href="./list.nhn">Q&A게시판</a></div>
+<br>
+<br>
+<img src="./resources/img/qnabox3.jpg" style="width:100%">
+<br>
+<br>
+<h4 style=" font-weight:bold;">조회수 높은 글 BEST 5</h4>
+<div id="hit_list">
+</div>
+<br>
+<br>
+<%-- <%@ include file="../inc/hit_list.jsp" %> --%>
+<div id = "printArea">
+<div id="bbs" class="table-responsive">
+ <table class="table table-hover">
+ <thead>
  <tr>
-  <th style="width: 60px;">NO</th>
-  <th>TITLE</th>
+  <th style="width: 60px; color:#2e75b6;">NO</th>
+  <th style="color:#2e75b6;">TITLE</th>
  <!--  <th style="width: 14px;">WRITER</th> -->
-  <th style="width: 84px;">DATE</th>
-  <th style="width: 60px;">HIT</th>
+  <th style="width: 84px; color:#2e75b6;">DATE</th>
+  <th style="width: 60px; color:#2e75b6;">HIT</th>
  </tr>
+ </thead>
+ <tbody>
  <!--  반복 구간 시작 -->
  <c:forEach var="article" items="${list }" varStatus="status"> 
  <tr>
@@ -78,6 +143,7 @@
  </tr>
  </c:forEach>
  <!--  반복 구간 끝 -->
+ </tbody>
  </table>
  
  <!--paging-->
@@ -105,14 +171,16 @@
  </div>
  
  <div id="list-menu" style="text-align:  right;">
-  <input type="button" value="새글쓰기" onclick="goWrite()" />
+<input type="button" value="새글쓰기" onclick="goWrite()" class="btn"/>
+  <input type = "button" value="인쇄하기" OnClick="print(document.getElementById('printArea').innerHTML)" class="btn" id="print"/>
  </div>
   <div id="search" style="text-align: center;">
   <form id="searchForm" action="./list.nhn" method="get" style="margin: 0;padding: 0;">
    <p style="margin: 0;padding: 0;">
     <input type="hidden" name="boardCd" value="${param.boardCd }" />
-    <input type="text" name="searchWord" size="15" maxlength="30" />
-    <input type="submit" value="검색" />
+    <br>
+    <input type="text" name="searchWord" size="15" maxlength="30"/>
+    <input type="submit" value="검색" class="btn"/>
    </p> 
   </form>
  </div> 
@@ -121,7 +189,7 @@
 <!--  본문 끝 -->
 
   </div><!-- content 끝 -->
- </div><!--  container 끝 -->
+  </div>
 <%--  
  <div id="sidebar">
   <%@ include file="bbs-menu.jsp" %>
@@ -135,7 +203,6 @@
   <%@ include file="../inc/footer.jsp" %>
  </div> --%>
 
-</div>
 
 <div id="form-group" style="display: none;">
  <form id="listForm" action="./list.nhn" method="get">

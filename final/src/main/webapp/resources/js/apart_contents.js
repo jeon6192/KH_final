@@ -106,7 +106,7 @@ $(document).ready(function(){
         $('.left_menu>ul>li a, .li.icon.apt>a').removeClass("active"); 
 
         $(this).addClass('active');
-        let thisClass = $(this).parent().attr('class').substr(-3);
+        let thisClass = $(this).closest('li').attr('class').substr(-3);
         console.log(thisClass);
         if (thisClass == 'cpx') {
             $('.li.text.cpx>a').addClass('active');
@@ -168,6 +168,9 @@ $(document).ready(function(){
         }
     }, 1000);
 
+    $('.navbar-toggle.collapsed').click(function(){
+
+    });
     
     
 }); // document.ready ///////////
@@ -184,7 +187,7 @@ function showApt(dong) {
     let cpx_id = $('#cpx_id').val();
 
     $.ajax({
-        type : "POST",
+        type : "GET",
         data : {"dong" : dong, "complex_id" : cpx_id},
         url : "./apart_dongdetail.com",
         success: function(data){

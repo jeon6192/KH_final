@@ -42,8 +42,11 @@
         <c:if test="${!empty sessionScope.id}">
 	        <c:if test="${!empty Admin_id}">
 		        <li><a href="admin_detail.nhn" class="page-scroll">관리자 페이지</a></li>
+		        <li><a href="total_eventlist.ev" class="page-scroll">분양 관리</a></li>
 	        </c:if>
-	        <li><a href="member_edit.nhn" class="page-scroll">마이페이지</a></li>
+	         <c:if test="${empty Admin_id}">
+	        <li><a href="mypage_main.nhn" class="page-scroll">마이페이지</a></li>
+	        </c:if>
 	        <li><a href="member_logout.nhn" class="page-scroll">로그아웃</a></li>
         </c:if>
         <c:if test="${empty sessionScope.id}">

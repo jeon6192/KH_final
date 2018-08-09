@@ -32,13 +32,31 @@
   WHERE r BETWEEN #{start} AND #{end}
  </select>
  
+ <select id="getHitList" parameterType="hashmap" resultType="Article">
+	<![CDATA[
+	SELECT * FROM (select * from article order by hit desc) 
+	where rownum <= 5 
+	]]>
+ </select>
+ 
  <select id="getTotalRecord" parameterType="hashmap" resultType="int">
   SELECT count(*) FROM article WHERE boardcd = #{boardCd}
+  
   <if test="searchWord != null">
      AND (title LIKE '%${searchWord}%' OR
      content LIKE '%${searchWord}%')
      </if>
  </select> 
+ 
+  <select id="getTotalRecord1" parameterType="hashmap" resultType="int">
+  SELECT count(*) FROM article WHERE boardcd = #{boardCd} order by hit
+  
+  <if test="searchWord != null">
+     AND (title LIKE '%${searchWord}%' OR
+     content LIKE '%${searchWord}%')
+     </if>
+ </select> 
+ 
     <insert id="insert" parameterType="Article">
         INSERT INTO article (articleno, boardcd, title, content,  hit, regdate)
         VALUES

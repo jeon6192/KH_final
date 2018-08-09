@@ -44,7 +44,7 @@
 							
 							<ul class="ul apt text">
 								<c:forEach var="dong" items="${dongList}" varStatus="i">
-									<li>
+									<li class="li apt">
 										<a href="#" onclick="showApt(${dong}); return false;">
 											${dong}동
 										</a>
@@ -121,7 +121,7 @@
 					</div>
 					
 					
-					<div class="cpx_text">
+					<div class="cpx_text loc">
 						<span class="span cpx">위치</span>
 					</div>
 					<div class="map_wrap">
@@ -205,10 +205,19 @@
 							</div>
 						</div>
 						
-						<div class="cpx_text">
-							<span class="span cpx">아파트 소개</span>
+						<div class="div info">
+							<div class="cpx_text">
+								<span class="span cpx">아파트 소개</span>
+							</div>
 							<div class="cpx aptinfo">
 								${cpx.complex_info}
+							</div>
+						</div>
+						
+						<div class="div menu">
+							<div class="button-4">
+								<div class="eff-4"></div>
+								<a href="#" onclick="window.history.back();"> 목록 </a>
 							</div>
 						</div>
 						
@@ -221,14 +230,17 @@
 				<div id="id01" class="w3-modal">
 					<div class="w3-modal-content">
 						<div class="w3-container">
+							<div class="compare-label">
+								<span class="compare-text">비교하기</span>
+							</div>
 							<span class="w3-button w3-display-topright">&times;</span>
 							
 							<div id="compare-contents-div">
 								<table class="compare-table">
 									<tr>
-										<th style="width:40%">Features</th>
-										<th style="width:30%">${cpx.complex_apartname}</th>
-										<th style="width:30%">Pro</th>
+										<th style="width:40%">아파트 이름</th>
+										<td style="width:30%">${cpx.complex_apartname}</td>
+										<td style="width:30%" class="compare-aptname"></td>
 									</tr>
 									<tr>
 										<td>주소</td>
@@ -261,6 +273,11 @@
 										<td>면적</td>
 										<td>${cpx.minarea} ~ ${cpx.maxarea} ㎡</td>
 										<td class="compare-area"></td>
+									</tr>
+									<tr>
+										<th>총 세대수</th>
+										<td>${fn:length(aptList)} 세대</td>
+										<td class="compare-cnt"></td>
 									</tr>
 								</table>
 							</div>

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.naver.house.bean.AdminBean;
+import com.naver.house.bean.Article;
 import com.naver.house.bean.MemberBean;
 
 
@@ -45,6 +46,10 @@ public interface MemberService {
 	public List<MemberBean> getList()throws Exception ;
 
 	public MemberBean getInfo(String id);
+
+	public MemberBean findpassword(Map pm);
+
+	public List<Article> getqnaList(String id)throws Exception ;
 
 
 }

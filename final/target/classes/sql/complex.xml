@@ -3,6 +3,9 @@
 
 <mapper namespace="complex">
 	<insert id="insert" parameterType="complex">
+		<selectKey resultType="int" keyProperty="complex_id" order="BEFORE">
+			select nvl(max(complex_id),0) + 1 from apt_complex
+		</selectKey>
 		insert into apt_complex values(
 			#{complex_id}, #{complex_address}, #{complex_lat}, #{complex_lng}, #{complex_apartname}, 
 			#{complex_sdate}, #{complex_edate}, 
@@ -27,7 +30,7 @@
 		select c.complex_id, c.complex_address, c.complex_lat, c.complex_lng, c.complex_apartname, 
 			c.complex_sdate, c.complex_edate, c.complex_pdate, c.complex_state, c.complex_info, 
 			c.complex_subway, c.complex_station, c.complex_foot, min(a.apart_area) minarea, 
-			max(a.apart_area) maxarea, min(a.apart_price) minprice, max(a.apart_price) maxprice 
+			max(a.apart_area) maxarea, min(a.apart_price) minprice, max(a.apart_price) maxprice, count(a.apart_area) cnt
 		from apt_complex c, apartment a 
 		where c.complex_id = a.complex_id
 			and c.complex_lat between #{swLat} and #{swLng}

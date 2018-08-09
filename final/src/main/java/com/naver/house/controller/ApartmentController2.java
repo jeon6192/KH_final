@@ -43,42 +43,29 @@ public class ApartmentController2 {
 		return new ModelAndView("main");
 	}
 	
-	@RequestMapping(value = "/apart_insertform.com")
+	@RequestMapping(value = "/apart_insertform.com", method = RequestMethod.GET)
 	public ModelAndView insertform_apart() {
 		
 		return new ModelAndView("apart/insert_aptcomplex");
 	}
 	
-	@RequestMapping(value = "/apart_insert.com")
+	@RequestMapping(value = "/apart_insert.com", method = RequestMethod.POST)
 	public ModelAndView insert_apart(AptComplexBean aptComplexBean, 
 			ApartListBean apartListBean, 
 			@RequestParam(value="chk_subway", defaultValue="false") boolean chk_subway) throws Exception {
+		
+		// 분양상태를 0 으로 setting
 		aptComplexBean.setComplex_state(0);
+		
+		// 역세권이 체크 되어 있다면 complex_subway column에 1을 넣어준다
 		if (chk_subway) {
 			aptComplexBean.setComplex_subway(1);
 		} else {
 			aptComplexBean.setComplex_subway(0);
 		}
 		
-		String id1 = aptComplexBean.getComplex_pdate().substring(2).replaceAll("-", "") + new Random().nextInt(1000);
-		aptComplexBean.setComplex_id(Long.parseLong(id1));
-		
-		
-		System.out.println("단지고유 번호 : "+aptComplexBean.getComplex_id());
-		System.out.println("주소 : "+aptComplexBean.getComplex_address()+"(나중에)");
-		System.out.println("위도 : "+aptComplexBean.getComplex_lat()+"(나중에)");
-		System.out.println("경도 : "+aptComplexBean.getComplex_lng()+"(나중에)");
-		System.out.println("아파트명 : "+aptComplexBean.getComplex_apartname());
-		System.out.println("분양시작일 : "+aptComplexBean.getComplex_sdate());
-		System.out.println("분양종료일 : "+aptComplexBean.getComplex_edate());
-		System.out.println("분양시기 : "+aptComplexBean.getComplex_pdate());
-		System.out.println("소개글 : "+aptComplexBean.getComplex_info());
-		System.out.println("역세권 : "+aptComplexBean.getComplex_subway());
-		System.out.println("근처역 : "+aptComplexBean.getComplex_station());
-		System.out.println("소요시간 : "+aptComplexBean.getComplex_foot());
 		
 		List<ApartmentBean> apartmentBeanList = new ArrayList<ApartmentBean>();
-		//int seq = new Random().nextInt(100);
 		
 		for (ApartmentBean apart : apartListBean.getApartBeanList()) {
 			int floor = apart.getApart_floor();
@@ -108,11 +95,8 @@ public class ApartmentController2 {
 				
 				for (int j = 1; j < 5; j++) {
 					
-					//String id2 = id1 + (seq++);
 					ApartmentBean apartBean = new ApartmentBean();
 					
-					//apartBean.setApart_id(Long.parseLong(id2));
-					apartBean.setComplex_id(Long.parseLong(id1));
 					apartBean.setApart_ho(Integer.parseInt(Integer.toString(i) + "0" + j));
 					apartBean.setApart_dong(apart.getApart_dong());
 					apartBean.setApart_floor(apart.getApart_floor());
@@ -122,18 +106,6 @@ public class ApartmentController2 {
 					apartBean.setApart_toilet(apart.getApart_toilet());
 					apartBean.setApart_direction(apart.getApart_direction());
 					apartBean.setApart_interior(apart.getApart_interior());
-					
-					System.out.println("아파트 ID : "+apart.getApart_id());
-					System.out.println("단지고유 번호 : "+apart.getComplex_id());
-					System.out.println("동 : "+apart.getApart_dong());
-					System.out.println("호 : "+apart.getApart_ho());
-					System.out.println("층 : "+apart.getApart_floor());
-					System.out.println("면적 : "+apart.getApart_area());
-					System.out.println("가격 : "+price);
-					System.out.println("방 : "+apart.getApart_room());
-					System.out.println("화장실 : "+apart.getApart_toilet());
-					System.out.println("집방향 : "+apart.getApart_direction());
-					System.out.println("인테리어사진 : "+apart.getApart_interior());
 					
 					apartmentBeanList.add(apartBean);
 				}
@@ -154,7 +126,7 @@ public class ApartmentController2 {
 		//return new ModelAndView("redirect:/apart_list.com");
 	}
 	
-	@RequestMapping(value = "/apart_contents.com")
+	@RequestMapping(value = "/apart_contents.com",  method = RequestMethod.GET)
 	public ModelAndView detail_apart(@RequestParam("complex_id") int complex_id, 
 			@RequestParam(value = "page", defaultValue = "1") int page) throws Exception {
 		ModelAndView mav = new ModelAndView("apart/apart_contents");
@@ -181,7 +153,7 @@ public class ApartmentController2 {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/apart_dongdetail.com")
+	@RequestMapping(value = "/apart_dongdetail.com",  method = RequestMethod.GET)
 	public ModelAndView detail_dong(@RequestParam("dong") int dong, 
 			@RequestParam("complex_id") int complex_id, 
 			HttpServletResponse response) throws Exception {

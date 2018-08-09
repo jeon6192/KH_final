@@ -1,4 +1,4 @@
-drop table apartment
+drop table apartment cascade constraint
 
 CREATE TABLE APARTMENT(
 	APART_ID NUMBER PRIMARY KEY,
@@ -11,11 +11,18 @@ CREATE TABLE APARTMENT(
 	APART_ROOM NUMBER NOT NULL,
 	APART_TOILET NUMBER NOT NULL,
 	APART_DIRECTION VARCHAR2(50) NOT NULL, 
-	APART_INTERIOR VARCHAR2(1000)
+	APART_INTERIOR VARCHAR2(1000), 
+	user_no NUMBER REFERENCES Member(user_no)
 )
+drop table event_list;
+select * from event_list;
+alter t
+select * from apartment;
 
 drop sequence apart_seq
+ALTER TABLE apartment ADD FOREIGN KEY (user_no) REFERENCES member (user_no);
 
+alter table apartment add(user_no number);
 create sequence apart_seq
 	start with 1
 	increment by 1
@@ -103,3 +110,15 @@ group by c.complex_id, c.complex_address, c.complex_lat, c.complex_lng, c.comple
 	
 	
 select max(apart_price) from apartment where complex_id = 190730463;
+
+select c.complex_id, c.complex_address, c.complex_lat, c.complex_lng, c.complex_apartname, 
+	c.complex_sdate, c.complex_edate, c.complex_pdate, c.complex_state, c.complex_info, 
+	c.complex_subway, c.complex_station, c.complex_foot, min(a.apart_area) minarea, 
+	max(a.apart_area) maxarea, min(a.apart_price) minprice, max(a.apart_price) maxprice 
+from apt_complex c, apartment a 
+where c.complex_id = a.complex_id
+	and c.complex_lat between 37.56372654226325 and 126.95345796660939
+	and c.complex_lng between 37.58751721463506 and 127.0335136809066
+group by c.complex_id, c.complex_address, c.complex_lat, c.complex_lng, c.complex_apartname, 
+	c.complex_sdate, c.complex_edate, c.complex_pdate, c.complex_state, c.complex_info, 
+	c.complex_subway, c.complex_station, c.complex_foot

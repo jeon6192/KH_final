@@ -297,7 +297,8 @@ a img{
 }
 .w3-black, .w3-hover-black:hover{
     padding: 4px 10px !important;
-    height: 32px;
+    height: 28px;
+    width: 100%;
 }
 .detail.cpx{
 	padding: 15px 35px;
@@ -347,10 +348,20 @@ a img{
     width: 98%;
     height: 25px;
     margin: 10px 0px;
-    background-color: #2e75b6;
-    color: white;
+    color: black;
     padding: 0px 5px;
     line-height: 25px;
+    border-bottom: 1px solid;
+}
+.cpx_text.loc {
+    border-bottom: none;
+}
+.div.info, .div.menu{
+    width: 98%;
+    box-sizing: border-box;
+}
+.div.menu{
+    padding-right: 1em;
 }
 .span.cpx{
 	font-size: 15px;
@@ -359,9 +370,13 @@ a img{
 	width: 100%;
 	height: 300px;
 	margin-top: 30px;
-	border-top: 1px solid #343c49;
 }
-.cpx.household, .cpx.addr, .cpx.subway, .cpx.pdate, .cpx.aptinfo{
+.cpx.aptinfo{
+    width: 100%;
+    height: 100px;
+    font-weight: 500;
+}
+.cpx.household, .cpx.addr, .cpx.subway, .cpx.pdate{
 	width: 100%;
 	height: 50px;
     font-weight: 500;
@@ -430,7 +445,7 @@ a img{
 }
 
 
-@media only screen and (max-width: 450px){
+@media only screen and (max-width: 380px){
     .footer{
         display: block;
     }
@@ -493,7 +508,7 @@ a img{
 }
 @media (max-width: 850px){
     
-    .div.household, .div.addr, .div.subway, .div.date{
+    .div.household, .div.addr, .div.subway, .div.date, .div.menu{
         width: 98%;
     }
 }
@@ -619,11 +634,20 @@ a img{
     padding: 0px 10px !important;
     padding-bottom: 3px !important;
 }
-.w3-button.w3-black{
-    height: 28px;
-}
 
 /* compare table */
+.compare-label{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    margin-top: 2em;
+}
+.compare-text{
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 50px;
+    height: 50px;
+}
 .compare-table {
     border-collapse: collapse;
     border-spacing: 0;

@@ -1,55 +1,18 @@
 @CHARSET "UTF-8";
-/*시작 구글 맵 css  */
-           /*  html, body {
-              margin: 0;
-              padding: 0;
-              height: 100%;
-              font-family: arial;
-              font-size: 13px;
-              overflow: hidden;
-            } */
+/*글꼴 불러오기*/
+@font-face{
+	font-family : 'NanumGothic';
+	src : url(../fonts/NanumGothic.ttf) format('truetype');
+}
 
-            #map_canvas {
-              float: left;
-              width: 70%;
-              height: 506px;
-            }
-
-            #listing {
-              float: left;
-              margin-left: 1px;
-              width: 29%;
-              height: 506px;
-              overflow: auto;
-              cursor: pointer;
-            }
-            #controls {
-              padding: 5px;
-            }
-            .placeIcon {
-              width: 16px;
-              height: 16px;
-              margin: 2px;
-            }
-            #results {
-              border-collapse: collapse;
-              width: 184px;
-            }
-            #locationField {
-              margin-left: 1px;
-            }
-            #autocomplete {
-              width: 100%;
-              border: 1px solid #ccc;
-            }
-/*끝 구글 맵 css  */
-
+body{
+	font-family: NanumGothic
+}
 /*** The Essential Code ***/
 /*** 공통 시작***/
 html, body {
 	margin: 0;
 	padding: 0;
-	font-family: "돋움", dotum, sans-serif; 
 }
 
 table {
@@ -59,7 +22,6 @@ table {
 div, input, select, textarea, td {
 	color: #646464; 
 	font-size: 12px;
-	font-family: "돋움", dotum, sans-serif; 
 }
 
 img {
@@ -71,11 +33,14 @@ form {
 	padding: 0; 
 }
 /*** 공통 끝***/
-
+@media ( min-width: 1024px ) {
 #wrap {
 	margin: 0 auto;
 	padding: 0;
 	width: 1000px;
+	padding-top: 200px; 
+	padding-left: 100px; 
+	 margin: 0 auto; 
 }
 
 #header {
@@ -95,7 +60,7 @@ form {
 	height: 35px;
 	margin-top: 15px;
 	margin-bottom: 15px;
-	font-family: Verdana, sans-serif;
+	/* font-family: Verdana, sans-serif; */
 	font-weight: bold;
 	font-size: 12px;
 	background: #92B91C;	
@@ -168,7 +133,7 @@ ul#nav li a:hover {
 	width: 173px;
 	margin-left: -1000px;
 	border: 1px solid #DAEAAA;
-	font-family: Verdana, sans-serif;
+	/* font-family: Verdana, sans-serif; */
 	position: relative;
 	top: 7px;
 }
@@ -275,8 +240,8 @@ ul#nav li a:hover {
 
 #bbs th {
 	color: #92B91C;
-	border-top: 1px solid #92B91C;
-	border-bottom: 2px solid #92B91C;
+	
+	border-bottom: 2px solid #2e75b6;
 }
 
 
@@ -312,10 +277,6 @@ ul#nav li a:hover {
 	text-decoration: underline;
 }
 
-#search {
-	padding-bottom: 15px;
-}
-
 #gul-content {
 	border-bottom: 1px solid #ebebeb;
 }
@@ -332,6 +293,10 @@ ul#nav li a:hover {
 	margin: 0 0 15px 0;
 	padding: 0;
 	color: #333;
+}
+
+#search {
+	padding-bottom: 15px;
 }
 
 .comments {
@@ -485,4 +450,17 @@ ul#nav li a:hover {
 	display: none;
 }	
 
+hr.two{width:100%; background:#2e75b6; height:3px;}
+
+.qna_cont{color:#0080FF;  font-size:1.5em; font-weight:bold;}
+
+span{font-size:1.5em; font-weight:bold;}
+
+.a_cont{color:#555;  font-size:1.2em; font-weight:bold;}
+
+input.btn{background-color: white; color: black; border: 2px solid #008CBA;}
+
+}
+
+#text1{font-size: 37px; font-weight: bold}
 /*** 게시판 관련 끝 ***/

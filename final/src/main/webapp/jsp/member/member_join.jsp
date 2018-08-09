@@ -90,7 +90,6 @@ function Postcode() {
 	         url : "./member_idcheck.nhn",
 	         cache : false,
 	         success: function(data){
-	        	 console.log(data);
 	            if (data == -1) {//중복 아이디가 없으면
 	               msg = 'ID 사용가능';
 	              checkconfirm = true;
@@ -158,7 +157,9 @@ function Postcode() {
 </script>
 <style>
 	
-	#join_wrap{padding-top: 200px; padding-left: 100px;  margin: 0 auto; 
+	#join_wrap{
+	 
+	margin: 10% auto; 
 	}
 	tr>td{
 		font-size:13pt;
@@ -217,6 +218,33 @@ function Postcode() {
 	#tel3{
 		margin-left:10px;
 	}
+	
+	@media(max-width:380px){
+	
+	
+	#join_wrap{
+	width:100% !important; 
+	margin: 30% auto; 
+	}
+
+	#join_t{
+	width:50% !important;
+	margin-left:none;
+	margin:auto; 
+	}
+	
+	tr>th{
+	font-size:10pt;
+	display:block !important;
+	
+	}
+	h2{
+	font-size:12pt !important;
+	}
+	
+}
+	
+	
 </style>
 </head>
 <body>

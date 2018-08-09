@@ -7,7 +7,17 @@ $(document).ready(function () {
     if (nowURL == '/house/main.com' || nowURL == '/house/') {
         $('#menu').css('top', '0px');
     }
+
     
+    $(window).scroll(function (event) {
+        didScroll = true;
+    });
+
+    $(window).resize(function(){
+        if ($(window).height() >= $(document).height()) {
+            $('#menu').removeClass('nav-up').addClass('nav-down');
+        }
+    });
 
 });
 
@@ -18,9 +28,7 @@ var navbarHeight = $('#menu').outerHeight(); // 영향을 받을 요소를 선�
 
 var didScroll; // 스크롤시에 사용자가 스크롤했다는 것을 알림 
 
-$(window).scroll(function (event) {
-    didScroll = true;
-});
+
 
 // hasScrolled()를 실행하고 didScroll 상태를 재설정 
 setInterval(function () {
@@ -51,3 +59,4 @@ function hasScrolled() {
     lastScrollTop = st;
 
 }
+

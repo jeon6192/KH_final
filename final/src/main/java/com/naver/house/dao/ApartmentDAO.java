@@ -43,4 +43,10 @@ public class ApartmentDAO {
 	public List<AptComplexBean> getMapList() {
 		return sqlSession.selectList("Search.mapList");
 	}
+
+
+
+	public AptComplexBean2 getNewApt() {
+		return sqlSession.selectOne("Search.newApt");
+	}
 }

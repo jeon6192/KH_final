@@ -15,4 +15,5 @@ public interface ApartmentService2 {
 	
 	public List<AptComplexBean2> searchCpx(Map<String, Double> searchCpxMap) throws Exception;
 
+
 }

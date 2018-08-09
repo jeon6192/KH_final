@@ -14,6 +14,9 @@ CREATE TABLE APARTMENT(
 	APART_INTERIOR VARCHAR2(1000)
 )
 
+delete from apartment
+delete from apt_complex
+
 drop sequence apart_seq
 
 create sequence apart_seq

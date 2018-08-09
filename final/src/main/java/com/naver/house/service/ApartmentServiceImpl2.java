@@ -61,12 +61,6 @@ public class ApartmentServiceImpl2 implements ApartmentService2 {
 		return searchCpxList;
 	}
 
-
-	
-	
-	
-	
-	
 	
 
 }

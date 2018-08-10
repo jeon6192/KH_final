@@ -38,7 +38,7 @@ public class ApartmentController2 {
 	}
 	@RequestMapping("/main.com")
 	public ModelAndView mainPage() {
-		return new ModelAndView("main2");
+		return new ModelAndView("main");
 	}
 	
 	@RequestMapping(value = "/apart_insertform.com", method = RequestMethod.GET)

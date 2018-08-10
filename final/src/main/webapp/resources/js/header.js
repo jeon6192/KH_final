@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     
     if (nowURL == '/house/main.com' || nowURL == '/house/') {
-        $('#menu').css('top', '0px');
+        clearInterval(scrollE);
     }
 
     
@@ -15,7 +15,7 @@ $(document).ready(function () {
 
     $(window).resize(function(){
         if ($(window).height() >= $(document).height()) {
-            $('#menu').removeClass('nav-up').addClass('nav-down');
+            $('#myTopnav').removeClass('nav-up').addClass('nav-down');
         }
     });
 
@@ -23,7 +23,7 @@ $(document).ready(function () {
 
 var lastScrollTop = 0;
 var delta = 5; // 동작의 구현이 시작되는 위치 
-var navbarHeight = $('#menu').outerHeight(); // 영향을 받을 요소를 선택
+var navbarHeight = $('#myTopnav').outerHeight(); // 영향을 받을 요소를 선택
 
 
 var didScroll; // 스크롤시에 사용자가 스크롤했다는 것을 알림 
@@ -31,7 +31,7 @@ var didScroll; // 스크롤시에 사용자가 스크롤했다는 것을 알림
 
 
 // hasScrolled()를 실행하고 didScroll 상태를 재설정 
-setInterval(function () {
+var scrollE = setInterval(function () {
     if (didScroll) {
         hasScrolled();
         didScroll = false;
@@ -47,16 +47,15 @@ function hasScrolled() {
     // If current position > last position AND scrolled past navbar... 
     if (st > lastScrollTop && st > navbarHeight) {
         // Scroll Down 
-        $('#menu').removeClass('nav-down').addClass('nav-up');
+        $('#myTopnav').removeClass('nav-down').addClass('nav-up');
     } else {
         // Scroll Up 
         // If did not scroll past the document (possible on mac)... 
         if (st + $(window).height() < $(document).height()) {
-            $('#menu').removeClass('nav-up').addClass('nav-down');
+            $('#myTopnav').removeClass('nav-up').addClass('nav-down');
         }
     }
     // lastScrollTop 에 현재 스크롤위치를 지정한다. 
     lastScrollTop = st;
 
 }
-

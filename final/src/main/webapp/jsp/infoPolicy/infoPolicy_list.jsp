@@ -180,9 +180,9 @@
     			</table>
     
     			<c:if test="${!empty sessionScope.Admin_no}">
-    			<div id="write">
-    				<input type="button" value="글쓰기" id="writebt" onclick="location='infoPolicy_write.nhn?page=${page}'" style="background-color:white; color:black; border:1.5px solid #008CBA;">
-    			</div>
+	    			<div id="write">
+	    				<input type="button" value="글쓰기" id="writebt" onclick="location='infoPolicy_write.nhn?page=${page}'" style="background-color:white; color:black; border:1.5px solid #008CBA;">
+	    			</div>
     			</c:if>
     		</form>
     	</div>

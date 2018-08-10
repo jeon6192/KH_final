@@ -24,7 +24,7 @@
 		
 	</head>
 	<body>
-		<jsp:include page="../header2.jsp"/>
+		<jsp:include page="../header.jsp"/>
 		<c:set var="cpx" value="${apartMap.aptComplexBean}"/>
 		<c:set var="aptList" value="${apartMap.apartmentBeanList}"/>
 		<div id="wrapper">

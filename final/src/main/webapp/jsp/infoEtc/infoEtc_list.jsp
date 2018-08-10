@@ -181,9 +181,9 @@
     		</table>
     
     		<c:if test="${!empty sessionScope.Admin_no}">
-    		<div id="write">
-    			<input type="button" id="writebt" value="글쓰기" onclick="location='infoEtc_write.nhn'" style="background-color:white; border:1.5px solid #008CBA;">
-    		</div>
+	    		<div id="write">
+	    			<input type="button" id="writebt" value="글쓰기" onclick="location='infoEtc_write.nhn'" style="background-color:white; border:1.5px solid #008CBA;">
+	    		</div>
     		</c:if>
     	</form>
     </div>

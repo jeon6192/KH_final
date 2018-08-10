@@ -12,9 +12,11 @@
 <title>Insert title here</title>
 <link href="./resources/css/optionPublic.css" rel="stylesheet">
 <style> 
+ul{ list-style:none;}
+li{list-style: none;}
 @font-face {
     font-family: 'test';
-    src: url('resources/fonts/NBG.ttf');
+    src: url('./resources/fonts/NBG.ttf');
     font-weight: normal;
     font-style: normal;
 }
@@ -42,7 +44,6 @@
     #fotter3{display:block;}
 }
 
-body{margin:0}
 #wrapper {
     width: 100%;
     height: 100%;
@@ -75,11 +76,12 @@ body{margin:0}
 	text-align:center;
 	font-family: 'test';
 }
-#fotter3 a{color:white; font-family: 'test'}
+#fotter3 a{color:white; font-family: 'test' ; text-decoration:none}
 
-.left-menu ul{ margin-top:10px;}
-.left-menu li a{font-family: 'test';}
+.left-menu ul{padding:0px; margin-top:10px;}
+.left-menu li a{font-family: 'test';text-decoration:none }
 
+.optionContainer a{text-decoration:none}
 .optionContainer{display:inline-block; overflow-y:scroll; font-family:'test';
 	 height: 100%;
     overflow: auto;
@@ -129,7 +131,7 @@ body{margin:0}
 				<a href="./optionView.op">아파트 신청내역</a>
 			</li>
 			<li class="text4">
-				<a href="./member_qnalist.nhn">내가 쓴 QNA </a>
+				<a href="./member_qnalist.nhn?id="${sessionScope.id}>내가 쓴 QNA </a>
 			</li>
 			
 			
@@ -191,14 +193,14 @@ body{margin:0}
 				</c:if>
 			</div>
 		</div>
-		<input type="button" value="마이페이지" onClick="location.href='./optionView.op'" id="gomypage"> 
+		<input type="button" value="마이페이지" onClick="location.href='./mypage_main.nhn'" id="gomypage"> 
 	</div>
 	</div>
 	<div id="fotter3">
 		<ul>
 			<li class="text2"><a href="./member_edit.nhn">정보 수정</a></li>
 			<li class="text3"><a href="./optionView.op">아파트 신청내역</a> </li>
-			<li class="text4"><a href="./member_qnalist.nhn">내가 쓴 QNA</a> </li>
+			<li class="text4"><a href="./member_qnalist.nhn?id="${sessionScope.id}>내가 쓴 QNA</a> </li>
 		</ul>
 	</div>
 </body>

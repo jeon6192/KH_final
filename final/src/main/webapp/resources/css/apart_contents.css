@@ -426,6 +426,9 @@ a img{
     height: 100%;
     line-height: 40px;
 }
+.footer>div>a{
+	text-decoration: none;
+}
 .li.bottom.apt{
     color: white
 }
@@ -572,6 +575,7 @@ a img{
     box-sizing: border-box;
     overflow: hidden;
     margin-left: 20px;
+    z-index: -1;
 }
 .button-4 a{
     font-family: arial;

@@ -120,7 +120,7 @@
 									<a href="#" onclick="sellInLots();"> 분양 신청 </a>
 								</c:if>
 								<c:if test="${state!=0 }">
-									<a href="#"> 분양 신청 완료</a>
+									<a href="#"> 신청 완료</a>
 								</c:if>
 							</div>
 						</div>

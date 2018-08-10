@@ -24,6 +24,8 @@ sys_air number not null,
 nf_cost number not null
 )
 
+select * from option_nf
+
 select opf.f_opkey, opf.bedroom_closet, opf.kitchen_height, opf.balcony, opf.interior_color,
    opnf.nf_opkey, opnf.floor_type, opnf.main_room_slide,
    opnf.dressroom, opnf.cooktop, opnf.kitchen_shelf, opnf.builtin_ref, opnf.builtin_kref, opnf.showerbooth, opnf.sys_air, 

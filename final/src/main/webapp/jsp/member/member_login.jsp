@@ -12,11 +12,11 @@
     <title>free login form -bootstrap</title>
  
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="./resources/css/bootstrap.min.css" rel="stylesheet">
     <!-- font awesome -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="./resources/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom Style -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="./resources/css/style.css" rel="stylesheet">
  
   
 

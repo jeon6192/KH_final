@@ -158,6 +158,7 @@ function print(printArea)
   <p>${thisArticle.htmlContent }</p>
  <p id="file-list" style="text-align: right;">
    <c:forEach var="file" items="${attachFileList }" varStatus="status">
+   	<b>${status.index}</b>
     <a href="javascript:download('${file.filename }')">${file.filename }</a>
    <input type="button" value="x" onclick="deleteAttachFile('${file.attachFileNo }')" />
    <br />

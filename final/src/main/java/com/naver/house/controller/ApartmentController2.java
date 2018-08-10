@@ -9,6 +9,7 @@ import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import com.naver.house.bean.ApartmentBean2;
 import com.naver.house.bean.AptComplexBean;
 import com.naver.house.bean.AptComplexBean2;
 import com.naver.house.service.ApartmentService2;
+import com.naver.house.service.EventService;
 
 @Controller
 public class ApartmentController2 {
@@ -31,6 +33,8 @@ public class ApartmentController2 {
 	@Autowired
 	private ApartmentService2 apartmentService;
 	
+	@Autowired
+	private EventService eventservice;
 	
 	@RequestMapping("/apart_test.com")
 	public String testPage() {
@@ -124,33 +128,41 @@ public class ApartmentController2 {
 	}
 	
 	@RequestMapping(value = "/apart_contents.com",  method = RequestMethod.GET)
-	public ModelAndView detail_apart(@RequestParam("complex_id") int complex_id, 
-			HttpServletRequest request , HttpServletResponse response, @RequestParam(value = "page", defaultValue = "1") int page) throws Exception {
-		
-		
-		ModelAndView mav = new ModelAndView("apart/apart_contents");
-		
-		Map<String, Object> apartMap = apartmentService.detail_complex(complex_id);
-		
-		List<ApartmentBean> apartmentBeanList = (List<ApartmentBean>) apartMap.get("apartmentBeanList");
-		System.out.println("사이즈 : "+apartmentBeanList.size());
-		
-		Set<Integer> apartSet = new TreeSet<Integer>();
-		for (ApartmentBean apart : apartmentBeanList) {
-			apartSet.add(apart.getApart_dong());
-		}
-		
-		List<Integer> dongList = new ArrayList<Integer>();
-		for (Integer dong : apartSet) {
-			dongList.add(dong);
-		}
-		
-		mav.addObject("apartMap", apartMap);
-		mav.addObject("dongList", dongList);
-		
-		
-		return mav;
-	}
+	   public ModelAndView detail_apart(@RequestParam("complex_id") int complex_id, 
+	         @RequestParam(value = "page", defaultValue = "1") int page,HttpServletRequest request) throws Exception {
+	      ModelAndView mav = new ModelAndView("apart/apart_contents");
+	      
+	      Map<String, Object> apartMap = apartmentService.detail_complex(complex_id);
+	      
+	      List<ApartmentBean> apartmentBeanList = (List<ApartmentBean>) apartMap.get("apartmentBeanList");
+	     
+	      
+	      Set<Integer> apartSet = new TreeSet<Integer>();
+	      for (ApartmentBean apart : apartmentBeanList) {
+	         apartSet.add(apart.getApart_dong());
+	      }
+	      
+	      List<Integer> dongList = new ArrayList<Integer>();
+	      for (Integer dong : apartSet) {
+	         dongList.add(dong);
+	      }
+	      HttpSession session =request.getSession();
+	      
+	      HashMap<String,Object> m = new HashMap<String,Object>();
+	      m.put("complex_id", complex_id);
+	      m.put("user_no",session.getAttribute("user_no"));
+	      int state =eventservice.event_list_state(m);
+	      
+	      
+	      System.out.println("complex_id= "+ complex_id+ "state ="+state);
+	      mav.addObject("apartMap", apartMap);
+	      mav.addObject("dongList", dongList);
+	      mav.addObject("state",state);
+	      mav.addObject("complex_id",complex_id);
+	      mav.addObject("user_no",session.getAttribute("user_no"));
+	      
+	      return mav;
+	   }
 	
 	@RequestMapping(value = "/apart_dongdetail.com",  method = RequestMethod.GET)
 	public ModelAndView detail_dong(@RequestParam("dong") int dong, 

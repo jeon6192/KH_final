@@ -5,18 +5,18 @@
 <html>
 <head>
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../resources/css/infomobile.css">
+<link rel="stylesheet" type="text/css" href="../resources/css/infomobile.css"> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>정보게시판</title>
 <script src = "http://code.jquery.com/jquery-latest.js"></script>
 <script src="resources/js/infoDoc.js"></script>
 <style>
 	@font-face{
   		font-family : 'NanumGothic';
-  		src : url(../fonts/NanumGothic.ttf) format('truetype');
+  		src : url(./fonts/NanumGothic.ttf) format('truetype');
 	}
 	body{
 		font-family: NanumGothic
@@ -33,11 +33,14 @@
 <body>
 <div class="infowrap">
 	<h2>정보 게시판</h2>
-	<input type="button" value="필요서류" id="infomenu" onclick="location='infoDoc_list.nhn?page=1'" style="background:#2e75b6;color:white;border:none">
-	<input type="button" value="정책" id="infomenu"  onclick="location='infoPolicy_list.nhn?page=1'" style="border:none">
-	<input type="button" value="기타정보" onclick="location='infoEtc_list.nhn?page=1'" style="border:none">
+	<form>
+		<input type="button" value="필요서류" id="infomenu" onclick="location='infoDoc_list.nhn?page=1'" style="background:#2e75b6;color:white;border:none">
+		<input type="button" value="정책" id="infomenu"  onclick="location='infoPolicy_list.nhn?page=1'" style="border:none">
+		<input type="button" value="기타정보" onclick="location='infoEtc_list.nhn?page=1'" style="border:none">
+	</form>
 	
 	<br>
+	
 	<div id="ohr">
 		<hr id="inhr">
 	</div>
@@ -48,7 +51,7 @@
       <input type= "hidden" name = "INFO_DOC_NUM" value = "${infoDoc.INFO_DOC_NUM}">
       <input type= "hidden" name = "page" value = "${page}">
       <div id="infoDocedit" style="padding-top: 10%;">
-      	<table id = "infoDocedit_t" border="1">
+      	<table id = "infoedit_t" border="1">
             <tr>
                	<th>서류명</th>
                	<td>
@@ -69,7 +72,7 @@
       	</table>
       </div>
       
-      <div id = "infoDocedit_menu" style="text-align:center; padding-top: 5%;">
+      <div id = "infoedit_menu" style="text-align:center; padding-top: 5%;">
          <input type = "submit" value = "수정" style="background-color:white; border:1.5px solid #008CBA;" class = "input_button">
          <input type = "reset" value = "취소" style="background-color:white; border:1.5px solid #008CBA;" class = "input_button" onclick= "$('#INFO_DOC_SUB').focus();">
          <input type = "button" value = "목록" style="background-color:white; border:1.5px solid #008CBA;" class = "intput_button"

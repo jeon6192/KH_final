@@ -4,52 +4,24 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*"%>
 <%@ page import="javax.naming.*"%>
-
+<%@ include file="../header.jsp"%>
+<%-- <%@ include file="../header.jsp"%> --%>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="./resources/css/infomobile.css" type="text/css" media="( max-width: 1024px )">
+<link rel="stylesheet" href="./resources/css/infomobile.css" type="text/css" media="( min-width: 1024px )">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="./resources/css/infomobile.css">
+<link rel="stylesheet" type="text/css" href="./resources/css/infomobile.css"> -->
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<style>
-	@font-face{
-  		font-family : 'NanumGothic';
-  		src : url(../fonts/NanumGothic.ttf) format('truetype');
-	}
-	body{
-		font-family: NanumGothic
-	}
-	#bbs{
-    	padding-top: 12%; width:1000px; padding-bottom:5%;  margin: 0 auto;
-	}
-	#doctable {width:70%; margin:0 auto}
-	#doctable tr{padding: 5px;}
-	#doctable td {color:#000000; }
-	#doctable tr:last-child td {text-align:center;}
-	#line {float:right}
-	#write {float:right; padding-right:15%}
-	p {text-align:center}
-	table {border-collapse:collapse}
-	tr {height:15pt}
-	#inhr{width:100%}
-	#ohr{margin-top:20px}
-	#ohr hr{background-color: #2e75b6;}
-	#findline {width:100%}
-	#findline select{float:left; padding:2px}
-	#findline form{float:right}
-	#findline a{color:#000000}
-	#findline a:hover, a:focus {
-		text-decoration: none;
-		color: #2e75b6;
-	}
-</style>
+
 <title>정보 게시판</title>
 <script src = "http://code.jquery.com/jquery-latest.js"></script>
 <script src="resources/js/infoDoclist_line.js"></script>
-<script>
+<!-- <script>
 $(function(){
 	$("#viewcount").val('${limit}');
 })
@@ -57,16 +29,11 @@ $("#infomenu").onmousedown(function(){
 	$("#infomenu").style.background='blue';
 	$("#infomenu").style.color='white';
 })
-</script>
+</script> -->
 </head>
 <body>
-
-	<div id="header">
-		<%@ include file="../header.jsp"%>
-	</div>
-	
-	<div class="bbs" class="table-responsive">
-		 <table class="table table-hover">
+	<%-- <jsp:include page="../header.jsp"/> --%>
+	<div class="infowrap">
 		<h2>정보 게시판</h2>
 		<form>
 			<input type="button" value="필요서류" id="infomenu" onclick="location='infoDoc_list.nhn?page=1'" style="background:#2e75b6;color:white;border:none">
@@ -90,35 +57,31 @@ $("#infomenu").onmousedown(function(){
        		}
     	</script>
        	
-    	<div id="findline">
+    	<div id="findline" style="padding-bottom: 40px;">
+			
        		<form method="get" action="infoDoc_find_ok.nhn" id="findtable" onsubmit="return find_check()">
-       			<table  >
-       				<tr>
+       			<table>
+       				<tr id="find">
        					<th>
-       						<select name="find_field" >
+       						<select name="find_field" id="find_field">
        							<option value="INFO_DOC_SUB">서류명</option>
        						</select>
        					</th>
+       					
        					<td>
-       						<input name="find_name" id="find_name" size="18"
-       							class="input_box">
+       						<input name="find_name" id="find_name" class="input_box">
        						<input type="submit" value="검색" class="input_button" style="background-color:#2e75b6; color:white; border:1px solid black;">
        					</td>
        				</tr>
        			</table>
        		</form>
-    	
-       	
-    		<select id="viewcount">
+       		
+       		<select id="viewcount">
 				<option value="5" selected>5줄 보기</option>
 				<option value="10">10줄 보기</option>
 				<option value="20">20줄 보기</option>
 			</select>
 		</div>
-	
-	<div id="brt" style="padding-bottom: 15px;">
-		<br>
-	</div>
        		
     <!-- 게시판 리스트 -->
     <div id="contentdown">
@@ -126,13 +89,13 @@ $("#infomenu").onmousedown(function(){
     </div>
     <div id="infotable_wrap">
     	<form>
-    		<c:if test="${listcount != 0 }">
-    			<table border="1" id="doctable" style="margin-bottom:20px;">
+    			<table border="1" id="infotable" style="margin-bottom:20px;">
     				<!-- 레코드가 있으면 -->
     				<tr>
-      					<th colspan = "2">서류정보 - list</th>
+      					<th>서류정보 - list</th>
+      					<th>글 개수 : ${listcount}</th>
     				</tr>
-    
+    				<c:if test="${listcount != 0 }">
     				<tr>
        					<th width = "20%"><div>번호</div></th>
        					<th width = "80%"><div>서류명</div></th>
@@ -142,8 +105,13 @@ $("#infomenu").onmousedown(function(){
    					<c:forEach var = "b" items = "${infoDoclist}">
    		 			<tr>
        					<td>
-							<a href = "infoDoc_cont.nhn?infoDoc_num=${b.INFO_DOC_NUM}&page=${page}&state=cont">
-          					<c:out value = "${infoDoc_num}"/><%--num 출력 --%></a>
+       						<c:if test="${!empty sessionScope.Admin_no}">
+       							<a class="doc_admin" href = "infoDoc_cont.nhn?infoDoc_num=${b.INFO_DOC_NUM}&page=${page}&state=cont">
+          						<c:out value = "${infoDoc_num}"/><%--num 출력 --%></a>
+       						</c:if>
+       						<c:if test="${empty sessionScope.Admin_no}">
+       							<c:out value = "${infoDoc_num}"/>
+       						</c:if>
           					<c:set var = "infoDoc_num" value = "${infoDoc_num-1}"/><%-- num = num-1 --%>
        					</td>
        
@@ -184,27 +152,25 @@ $("#infomenu").onmousedown(function(){
          					<a href = "./infoDoc_list.nhn?page=${endpage}">&gt;</a>
        					</td>                 
     				</tr>
+    			</c:if>
     
     			<!-- 레코드가 없으면 -->
     			<c:if test="${listcount == 0 }">
       				<tr>
-          				<td style = "text-align:right">
-             				등록된 글이 없습니다.
-          				</td>   
+          				<td colspan="2" style = "text-align:center">
+             					등록된 글이 없습니다.
+          				</td>  
        				</tr>
     			</c:if>
     		</table>
-    	</c:if>
-    	
     	<c:if test="${!empty sessionScope.Admin_no}">
-	    	<div id="write">
-	    		<input type="button" id="writebt" value="글쓰기" onclick="location='infoDoc_write.nhn'" style="background-color:white; border:1.5px solid #008CBA;">
-	    	</div>
-    	</c:if>
+        	<div id="write">
+          		<input type="button" id="writebt" value="글쓰기" onclick="location='infoDoc_write.nhn'" style="background-color:white; border:1.5px solid #008CBA;">
+        	</div>
+      	</c:if>
     		
     	</form>
     	</div>
-    	</table>
 	</div>
 </body>
 </html>

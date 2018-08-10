@@ -2,106 +2,118 @@
  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="house_event">
-	
-	
-	<insert id="insertEvent" parameterType="Event_list">
-	insert into values(event_no_seq.nextval,#{user_no},#{event_day},#{Apart_id},0)
-	</insert>
-	
-	<update id="fail" parameterType="int">
-	update  event_list set event_check=2 where event_no=#{event_no}
-	</update>
-	
-	<update id="win" parameterType="int">
-	update  event_list set event_check=1 where event_no=#{event_no}
-	</update>
-	
-	<select id="apt_list" resultType="complex">
-	select * from apt_complex order by complex_id
-	</select>
-	
-	<select id="apt_list_end" resultType="complex">
-	select * from apt_complex where complex_state =1 or complex_state =2 order by complex_id
-	</select>
-	
-	<select id="apt_list_play" resultType="complex">
-	select * from apt_complex where complex_state=0 order by complex_id
-	</select>
-	
-	<select id="apt_event_detail" parameterType="int" resultType="apart">
-	select * from APARTMENT where complex_id =#{id}
-	</select>
-	
-	<select id="apt_event_detail_name" parameterType="int" resultType="complex">
-	select * from apt_complex where complex_id=#{id}
-	</select>
-	
-	<select id="event_list_count" parameterType="int" resultType="int">
-	select count(*) from event_list where complex_id=#{id} and event_check=0
-	</select>
-	
-	<select id="event_list" parameterType="int" resultType="Event_list">
-	select * from event_list where complex_id=#{id} and event_check=0
-	</select>
-	
-	
-	<update id="update_win" parameterType="hashmap">
-	update event_list set event_check=1 where complex_id=#{complex_id} and user_no=#{user_no}
-	</update>
-	
-	<update id="update_lose" parameterType="hashmap">
-	update event_list set event_check=2 where complex_id=#{complex_id} and user_no=#{user_no}
-	</update>
-	
-	<update id="update_apart_user_no" parameterType="hashmap">
-	update apartment set user_no=#{user_no} where apart_id=#{apart_id}
-	</update>
-	
-	
-	
-	<select id="event_list_totalcount" parameterType="int" resultType="Event_list">
-	select a.user_no from event_list a ,member b where a.complex_id=#{id} and a.event_check=0
-	and a.user_no=b.user_no  order by b.user_no desc
-	</select>
-	
-	<select id="event_aptcount" parameterType="int" resultType="int">
-	select count(*) from apartment where complex_id =#{id} and user_no is null
-	</select>
-	
-	
-	<select id="search_list" parameterType="hashmap" resultType="complex">
-	select * from apt_complex
-	
-	
-	<if test='state.equals("1")'>
+   
+   
+   <insert id="insertEvent" parameterType="Event_list">
+   insert  into event_list values(event_no_seq.nextval,#{user_no},sysdate,#{complex_id},0)
+   </insert>
+   
+   <update id="fail" parameterType="int">
+   update  event_list set event_check=2 where event_no=#{event_no}
+   </update>
+   
+   <update id="win" parameterType="int">
+   update  event_list set event_check=1 where event_no=#{event_no}
+   </update>
+   
+   <select id="apt_list" resultType="complex">
+   select * from apt_complex order by complex_id
+   </select>
+   
+   <select id="apt_list_end" resultType="complex">
+   select * from apt_complex where complex_state =1 or complex_state =2 order by complex_id
+   </select>
+   
+   <select id="apt_list_play" resultType="complex">
+   select * from apt_complex where complex_state=0 order by complex_id
+   </select>
+   
+   <select id="apt_event_detail" parameterType="int" resultType="apart">
+   select * from APARTMENT where complex_id =#{id}
+   </select>
+   
+   <select id="apt_event_detail_name" parameterType="int" resultType="complex">
+   select * from apt_complex where complex_id=#{id}
+   </select>
+   
+   <select id="event_list_count" parameterType="int" resultType="int">
+   select count(*) from event_list where complex_id=#{id} and event_check=0
+   </select>
+   
+   <select id="event_list" parameterType="int" resultType="Event_list">
+   select * from event_list where complex_id=#{id} and event_check=0
+   </select>
+   
+   
+   <update id="update_win" parameterType="hashmap">
+   update event_list set event_check=1 where complex_id=#{complex_id} and user_no=#{user_no}
+   </update>
+   
+   <update id="update_lose" parameterType="hashmap">
+   update event_list set event_check=2 where complex_id=#{complex_id} and user_no=#{user_no}
+   </update>
+   
+   <update id="update_apart_user_no" parameterType="hashmap">
+   update apartment set user_no=#{user_no} where apart_id=#{apart_id}
+   </update>
+   
+   
+   
+   <select id="event_list_totalcount" parameterType="int" resultType="Event_list">
+   select a.user_no from event_list a ,member b where a.complex_id=#{id} and a.event_check=0
+   and a.user_no=b.user_no  order by b.user_no desc
+   </select>
+   
+   <select id="event_aptcount" parameterType="int" resultType="int">
+   select count(*) from apartment where complex_id =#{id} and user_no is null
+   </select>
+   
+   
+   <select id="search_list" parameterType="hashmap" resultType="complex">
+   select * from apt_complex
+   
+   
+   <if test='state.equals("1")'>
 
-		<if test='search.equals("1")'>
-		where complex_address like #{keyword}
-		</if>
-		<if test='search.equals("2")'>
-		where complex_apartname like #{keyword}
-		</if>
-	</if>
-	
-	<if test='state.equals("3")'>
-	
-	where complex_state =0
-		<if test='search.equals("1")'>
-		and complex_address like #{keyword}
-		</if>
-		<if test='search.equals("2")'>
-		and complex_apartname like #{keyword}
-		</if>
-	</if>
-	
-	<if test='state.equals("2")'>
-	where (complex_state=1 or complex_state=2)
-		<if test='search.equals("1")'>
-		and complex_address like #{keyword}
-		</if>
-		<if test='search.equals("2")'>
-		and complex_apartname like #{keyword}
-		</if>
-	</if>
-	</select>
+      <if test='search.equals("1")'>
+      where complex_address like #{keyword}
+      </if>
+      <if test='search.equals("2")'>
+      where complex_apartname like #{keyword}
+      </if>
+   </if>
+   
+   <if test='state.equals("3")'>
+   
+   where complex_state =0
+      <if test='search.equals("1")'>
+      and complex_address like #{keyword}
+      </if>
+      <if test='search.equals("2")'>
+      and complex_apartname like #{keyword}
+      </if>
+   </if>
+   
+   <if test='state.equals("2")'>
+   where (complex_state=1 or complex_state=2)
+      <if test='search.equals("1")'>
+      and complex_address like #{keyword}
+      </if>
+      <if test='search.equals("2")'>
+      and complex_apartname like #{keyword}
+      </if>
+   </if>
+   </select>
+   
+   
+   <select id="event_list_state" parameterType="hashmap" resultType="int">
+   select count(*)
+   from event_list
+   where user_no=#{user_no}
+   and complex_id=#{complex_id}
+   </select>
+   
+   <update id="restartform" parameterType="int">
+   update apt_complex set complex_state=0 where complex_id=#{id}
+   </update>
 </mapper>

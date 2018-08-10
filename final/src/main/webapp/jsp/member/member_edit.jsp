@@ -67,21 +67,13 @@ tr>th {
 	width: 130px;
 }
 
-#tel1 {
-	 margin-top: -10px;
-	margin-left: -190px; 
+#tel4{
+	width:10%
+	}
 	
-}
-
-#tel2 {
-	margin-left: -190px;
-	
-}
-
-#tel3 {
-	 margin-left: 10px;
-	
-}
+#tel3, #tel2, #tel4{ 
+	display:inline-block;
+	}
 
 @media ( max-width :380px) {
 	#join_wrap {
@@ -131,178 +123,204 @@ tr>th {
 </style>
 
 <script>
-	$(document).ready(function() {
-		var tema = "home" + $('#homelesschecked').val();
-		var tem = "#" + tema;
-		$(tem).attr("checked", true);
+function Postcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-		var tema1 = "age" + $('#agechecked').val();
-		var tem1 = "#" + tema1;
-		$(tem1).attr("checked", true);
+            // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 도로명 조합형 주소 변수
 
-		var tema2 = "family" + $('#familysizechecked').val();
-		var tem2 = "#" + tema2;
-		$(tem2).attr("checked", true);
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                extraRoadAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if(extraRoadAddr !== ''){
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+            // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+            if(fullRoadAddr !== ''){
+                fullRoadAddr += extraRoadAddr;
+            }
 
-		var tema3 = $('#telchecked').val();
-		$('.tel1').val(tema3).prop("checked", true);
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('address1').value = fullRoadAddr;
+            document.getElementById('address2').value = data.jibunAddress;
 
-		var splitTel2 = "${editm.getTel()}";
-		var splitTel = splitTel2.split("-");
-		var splitTel1 = (splitTel[0]);
-		var splitTel2 = (splitTel[1]);
-		var splitTel3 = (splitTel[2]);
-
-		$('#tel1').val(splitTel1);
-		$('#tel2').val(splitTel2);
-		$('#tel3').val(splitTel3);
-	})
-
-	function Postcode() {
-		new daum.Postcode({
-			oncomplete : function(data) {
-				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-				// 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
-				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-				var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
-				var extraRoadAddr = ''; // 도로명 조합형 주소 변수
-
-				// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-				// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-				if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-					extraRoadAddr += data.bname;
-				}
-				// 건물명이 있고, 공동주택일 경우 추가한다.
-				if (data.buildingName !== '' && data.apartment === 'Y') {
-					extraRoadAddr += (extraRoadAddr !== '' ? ', '
-							+ data.buildingName : data.buildingName);
-				}
-				// 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-				if (extraRoadAddr !== '') {
-					extraRoadAddr = ' (' + extraRoadAddr + ')';
-				}
-				// 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
-				if (fullRoadAddr !== '') {
-					fullRoadAddr += extraRoadAddr;
-				}
-
-				// 우편번호와 주소 정보를 해당 필드에 넣는다.
-				document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
-				document.getElementById('address1').value = fullRoadAddr;
-				document.getElementById('address2').value = data.jibunAddress;
-
-			}
-		}).open();
-	}
-
-	var checkconfirm = false;//아이디 중복 체크 안한 경우
+        }
+    }).open();
+}
+	
+	
+	var checkconfirm=false;//아이디 중복 체크 안한 경우
 	var checkid = '';
-	function id_check() {
-
-		var inputId = $('#id').val();
-		var checkId = /^[a-z]{1}[a-z0-9_]{3,11}$/;
-		var msg = '';
-
-		if (!checkId.test(inputId)) {
-			msg = '영어 소문자로 시작하는 영문자 + 숫자 4~12자리만 입력가능합니다.';
-			$('#idcheck').text(msg);
-		} else {
-			$.ajax({
-				type : "POST",
-				data : {
-					"id" : inputId
-				},
-				url : "./member_idcheck.nhn",
-				cache : false,
-				success : function(data) {
-					if (data == -1) {//중복 아이디가 없으면
-						msg = 'ID 사용가능';
-						checkconfirm = true;
-						checkid = inputId;
-					} else {//중복 아이디가 있으면
-						msg = 'ID 중복';
-					}
-					$('#idcheck').text(msg);
-				},
-				error : function() {
-					alert("error");
-				}
-			}); // ajax
-		}//else
+	function id_check(){
+	    
+	     
+	   var inputId = $('#id').val();
+	   var checkId = /^[a-z]{1}[a-z0-9_]{3,11}$/;
+	   var msg = '';
+	   
+	     if(!checkId.test(inputId)) {
+	         msg = '영어 소문자로 시작하는 영문자 + 숫자 4~12자리만 입력가능합니다.';
+	         $('#idcheck').text(msg);
+	     } else {
+	        $.ajax({
+	         type : "POST",
+	         data : {"id" : inputId},
+	         url : "./member_idcheck.nhn",
+	         cache : false,
+	         success: function(data){
+	            if (data == -1) {//중복 아이디가 없으면
+	               msg = 'ID 사용가능';
+	              checkconfirm = true;
+	              checkid=inputId;
+	            } else {//중복 아이디가 있으면
+	               msg = 'ID 중복';
+	            }
+	            $('#idcheck').text(msg);
+	         },
+	         error: function() {
+	            alert("error");
+	         }
+	      }); // ajax
+	     }
 	}
-
-	function post_search() {
-		alert("우편번호 검색 버튼을 클릭하세요!");
-	}
-
-	function check() {
-
-		/* if($.trim($("#join_id").val())==""){
-		  alert("회원 아이디를 입력하세요!");
-		  $("#join_id").val("").focus();
-		  return false;
-		 }  */
-		/* if(checkconfirm==false||checkid != $("#join_id").val()) {
-		  alert("아이디 중복체크 하세요!");
-		  return false;
-		} */
-		if ($.trim($("#password").val()) == "") {
-
-			alert("회원비번을 입력하세요!");
-			$("#password").val("").focus();
-			return false;
-		}
-		/* if($.trim($("#password2").val())==""){
-		  alert("회원비번확인을 입력하세요!");
-		  $("#password2").val("").focus();
-		  return false;
-		}
-		
-		if($.trim($("#password1").val())!=$.trim($("#password2").val())){
-		  //!=같지 않다 연산. 비번이 다를 경우
-		  alert("비번이 다릅니다.");
-		  $("#password1").val("");
-		  $("#password2").val("");
-		  $("#password1").focus();
-		  return false;
-		} */
-		if ($.trim($("#name").val()) == "") {
-			alert("회원이름을 입력하세요!");
-			$("#name").val("").focus();
-			return false;
-		}
-		if (/* $.trim */($("#postcode").val()) == "") {
-			alert("우편번호를 입력하세요!");
-			$("#postcode").val("").focus();
-			return false;
-		}
-
-	}
-
-	function showConfirm() {
-		var input = confirm('정말로 탈퇴하시겠습니까?');
-		var user_no = $('#user_no').val();
-		if (input == true) {
-			$.ajax({
-				type : "POST",
-				data : {
-					"user_no" : user_no
-				},
-				url : "./member_del.nhn",
-				cache : false,
-				success : function(data) {
-					alert("탈퇴되었습니다.");
-					location.href = "./member_login.nhn";
-				},
-				error : function() {
-					alert("error");
-				}
-			});
-		} else {
-			$("#password").val("").focus();
-		}
-	}
+	      
+	 function check(){
+		 
+	      if($("#id").val()==""){
+	    	  alert($("#id").val());
+	    	  $("#id").val("").focus();
+	    	  return false;
+	      } 
+	      if(checkconfirm==false||checkid != $("#id").val()) {
+	    	  alert("아이디 중복체크 하세요!");
+	    	  return false;
+	      }
+	      if($.trim($("#password").val())==""){
+	    	  alert("회원비번을 입력하세요!");
+	    	  $("#password").val("").focus();
+	    	  return false;
+	      }
+	     
+	     
+	      if($.trim($("#name").val())==""){
+	    	  alert("회원이름을 입력하세요!");
+	    	  $("#name").val("").focus();
+	    	  return false;
+	      }
+	      if($.trim($("#idNumber1").val())==""){
+	    	  alert("주민등록번호를 입력하세요!");
+	    	  $("#idNumber1").val("").focus();
+	    	  return false;
+	      }
+	      if($.trim($("#idNumber2").val())==""){
+	    	  alert("주민등록번호를 입력하세요!");
+	    	  $("#idNumber2").val("").focus();
+	    	  return false;
+	      }
+	    
+	      if($.trim($("#address1").val())==""){
+	    	  alert("주소를 입력하세요!");
+	    	  $("#address1").val("").focus();
+	    	  return false;
+	      }
+	      
+	      if($.trim($("#address2").val())==""){
+	    	  alert("주소를 입력하세요!");
+	    	  $("#address2").val("").focus();
+	    	  return false;
+	      }
+	      
+	      if($.trim($("#address3").val())==""){
+	    	  alert("나머지 주소를 입력하세요!");
+	    	  $("#address3").val("").focus();
+	    	  return false;
+	      }
+	      
+	      if($.trim($("#postcode").val())==""){
+	    	  alert("우편번호를 입력하세요!");
+	    	  $("#postcode").val("").focus();
+	    	  return false;
+	      }
+	      
+	      if($("#tel1").val()==""){
+	    	  alert("휴대폰 번호 첫번째 자리를 선택하세요!");
+	    	  return false;
+	      }
+	      
+	      if($.trim($("#tel2").val())==""){
+	    	  alert("휴대폰 번호 두번째 자리를 선택하세요!");
+	    	  $("#tel2").val("").focus();
+	    	  return false;
+	      }
+	      
+	      if($.trim($("#tel3").val())==""){
+	    	  alert("휴대폰 번호 세번째 자리를 선택하세요!");
+	    	  $("#tel3").val("").focus();
+	    	  return false;
+	      }
+	      
+	      
+	      var re = /^[0-9]+$/;
+	        if(!re.test(tel2.value)) {
+	               alert("휴대폰 번호는 숫자만 넣으셔야 합니다.");
+	               tel2.value="";
+	               tel2.focus();
+	               return false;
+	        }
+	        
+	      var re2 = /^[0-9]+$/;
+	        if(!re2.test(tel3.value)) {
+	               alert("휴대폰 번호는 숫자만 넣으셔야 합니다.");
+	               tel3.value="";
+	               tel3.focus();
+	               return false;
+	        }  
+	      
+	      var re3 = /^[0-9]+$/;
+	        if(!re3.test(idNumber1.value)) {
+	               alert("주민등록번호는 숫자만 넣으셔야 합니다.");
+	               idNumber1.value="";
+	               idNumber1.focus();
+	               return false;
+	        } 
+	        
+	        
+	        var re4 = /^[0-9]+$/;
+	        if(!re4.test(idNumber2.value)) {
+	               alert("주민등록번호는 숫자만 넣으셔야 합니다.");
+	               idNumber2.value="";
+	               idNumber2.focus();
+	               return false;
+	        } 
+	        
+	        if($('input:radio[name=homelessTerm]').is(':checked') != true){
+	        			alert("무주택기간을 선택해주세요.");
+	        			return false;
+	        }
+	        
+	        if($('input:radio[name=age]').is(':checked') != true){
+	        	alert("나이를 선택해 주세요");
+	        	return false;
+	        }
+	        if($('input:radio[name=familySize]').is(':checked') != true){
+	        	alert("부양가족수를 선택해 주세요");
+	        	return false;
+	        }
+	        
+	
+	 }
 </script>
 <style>
 </style>
@@ -327,7 +345,7 @@ tr>th {
 						value="${editm.id}" readonly="readonly"></td>
 				</tr>
 				<tr>
-					<th>회원비번</th>
+					<th>비밀번호</th>
 					<td><input type="password" name="password" id="password"
 						size="14" class="input_box" value="${editm.password}"></td>
 				</tr>
@@ -335,8 +353,8 @@ tr>th {
 
 
 				<tr>
-					<th>회원이름</th>
-					<td><input name="name" id="name" size="14" class="input_box"
+					<th>이름</th>
+					<td><input name="name" id="name" size="14" class="input_box" maxlength="5"
 						value="${editm.name } " readonly="readonly"></td>
 				</tr>
 
@@ -359,22 +377,20 @@ tr>th {
 				</tr>
 
 
-				<tr>
-					<th>휴대전화번호</th>
-					<td>
-						<div class="form-group" >
-							<label for="gender1" class="col-sm-2 control-label"></label>
-							<div class="col-sm-2">
-								; <select class="form-control selcls" id="tel1" name="tel1">
-									<option>010</option>
-									<option>019</option>
-								</select>
-							</div>
-						</div> <input name="tel2" id="tel2" size="10" maxlength="4"
-						class="input_box"> <input name="tel3" id="tel3" size="10"
-						maxlength="4" class="input_box">
-					</td>
-				</tr>
+				<tr id="tel">
+		            <th>휴대전화번호</th>
+		            <td>
+		      
+		        	
+			            <select class="form-control selcls" id="tel4">
+							<option>010</option>
+							<option>019</option>
+						</select>
+				
+		               <input name="tel2" id="tel2" size="10" maxlength="4" class="input_box">
+		                <input name="tel3" id="tel3" size="10" maxlength="4" class="input_box">
+		            </td>
+         		</tr>
 
 				<tr>
 					<th>주민등록번호</th>

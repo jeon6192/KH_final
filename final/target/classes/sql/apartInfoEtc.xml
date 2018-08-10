@@ -5,8 +5,8 @@
 <mapper namespace="Test">
 	<insert id="infoEtc_insert" parameterType="infoEtcbean">
 		insert into APART_INFO_ETC 
-		(INFO_ETC_NUM, INFO_ETC_SUB, INFO_ETC_VISIT, INFO_ETC_DATE, INFO_ETC_FILE, INFO_ETC_CONT, INFO_ETC_ORIGINAL) values 
-		(INFO_ETC_num_seq.nextval, #{INFO_ETC_SUB}, 0, SYSDATE, #{INFO_ETC_FILE , jdbcType = VARCHAR}, #{INFO_ETC_CONT}, #{INFO_ETC_ORIGINAL , jdbcType = VARCHAR})
+		(INFO_ETC_NUM, Admin_no, INFO_ETC_SUB, INFO_ETC_VISIT, INFO_ETC_DATE, INFO_ETC_FILE, INFO_ETC_CONT, INFO_ETC_ORIGINAL) values 
+		(INFO_ETC_num_seq.nextval, #{Admin_no}, #{INFO_ETC_SUB}, 0, SYSDATE, #{INFO_ETC_FILE , jdbcType = VARCHAR}, #{INFO_ETC_CONT}, #{INFO_ETC_ORIGINAL , jdbcType = VARCHAR})
 	</insert>
 	
 	<select id="infoEtc_count" resultType="int">

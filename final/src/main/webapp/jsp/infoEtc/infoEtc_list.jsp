@@ -13,7 +13,7 @@
 <style>
 	@font-face{
   		font-family : 'NanumGothic';
-  		src : url(../fonts/NanumGothic.ttf) format('truetype');
+  		src : url(./fonts/NanumGothic.ttf) format('truetype');
 	}
 	body{
 		font-family: NanumGothic
@@ -106,8 +106,8 @@
     		<table border="1" id="etctable" style="margin-bottom:20px;">
     			<!-- 레코드가 있으면 -->
     			<tr>
-       				<th colspan = "2">기타정보- list</th>
-       				<th colspan = "2">
+       				<th colspan = "3">기타정보- list</th>
+       				<th>
          			 	글 개수 : ${listcount}
        				</th>
     			</tr>
@@ -172,8 +172,7 @@
     			<!-- 레코드가 없으면 -->
     			<c:if test="${listcount == 0 }">
        				<tr>
-          				<td colspan="4">정보게시판- 정책list</td>
-          				<td style = "text-align:right">
+          				<td colspan="4" style = "text-align:center">
              				등록된 글이 없습니다.
           				</td>   
        				</tr>
@@ -181,10 +180,10 @@
     		</table>
     
     		<c:if test="${!empty sessionScope.Admin_no}">
-	    		<div id="write">
-	    			<input type="button" id="writebt" value="글쓰기" onclick="location='infoEtc_write.nhn'" style="background-color:white; border:1.5px solid #008CBA;">
-	    		</div>
-    		</c:if>
+          		<div id="write">
+           			<input type="button" id="writebt" value="글쓰기" onclick="location='infoEtc_write.nhn'" style="background-color:white; border:1.5px solid #008CBA;">
+          		</div>
+        	</c:if>
     	</form>
     </div>
 </div>

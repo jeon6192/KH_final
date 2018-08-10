@@ -290,11 +290,11 @@ public class OptionsAction {
 		
 		System.out.println(request.getContextPath());
 		
-		String filePath="C:\\Users\\user1\\git\\KH_final2\\final\\src\\main\\webapp\\resources\\optionfiles\\";
+		String filePath="C:\\Users\\user1\\git\\KH_final\\final\\src\\main\\webapp\\resources\\optionfiles\\";
 
 		//List<dataType> data="데이터 담을 리스트";
-		
 		AptComplexBean aptname=opserviceF.getAptXinfo(complex_id);
+
 		String aptname2=aptname.getComplex_apartname();
 		aptname2=aptname2.trim();
 		//페이지에 찍어보기
@@ -419,8 +419,7 @@ public class OptionsAction {
 			else
 				ex1.setShowerbooth("선택 없음");
 			
-			
-			System.out.println("**19개 돌걸 ?? " + ex1);
+		
 			
 			for(int d : dongs) {
 				if(eachBean.getApart_dong()==d) { //가져온 동이 101 이면

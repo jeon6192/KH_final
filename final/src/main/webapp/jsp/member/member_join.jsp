@@ -23,14 +23,38 @@
 
 <script>
 
-function check(f){
+
+
+
+
+/* function check(f){
 	var n = f.familySize.length;
 	for(var i=0;i<n;i++){
 		if(f.familySize[i].checked==false)
-			alert("부양가족수를 체크하세요")
+			alert("부양가족수를 체크하세요");
 	}
-	
+
 }
+
+ */
+/* function check(h){
+	var c = h.homelessTerm.length;
+	for(var i=0;i<c;i++){
+		if(h.homelessTerm[i].checked==false)
+			alert("무주택 기간을 체크하세요");
+	}
+
+} */
+
+
+/* function check(a){
+	var q = a.age.length;
+	for(var i=0;i<n;i++){
+		if(f.age[i].checked==false)
+			alert("나이를 체크하세요");
+	}
+
+} */
 
 
 function Postcode() {
@@ -106,8 +130,8 @@ function Postcode() {
 	     }
 	}
 	      
-	      function check(){
-	      
+	 function check(){
+		 
 	      if($("#id").val()==""){
 	    	  alert($("#id").val());
 	    	  $("#id").val("").focus();
@@ -140,16 +164,97 @@ function Postcode() {
 	    	  return false;
 	      }
 	    
-	      if($.trim($("#idNumber2").val())==""){
-	    	  alert("주민등록번호를 입력하세요!");
-	    	  $("#idNumber2").val("").focus();
+	      if($.trim($("#address1").val())==""){
+	    	  alert("주소를 입력하세요!");
+	    	  $("#address1").val("").focus();
 	    	  return false;
 	      }
 	      
-
-	     }
+	      if($.trim($("#address2").val())==""){
+	    	  alert("주소를 입력하세요!");
+	    	  $("#address2").val("").focus();
+	    	  return false;
+	      }
+	      
+	      if($.trim($("#address3").val())==""){
+	    	  alert("나머지 주소를 입력하세요!");
+	    	  $("#address3").val("").focus();
+	    	  return false;
+	      }
+	      
+	      if($.trim($("#postcode").val())==""){
+	    	  alert("우편번호를 입력하세요!");
+	    	  $("#postcode").val("").focus();
+	    	  return false;
+	      }
+	      
+	      if($("#tel1").val()==""){
+	    	  alert("휴대폰 번호 첫번째 자리를 선택하세요!");
+	    	  return false;
+	      }
+	      
+	      if($.trim($("#tel2").val())==""){
+	    	  alert("휴대폰 번호 두번째 자리를 선택하세요!");
+	    	  $("#tel2").val("").focus();
+	    	  return false;
+	      }
+	      
+	      if($.trim($("#tel3").val())==""){
+	    	  alert("휴대폰 번호 세번째 자리를 선택하세요!");
+	    	  $("#tel3").val("").focus();
+	    	  return false;
+	      }
+	      
+	      
+	      var re = /^[0-9]+$/;
+	        if(!re.test(tel2.value)) {
+	               alert("휴대폰 번호는 숫자만 넣으셔야 합니다.");
+	               tel2.value="";
+	               tel2.focus();
+	               return false;
+	        }
+	        
+	      var re2 = /^[0-9]+$/;
+	        if(!re2.test(tel3.value)) {
+	               alert("휴대폰 번호는 숫자만 넣으셔야 합니다.");
+	               tel3.value="";
+	               tel3.focus();
+	               return false;
+	        }  
+	      
+	      var re3 = /^[0-9]+$/;
+	        if(!re3.test(idNumber1.value)) {
+	               alert("주민등록번호는 숫자만 넣으셔야 합니다.");
+	               idNumber1.value="";
+	               idNumber1.focus();
+	               return false;
+	        } 
+	        
+	        
+	        var re4 = /^[0-9]+$/;
+	        if(!re4.test(idNumber2.value)) {
+	               alert("주민등록번호는 숫자만 넣으셔야 합니다.");
+	               idNumber2.value="";
+	               idNumber2.focus();
+	               return false;
+	        } 
+	        
+	        if($('input:radio[name=homelessTerm]').is(':checked') != true){
+	        			alert("무주택기간을 선택해주세요.");
+	        			return false;
+	        }
+	        
+	        if($('input:radio[name=age]').is(':checked') != true){
+	        	alert("나이를 선택해 주세요");
+	        	return false;
+	        }
+	        if($('input:radio[name=familySize]').is(':checked') != true){
+	        	alert("부양가족수를 선택해 주세요");
+	        	return false;
+	        }
+	        
 	
-	
+	 }
 </script>
 <style>
 	
@@ -160,7 +265,7 @@ function Postcode() {
 	#tel3, #tel2, #tel4{ display:inline-block;}
 	#join_wrap{
 	 
-	margin: 10% auto; 
+		margin: 5% auto; 
 	}
 	tr>td{
 		font-size:13pt;
@@ -211,8 +316,8 @@ function Postcode() {
 	
 	
 	#join_wrap{
-	width:100% !important; 
-	margin: 30% auto; 
+		width:100% !important; 
+		margin: 30% auto; 
 	}
 
 	#join_t{
@@ -261,7 +366,7 @@ function Postcode() {
          <tr>
             <th>이름</th>
             <td>
-            <input name="name" id="name" size="14" class="input_box">
+            <input name="name" id="name" size="14" class="input_box" maxlength="5" placeholder="최대 5자" >
             </td>
          </tr>
          
@@ -296,7 +401,7 @@ function Postcode() {
 				</select>
 		
                <input name="tel2" id="tel2" size="10" maxlength="4" class="input_box">
-                <input name="tel3" id="tel3" size="10" maxlength="4" class="input_box">
+               <input name="tel3" id="tel3" size="10" maxlength="4" class="input_box">
             </td>
          </tr>
          
@@ -322,13 +427,13 @@ function Postcode() {
          <tr>
          	<th>무주택기간</th>
          	<td >
-         		무주택<input value=35 name="homelessTerm"  type="radio">
-         		1년 미만<input value=30 name="homelessTerm"  type="radio">
-         		1년이상~3년 미만<input value=25 name="homelessTerm"  type="radio">
-         		3년이상~5년 미만<input value=20 name="homelessTerm"  type="radio">
-         		5년이상~8년 미만<input value=15 name="homelessTerm"  type="radio">
-         		8년이상~11년 미만<input value=10 name="homelessTerm"  type="radio">
-                11년이상<input value=35 name="homelessTerm"  type="radio">
+         		무주택<input value=35 name="homelessTerm" class = "homelessTerm"type="radio">
+         		1년 미만<input value=30 name="homelessTerm" class = "homelessTerm" type="radio">
+         		1년이상~3년 미만<input value=25 name="homelessTerm" class = "homelessTerm" type="radio">
+         		3년이상~5년 미만<input value=20 name="homelessTerm" class = "homelessTerm" type="radio">
+         		5년이상~8년 미만<input value=15 name="homelessTerm" class = "homelessTerm" type="radio">
+         		8년이상~11년 미만<input value=10 name="homelessTerm" class = "homelessTerm" type="radio">
+                11년이상<input value=35 name="homelessTerm" class = "homelessTerm" type="radio">
          	</td>
          </tr>
          <tr>

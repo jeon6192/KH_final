@@ -32,14 +32,15 @@
 	}
 	
 	.select1,.select2,.select3{
-	color : black;
-	width: 30%;
-	height : 100%;
-	float : left;
-	font-size: 19px;
-    font-weight: bold;
-   	border: none;
-    border-left: 1px solid #b1b1b1;
+		color : black;
+		width: 30%;
+		height : 100%;
+		float : left;
+		font-size: 19px;
+		font-weight: bold;
+		border: none;
+		border-left: 1px solid #b1b1b1;
+		background-color: white;
 	}
 	
 	.cookie{
@@ -101,7 +102,7 @@
 	@media only screen and (max-width : 380px){
 		.live{
 		  width : 100%;
-		  font : weight : bold;
+		  font-weight : bold;
 		 }
 		 
 		 .select1, .select2, .select3{

@@ -72,7 +72,7 @@ var positions = [
 
 </head>
 <body>
-<jsp:include page="../header.jsp"/> 
+<jsp:include page="../header.jsp"/>
 <div class="all">
 	<div class="search">
 	<form id="listSearch" class="listSearch" action="aptsearch_list.com" method="GET">

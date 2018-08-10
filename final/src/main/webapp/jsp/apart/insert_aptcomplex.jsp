@@ -4,8 +4,12 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Insert title here</title>
 		
+		
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<link href="./resources/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
 		<!-- Daum Map -->
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4d8e47b00c2f9c5701d6a158cfe8df08&libraries=services,clusterer,drawing"></script>
 		
@@ -31,7 +35,6 @@
 	</head>
 	
 	<body>
-	
 		<form action="./apart_insert.com" method="post" id="insert_apt" onsubmit="return insert();">	
 		<ul class="ul_insert">
 		

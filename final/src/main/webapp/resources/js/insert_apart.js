@@ -100,7 +100,20 @@ $(document).ready(function() {
     			+'<li class="li_dong_detail2"><div class="div_dong_detail2">면적&nbsp;<input type="text" name="apartBeanList['+(i-1)+'].apart_area" placeholder="m²" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"> </div></li>'
     			+'<li class="li_dong_detail3"><div class="div_dong_detail3">방 개수&nbsp;<input type="text" name="apartBeanList['+(i-1)+'].apart_room" placeholder="개" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"> </div></li>'
     			+'<li class="li_dong_detail4"><div class="div_dong_detail4">화장실&nbsp;<input type="text" name="apartBeanList['+(i-1)+'].apart_toilet" placeholder="개" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"> </div></li>'
-    			+'<li class="li_dong_detail5"><div class="div_dong_detail5">가격&nbsp;<input type="text" name="apartBeanList['+(i-1)+'].apart_price" placeholder="만원" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"> </div></li>'
+				+'<li class="li_dong_detail5"><div class="div_dong_detail5">가격&nbsp;<input type="text" name="apartBeanList['+(i-1)+'].apart_price" placeholder="만원" onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)"> </div></li>'
+				+'<li class="li_dong_detail6"><div class="div_dong_detail6"> 집 방향&nbsp;<input type="hidden" id="direction'+(i)+'" name="apartBeanList['+(i-1)+'].apart_direction">'
+				+'<div class="div-direction">'
+				+'<ul class="dong-direction">'
+				+'<li><a id="direction1" class="direction-t" href="#"><span class="mdi mdi-arrow-top-left"></span></a></li>'
+				+'<li><a id="direction2" class="direction-t" href="#"><span class="mdi mdi-arrow-up"></span></a></li>'
+				+'<li><a id="direction3" class="direction-t" href="#"><span class="mdi mdi-arrow-top-right"></span></a></li>'
+				+'<li><a id="direction4" class="direction-t" href="#"><span class="mdi mdi-arrow-left"></span></a></li>'
+				+'<li><a id="direction5" class="direction-t" href="#"><span class="mdi">&nbsp;&nbsp;&nbsp;&nbsp;</span></a></li>'
+				+'<li><a id="direction6" class="direction-t" href="#"><span class="mdi mdi-arrow-right"></span></a></li>'
+				+'<li><a id="direction7" class="direction-t" href="#"><span class="mdi mdi-arrow-bottom-left"></span></a></li>'
+				+'<li><a id="direction8" class="direction-t" href="#"><span class="mdi mdi-arrow-down"></span></a></li>'
+				+'<li><a id="direction9" class="direction-t" href="#"><span class="mdi mdi-arrow-bottom-right"></span></a></li>'
+				+'</ul></div></div></li>'
     			+'</ul><div class="div_dong_detail_img">' 
     			+'<input type="hidden" role="uploadcare-uploader" id="image'+apart[i]+'" data-images-only="true" data-multiple="true" onclick="insert_img('+apart[i]+')" />' 
     			+'<div id="showImage'+apart[i]+'" class="showImg"></div>' 
@@ -128,7 +141,7 @@ $(document).ready(function() {
 		
 		
 		$('.div_dong_detail_img').css({
-			'width' : '58%', 
+			'width' : '40%', 
 			'height' : '100%'
 		});
     	$('.div_apart_dong').css({
@@ -138,24 +151,26 @@ $(document).ready(function() {
     	$('.ul_dong_detail').css({
     		'box-sizing' : 'border-box',
     		'padding' : '3px',
-    		'width' : '40%',
+    		'width' : '60%',
 			'height' : '100%',
 			'display' : 'inline-block'
 		});
 		$('.uploadcare--widget__dragndrop-area').css('display', 'none');
     	$('.ul_dong_detail>li').css({
+			'display' : 'inline-block', 
     		'box-sizing' : 'border-box',
-    		'height' : '16.666%',
-    		'width' : '100%',
+    		'height' : '27%',
+    		'width' : '49%',
     		'padding-top' : '5px'
     	});
     	$('.li_dong_detail0').css({
+			'width' : '100%', 
+			'height' : '19%', 
     		'font-size' : '12pt'
     	});
     	$('.ul_dong_detail>li>div').css({
     		'height' : '100%',
     		'width' : '100%',
-    		'padding-right' : '80px'
     	});
     	$('.ul_dong_detail li input').css({
     		'width' : '40%',
@@ -181,6 +196,49 @@ $(document).ready(function() {
     	$('#detail_left1').css({
 			'background-color' : '#cef6ff'
 		});
+
+		// 아파트 방향 색칠
+		$('.direction-t').click(function(){
+			var aTagName = '#' + $(this).closest('.div_dong_detail').attr('id') + ' .direction-t';
+			$(aTagName).not(this).removeClass('activeArrow');
+			$(this).toggleClass('activeArrow');
+
+			var apt_direction = '';
+
+			// 선택한 화살표를 통해 값을 읽어옴
+			switch (this.id.substr(-1)) {
+				case '1':
+					apt_direction = '북서';
+					break;
+				case '2':
+					apt_direction = '북';
+					break;
+				case '3':
+					apt_direction = '북동';
+					break;
+				case '4':
+					apt_direction = '서';
+					break;
+				case '6':
+					apt_direction = '동';
+					break;
+				case '7':
+					apt_direction = '남서';
+					break;
+				case '8':
+					apt_direction = '남';
+					break;
+				case '9':
+					apt_direction = '남동';
+					break;
+			}
+			var inputName = 'input#direction' + $(this).closest('.div_dong_detail').attr('id').replace('detail_right', '');
+			console.log(inputName);
+
+			// 방향을 input hidden에 넣어줌
+			$(inputName).val(apt_direction);
+			return false;
+		});
     	
     	
 	});
@@ -191,6 +249,9 @@ $(document).ready(function() {
 		time: false,
 		clearButton: true,
 		minDate: new Date(new Date().getFullYear() + 1, new Date().getMonth(), new Date().getDate())
+	}).on('change', function(e, date){
+		$('#sdate').bootstrapMaterialDatePicker('setMaxDate', date);
+		$('#edate').bootstrapMaterialDatePicker('setMaxDate', date);
 	});
 	$('#sdate').bootstrapMaterialDatePicker({
 		time: false,
@@ -295,7 +356,7 @@ function insert(){
 	}
 
 	var count = 0;
-	$('.ul_dong_detail li>div>input').each(function(){	
+	$('.ul_dong_detail li>div input').each(function(){	
 		count++;
 		if ($(this).val() == ''){
 			alert(($(this).attr('name').split('[')[1].split(']')[0]*1+1) +'동 세부사항 미입력!');
@@ -344,7 +405,7 @@ function insert_img(info, id) {
 	
 	for(var i=0;i<length;i++){
 		url[i]=info.cdnUrl+"nth/"+i+"/";
-		$('#showImage'+id).append('<img src="'+url[i]+'-/resize/x100/"/>');
+		$('#showImage'+id).append('<img src="'+url[i]+'-/resize/x70/"/>');
 		var val=$('#img_hidden'+id).attr('value');
 		url[i] += " ";
 		$('#img_hidden'+id).attr('value', val+url[i]);

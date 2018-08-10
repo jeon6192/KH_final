@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+
+@font-face {
+   font-family: 'test';
+   src: url('../../fonts/MALGUN.TTF');
+   font-weight: normal;
+   font-style: normal;
+}
+	*{ font-family: test;}
+
+.board{
+	    border: 1px solid #ddd;
+	    width: 60%;
+    	margin: 0 auto;
+	    margin-top: 5%;
+	    margin-bottom: 5%;
+	}
+	th{
+	    width: 20%;
+	}
+	.table{
+	margin : 0 auto;
+	width : 90%;
+	}
+	form{
+	    padding: 5%;
+	}
+
+
+	
+	.eb_subject{
+		width : 90%;
+	}
+	.eb_source{
+		width : 50%;
+	}
+	
+	.textarea{
+	width : 90%;
+	resize: none;
+	}
+
+	.btn{
+	width: 100%;
+	text-align: center;
+	}
+

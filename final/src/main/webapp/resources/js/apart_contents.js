@@ -15,7 +15,7 @@ $(document).ready(function(){
         $('.' + className + '>a>span').css('color', 'white');
     }, function(){
         var className = $(this).attr('class');
-        $('.' + className + '>a>span').css('color', '#ababab');
+        $('.' + className + '>a>span').css('color', 'black');
     });
 
     // text
@@ -25,7 +25,7 @@ $(document).ready(function(){
         });
     }, function(){
         $(this).css({
-            'color' : '#ababab'
+            'color' : 'black'
         });
     });
 
@@ -35,7 +35,7 @@ $(document).ready(function(){
         });
     }, function(){
         $(this).css({
-            'color' : '#ababab'
+            'color' : 'black'
         });
     });
 
@@ -45,7 +45,7 @@ $(document).ready(function(){
         });
     }, function(){
         $(this).css({
-            'color' : '#ababab'
+            'color' : 'black'
         });
     });
 
@@ -79,9 +79,11 @@ $(document).ready(function(){
         });
     }, function(){
         $(this).css({
-            'color' : '#ababab'
+            'color' : 'black'
         });
     });
+
+
 
     const aptLength = $('.ul.apt.icon>li').length;
     for (let i = 0; i < aptLength; i++) {
@@ -99,21 +101,22 @@ $(document).ready(function(){
 
 
     // 클릭시 active
-    var aTag = $('.left_menu>div>ul>li>a');
+    var aTag = $('.left_menu>ul>li a:not(.li.icon.apt>a), .li.icon.apt>a');
     $(aTag).click(function(){
-        $('.left_menu>div>ul>li>a').removeClass("active"); 
+        $('.left_menu>ul>li a, .li.icon.apt>a').removeClass("active"); 
 
-        let thisClass = $(this).parent().attr('class').substr(-3);
+        $(this).addClass('active');
+        let thisClass = $(this).closest('li').attr('class').substr(-3);
+        console.log(thisClass);
         if (thisClass == 'cpx') {
             $('.li.text.cpx>a').addClass('active');
             $('.li.icon.cpx>a').addClass('active');
+            $('.img_cpx').hide();
+            $('.img_cpx2').show()
             $('.img_apart').show();
             $('.img_apart2').hide();
-            $('.img_cpx').hide();
-            $('.img_cpx2').show();
+            ;
         } else {
-            $('.li.text.apt>a').addClass('active');
-            $('.li.icon.apt>a').addClass('active');
             $('.img_cpx').show();
             $('.img_cpx2').hide();
             $('.img_apart').hide();
@@ -121,33 +124,54 @@ $(document).ready(function(){
         }
     });
 
+    /*
+    $('.ul.apt.icon>li>a').click(function(){
+        console.log('??');
+        $('.img_cpx').show();
+        $('.img_cpx2').hide();
+        $(this).addClass('active');
+    });
+    */
 
-    ///// map
-    var cpxLat = $('#cpx_lat').val();
-    var cpxLng = $('#cpx_lng').val();
-
-	var container = document.getElementById('cpx_map'); //지도를 담을 영역의 DOM 레퍼런스
-	var options = { //지도를 생성할 때 필요한 기본 옵션
-		center: new daum.maps.LatLng(cpxLat, cpxLng), //지도의 중심좌표.
-		level: 5 //지도의 레벨(확대, 축소 정도)
-	};
-
-    var map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
-    
-    var markerPosition  = new daum.maps.LatLng(cpxLat, cpxLng); 
-
-    // 마커를 생성합니다
-    var marker = new daum.maps.Marker({
-        position: markerPosition
+    var aTag2 = $('.div.bottom>a');
+    $(aTag2).click(function(){
+        $('.div.bottom>a').removeClass("active");
+        $(this).addClass('active');
     });
 
-    // 마커가 지도 위에 표시되도록 설정합니다
-    marker.setMap(map);
 
+    // Timer!
+    var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime();
 
+    var x = setInterval(function() {
+
+        var now = new Date().getTime();
+        
+        var distance = countDownDate - now;
+        
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        $('.span.timer').text(days + "일 " + hours + "시간 "
+        + minutes + "분 " + seconds + "초 ");
+
+        if (distance < 100000000) {
+            $('.span.timer').css('color', 'red');
+        }
+        if (distance < 0) {
+            clearInterval(x);
+            $('.span.timer-name').text('');
+            $('.span.timer').html('<b>분양신청 종료</b>');
+            $('.button-4').hide();
+        }
+    }, 1000);
+
+    $('.navbar-toggle.collapsed').click(function(){
+
+    });
     
-
-
     
 }); // document.ready ///////////
 
@@ -163,7 +187,7 @@ function showApt(dong) {
     let cpx_id = $('#cpx_id').val();
 
     $.ajax({
-        type : "POST",
+        type : "GET",
         data : {"dong" : dong, "complex_id" : cpx_id},
         url : "./apart_dongdetail.com",
         success: function(data){
@@ -175,4 +199,10 @@ function showApt(dong) {
         }
     });
 
+}
+
+// 분양신청
+function sellInLots(){
+    let cpx_id = $('#cpx_id').val();
+    location.href = './insertEvent.ev?complex_id=' + cpx_id;
 }

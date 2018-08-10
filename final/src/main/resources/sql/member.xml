@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="join_member">
+	
+	
+	<select id="getList" resultType="M">
+		select * from member
+	</select>
+	
+	<!-- 로그인인증 -->
+	<select id="login_check" parameterType="String" resultType="M">
+		select * from member
+			where id=#{id}
+	</select>
+	
+	<select id="admin_check" parameterType="String" resultType="A">
+		select * from admin
+			where admin_id=#{id}
+	</select>
+	
+	<select id="user_idcheck" parameterType="String" resultType="int">
+		select count(*) from member
+			where id=#{id}
+	</select>
+	
+	<select id="admin_idcheck" parameterType="String" resultType="int">
+		select count(*) from admin
+			where admin_id=#{id}
+	</select>
+	
+	
+	
+	<select id="login_double_check" parameterType="String" resultType="M">
+		select * from member
+			where id=#{id}
+	</select>
+	
+	<!-- 회원수정 -->
+	<update id="member_edit" parameterType="M">
+	  update member
+	  set 
+	  	  password=#{password}, 
+	  	  name=#{name},postcode=#{postcode}, 
+	  	  address1=#{address1}, address2=#{address2}, address3=#{address3},
+	  	  tel=#{tel}, idNumber1=#{idNumber1}, idNumber2=#{idNumber2},
+	  	  homelessTerm=#{homelessTerm}, familySize=#{familySize}, 
+	  	  age=#{age}, score=#{score} 
+	  	  where id=#{id}
+	</update> 
+	
+	
+	
+	<!-- 비번검색 -->
+	<!-- <select id = "pwd_find" resultType="M" parameterType="java.util.Map">
+		select join_pwd from member
+		where join_id=#{id} and join_name=#{name}
+	</select> -->
+	
+	<!-- 회원저장 -->
+	<insert id = "member_join" parameterType="M">
+	insert into member
+		(
+		id, user_no, password, name,  
+		postcode, address1, address2, address3, tel, state,
+		idNumber1, idNumber2, homelessTerm, familySize,
+		age,score  )
+		values (#{id}, member_user_no_seq.nextval,
+				#{password}, #{name},#{postcode},
+				#{address1}, #{address2}, #{address3}, #{tel},1,
+				#{idNumber1},#{idNumber2}, #{homelessTerm},
+				#{familySize},#{age},#{score}
+				)
+	</insert>
+	
+	<!-- 관리인 저장 -->
+	<insert id = "admin_join" parameterType="A">
+	insert into Admin
+		(Admin_no, Admin_id, Admin_pwd, Admin_name )
+		values (Admin_no_seq.nextval,
+				#{Admin_id}, #{Admin_pwd},#{Admin_name})
+	</insert>
+	
+	<!-- 탈퇴회원 join_state 값을 2로 설정 -->
+	<delete id="member_delete" parameterType="M">
+		delete member
+		where id=#{id}
+	</delete>
+	
+	<select id="join_totalscore" parameterType="String" resultType="M">
+		select *
+		from member
+		where id=#{id}
+	</select>
+	
+	<select id="member_info" resultType="M">
+		select * from member 
+		where id=#{id}
+	</select>
+	
+	<!-- 비번검색 -->
+	<select id = "password_find" resultType="M" parameterType="java.util.Map">
+		select password from member
+		where id=#{id} and name=#{name}
+	</select>
+	
+	<!-- QnA 리스트 -->
+	<select id="member_qnalist" parameterType="String" resultType="Article">
+		select * from Article 
+		where id = #{id}
+	</select>
+	
+	
+</mapper>
+
+
+
+
+
+
+

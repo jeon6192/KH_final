@@ -1,0 +1,77 @@
+@CHARSET "utf-8";
+
+#infoDocwrite_wrap{
+	width:570px; hefight:412px;
+	margin-top:70px; margin-left:auto; margin-right:auto;
+	border:1px solid blue; border-radius:20px;
+}
+#infoDocwrite_wrap .bbswrite_title{
+	margin:20px 0 0 220px; width:140px; border-radius:15px;
+	font-size:20px; background:skyblue; text-align:center;
+	padding:3px;
+}
+#infoDocwrite_t{margin:20px 0 0 50px;}
+#infoDocwrite_wrap th{background:skyblue; border-radius:15px;}
+#infoDocwrite_menu{
+	margin:20px 0 0 220px;
+}
+
+
+#infoDocedit{
+	padding:30px; margin-top:70px;
+	margin-left:auto; margin-right:auto;
+	border:1px solid blue; border-radius:20px;
+	width:400px;
+}
+#infoDocedit_t{
+	margin:15px 0 0 30px;
+}
+#infoDocedit_t th{background:skyblue; border-radius:15px;}
+#infoDocedit_menu {
+	margin:15px 0 0 90px;
+}
+
+
+/*게시물 내용 ui*/
+#infoDoccont{
+	padding:30px; margin-top:70px;
+	margin-left:auto; margin-right:auto;
+	border:1px solid blue; border-radius:20px;
+	width:400px;
+}
+
+#infoDoccont_t{
+	margin:15px 0 0 30px;
+}
+#infoDoccont_t th{background:skyblue; border-radius:15px;}
+#infoDoccont_menu{
+	margin:15px 0 0 90px;
+}
+
+/*게시물 삭제 ui*/
+#infoDocdel_wrap{
+	width:250px; height:180px; margin-top:70px;
+	margin-left:auto; margin-right:auto;
+	border:1px solid blue; border-radius:20px;
+}
+#infoDocdel_wrap .infoDocdel_title{
+	margin:20px 0 0 70px; width:120px; background:skyblue;
+	border-radius:15px; text-align:center; font-size:20px;
+	padding:3px;
+}
+
+#infoDocdel_menu{
+	margin:23px 0 0 80px;
+}
+
+/*검색 ui*/
+#infoDocfind{
+	margin:26px 0 0 143px;
+}
+
+#upfile{display:none}
+#close{display:none}
+label img{width: 30px}
+#close img{width: 15px}
+
+

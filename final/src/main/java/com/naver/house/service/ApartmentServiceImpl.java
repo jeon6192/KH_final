@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.naver.house.bean.AptComplexBean;
 import com.naver.house.bean.AptComplexBean2;
+import com.naver.house.bean.ExpertBoardBean;
 import com.naver.house.dao.ApartmentDAO;
 
 @Service
@@ -30,6 +31,11 @@ public class ApartmentServiceImpl implements ApartmentService{
 	@Override
 	public List<AptComplexBean> getMapList() {
 		return apartmentDAO.getMapList();
+	}
+
+	@Override
+	public AptComplexBean2 getNewApt() {
+		return apartmentDAO.getNewApt();
 	}
 
 

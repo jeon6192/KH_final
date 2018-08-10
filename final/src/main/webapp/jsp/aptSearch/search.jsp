@@ -1,95 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+<!--  폰 화면 최적화 하기 위한 것 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src = "http://code.jquery.com/jquery-3.3.1.js"></script>
+
+<!-- 참조하는 js 파일  -->
 <script src="./resources/js/search.js"></script>
+
+<!-- font -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
 
-.button{
-    width: 7%;
-    height: 50px;
-    border: 0;
-}
-.button:hover{
-	background-color : white;
-	background-color : #A6A6A6;
-}
-
-@font-face {
-   font-family: 'test';
-   src: url('./resources/fonts/MALGUN.TTF');
-   font-weight: normal;
-   font-style: normal;
-}
-	*{ font-family: test;}
-	.searchList{
-		width : 100%;
-	height : 50px;
-	}
-	.search{
-		margin : 0 auto;
-		width : 50%;
-		padding-top: 7%;
-		}
-
-
-	
-	
-	
-	.bg-img{
-		background-image : url("./resources/image/city.jpg");
-		min-height : 500px;
-	}
-	
-	.select1,.select2,.select3{
-	width: 30%;
-	height : 100%;
-	float : left;
-	font-size: 19px;
-    font-weight: bold;
-   	border: none;
-    border-left: 1px solid #b1b1b1;
-	}
-	
-	.cookie{
-	background-color : #E7E7E7;
-	min-height : 300px;
-	}
-	.interest{
-	min-height : 250px;
-	width : 40%;
-	margin-left : 10%;
-	}
-	
-	.expert-column{
-	min-height : 250px;
-	width : 40%;
-	margin-right : 10%;
-	}
-	
-	.interest, .expert-column{
-	    float: left;
-	}
-	
-	
-	
-</style>
+<!-- 참조하는 css 파일  -->
+<link rel="stylesheet" href="./resources/css/search.css">
 </head>
 <body>
+	<jsp:include page="../header.jsp"/>
 	<div class="bg-img">
 		
 	
 	<div class="search">
 	<p class="text">
-	<img src="http://nimg1.kbstar.com/img/kbland/web/main/main_txt.png">
+	<img class="live" src="http://nimg1.kbstar.com/img/kbland/web/main/main_txt.png">
 	</p>
-	<form class="searchList" action="aptsearch_list.com" method="GET">
-		<select class="select1" name="select1">
+	<form id="searchForm" class="searchList" action="aptsearch_list.com" method="GET">
+		<select class="select1" name="select1" id="select1">
 			<option value="-1">시/도</option>
 			<option value="0">서울</option>
 			<option value="1">경기</option>
@@ -126,16 +67,56 @@
 	
 	<div class="cookie">
 		<div class="interest">
-		<h2>최근 본 단지</h2>
-		<div class="name">
-			<strong>아파트 이름</strong>		
-		</div>
-		</div>
 		
-			<div class="expert-column">
-		<h2>전문가 칼럼</h2>
-			<p>칼럼 제목 들어갈곳</p>		
+	<div class="name"> 
+		<font style="font-size: 20px; color: #2490af; font-weight: bold;">새로 등록된 아파트</font>
+		<div class="name">
+			<a style="color: #31708f; font-size: 28px;" href="apart_contents.com?complex_id=${newapt.complex_id}">${newapt.complex_apartname}</a>		
 		</div>
 	</div>
+		<div class="price">
+			<div style="color : black; font-weight : bold">평수 : ${newapt.maxarea} ㎡</div>
+			<div style="color : black; font-weight : bold"> 분양가 : ${newapt.minprice} 만원</div>
+		</div>
+		
+		<div class="newAptImg">
+			<img src="./resources/image/apartment2.png">
+		</div>
+		</div>
+
+		
+		
+		
+		<c:if test="${listcount == 0}">
+			<div class="expert-column">
+			<div class="border">
+		<h2 style="color: #2490af; font-size : 20px; font-weight: bold;">전문가 칼럼</h2>
+		<br>
+				<a style="color : black; float: right;" href="expertBoard_list.com">글쓰기 ▶</a>
+			</div>
+				<div class="expertImg2">
+			<img class="expertImg" src="./resources/image/meeting.png">
+				</div>
+		</div>
+		</c:if>
+			
+		<c:if test="${listcount != 0}">
+		
+		
+		
+			<div class="expert-column">
+			<div class="border">
+		<h2 style="color: #2490af; font-size : 20px; font-weight: bold;">전문가 칼럼</h2>
+		<br>
+		<a style="color : black; float: right;" href="expertBoard_list.com">더보기 ▶</a>
+			</div>		
+			<a class= "subject" href="expertBoard_cont.com?num=${expert.eb_num}&page=1&state=cont"><p style="color : black;">${expert.eb_subject}</p></a>
+			<div class="expertImg2">
+			<img class="expertImg" src="./resources/image/meeting.png">
+			</div>
+		</div>
+	</c:if>
+	</div>
+	
 </body>
 </html>

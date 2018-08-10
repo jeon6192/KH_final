@@ -11,6 +11,7 @@ public class ApartmentBean2 {
 	private int apart_price;
 	private int apart_room;
 	private int apart_toilet;
+	private String apart_direction;
 	private String apart_interior;
 	private int minprice;
 	private int maxprice;
@@ -87,6 +88,12 @@ public class ApartmentBean2 {
 	}
 	public void setMaxprice(int maxprice) {
 		this.maxprice = maxprice;
+	}
+	public String getApart_direction() {
+		return apart_direction;
+	}
+	public void setApart_direction(String apart_direction) {
+		this.apart_direction = apart_direction;
 	}
 	
 	

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Test">
+	<insert id="infoDoc_insert" parameterType="infoDocbean">
+		insert into APART_INFO_DOC
+		(INFO_DOC_NUM, INFO_DOC_SUB, INFO_DOC_DATE, INFO_DOC_FILE, INFO_DOC_ORIGINAL) values 
+		(INFO_DOC_num_seq.nextval, #{INFO_DOC_SUB}, SYSDATE, #{INFO_DOC_FILE , jdbcType = VARCHAR}, #{INFO_DOC_ORIGINAL , jdbcType = VARCHAR})
+	</insert>
+	
+	<select id="infoDoc_count" resultType="int">
+		select count(*) from APART_INFO_DOC
+	</select>
+	
+	
+	<select id="infoDoc_list" parameterType="map" resultType="infoDocbean">
+   
+   <![CDATA[
+   	select *
+   	from 
+   		(select rownum rnum,INFO_DOC_NUM,Admin_no,INFO_DOC_SUB,INFO_DOC_DATE,INFO_DOC_FILE,INFO_DOC_ORIGINAL 
+   		from 
+   			(select rownum rnum,INFO_DOC_NUM,Admin_no,INFO_DOC_SUB,INFO_DOC_DATE,INFO_DOC_FILE,INFO_DOC_ORIGINAL 
+   		from 
+   			APART_INFO_DOC order by INFO_DOC_DATE desc
+   		))
+   	where rnum >= ((#{page}-1)*#{limit}+1) and rnum <= (#{page} * #{limit})
+   	 
+   ]]>
+   
+	</select>
+	
+	<select id="infoDoc_cont" resultType="infoDocbean" parameterType="int">
+		select * from APART_INFO_DOC
+		where INFO_DOC_NUM=#{INFO_DOC_NUM}
+	</select>
+	
+	<update id="infoDoc_edit" parameterType="infoDocbean">
+		update APART_INFO_DOC
+		set
+		INFO_DOC_SUB = #{INFO_DOC_SUB},
+		INFO_DOC_FILE = #{INFO_DOC_FILE , jdbcType = VARCHAR},
+		INFO_DOC_ORIGINAL = #{INFO_DOC_ORIGINAL, jdbcType = VARCHAR}
+		where INFO_DOC_NUM = #{INFO_DOC_NUM}
+	</update>
+	
+	<delete id="infoDoc_delete" parameterType="int">
+		delete from APART_INFO_DOC
+		where INFO_DOC_NUM = #{INFO_DOC_NUM}
+	</delete>
+	
+	<select id="infoDocfind_cnt" parameterType="java.util.Map" resultType="int">
+		select count(*) from APART_INFO_DOC
+		
+		<where>
+			<!-- 검색 조건이 없는경우 -->
+			<if test = "find_field==''"></if>
+			<!-- 검색 조건이 서류명인 경우 -->
+			<if test = "find_field=='INFO_DOC_SUB'">
+				INFO_DOC_SUB like #{find_name}
+			</if>
+		</where>
+		
+	</select>
+	
+   <!-- rownum rnum은 페이징 처리를 위해 필요. 서브퀴리를 통해 가로를 해서 rownum을 불러올 수 있음 -->
+	<select id="infoDoc_find" parameterType="java.util.Map" resultType="infoDocbean">
+   	select * from 
+   		(select rownum rnum, INFO_DOC_NUM, Admin_no, INFO_DOC_SUB, INFO_DOC_DATE,INFO_DOC_FILE, INFO_DOC_ORIGINAL from 
+			(select rownum rnum,INFO_DOC_NUM,Admin_no,INFO_DOC_SUB,INFO_DOC_DATE,INFO_DOC_FILE,INFO_DOC_ORIGINAL from 
+   				APART_INFO_DOC 
+   			<!-- MyBatis 동적 SQL문 -->
+			<where>
+				<!-- 검색 조건이 없는경우 -->
+				<if test = "find_field==''"></if>
+				<!-- 검색 조건이 서류명인 경우 -->
+				<if test = "find_field=='INFO_DOC_SUB'">
+					INFO_DOC_SUB like #{find_name} 
+				</if>
+			</where>
+			order by INFO_DOC_DATE desc)
+   		)
+    <![CDATA[where rnum >= ((#{page} - 1) * 5 + 1) and rnum <= (#{page} * 5)]]>
+   </select>
+   
+   
+</mapper>

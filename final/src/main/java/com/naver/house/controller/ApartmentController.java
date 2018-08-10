@@ -12,25 +12,42 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.naver.house.bean.AptComplexBean;
 import com.naver.house.bean.AptComplexBean2;
+import com.naver.house.bean.ExpertBoardBean;
 import com.naver.house.service.ApartmentService;
+import com.naver.house.service.ExpertBoardService;
 
 @Controller
 public class ApartmentController {
 	
 	@Autowired
 	private ApartmentService service;
+	@Autowired
+	private ExpertBoardService service2;
 
 	@RequestMapping(value="/aptSearch.com")
-	public String aptSearch() {
-
+	public String aptSearch(HttpServletRequest request) {
 		
 		
+		
+		AptComplexBean2 newapt = service.getNewApt();
+		
+		int listcount = service2.getListCount();
+		
+		System.out.println("게시판 글의 수 는 : "+ listcount);
+		
+		
+		ExpertBoardBean list =  service2.getNewBoard();
+		
+		request.setAttribute("newapt", newapt);
+		request.setAttribute("listcount", listcount);
+		request.setAttribute("expert", list);
+		
+		//System.out.println("제목은 : "+list.getEb_subject());
 		return "aptSearch/search";
 	}
 	
@@ -128,6 +145,8 @@ public class ApartmentController {
 		System.out.println("addr : " + m.get("addr"));
 		aptList = service.getAptList(m);
 		mapList = service.getMapList();
+		
+		
 		
 		
 		

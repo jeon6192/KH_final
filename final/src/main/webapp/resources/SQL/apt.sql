@@ -18,6 +18,8 @@ CREATE TABLE APT_COMPLEX(
    COMPLEX_FOOT NUMBER
 );
 
+update apt_complex set complex_state = 2
+
 
 
 
@@ -43,6 +45,7 @@ select * from apt_complex
 
 
 
+update apt_complex set complex_state = 1 where complex_subway = 1
 
 
 insert into apt_complex 
@@ -74,4 +77,17 @@ insert into apt_complex
 
 
 delete from apt_complex where complex_id = 180731571
+
+
+
+
+
+
+
+
+			select c.complex_id, c.complex_apartname, max(a.apart_area) maxarea , min(a.apart_price) minprice
+					  from apt_complex c, apartment a where c.complex_id = a.complex_id
+					  and a.apart_id = (select max(apart_id) from apartment)
+					  group by c.complex_apartname, c.complex_id
+
 

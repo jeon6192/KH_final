@@ -74,7 +74,7 @@
     </delete>
 
     <select id="getBoardNm" parameterType="string" resultType="string">
-        SELECT boardNm FROM board WHERE boardcd = #{boardCd}
+        SELECT boardNm FROM board1 WHERE boardcd = #{boardCd}
     </select>  
     <update id="increaseHit" parameterType="int">
         UPDATE article SET hit = hit + 1 WHERE articleno = #{articleNo}

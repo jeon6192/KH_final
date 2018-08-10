@@ -24,7 +24,7 @@
 		
 	</head>
 	<body>
-		<jsp:include page="../header.jsp"/>
+		<jsp:include page="../header2.jsp"/>
 		<c:set var="cpx" value="${apartMap.aptComplexBean}"/>
 		<c:set var="aptList" value="${apartMap.apartmentBeanList}"/>
 		<div id="wrapper">
@@ -102,7 +102,7 @@
 					
 					<div class="div cpx_aptname">
 						<div class="div apticon">
-							<img alt="아파트~" src="./resources/image/apartment.png">
+							<img alt="아파트~" src="./resources/image/apartment2.png">
 						</div>
 						<div class="div aptname">
 							${cpx.complex_apartname}

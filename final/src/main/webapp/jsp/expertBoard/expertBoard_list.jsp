@@ -21,7 +21,7 @@
 
 </head>
 <body>
-<jsp:include page="../header2.jsp"/>
+<jsp:include page="../header.jsp"/>
 	<div class="all">
 
 	<div class="top">

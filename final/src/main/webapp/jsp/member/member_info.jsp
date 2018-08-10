@@ -90,20 +90,12 @@ tr>th {
 	width: 130px;
 }
 
-#tel1 {
-	 margin-top: -10px;
-	margin-left: -100px; 
+#tel4{
+	width:10%
+	}
 	
-}
-
-#tel2 {
-	margin-left: -100px;
-	
-}
-
-#tel3 {
-	 margin-left: 10px;
-	
+#tel3, #tel2, #tel4{ 
+display:inline-block;
 }
 
 @media ( max-width :380px) {
@@ -121,7 +113,7 @@ tr>th {
 	table>tbody, th, td{
 		
 		 display: block;
-	/* position: relative; */ */
+
 	width:100%
 		
 	}
@@ -205,22 +197,19 @@ tr>th {
             </td>
          </tr>
 
-         <tr>
+         <tr id="tel">
             <th>휴대전화번호</th>
             <td>
-            <div class="form-group" id=tel1>
-			        <label for="gender1" class="col-sm-2 control-label"></label>
-			        <div class="col-sm-2">;
-			            
-			        <select class="form-control selcls" id="tel1" name = "tel1">
-						<option>010</option>
-						<option>019</option>
-					</select>
-					</div>
-					</div>
-			             <input name="tel2" id="tel2" size="10" maxlength="4" class="input_box">
-			             <input name="tel3" id="tel3" size="10" maxlength="4" class="input_box">
-			  </td>
+      
+        	
+	            <select class="form-control selcls" id="tel4" readonly="readonly">
+					<option>010</option>
+					<option>019</option>
+				</select>
+		
+               <input name="tel2" id="tel2" size="10" maxlength="4" class="input_box" readonly="readonly">
+               <input name="tel3" id="tel3" size="10" maxlength="4" class="input_box" readonly="readonly">
+            </td>
          </tr>
          
          <tr>

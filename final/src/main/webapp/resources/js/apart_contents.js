@@ -203,6 +203,17 @@ function showApt(dong) {
 
 // 분양신청
 function sellInLots(){
-    let cpx_id = $('#cpx_id').val();
-    location.href = './insertEvent.ev?complex_id=' + cpx_id;
+    let complex_id = $('#cpx_id').val();
+    let user_no = $('#user_no').val();
+    $.ajax({
+		
+		type:"post",
+		url:"insertEvent.ev",
+		data:{"complex_id":complex_id,"user_no":user_no},
+		success:function(){
+			alert("분양신청이 완료되었습니다.");
+			location.href="apart_contents.com?complex_id="+complex_id;
+		}
+	})
+    
 }

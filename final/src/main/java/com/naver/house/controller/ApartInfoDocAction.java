@@ -33,7 +33,7 @@ public class ApartInfoDocAction {
 	@Resource(name="infoDocService")
 	private ApartInfoDocService infoDocService;
 	
-	private String saveFolder = "C:\\Users\\user1\\git\\KH_final2\\final\\src\\main\\webapp\\resources\\upload\\";
+	private String saveFolder = "C:\\Users\\user1\\git\\KH_final\\final\\src\\main\\webapp\\resources\\upload";
 	
 	@RequestMapping(value="/main.nhn")
 	public String main() {
@@ -66,7 +66,7 @@ public class ApartInfoDocAction {
 	         
 	       ///파일 객체 생성합니다.
 	         File path1=new File(homedir);
-	         
+	         System.out.println(path1);
 	       //폴더가 존재하는지 확인합니다.
 	         if(!(path1.exists())) {
 	            System.out.println("폴더를 만듭니다.");

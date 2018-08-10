@@ -20,6 +20,16 @@ create table Member(
     
 	);
 
+	select opf.f_opkey, opf.bedroom_closet, opf.kitchen_height, opf.balcony, opf.interior_color,
+   opnf.nf_opkey, opnf.floor_type, opnf.main_room_slide,
+   opnf.dressroom, opnf.cooktop, opnf.kitchen_shelf, opnf.builtin_ref, opnf.builtin_kref, opnf.showerbooth, opnf.sys_air, 
+   opnf.nf_cost, ew.user_no, ew.apart_id, m.id, m.name, m.tel, apt.apart_dong, apt.apart_ho, apt.apart_area 
+   from OPTION_F opf inner join OPTION_NF opnf on opf.apart_id=opnf.apart_id 
+   right outer join event_win ew on ew.apart_id= opf.apart_id 
+   inner join member m on ew.user_no = m.user_no and ew.event_con=0 
+   right outer join apartment apt on apt.apart_id=ew.apart_id
+   where apt.complex_id=1
+   
 create sequence member_user_no_seq 
 increment by 1 start with 1 nocache;	
 	

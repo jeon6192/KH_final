@@ -61,15 +61,15 @@
 	
 	
 	<div class="btnList">
-	        <%-- <c:if test="${!empty Admin_id}"> --%>
+<c:if test="${!empty Admin_id}">
 	<input type="button" value="수정" class="input_button" 
 onclick="location.href='expertBoard_cont.com?num=${bcont.eb_num}&page=${page}&state=edit'">
 
 	<input type="button" value="삭제" class="input_button" 
-onclick="location.href='expertBoard_del.com?num=${bcont.eb_num}&page=${page}'">
-				        <%-- </c:if> --%>
+			onclick="location.href='expertBoard_del.com?num=${bcont.eb_num}&page=${page}'">
+</c:if>
 	<input type="button" value="목록" class="input_button" 
-onclick="location.href='expertBoard_list.com?&page=${page}'">
+				onclick="location.href='expertBoard_list.com?&page=${page}'">
 	</div>
 	
 	

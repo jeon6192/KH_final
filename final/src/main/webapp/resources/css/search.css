@@ -54,11 +54,9 @@
 	}
 	
 	.expert-column{
-	margin-top: 1.5%;
 	min-height : 250px;
 	width : 20%;
 	margin-right : 10%;
-	margin-top: 1.5%;
 	}
 	
 	.interest, .expert-column{
@@ -101,7 +99,7 @@
 	@media only screen and (max-width : 380px){
 		.live{
 		  width : 100%;
-		  font : weight : bold;
+		  font-weight : bold;
 		 }
 		 
 		 .select1, .select2, .select3{

@@ -90,8 +90,13 @@
 		<c:if test="${listcount == 0}">
 			<div class="expert-column">
 			<div class="border">
-		<h2>등록된 글이 없습니다.</h2><span><a href="expertBoard_list.com">글쓰기</a></span>
-			</div>		
+		<h2 style="color: #2490af; font-size : 20px; font-weight: bold;">전문가 칼럼</h2>
+		<br>
+				<a style="color : black; float: right;" href="expertBoard_list.com">글쓰기 ▶</a>
+			</div>
+				<div class="expertImg2">
+			<img class="expertImg" src="./resources/image/meeting.png">
+				</div>
 		</div>
 		</c:if>
 			
@@ -101,7 +106,9 @@
 		
 			<div class="expert-column">
 			<div class="border">
-		<h2 style="color: #2490af; font-size : 20px; font-weight: bold;">전문가 칼럼</h2><a style="color : black; float: right;" href="expertBoard_list.com">더보기 ▶</a>
+		<h2 style="color: #2490af; font-size : 20px; font-weight: bold;">전문가 칼럼</h2>
+		<br>
+		<a style="color : black; float: right;" href="expertBoard_list.com">더보기 ▶</a>
 			</div>		
 			<a class= "subject" href="expertBoard_cont.com?num=${expert.eb_num}&page=1&state=cont"><p style="color : black;">${expert.eb_subject}</p></a>
 			<div class="expertImg2">

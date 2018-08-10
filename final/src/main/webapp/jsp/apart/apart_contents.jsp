@@ -99,6 +99,7 @@
 					<input type="hidden" id="cpx_id" value="${cpx.complex_id}">
 					<input type="hidden" id="apt_name" value="${cpx.complex_apartname}">
 					<input type="hidden" id="cpx_edate" value="${cpx.complex_edate}">
+					<input type="hidden" value="${user_no}" id="user_no">
 					
 					<div class="div cpx_aptname">
 						<div class="div apticon">
@@ -115,7 +116,12 @@
 							</span>
 							<div class="button-4">
 								<div class="eff-4"></div>
-								<a href="#" onclick="sellInLots();"> 분양 신청 </a>
+								<c:if test="${state==0 }">
+									<a href="#" onclick="sellInLots();"> 분양 신청 </a>
+								</c:if>
+								<c:if test="${state!=0 }">
+									<a href="#"> 분양 신청 완료</a>
+								</c:if>
 							</div>
 						</div>
 					</div>

@@ -33,7 +33,7 @@ public class ApartInfoPolicyAction {
 	@Resource(name="infoPolicyService")
 	private ApartInfoPolicyService infoPolicyService;
 	
-	private String saveFolder = "C:\\Users\\user1\\git\\KH_final2\\final\\src\\main\\webapp\\resources\\upload\\";
+	private String saveFolder = "C:\\Users\\user1\\git\\KH_final\\final\\src\\main\\webapp\\resources\\upload";
 	
 	
 	@RequestMapping(value="/infoPolicy_write.nhn")
@@ -43,7 +43,7 @@ public class ApartInfoPolicyAction {
 	
 	
 	 @RequestMapping(value="/infoPolicy_write_ok.nhn", method=RequestMethod.POST)
-	   public String infoPolicy_write_ok(ApartInfoPolicyBean infoPolicybean) throws Exception{
+	   public String infoPolicy_write_ok(ApartInfoPolicyBean infoPolicybean, HttpServletRequest request) throws Exception{
 	      MultipartFile uploadfile = infoPolicybean.getUploadfile();
 	      if(!uploadfile.isEmpty()) {
 	         
@@ -101,6 +101,10 @@ public class ApartInfoPolicyAction {
 	       //바뀐 파일명으로 저장
 	         infoPolicybean.setINFO_POLICY_FILE(fileDBName);
 	      }
+	      HttpSession session = request.getSession();
+	      int admin_no=(Integer)session.getAttribute("Admin_no");
+	      
+	      infoPolicybean.setAdmin_no(admin_no);
 	      this.infoPolicyService.insertInfoPolicy(infoPolicybean);
 	      return "redirect:infoPolicy_list.nhn";
 	   }

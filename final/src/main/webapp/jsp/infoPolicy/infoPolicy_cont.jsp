@@ -203,7 +203,7 @@
 		<br>
 		<br>
 		<div id="infoPolicycont_menu" style="margin-left:200px">
-			<c:if test="${empty infoDoc.Admin_no}">
+			<c:if test="${!empty sessionScope.Admin_no}">
 			<input type="button" value="수정" class="input_button"
 			onclick="location='infoPolicy_cont.nhn?infoPolicy_num=${infoPolicy.INFO_POLICY_NUM}&page=${page}&listpage=${listpage}&state=edit'">
 		

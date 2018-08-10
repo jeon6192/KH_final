@@ -7,12 +7,12 @@
 <head>
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>정보게시판</title>
 <script src = "http://code.jquery.com/jquery-latest.js"></script>
 <style>
 	@font-face{
   		font-family : 'NanumGothic';
-  		src : url(../fonts/NanumGothic.ttf) format('truetype');
+  		src : url(./fonts/NanumGothic.ttf) format('truetype');
 	}
 	body{
 		font-family: NanumGothic
@@ -24,8 +24,8 @@
 	#inhr{width:100%}
 	#ohr{margin-top:20px}
 	#ohr hr{background-color: #2e75b6;}
-	#infoEtcwrite_t tr{width:30%}
-	#infoEtcwrite_t td{width:70%}
+	#infoedit_t tr{width:30%}
+	#infoedit_t td{width:70%}
 </style>
 </head>
 <body>
@@ -48,7 +48,7 @@
       			<input type= "hidden" name = "page" value = "${page}">
       
       			<div id="infoEtcedit" style="padding-top: 10%;">
-      				<table id = "infoEtcwrite_t" border="1">
+      				<table id = "infoedit_t" border="1">
             			<tr>
                				<th>제목</th>
                				<td>
@@ -74,7 +74,7 @@
       				</table>
       			</div>
       
-      			<div id = "infoEtcwrite_menu" style="text-align:center; padding-top: 5%;">
+      			<div id = "infoedit_menu" style="text-align:center; padding-top: 5%;">
          			<input type = "submit" value = "수정" style="background-color:white; border:1.5px solid #008CBA;" class = "input_button">
          			<input type = "reset" value = "취소" style="background-color:white; border:1.5px solid #008CBA;" class = "input_button" onclick= "$('#infoEtc_subject').focus();">
          			<input type = "button" value = "목록" style="background-color:white; border:1.5px solid #008CBA;" class = "intput_button"

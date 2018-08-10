@@ -11,71 +11,78 @@ import com.naver.house.bean.Event_winBean2;
 
 public interface EventService {
 
-	//¾ÆÆÄÆ®¿¡ ´ëÇÑ ºĞ¾ç ½ÅÃ»ÀÚµé
-	public List<Event_list> getEventlist(int no);
-	
-	//¾ÆÆÄÆ®¿¡ ´ëÇÑ ºĞ¾ç ½ÅÃ»ÀÚ ¼ö
-	public int getEventlist_count(int no);
-	//ºĞ¾çÀÌ ³¡³­ ¾ÆÆÄÆ®ÀÇ ºĞ¾ç ½ÅÃ»ÀÚµé
-	public List<Event_list> getEventlistclose();
-	
-	//ºĞ¾çÁßÀÎ ¾ÆÆÄÆ®ÀÇ ºĞ¾ç ½ÅÃ»ÀÚµé
-	public List<Event_list> getEventlistplay();
-	
-	//¾ÆÆÄÆ® ÀüÃ¼¸í´Ü ¸®½ºÆ®
-	public List<AptComplexBean> getAPTList();
-	
-	//ºĞ¾çÁßÀÎ ¾ÆÆÄÆ® ¸í´Ü ¸®½ºÆ®
-	public List<AptComplexBean> getAPTlistplay();
-	
-	//ºĞ¾ç³¡³­ ¾ÆÆÄÆ® ¸í´Ü ¸®½ºÆ®
-	public List<AptComplexBean> getAPTlistclose();
-	
-	//¾ÆÆÄÆ® ºĞ¾ç »ó¼¼ ÆäÀÌÁö
-	public ApartmentBean getAPT_EventDetail(int no);
-	
-	//¾ÆÆÄÆ®µ¿ »ó¼¼ Á¤º¸
-	public AptComplexBean getComplex_detail(int no);
-	
-	//ºĞ¾ç °ø±Ş ¼¼´ë¼ö
-	public int eventAptcount(int no);
-	
-	//´çÃ·µÈ ºĞ¾çÀÚ ¸®½ºÆ®
-	public List<Event_winBean2> getEvent_winlist(HashMap<String,Object> m);
-	
-	//¾ÆÆÄÆ® ºĞ¾ç ½ÅÃ»ÇÏ±â
-	public void insertEvent(Event_list event);
-	
-	//¾ÆÆÄÆ® ¸®½ºÆ® °Ë»ö
-	public List<AptComplexBean> searchEvnet(HashMap map);
-	
-	//¾ÆÆÄÆ® ºĞ¾ç°ø±Ş Á¤º¸
-	public List<ApartmentBean> list_playapt(int no);
+   //ì•„íŒŒíŠ¸ì— ëŒ€í•œ ë¶„ì–‘ ì‹ ì²­ìë“¤
+   public List<Event_list> getEventlist(int no);
+   
+   //ì•„íŒŒíŠ¸ì— ëŒ€í•œ ë¶„ì–‘ ì‹ ì²­ì ìˆ˜
+   public int getEventlist_count(int no);
+   //ë¶„ì–‘ì´ ëë‚œ ì•„íŒŒíŠ¸ì˜ ë¶„ì–‘ ì‹ ì²­ìë“¤
+   public List<Event_list> getEventlistclose();
+   
+   //ë¶„ì–‘ì¤‘ì¸ ì•„íŒŒíŠ¸ì˜ ë¶„ì–‘ ì‹ ì²­ìë“¤
+   public List<Event_list> getEventlistplay();
+   
+   //ì•„íŒŒíŠ¸ ì „ì²´ëª…ë‹¨ ë¦¬ìŠ¤íŠ¸
+   public List<AptComplexBean> getAPTList();
+   
+   //ë¶„ì–‘ì¤‘ì¸ ì•„íŒŒíŠ¸ ëª…ë‹¨ ë¦¬ìŠ¤íŠ¸
+   public List<AptComplexBean> getAPTlistplay();
+   
+   //ë¶„ì–‘ëë‚œ ì•„íŒŒíŠ¸ ëª…ë‹¨ ë¦¬ìŠ¤íŠ¸
+   public List<AptComplexBean> getAPTlistclose();
+   
+   //ì•„íŒŒíŠ¸ ë¶„ì–‘ ìƒì„¸ í˜ì´ì§€
+   public ApartmentBean getAPT_EventDetail(int no);
+   
+   //ì•„íŒŒíŠ¸ë™ ìƒì„¸ ì •ë³´
+   public AptComplexBean getComplex_detail(int no);
+   
+   //ë¶„ì–‘ ê³µê¸‰ ì„¸ëŒ€ìˆ˜
+   public int eventAptcount(int no);
+   
+   //ë‹¹ì²¨ëœ ë¶„ì–‘ì ë¦¬ìŠ¤íŠ¸
+   public List<Event_winBean2> getEvent_winlist(HashMap<String,Object> m);
+   
+   //ì•„íŒŒíŠ¸ ë¶„ì–‘ ì‹ ì²­í•˜ê¸°
+   public void insertEvent(Event_list event);
+   
+   //ì•„íŒŒíŠ¸ ë¦¬ìŠ¤íŠ¸ ê²€ìƒ‰
+   public List<AptComplexBean> searchEvnet(HashMap map);
+   
+   //ì•„íŒŒíŠ¸ ë¶„ì–‘ê³µê¸‰ ì •ë³´
+   public List<ApartmentBean> list_playapt(int no);
 
-	//ºĞ¾ç½ÅÃ»ÀÚµé Á¤º¸
-	public List<Event_list> event_list(int complex_id);
-	
-	//ºĞ¾ç ³Ö±â
-	public void insertEvent_win(Event_winBean e);
-	
-	//Á¡¼ö³ôÀº¼ø ºĞ¾ç½ÅÃ»ÀÚµé Á¤º¸
-	public List<Event_list> event_list_totalcount(int complex_id);
-	
-	//Event_list check = ´çÃ·ÀÚ
-	public void update_win(HashMap m);
-	
-	//Event_list check = ¹Ì´çÃ·ÀÚ
-	public void update_lose(HashMap m);
-	
-	//ºĞ¾çµÈ ¾ÆÆÄÆ®¿¡ ´çÃ·ÀÚ ÀÌ¸§ ³Ö±â
-	public void update_apart_user_no(HashMap m);
+   //ë¶„ì–‘ì‹ ì²­ìë“¤ ì •ë³´
+   public List<Event_list> event_list(int complex_id);
+   
+   //ë¶„ì–‘ ë„£ê¸°
+   public void insertEvent_win(Event_winBean e);
+   
+   //ì ìˆ˜ë†’ì€ìˆœ ë¶„ì–‘ì‹ ì²­ìë“¤ ì •ë³´
+   public List<Event_list> event_list_totalcount(int complex_id);
+   
+   //Event_list check = ë‹¹ì²¨ì
+   public void update_win(HashMap m);
+   
+   //Event_list check = ë¯¸ë‹¹ì²¨ì
+   public void update_lose(HashMap m);
+   
+   //ë¶„ì–‘ëœ ì•„íŒŒíŠ¸ì— ë‹¹ì²¨ì ì´ë¦„ ë„£ê¸°
+   public void update_apart_user_no(HashMap m);
 
-	//´çÃ·ÀÚ ¸®½ºÆ®
-	public List<Event_winBean2> event_win_list(int complex_id);
-	
-	//´çÃ·ÀÚ È®Á¤
-	public void eventwin_up(HashMap m);
-	
-	//´çÃ·ÀÚ Ãë¼Ò
-	public void eventwin_down(HashMap m);
+   //ë‹¹ì²¨ì ë¦¬ìŠ¤íŠ¸
+   public List<Event_winBean2> event_win_list(int complex_id);
+   
+   //ë‹¹ì²¨ì í™•ì •
+   public void eventwin_up(HashMap m);
+   
+   //ë‹¹ì²¨ì ì·¨ì†Œ
+   public void eventwin_down(HashMap m);
+   
+   //ë¶„ì–‘ì‹ ì²­ ìƒíƒœ í™•ì¸
+   public int event_list_state(HashMap m);
+   
+   
+   //ë¯¸ë¶„ì–‘ìƒíƒœ ì¬ë¶„ì–‘ì‹ ì²­í•˜ê¸°
+   public void restartform(int complex_id);
 }

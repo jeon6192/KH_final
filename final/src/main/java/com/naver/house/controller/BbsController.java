@@ -157,13 +157,14 @@ public class BbsController {
       attachFile.setFiletype(mpFile.getContentType());
       attachFile.setFilesize(mpFile.getSize());
       attachFile.setArticleNo(article.getArticleNo());
+      System.out.println("size : "+mpFile.getSize());
+      System.out.println("AtNo : "+article.getArticleNo());
       if(attachFile.getFilesize() == 0) {
 			attachFile.setArticleNo(0);
 			attachFile.setAttachFileNo(0);
 		}
       boardService.insertAttachFile(attachFile);
      }     
-     
      return "redirect:/list.nhn?boardCd=" + article.getBoardCd();
     }
 
@@ -220,6 +221,7 @@ public class BbsController {
      Article prevArticle = boardService.getPrevArticle(articleNo, boardCd, searchWord);
      Article nextArticle = boardService.getNextArticle(articleNo, boardCd, searchWord);
      ArrayList<AttachFile> attachFileList = boardService.getAttachFileList(articleNo);
+     System.out.println(attachFileList);
      ArrayList<Comment> commentList = boardService.getCommentList(articleNo);
 
      model.addAttribute("thisArticle", thisArticle);

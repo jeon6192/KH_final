@@ -102,6 +102,7 @@ public class OptionsAction {
 		
 		return oV;
 	}
+
 	
 	@RequestMapping(value="/option.op")
 	public ModelAndView optionpage(HttpServletRequest request,HttpServletResponse response, @RequestParam(value="apt_id", defaultValue="-1") long apt_id)throws Exception {
@@ -123,8 +124,10 @@ public class OptionsAction {
 				//신청 한 적 있는지 확인
 				int first_check=opserviceF.checkFirst(apt_id);
 				if(first_check==0) {//옵션 신청 처음->신청 페이지
+					System.out.println("insert들어감");
 					mv=new ModelAndView(  "options/Option_insert");
 				}else {	//옵션 신청 한 적 있음->조회 페이지
+					System.out.println("show로 들어감");
 					mv=new ModelAndView(  "options/Option_show");
 					Option_fBean freeOp=opserviceF.getFreeOp(apt_id);
 					Option_nfBean nfreeOp=opserviceF.getNfreeOp(apt_id);
@@ -157,7 +160,7 @@ public class OptionsAction {
 		ofbean.setUser_no(user_no);
 		onfbean.setUser_no(user_no);
 		
-		System.out.println(" ACTION insert 실행");
+		System.out.println(" ACTION insert 실행222");
 		int totalcost=Integer.parseInt(request.getParameter("nf_cost"));
 		onfbean.setNf_cost(totalcost);
 		opserviceF.set_option(ofbean,onfbean); //합침
@@ -170,8 +173,9 @@ public class OptionsAction {
 		
 		mv.addObject("foJson",foJson);
 		mv.addObject("nfoJson",nfoJson);
+		System.out.println("아파트빈 ㅏㅇ이디 : " + ofbean.getApart_id());
 		
-		ApartmentBean apartinfo=opserviceF.getAptInfo(user_no); //apart정보 가져옴
+		ApartmentBean apartinfo=opserviceF.getAptInfo(ofbean.getApart_id()); //apart정보 가져옴
 		mv.addObject("apartinfo",apartinfo);//아파트 정보 보냄
 	
 		long apart_xid=apartinfo.getComplex_id();
@@ -184,7 +188,7 @@ public class OptionsAction {
 	}
 	
 	@RequestMapping(value="/options_update.op")
-	public ModelAndView update_option(HttpServletRequest request, Option_fBean ofbean, Option_nfBean onfbean)throws Exception{
+	public ModelAndView update_option(HttpServletRequest request, Option_fBean ofbean, Option_nfBean onfbean, @RequestParam(value="aptXid", defaultValue="-1") long aptXid)throws Exception{
 		HttpSession session=request.getSession();
 		int user_no=(Integer) session.getAttribute("user_no");
 		ofbean.setUser_no(user_no);
@@ -204,12 +208,13 @@ public class OptionsAction {
 		
 		mv.addObject("foJson",foJson);
 		mv.addObject("nfoJson",nfoJson);
-		
+		System.out.println(foJson + " / " + nfoJson);
 		long apart_id=ofbean.getApart_id();
 		ApartmentBean apartinfo=opserviceF.getAptInfo(apart_id); 
 		mv.addObject("apartinfo",apartinfo);
 	
-		long apart_xid=apartinfo.getComplex_id();
+		long apart_xid=aptXid;
+		
 		AptComplexBean apartXinfo=opserviceF.getAptXinfo(apart_xid);
 		mv.addObject("apartXinfo",apartXinfo);
 		mv.addObject("area",apartinfo.getApart_area());

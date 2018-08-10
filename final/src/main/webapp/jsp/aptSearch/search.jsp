@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="./resources/css/search.css">
 </head>
 <body>
-	<jsp:include page="../header2.jsp"/>
+	<jsp:include page="../header.jsp"/>
 	<div class="bg-img">
 		
 	

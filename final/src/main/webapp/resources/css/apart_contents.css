@@ -24,7 +24,7 @@ html{
     font-weight: normal;
     font-style: normal;
 }
-*{
+#wrapper, .footer{
     font-family: 'test';
     font-weight: 600;
 }

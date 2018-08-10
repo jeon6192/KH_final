@@ -1,58 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 	<head>
-		<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet">
-		
-		<!-- Custom CSS -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+		<%-- <!-- Custom CSS -->
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header2.css">
 		<!-- Custom JS -->
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/js/header2.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/header2.js"></script> --%>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header2.css">
+		<style>
+			
+			</style>
 	</head>
 	<body>
-		<nav id="menu" class="navbar navbar-default navbar-fixed-top">
-			<div class="container"> 
-			   
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-					<a class="navbar-brand page-scroll" href="./main.com">House</a> 
-				</div>
-				    
-				  
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="./aptSearch.com" class="page-scroll">아파트 분양</a></li>
-						<li><a href="./infoDoc_list.nhn" class="page-scroll">정보</a></li>
-						<li><a href="./list.nhn" class="page-scroll">Q&A</a></li>
-						
-						<c:if test="${!empty sessionScope.id}">
-							<c:if test="${!empty sessionScope.Admin_no}">
-								<li><a href="admin_detail.nhn" class="page-scroll">회원 관리</a></li>
-								<li><a href="total_eventlist.ev" class="page-scroll">분양 관리</a></li>
-								<li><a href="apart_insertform.com" class="page-scroll">매물 등록</a></li>
-							</c:if>
-							<c:if test="${empty sessionScope.Admin_no}">
-								<li><a href="mypage_main.nhn" class="page-scroll">마이페이지</a></li>
-							</c:if>
-							
-							<li><a href="member_logout.nhn" class="page-scroll">로그아웃</a></li>
-						</c:if>
-						
-						<c:if test="${empty sessionScope.id}">
-							<li><a href="member_login.nhn" class="page-scroll">로그인</a></li>
-							<li><a href="join_check.nhn" class="page-scroll">회원가입</a></li>
-						</c:if>
-					        
-					</ul>
-				</div>
-			 
-			</div>
-		</nav>
+		<div class="topnav" id="myTopnav">
+		  <a href="#home" class="active">Home</a>
+		  <a href="#news">News</a>
+		  <a href="#contact">Contact</a>
+		  <a href="#about">About</a>
+		  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+		    <i class="fa fa-bars"></i>
+		  </a>
+		</div>
+		
+		<script>
+			function myFunction() {
+			    var x = document.getElementById("myTopnav");
+			    if (x.className === "topnav") {
+			        x.className += " responsive";
+			    } else {
+			        x.className = "topnav";
+			    }
+			}
+		</script>
 	
 	</body>
 </html>

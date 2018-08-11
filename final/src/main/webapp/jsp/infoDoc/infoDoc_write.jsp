@@ -5,27 +5,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../resources/css/infomobile.css">
-<style>
-	@font-face{
-  		font-family : 'NanumGothic';
-  		src : url(../fonts/NanumGothic.ttf) format('truetype');
-	}
-	body{
-		font-family: NanumGothic
-	}
-	table {margin:0 auto; border-collapse:collapse}
-	td {height:15px}
-	.infowrap{
-    	padding-top: 12%; width:1000px; padding-bottom:5%;  margin: 0 auto;
-	}
-	#inhr{width:100%}
-	#ohr{margin-top:20px}
-	#ohr hr{background-color: #2e75b6;}
-</style>
+<link rel="stylesheet" href="./resources/css/infomobile.css" type="text/css" media="( max-width: 1024px )">
+<link rel="stylesheet" href="./resources/css/infomobile.css" type="text/css" media="( min-width: 1024px )">
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
 <meta>
 <title>Insert title here</title>
@@ -51,14 +32,13 @@
 	</form>
    <div id="infoDocwrite_wrap">
       <form action="infoDoc_write_ok.nhn" method="post" onsubmit="return check()" enctype="multipart/form-data">
-         <table id="infoDocwrite_t" border="1">
+         <table id="infotable" border="1">
             <tr>
                <th>서류명</th>
                <td>
                   <input name="INFO_DOC_SUB" id="INFO_DOC_SUB" size="40" class="input_box">
                   <label for="upfile"><img alt="파일열기" src="resources/images/upload.jpg" style="width:30px; height:30px;"></label>
                	<input type="file" id="upfile" name="uploadfile">
-               	<span id="filevalue"></span>&nbsp;
                </td>
             </tr>
            </table>

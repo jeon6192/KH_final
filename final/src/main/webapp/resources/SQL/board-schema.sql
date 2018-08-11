@@ -2,7 +2,7 @@
 CREATE TABLE board1 (
     boardcd varchar2(20),
     boardnm varchar2(40) NOT NULL,
-    CONSTRAINT PK_BOARD PRIMARY KEY(boardcd)
+    CONSTRAINT PK_BOARD2 PRIMARY KEY(boardcd)
 );
 
 -- 게시글
@@ -14,7 +14,7 @@ CREATE TABLE article (
     content CLOB,
     hit NUMBER,
     regdate DATE,
-     CONSTRAINT id_CONS foreign key (id) references member(id)
+     CONSTRAINT id_CONS7 foreign key (id) references member(id)
 );
 
 select * from board1;
@@ -47,6 +47,10 @@ create table attachfile (
  articleno number,
  constraint PK_ATTACHFILE PRIMARY KEY(attachfileno)
 );
+
+select * from attachfile
+
+alter table attachfile modify(filetype varchar2(100))
 
 drop table attachfile;
 -- 첨부파일 번호 생성기
@@ -82,3 +86,11 @@ SELECT * FROM article  where rownum <= 5 order by hit desc
 
 SELECT * FROM (select * from article order by hit desc) 
 where rownum <= 5
+
+
+select * from attachfile
+
+SELECT attachfileno, filename, filetype, filesize, articleno 
+  FROM attachfile 
+  WHERE articlefileno = 6
+  ORDER BY attachfileno

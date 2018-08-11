@@ -2,6 +2,7 @@ package com.naver.house.controller;
  
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -133,16 +134,25 @@ public class BbsController {
     @RequestMapping(value="/write", method=RequestMethod.POST)
     public String write(Article article,
       MultipartHttpServletRequest mpRequest, String id,HttpServletRequest request) throws Exception {
-    	HttpSession session=request.getSession();
-    	id=(String) session.getAttribute("id");
+      HttpSession session=request.getSession();
+      id=(String) session.getAttribute("id");
      article.setId(id);
      boardService.insert(article);
      article.setArticleNo(boardService.getNewArticle().getArticleNo());
      
      //파일업로드
-     List<MultipartFile> fileList = mpRequest.getFiles("upload");
+     List<MultipartFile> fileList = mpRequest.getFiles("upload");        
+      
+     System.out.println("업로드 파일 갯수 = " + fileList.size() );
+    
+     
      for(MultipartFile mf : fileList){
       String filename = mf.getOriginalFilename();
+     
+      if(filename.equals("")) {
+    	  System.out.println("업로드 파일 이름 ('') " + filename);
+    	  break;
+      }
       mf.transferTo(new File(WebContants.BASE_PATH + filename));
      }
      
@@ -158,15 +168,17 @@ public class BbsController {
       attachFile.setFilesize(mpFile.getSize());
       attachFile.setArticleNo(article.getArticleNo());
       if(attachFile.getFilesize() == 0) {
-			attachFile.setArticleNo(0);
-			attachFile.setAttachFileNo(0);
-		}
+      attachFile.setArticleNo(0);
+      attachFile.setAttachFileNo(0);
+    }
       boardService.insertAttachFile(attachFile);
      }     
      
      return "redirect:/list.nhn?boardCd=" + article.getBoardCd();
     }
 
+    
+    
     @RequestMapping(value="/view.nhn", method=RequestMethod.GET)
 
     public String view(int articleNo,
@@ -220,6 +232,7 @@ public class BbsController {
      Article prevArticle = boardService.getPrevArticle(articleNo, boardCd, searchWord);
      Article nextArticle = boardService.getNextArticle(articleNo, boardCd, searchWord);
      ArrayList<AttachFile> attachFileList = boardService.getAttachFileList(articleNo);
+     System.out.println(attachFileList);
      ArrayList<Comment> commentList = boardService.getCommentList(articleNo);
 
      model.addAttribute("thisArticle", thisArticle);

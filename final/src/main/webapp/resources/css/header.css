@@ -9,6 +9,7 @@ div#myTopnav {
     right: 0;
     top: 0;
     left: 0;
+    z-index: 2;
 }
 
 .topnav {
@@ -20,6 +21,11 @@ div#myTopnav {
 
 .nav-up{
     top: -70px !important;
+}
+
+#myTopnav>a>.fa{
+	height: 100%;
+	line-height: 70px;
 }
 
 .topnav a {

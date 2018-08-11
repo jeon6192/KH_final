@@ -149,6 +149,7 @@ public class BoardServiceImpl implements BoardService{
      * 첨부파일 추가
      */
     public void insertAttachFile(AttachFile attachFile) {
+    	System.out.println("inservice : "+attachFile.getArticleNo());
      boardMapper.insertAttachFile(attachFile);
     }
     

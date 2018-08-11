@@ -85,7 +85,7 @@
     </resultMap>
    
     <select id="getArticle" parameterType="int" resultMap="ArticleClob">
-        SELECT articleno, title, content,<!--  id, --> hit, id, regdate
+        SELECT articleno, title, content, id, hit, id, regdate
         FROM article
         WHERE articleno = #{articleNo}
     </select>
@@ -110,7 +110,7 @@
  </select>
  
  <select id="getNewArticle" resultType="Article">
-  SELECT articleno, title, content, <!-- id, --> hit, id, regdate
+  SELECT articleno, title, content, id, hit, id, regdate
   FROM (SELECT * FROM ARTICLE ORDER BY articleno DESC) 
   WHERE ROWNUM = 1
  </select> 
@@ -122,9 +122,9 @@
  </insert> 
 
  <select id="getAttachFileList" parameterType="int" resultType="AttachFile">
-  SELECT attachfileno, filename, filetype, filesize, articleno 
+  SELECT attachfileno, filename, filetype, filesize, articleNo 
   FROM attachfile 
-  WHERE articleno = #{articleNo} 
+  WHERE articleNo = #{articleNo} 
   ORDER BY attachfileno
  </select>
  <delete id="deleteFile" parameterType="int">

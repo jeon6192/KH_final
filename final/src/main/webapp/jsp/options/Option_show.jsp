@@ -23,14 +23,77 @@
 * {
 	font-family: test, sans-serif;
 }
+
+input[type='text'] {
+	border-style: none;
+}
+
+#Opcaution>ul>li{text-align:left;}
+
+
 </style>
 
 <!-- script  -->
 <script src="http://code.jQuery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="./resources/js/option_insert.js">
-	</script>
+
 	<script>
 
+	function checknull(){
+		if(!$('input:radio[name=bedroom_closet]').is(':checked')){
+			alert("붙박이장을 선택해 주세요");
+			return false;
+		}
+		if(!$('input:radio[name=kitchen_height]').is(':checked')){
+			alert("부엌 높이를 선택해 주세요");
+			return false;
+		}
+		if(!$('input:radio[name=balcony]').is(':checked')){
+			alert("발코니 확장 여부를 선택해 주세요");
+			return false;
+		}
+		if(!$('input:radio[name=interior_color]').is(':checked')){
+			alert("인테리어 컬러 타입을 선택해 주세요");
+			return false;
+		}
+		if(!$('input:radio[name=floor_type]').is(':checked')){
+			alert("[유상옵션] 바닥 마감재를 선택해 주세요");
+			return false;
+		}
+		if(!$('input:radio[name=main_room_slide]').is(':checked')){
+			alert("[유상옵션] 안방 슬라이딩 장을  선택해 주세요");
+			return false;
+		}
+		if(!$('input:radio[name=dressroom]').is(':checked')){
+			alert("[유상옵션] 드레스 룸을 선택해 주세요");
+			return false;
+		}
+		if(!$('input:radio[name=cooktop]').is(':checked')){
+			alert("[유상옵션] 쿡탑을 선택해 주세요");
+			return false;
+		}
+		if(!$('input:radio[name=kitchen_shelf]').is(':checked')){
+			alert(" [유상옵션] 주방 선반 타입을 선택해 주세요");
+			return false;
+		}
+		if(!$('input:radio[name=builtin_ref]').is(':checked')){
+			alert("[유상옵션] 빌트인 냉장고 타입을 선택해 주세요");
+			return false;
+		}
+		if(!$('input:radio[name=builtin_kref]').is(':checked')){
+			alert("[유상옵션] 빌트인 김치 냉장고 타입을 선택해 주세요");
+			return false;
+		}
+		if(!$('input:radio[name=showerbooth]').is(':checked')){
+			alert("[유상옵션] 샤워부스 유무를 선택해 주세요");
+			return false;
+		}
+		if(!$('input:radio[name=sys_air]').is(':checked')){
+			alert("[유상옵션] 시스템 에어컨 갯수를 선택해 주세요");
+			return false;
+		}
+		
+		return true;
+	}
 	function editgo() {
 		$('input:radio').prop("disabled", false);
 		$("#editbtn").remove();
@@ -326,7 +389,7 @@
 					<td>거실 발코니 확장</td>
 					<td><label><input type="radio" name="balcony"
 							id="balcony" value="1" disabled>확 장</label> <label><input
-							type="radio" name="balcony" id="balcony" value="2" disabled>비
+							type="radio" name="balcony" id="balcony" value="0" disabled>비
 							확 장</label></td>
 					<td class="fourth"></td>
 				</tr>
@@ -442,10 +505,10 @@
 				</tr>
 				<tr>
 					<td>총 가격</td>
-					<td colspan="3">얼마<input type="hidden" name="nf_cost"
+					<td colspan="3"><input type="hidden" name="nf_cost"
 						id="nf_cost1" value="" class="priceSection" Readonly>
 						<input type="text"
-						id="nf_cost_show" value="" class="priceSection" Readonly>
+						id="nf_cost_show" value="" class="priceSection" Readonly>원 청구될 예정입니다.
 					</td>
 				</tr>
 			</table>

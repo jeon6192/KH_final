@@ -35,7 +35,8 @@
 			type:"post",
 			url:"update_up.ev",
 			data:{"apart_id":a,"user_no":b},
-			success:function(data){
+			success:function(){
+				alert("확정완료 되었습니다.");
 				location.href="event_win_list.ev?complex_id="+complex_id;
 			},
 			error:function(data){
@@ -52,7 +53,8 @@
 			type:"post",
 			url:"update_down.ev",
 			data:{"apart_id":a,"user_no":b},
-			success:function(data){
+			success:function(){
+				alert("분양취소 되었습니다.");
 				location.href="event_win_list.ev?complex_id="+complex_id;
 			},
 			error:function(data){

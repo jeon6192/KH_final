@@ -6,27 +6,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="./resources/css/infomobile.css" type="text/css" media="( max-width: 1024px )">
+<link rel="stylesheet" href="./resources/css/infomobile.css" type="text/css" media="( min-width: 1024px )">
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
 <title>정보 게시판</title>
 
 <script src = "http://code.jquery.com/jquery-latest.js"></script>
 
-<style>
-	@font-face{
-  		font-family : 'NanumGothic';
-  		src : url(../fonts/NanumGothic.ttf) format('truetype');
-	}
-	body{
-		font-family: NanumGothic
-	}
-	table {border-collapse:collapse}
-	.infowrap{
-    	padding-top: 12%; width:1000px; padding-bottom:5%;  margin: 0 auto;
-	}
-	#inhr{width:100%}
-	#ohr{margin-top:20px}
-	#ohr hr{background-color: #2e75b6;}
-</style>
 </head>
 <body>
 <div class="infowrap">
@@ -49,12 +35,13 @@
 	<br>
 	 글 개수 : ${listcount}
     <!-- 게시판 리스트 -->
-    <table border="1">
+    <table border="1" id="infotable">
     <!-- 레코드가 있으면 -->
     <tr>
        <th colspan = "4">정보게시판-정책검색결과</th>
     </tr>
     
+    <c:if test="${listcount != 0 }">
     <tr>
        <th width = "10%"><div>번호</div></th>
        <th width = "50%"><div>제목</div></th>
@@ -114,12 +101,12 @@
           </c:if>
        </td>                  
     </tr>
+    </c:if>
     
     <!-- 레코드가 없으면 -->
     <c:if test="${listcount == 0 }">
        <tr>
-          <td colspan="4">정보게시판-정책검색결과</td>
-          <td style = "text-align:right">
+          <td colspan="4" style = "text-align:center">
              	등록된 글이 없습니다.
           </td>   
        </tr>
@@ -127,7 +114,9 @@
     </table>
     
     <br>
+    <div style="text-align:center">
     <input type="button" value="목록" style="background-color:white; border:1.5px solid #008CBA;" onclick="location='infoPolicy_list.nhn?page=1'">
+    </div>
 </div>
 </body>
 </html>

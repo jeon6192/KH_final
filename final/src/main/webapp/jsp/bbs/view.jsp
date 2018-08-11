@@ -227,10 +227,12 @@ function print(printArea)
   
  <div id="view-menu">
   <div class="fl">
-      <c:if test="${sessionScope.id!='admin'}">
+  <c:if test="${!empty sessionScope.id}">
+      <c:if test="${empty sessionScope.Admin_no}">
    <input type="button" value="수정" onclick="goModify()" class="btn"/>
-   </c:if>
    <input type="button" value="삭제" onclick="goDelete()" class="btn"/>
+      </c:if>
+  </c:if>
   </div>
   <div class="fr">   
   <input type = "button" value="인쇄하기" OnClick="print(document.getElementById('printArea').innerHTML)" class="btn" id="print"/>

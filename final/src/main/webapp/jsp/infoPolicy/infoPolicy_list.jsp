@@ -9,31 +9,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="./resources/css/infomobile.css" type="text/css" media="( max-width: 1024px )">
+<link rel="stylesheet" href="./resources/css/infomobile.css" type="text/css" media="( min-width: 1024px )">
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
-<style>
-	@font-face{
-  		font-family : 'NanumGothic';
-  		src : url(../fonts/NanumGothic.ttf) format('truetype');
-	}
-	body{
-		font-family: NanumGothic
-	}
- 	#policytable {margin:0 auto}
- 	tr {height:15pt}
- 	p {text-align:center}
- 	table {border-collapse:collapse; width:100%}
- 	#policytable tr:last-child td {text-align:center;}
- 	#findline {width:100%}
-	#findline select{float:left; padding:2px}
-	#findline form{float:right}
- 	#write {float:right}
- 	#inhr{width:100%}
- 	#ohr{margin-top:20px}
- 	#ohr hr{background-color: #2e75b6;}
- 	.infowrap{
-    	padding-top: 12%; width:1000px; padding-bottom:5%;  margin: 0 auto;
-	}
-</style>
+
 <title>정보 게시판</title>
 <script src = "http://code.jquery.com/jquery-latest.js"></script>
 <script src="resources/js/infoPolicylist_line.js"></script>
@@ -74,15 +53,14 @@
        			<table>
        				<tr id="find">
        					<th>
-       						<select name="find_field" >
+       						<select name="find_field" id="find_field">
        							<option value="INFO_POLICY_SUB">제목</option>
        							<option value="INFO_POLICY_SubCont">제목+내용</option>
        							<option value="INFO_POLICY_CONT">내용</option>
        						</select>
        					</th>
        					<td>
-       						<input name="find_name" id="find_name" size="18"
-       							class="input_box">
+       						<input name="find_name" id="find_name" class="input_box">
        						<input type="submit" value="검색" class="input_button" style="background-color:#2e75b6; color:white; border:1px solid black;">
        					</td>
        				</tr>
@@ -96,14 +74,14 @@
 	  		</select>
 	  	</div>
        		
-		<div>
+		<div id="infotable_wrap">
     		<!-- 게시판 리스트 -->
    			<form>
-    			<table border="1" id="policytable" style="margin-bottom:20px;">
+    			<table border="1" id="infotable" style="margin-bottom:20px;">
     				<!-- 레코드가 있으면 -->
     				<tr>
-       					<th colspan = "2">정책정보- list</th>
-       					<th colspan = "2">
+       					<th colspan = "3">정책정보- list</th>
+       					<th>
           					글 개수 : ${listcount}
        					</th>
     				</tr>
@@ -171,8 +149,7 @@
     				<!-- 레코드가 없으면 -->
     				<c:if test="${listcount == 0 }">
        					<tr>
-          					<td colspan="4">정보게시판- 정책list</td>
-          					<td style = "text-align:right">
+          					<td colspan="4" style = "text-align:center">
              					등록된 글이 없습니다.
           					</td>   
        					</tr>
@@ -180,10 +157,10 @@
     			</table>
     
     			<c:if test="${!empty sessionScope.Admin_no}">
-	    			<div id="write">
-	    				<input type="button" value="글쓰기" id="writebt" onclick="location='infoPolicy_write.nhn?page=${page}'" style="background-color:white; color:black; border:1.5px solid #008CBA;">
-	    			</div>
-    			</c:if>
+            		<div id="write">
+              			<input type="button" value="글쓰기" id="writebt" onclick="location='infoPolicy_write.nhn?page=${page}'" style="background-color:white; color:black; border:1.5px solid #008CBA;">
+            		</div>
+          		</c:if>
     		</form>
     	</div>
 	</div>

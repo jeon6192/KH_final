@@ -22,16 +22,6 @@
 <style>
 
 	
-	body {
-    background: #A7A9AC;
-    background-image: -webkit-gradient(
-        linear,
-        left top,
-        right top,
-        color-stop(.34, rgba(230,237,241,.05)),
-        color-stop(.67, rgba(230,237,241,0)));
-    -webkit-background-size: 5px 5px;
-}
 
 #pagegradient {
   margin:0 auto;  
@@ -63,6 +53,7 @@
 .button span {
     background-color: #E8E8E8;
     width: 100%;
+    box-sizing: border-box;
     background-image: 
         /* gloss gradient */
         -webkit-gradient(

@@ -33,7 +33,7 @@ public class ApartInfoDocAction {
 	@Resource(name="infoDocService")
 	private ApartInfoDocService infoDocService;
 	
-	private String saveFolder = "C:\\Users\\user1\\git\\KH_final2\\final\\src\\main\\webapp\\resources\\upload\\";
+	private String saveFolder = "C:\\Users\\user1\\git\\KH_final\\final\\src\\main\\webapp\\resources\\upload";
 	
 	@RequestMapping(value="/main.nhn")
 	public String main() {
@@ -48,9 +48,12 @@ public class ApartInfoDocAction {
 	
 	 @RequestMapping(value="/infoDoc_write_ok.nhn", method=RequestMethod.POST)
 	   public String infoDoc_write_ok(ApartInfoDocBean infoDocbean) throws Exception{
+		 System.out.println("/infoDoc_write_ok.nhn");
 	      MultipartFile uploadfile = infoDocbean.getUploadfile();
+	      
+	      
 	      if(!uploadfile.isEmpty()) {
-	         
+	    	  System.out.println("/infoDoc_write_ok.nhn  if문");
 	         //원래 파일명 구해오기
 	         String fileName = uploadfile.getOriginalFilename();
 	         
@@ -66,7 +69,7 @@ public class ApartInfoDocAction {
 	         
 	       ///파일 객체 생성합니다.
 	         File path1=new File(homedir);
-	         
+	         System.out.println(path1);
 	       //폴더가 존재하는지 확인합니다.
 	         if(!(path1.exists())) {
 	            System.out.println("폴더를 만듭니다.");
@@ -198,6 +201,7 @@ public class ApartInfoDocAction {
 			@RequestParam("path") String storedFileName,
 			@RequestParam("original") String originalFileName,
 			HttpServletRequest request) throws Exception{
+		
 		request.setCharacterEncoding("utf-8");
 		System.out.println("original = "+ originalFileName);
 		

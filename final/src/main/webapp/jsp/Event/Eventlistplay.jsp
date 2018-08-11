@@ -28,7 +28,10 @@
 
 					<c:if test="${apt.complex_state != 0 }">
 						<td class="text-center">분양 마감</td>
-						<td class="text-center"><button value="a">a</button></td>
+						<td class="text-center"> 
+						<input type="image" class="filebtn" value="${apt.getComplex_id()}" src="resources/img/excel.png" width="44px" height="26px">
+					<%-- 	<button id="filebtn" class="filebtn" value="${bo.getComplex_id()}">파일</button> --%>
+						</td>
 					</c:if>
 				</tr>
           	</c:forEach>

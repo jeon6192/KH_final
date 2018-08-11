@@ -11,7 +11,7 @@
 <style>
 	@font-face{
   		font-family : 'NanumGothic';
-  		src : url(../fonts/NanumGothic.ttf) format('truetype');
+  		src : url(./fonts/NanumGothic.ttf) format('truetype');
 	}
 	body{
 		font-family: NanumGothic
@@ -25,7 +25,7 @@
 	#inhr{width:100%}
 	#ohr{margin-top:20px}
 	#ohr hr{background-color: #2e75b6;}
-	#infoEtccont_menu input[type=button] {background-color:white; border:1.5px solid #008CBA; }
+	#infocont_menu input[type=button] {background-color:white; border:1.5px solid #008CBA; }
 	.prevnexttable {
 		border-collapse:seperate;
 		border-spacing: 0.5%;
@@ -69,7 +69,7 @@
 	
 	<h4>게시물 내용보기</h4>
 	
-<div id="infoEtccont_wrap" style="width:600px">
+<div id="infocontwrap" style="width:600px">
 
 <table id="infoEtccont_t" border="1">
 <tr>
@@ -102,14 +102,14 @@
 <br>
 <br>
 	
-	<div id="infoEtccont_menu" style="margin-left:200px">
-	<c:if test="${empty infoDoc.Admin_no}">
-		<input type="button" value="수정" class="input_button"
-		onclick="location='infoEtc_cont.nhn?infoEtc_num=${infoEtc.INFO_ETC_NUM}&state=edit'">
+	<div id="infocont_menu" style="margin-left:200px">
+		<c:if test="${!empty sessionScope.Admin_no}">
+			<input type="button" value="수정" class="input_button"
+			onclick="location='infoEtc_cont.nhn?infoEtc_num=${infoEtc.INFO_ETC_NUM}&state=edit'">
 		
-		<input type="button" value="삭제" class="input_button"
-		onclick="location='infoEtc_cont.nhn?infoEtc_num=${infoEtc.INFO_ETC_NUM}&state=del'">
-	</c:if>
+			<input type="button" value="삭제" class="input_button"
+			onclick="location='infoEtc_cont.nhn?infoEtc_num=${infoEtc.INFO_ETC_NUM}&state=del'">
+		</c:if>
 		
 		<input type="button" value="목록" class="input_button"
 		onclick="location='infoEtc_list.nhn?page=1'">

@@ -26,6 +26,7 @@ input[type='text'] {
 	border-style: none;
 }
 
+#Opcaution>ul>li{text-align:left;}
 
 </style>
 <script src="http://code.jQuery.com/jquery-latest.js"></script>
@@ -323,37 +324,37 @@ function showMoney(){
 				<tr>
 					<td rowspan="4">무상 옵션</td>
 					<td>붙박이장</td>
-					<td><label class="radio-inline" class="radio-inline"><input
+					<td><label ><input
 							type="radio" class="bedroom_closet" name="bedroom_closet"
 							id="bedroom_closet" value="1">있음</label> <label
-						class="radio-inline" class="radio-inline"><input
+						><input
 							type="radio" class="bedroom_closet" name="bedroom_closet"
 							id="bedroom_closet" value="0" checked>없음</label></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>부엌 높이</td>
-					<td><label class="radio-inline" class="radio-inline"><input
+					<td><label ><input
 							type="radio" name="kitchen_height" id="kitchen_height" value="1" checked>기본형
-							(85cm)</label> <label class="radio-inline" class="radio-inline"><input
+							(85cm)</label> <label ><input
 							type="radio" name="kitchen_height" id="kitchen_height" value="2">높은형
 							(90cm)</label></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>거실 발코니 확장</td>
-					<td><label class="radio-inline" class="radio-inline"><input
+					<td><label ><input
 							type="radio" name="balcony" id="balcony" value="1">확 장</label> <label
-						class="radio-inline" class="radio-inline"><input
+						><input
 							type="radio" name="balcony" id="balcony" value="0" checked>비 확 장</label>
 					</td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>인테리어 색상</td>
-					<td><label class="radio-inline" class="radio-inline"><input
+					<td><label ><input
 							type="radio" name="interior_color" id="interior_color" value="1">
-							A 타입 </label> <label class="radio-inline" class="radio-inline"><input
+							A 타입 </label> <label ><input
 							type="radio" name="interior_color" id="interior_color" value="2" checked>
 							B 타입 </label></td>
 					<td></td>
@@ -361,12 +362,12 @@ function showMoney(){
 				<tr>
 					<td rowspan="9">유상 옵션</td>
 					<td>바닥 마감재</td>
-					<td><label class="radio-inline" class="radio-inline"><input
+					<td><label ><input
 							type="radio" name="floor_type" id="floor_type" class="floor_type"
-							value="1"> 원목 마루 </label> <label class="radio-inline"
-						class="radio-inline"><input type="radio" name="floor_type"
+							value="1"> 원목 마루 </label> <label 
+						><input type="radio" name="floor_type"
 							id="floor_type" class="floor_type" value="2"> 유광 원목마루 </label> <label
-						class="radio-inline" class="radio-inline"><input
+						><input
 							type="radio" name="floor_type" id="floor_type" class="floor_type"
 							value="0" checked> 선택없음 </label></td>
 					<td><input type="text" class="priceSection" 
@@ -374,13 +375,13 @@ function showMoney(){
 				</tr>
 				<tr>
 					<td>안방 슬라이딩 장</td>
-					<td><label class="radio-inline" class="radio-inline"><input
+					<td><label ><input
 							type="radio" name="main_room_slide" class="main_room_slide"
 							id="main_room_slide" value="1"> 수납 강화형 </label> <label
-						class="radio-inline" class="radio-inline"><input
+						><input
 							type="radio" name="main_room_slide" class="main_room_slide"
 							id="main_room_slide" value="2"> TV 장형 </label> <label
-						class="radio-inline" class="radio-inline"><input
+						><input
 							type="radio" name="main_room_slide" class="main_room_slide"
 							id="main_room_slide" value="0" checked> 선택 없음 </label></td>
 					<td><input type="text" class="priceSection"
@@ -389,10 +390,10 @@ function showMoney(){
 				</tr>
 				<tr>
 					<td>드레스 룸</td>
-					<td><label class="radio-inline" class="radio-inline"><input
+					<td><label ><input
 							type="radio" name="dressroom" id="dressroom" class="dressroom"
-							value="1"> 쇼룸형 </label> <label class="radio-inline"
-						class="radio-inline"><input type="radio" name="dressroom"
+							value="1"> 쇼룸형 </label> <label 
+						><input type="radio" name="dressroom"
 							id="dressroom" class="dressroom" value="0" checked> 선택 없음</label>
 					</td>
 					<td><input class="priceSection" type="text" 
@@ -401,12 +402,12 @@ function showMoney(){
 				</tr>
 				<tr>
 					<td>쿡탑</td>
-					<td><label class="radio-inline" class="radio-inline"><input
+					<td><label ><input
 							type="radio" name="cooktop" class="cooktop" id="cooktop"
-							value="1"> 기본 형 </label> <label class="radio-inline"
-						class="radio-inline"><input type="radio" name="cooktop"
+							value="1"> 기본 형 </label> <label 
+						><input type="radio" name="cooktop"
 							class="cooktop" id="cooktop" value="2"> 하이브리드 쿡탑 </label> <label
-						class="radio-inline" class="radio-inline"><input
+						><input
 							type="radio" name="cooktop" class="cooktop" id="cooktop"
 							value="0" checked> 선택 없음 </label></td>
 					<td><input type="text" class="priceSection" 
@@ -414,12 +415,12 @@ function showMoney(){
 				</tr>
 				<tr>
 					<td>주방 선반</td>
-					<td><label class="radio-inline" class="radio-inline"><input
+					<td><label ><input
 							type="radio" name="kitchen_shelf" class="kitchen_shelf"
 							id="kitchen_shelf" value="1"> 캐슬미드웨이 선반 </label> <label
-						class="radio-inline"><input type="radio"
+						><input type="radio"
 							name="kitchen_shelf" class="kitchen_shelf" id="kitchen_shelf"
-							value="2"> 기본 형 </label> <label class="radio-inline"><input
+							value="2"> 기본 형 </label> <label ><input
 							type="radio" name="kitchen_shelf" class="kitchen_shelf"
 							id="kitchen_shelf" value="0" checked> 선택 없음 </label></td>
 					<td><input type="text" class="priceSection"
@@ -428,11 +429,11 @@ function showMoney(){
 				</tr>
 				<tr>
 					<td>빌트인 냉장고</td>
-					<td><label class="radio-inline"><input type="radio"
+					<td><label ><input type="radio"
 							name="builtin_ref" class="builtin_ref" id="builtin_ref" value="1">
-							일반형 </label> <label class="radio-inline"><input type="radio"
+							일반형 </label> <label ><input type="radio"
 							name="builtin_ref" class="builtin_ref" id="builtin_ref" value="2">
-							판넬부착형 </label> <label class="radio-inline"><input type="radio"
+							판넬부착형 </label> <label ><input type="radio"
 							name="builtin_ref" class="builtin_ref" id="builtin_ref" value="0"
 							checked> 선택 없음 </label></td>
 					<td><input type="text" class="priceSection"
@@ -441,9 +442,9 @@ function showMoney(){
 				</tr>
 				<tr>
 					<td>김치 냉장고</td>
-					<td><label class="radio-inline"><input type="radio"
+					<td><label ><input type="radio"
 							name="builtin_kref" class="builtin_kref" id="builtin_kref"
-							value="1"> O </label> <label class="radio-inline"><input
+							value="1"> O </label> <label ><input
 							type="radio" name="builtin_kref" class="builtin_kref"
 							id="builtin_kref" value="0" checked> 선택 없음 </label></td>
 					<td><input type="text" class="priceSection"
@@ -452,9 +453,9 @@ function showMoney(){
 				</tr>
 				<tr>
 					<td>샤워부스</td>
-					<td><label class="radio-inline"><input type="radio"
+					<td><label ><input type="radio"
 							name="showerbooth" class="showerbooth" id="showerbooth" value="1">
-							O (욕조 대체)</label> <label class="radio-inline"><input type="radio"
+							O (욕조 대체)</label> <label ><input type="radio"
 							name="showerbooth" class="showerbooth" id="showerbooth" value="0"
 							checked> 선택 없음 </label></td>
 					<td><input type="text" class="priceSection"
@@ -463,13 +464,13 @@ function showMoney(){
 				</tr>
 				<tr>
 					<td>시스템 에어컨 (기본 1대)</td>
-					<td><label class="radio-inline"><input type="radio"
+					<td><label ><input type="radio"
 							name="sys_air" class="sys_air" id="sys_air" value="1"> 1대
-							추가 </label> <label class="radio-inline"><input type="radio"
+							추가 </label> <label ><input type="radio"
 							name="sys_air" class="sys_air" id="sys_air" value="2"> 2대
-							추가 </label> <label class="radio-inline"><input type="radio"
+							추가 </label> <label ><input type="radio"
 							name="sys_air" class="sys_air" id="sys_air" value="3"> 3대
-							추가 </label> <label class="radio-inline"><input type="radio"
+							추가 </label> <label ><input type="radio"
 							name="sys_air" class="sys_air" id="sys_air" value="0" checked>
 							추가 안함 </label></td>
 					<td><input type="text" class="priceSection" 
@@ -487,7 +488,7 @@ function showMoney(){
 			</table>
 </div>
 			<div id="Opcaution">
-				<ul id="lists">
+				<ul>
 					<li>상기 금액은 부가세(10%)가 포함되어 있습니다.</li>
 					<li>계약 시 상기 금액의 10%를 계약금, 입주시 90%를 잔금으로 납부해주셔야 하며, 계약 해지시 계약금은
 						반환되지 않습니다.</li>

@@ -48,9 +48,12 @@ public class ApartInfoDocAction {
 	
 	 @RequestMapping(value="/infoDoc_write_ok.nhn", method=RequestMethod.POST)
 	   public String infoDoc_write_ok(ApartInfoDocBean infoDocbean) throws Exception{
+		 System.out.println("/infoDoc_write_ok.nhn");
 	      MultipartFile uploadfile = infoDocbean.getUploadfile();
+	      
+	      
 	      if(!uploadfile.isEmpty()) {
-	         
+	    	  System.out.println("/infoDoc_write_ok.nhn  if문");
 	         //원래 파일명 구해오기
 	         String fileName = uploadfile.getOriginalFilename();
 	         
@@ -198,6 +201,7 @@ public class ApartInfoDocAction {
 			@RequestParam("path") String storedFileName,
 			@RequestParam("original") String originalFileName,
 			HttpServletRequest request) throws Exception{
+		
 		request.setCharacterEncoding("utf-8");
 		System.out.println("original = "+ originalFileName);
 		

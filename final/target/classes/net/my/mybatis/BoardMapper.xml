@@ -110,7 +110,7 @@
  </select>
  
  <select id="getNewArticle" resultType="Article">
-  SELECT articleno, title, content, <!-- id, --> hit, id, regdate
+  SELECT articleno, title, content, id, hit, id, regdate
   FROM (SELECT * FROM ARTICLE ORDER BY articleno DESC) 
   WHERE ROWNUM = 1
  </select> 

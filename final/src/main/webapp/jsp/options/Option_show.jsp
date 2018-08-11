@@ -23,6 +23,14 @@
 * {
 	font-family: test, sans-serif;
 }
+
+input[type='text'] {
+	border-style: none;
+}
+
+#Opcaution>ul>li{text-align:left;}
+
+
 </style>
 
 <!-- script  -->
@@ -497,10 +505,10 @@
 				</tr>
 				<tr>
 					<td>총 가격</td>
-					<td colspan="3">얼마<input type="hidden" name="nf_cost"
+					<td colspan="3"><input type="hidden" name="nf_cost"
 						id="nf_cost1" value="" class="priceSection" Readonly>
 						<input type="text"
-						id="nf_cost_show" value="" class="priceSection" Readonly>
+						id="nf_cost_show" value="" class="priceSection" Readonly>원 청구될 예정입니다.
 					</td>
 				</tr>
 			</table>

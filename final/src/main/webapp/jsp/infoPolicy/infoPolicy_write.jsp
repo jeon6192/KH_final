@@ -5,26 +5,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="./resources/css/infomobile.css" type="text/css" media="( max-width: 1024px )">
+<link rel="stylesheet" href="./resources/css/infomobile.css" type="text/css" media="( min-width: 1024px )">
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
-<style>
-	@font-face{
-  		font-family : 'NanumGothic';
-  		src : url(../fonts/NanumGothic.ttf) format('truetype');
-	}
-	body{
-		font-family: NanumGothic
-	}
-	table {margin:0 auto; border-collapse:collapse}
-	td {height:15px}
-	.infowrap{
-    	padding-top: 12%; width:1000px; padding-bottom:5%;  margin: 0 auto;
-	}
-	#inhr{width:100%}
-	#ohr{margin-top:20px}
-	#ohr hr{background-color: #2e75b6;}
-</style>
+
 <meta>
-<title>Insert title here</title>
+<title>정보게시판</title>
 <script src = "http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
@@ -51,7 +37,7 @@
                <th>제목</th>
                <td>
                   <input name="INFO_POLICY_SUB" id="INFO_POLICY_SUB"
-                     size="40" class="input_box" style="width:100%">
+                     size="40" class="input_box" style="width:80%">
                </td>
             </tr>
             <tr>

@@ -4,59 +4,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="./resources/css/infomobile.css" type="text/css" media="( max-width: 1024px )">
+<link rel="stylesheet" href="./resources/css/infomobile.css" type="text/css" media="( min-width: 1024px )">
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>정보게시판</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<style>
-	@font-face{
-  		font-family : 'NanumGothic';
-  		src : url(../fonts/NanumGothic.ttf) format('truetype');
-	}
-	body{
-		font-family: NanumGothic
-	}
-	#infoPolicycont_t {width: 100%}
-	#policylist {float:right; border: 0 none; background-color: transparent;}
-	#infoPolicycont_wrap {margin:0 auto}
-	#listOpentable table {
-		border-collapse:collapse;
-		text-align:left;
-		line-height: 1.5; 
-		width: 100%; 
-	}
-	#listOpenClose thead th {
-		padding: 10px;
-		font-weight: bold;
-    	vertical-align: top;
-   		color: #369;
-    	border-bottom: 3px solid #036;
-	}
-	#listOpenClose tr td:first-child {
-		width:30%;
-		padding: 5px;
-		vertical-align: top;
-		border-bottom: 1px solid #828282;
-	}
-	#listOpenClose tr td:last-child {
-		width:70%;
-		padding: 5px;
-		vertical-align: top;
-		border-bottom: 1px solid #828282;
-	}
-	#listOpenClose tr:last-child td{
-		text-align:center;
-	}
-	#wrap a:first-child{float:left}
-	#wrap a:last-child{float:right}
-	.infowrap{
-    	padding-top: 12%; width:1000px; padding-bottom:5%;  margin: 0 auto;
-	}
-	#inhr{width:100%}
-	#ohr{margin-top:20px; }
-	#ohr hr{background-color: #2e75b6;}
-	#infoPolicycont_menu input[type=button] {background-color:white; border:1.5px solid #008CBA; }
-</style>
 <script>
 	var level=0;//
 	function listOpen(){
@@ -76,7 +29,7 @@
 </head>
 <body>
 <div class="infowrap">
-	<div id="infoPolicycont_wrap" style="width:600px">
+	<div id="infoPolicycont_wrap" style="width:70%">
 		<h2>정보 게시판</h2>
 		<form>
 			<input type="button" value="필요서류" onclick="location='infoDoc_list.nhn?page=1'" style="border:none">
@@ -84,7 +37,6 @@
 			<input type="button" value="기타정보" onclick="location='infoEtc_list.nhn?page=1'" style="border:none">
 	    		
 			<br>
-		
 		</form> 
 	
 		<div id="ohr">
@@ -169,7 +121,7 @@
 		<h4 style="padding-bottom: 50px">게시물 내용보기</h4>
 
 		<div id="wrap">
-			<table id="infoPolicycont_t" border="1">
+			<table id="infoPolicycont" border="1">
 				<c:set var = "infoPolicy_num" value = "${listcount-(listpage-1)*1}"/>
 				<tr>
 					<th>제목</th>
@@ -202,7 +154,7 @@
 		</div>	
 		<br>
 		<br>
-		<div id="infoPolicycont_menu" style="margin-left:200px">
+		<div id="info_menu" style="margin-left:200px">
 			<c:if test="${!empty sessionScope.Admin_no}">
 			<input type="button" value="수정" class="input_button"
 			onclick="location='infoPolicy_cont.nhn?infoPolicy_num=${infoPolicy.INFO_POLICY_NUM}&page=${page}&listpage=${listpage}&state=edit'">

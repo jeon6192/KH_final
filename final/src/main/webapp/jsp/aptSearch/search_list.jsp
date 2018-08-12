@@ -228,18 +228,15 @@ var positions = [
 		</c:choose>
 		
 		<c:choose>
+		
 			<c:when test="${aptList.complex_state == 0}"> 
-				<td>분양 대기</td>
+				<td>분양 진행중</td>
 			</c:when>
 			
 			<c:when test="${aptList.complex_state == 1}">
-			<td>분양 진행중</td>
+				<td>분양 종료</td>
 			</c:when>
 			
-			
-			<c:when test="${aptList.complex_state == 2}">
-			<td>분양 완료</td>
-			</c:when>
 		</c:choose>
 			</tr>
 </c:forEach>

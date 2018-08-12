@@ -1,10 +1,13 @@
+drop table APART_INFO_DOC
+
 create table APART_INFO_DOC(
 	INFO_DOC_NUM number(10) primary key,
 	Admin_no number(30) ,
 	INFO_DOC_SUB varchar2(100) not null,
 	INFO_DOC_DATE DATE not null,
 	INFO_DOC_FILE varchar2(100) ,
-	INFO_DOC_ORIGINAL varchar2(100)
+	INFO_DOC_ORIGINAL varchar2(100), 
+	CONSTRAINT id_CONS foreign key (Admin_no) references Admin(Admin_no)
 );
 
 

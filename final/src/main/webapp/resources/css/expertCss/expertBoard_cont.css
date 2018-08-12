@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+ @font-face {
+   font-family: 'test';
+   src: url('../../fonts/MALGUN.TTF');
+   font-weight: normal;
+   font-style: normal;
+}
+
+
+	.h12{
+		color: white;
+    	line-height: 3.6em;
+    	text-align: center;
+	}
+	 
+	img{
+		width : 100%
+	}
+	
+	.all{
+		margin-top : 5%;
+		margin-bottom : 5%;
+	
+	}
+	
+	 .top{
+		margin : 0 auto;
+		width : 60%;
+		background-image :url(../../image/background.jpg);
+		height: 9em;
+	}
+	
+	.head{
+	    height: 8em;
+		width: 60%;
+	    margin: 0 auto;
+	    margin-top: 3%;
+	    border-bottom: 1px solid #aaa;
+    	border-top: 1px solid #aaa;
+    	
+	}
+	dl{
+   		 margin: 0 auto;
+   	  	 margin-top: 3%;
+	}
+	dt{
+		font-size : 24px
+	}
+	dd{
+	margin-top: 1%;
+	}
+	
+	.file{
+		width : 10%;
+		
+	}
+	
+	.body{
+		width: 60%;
+    	margin: 0 auto;
+	}
+	
+	.foot{
+	    width: 60%;
+ 	    margin: 0 auto;
+   		margin-top: 2%;
+   		border-bottom: 1px solid #aaa;
+    	padding: 1%;
+	}
+	
+	.btnList{
+		margin : 0 auto;
+    	width: 60%;
+	}
+	
+	.input_button{
+		 float: right;
+    	margin-top: 2%;
+	
+	}
+	

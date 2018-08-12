@@ -33,8 +33,7 @@ public class ApartInfoEtcAction {
 	@Resource(name="infoEtcService")
 	private ApartInfoEtcService infoEtcService;
 	
-	private String saveFolder = "C:\\sts\\spring6_mvc_board4_final2\\src\\main\\webapp\\resources\\upload";
-	
+	private String saveFolder ="C:\\Users\\user1\\git\\KH_final\\final\\src\\main\\webapp\\resources\\upload\\";
 	
 	@RequestMapping(value="/infoEtc_write.nhn")
 	public String infoEtc_wirte() {
@@ -43,7 +42,7 @@ public class ApartInfoEtcAction {
 	
 	
 	 @RequestMapping(value="/infoEtc_write_ok.nhn", method=RequestMethod.POST)
-	   public String infoEtc_write_ok(ApartInfoEtcBean infoEtcbean) throws Exception{
+	   public String infoEtc_write_ok(ApartInfoEtcBean infoEtcbean, HttpServletRequest request) throws Exception{
 	      MultipartFile uploadfile = infoEtcbean.getUploadfile();
 	      if(!uploadfile.isEmpty()) {
 	         
@@ -101,6 +100,10 @@ public class ApartInfoEtcAction {
 	       //바뀐 파일명으로 저장
 	         infoEtcbean.setINFO_ETC_FILE(fileDBName);
 	      }
+	      HttpSession session = request.getSession();
+	      int admin_no=(Integer)session.getAttribute("Admin_no");
+	      
+	      infoEtcbean.setAdmin_no(admin_no);
 	      this.infoEtcService.insertInfoEtc(infoEtcbean);
 	      return "redirect:infoEtc_list.nhn";
 	   }

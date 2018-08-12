@@ -1,13 +1,18 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="Keywords" content="게시판 상세보기" />
 <meta name="Description" content="게시판 상세보기" />
 <link rel="stylesheet" href="./resources/css/screen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="./resources/css/screen_min.css" type="text/css" media="screen" />
 <title>${boardNm }</title>
 <script type="text/javascript">
 //<![CDATA[
@@ -82,6 +87,7 @@
   
  }
  
+ 
 //]]>
 </script>  
 <script>
@@ -89,13 +95,41 @@
 var email = ${check.email}
 
 </script>
+<script>
+function print(printArea)
+{
+		win = window.open(); 
+		self.focus(); 
+		win.document.open();
+		
+		/*
+			1. div 안의 모든 태그들을 innerHTML을 사용하여 매개변수로 받는다.
+			2. window.open() 을 사용하여 새 팝업창을 띄운다.
+			3. 열린 새 팝업창에 기본 <html><head><body>를 추가한다.
+			4. <body> 안에 매개변수로 받은 printArea를 추가한다.
+			5. window.print() 로 인쇄
+			6. 인쇄 확인이 되면 팝업창은 자동으로 window.close()를 호출하여 닫힘
+		*/
+		win.document.write('<html><style>');
+		win.document.write('body, td {font-falmily: Verdana; font-size: 10pt;}');
+		win.document.write('</style></haed><body>');
+		win.document.write(printArea);
+ 		win.document.write('</body></html>');
+		win.document.close();
+		win.print();
+		win.close();
+}
+</script> 
+<script>
+	
+</script>
 </head>
 <body>
 
  <div id="header">
   <%@ include file="../header.jsp" %>
  </div>
-<div id="wrap" style="padding-top: 200px; padding-left: 100px;  margin: 0 auto; /* background: url(resources/img/intro-bg.jpg) no-repeat center center;  */">
+<div id="wrap">
 <%--  <div id="main-menu">
   <%@ include file="../inc/main-menu.jsp" %>
  </div> --%>
@@ -104,14 +138,17 @@ var email = ${check.email}
   <div id="content" style="min-height: 800px;">
    <div id="url-navi">BBS</div>
  -->
-<!-- 본문 시작 -->   
-<h1>Q&A게시판</h1>
-<div id="bbs">
+<!-- 본문 시작 -->  
+<div id = "printArea"> 
+<div id="text1">Q&A게시판</div>
+<div id="bbs" class="table-responsive">
  <table>
  <tr>
-  <th style="width: 50px;">TITLE</th>
-  <th style="text-align: left;color: #555;">${thisArticle.title }</th>
-  <th style="width: 50px;">DATE</th>
+  <th style="width: 50px;  color:#2e75b6;">TITLE</th>
+  <th style="text-align: left;  color: #555;">${thisArticle.title }</th>
+  <th style="width: 50px;  color:#2e75b6;">WRITER</th>
+  <th style="width: 80px;  color: #555;">${thisArticle.id}</th>
+  <th style="width: 50px;  color:#2e75b6;">DATE</th>
   <th style="width: 130px;color: #555;">${thisArticle.writeDateTime }</th>
  </tr> 
  </table>
@@ -132,12 +169,14 @@ var email = ${check.email}
  <div class="comments">
   <h4>관리자</h4>
   <h5>${comment.regdate }</h5>
+   <c:if test="${sessionScope.id=='admin'}">
   <h6>
    <a href="javascript:updateComment('${comment.commentNo }')">수정</a> |
    <a href="javascript:deleteComment('${comment.commentNo }')">삭제</a>
   </h6>
+  </c:if>
   <p id="comment${comment.commentNo }">${comment.htmlMemo }</p>
-  
+   <c:if test="${sessionScope.id=='admin'}">
   <div class="modify-comment">
    <form id="modifyCommentForm${comment.commentNo }" action="commentUpdate" method="post" style="display: none;">
    <p>
@@ -156,10 +195,11 @@ var email = ${check.email}
    </div>
    </form>
   </div>
+  </c:if>
  </div>
  </c:forEach>
+ <c:if test="${sessionScope.id=='admin'}">
  <!--  덧글 반복 끝 -->
- 
  <form id="addCommentForm" action="commentAdd" method="post">
   <p style="margin: 0;padding: 0;">
    <input type="hidden" name="articleNo" value="${param.articleNo }" />
@@ -170,11 +210,12 @@ var email = ${check.email}
   <div id="addComment">
    <textarea name="memo" rows="7" cols="50"></textarea>
   </div>
+
   <div style="text-align: right;">
-   <input type="submit" value="덧글남기기" />
+   <input type="submit" value="덧글남기기" class="btn" onclick=""/>
   </div>
- </form>
- 
+</form>
+</c:if>
  <div id="next-prev">
   <c:if test="${nextArticle != null }">
    <p>다음글 : <a href="javascript:goView('${nextArticle.articleNo }')">${nextArticle.title }</a></p>
@@ -183,24 +224,32 @@ var email = ${check.email}
    <p>이전글 : <a href="javascript:goView('${prevArticle.articleNo }')">${prevArticle.title }</a></p>
   </c:if>
  </div>
- 
+  
  <div id="view-menu">
   <div class="fl">
-   <input type="button" value="수정" onclick="goModify()" />
-   <input type="button" value="삭제" onclick="goDelete()" />
+  <c:if test="${!empty sessionScope.id}">
+      <c:if test="${empty sessionScope.Admin_no}">
+   <input type="button" value="수정" onclick="goModify()" class="btn"/>
+   <input type="button" value="삭제" onclick="goDelete()" class="btn"/>
+      </c:if>
+  </c:if>
   </div>
   <div class="fr">   
-   <input type="button" value="목록" onclick="goList('${param.curPage }')" />
-   <input type="button" value="새글쓰기" onclick="goWrite()" />
+  <input type = "button" value="인쇄하기" OnClick="print(document.getElementById('printArea').innerHTML)" class="btn" id="print"/>
+   <input type="button" value="목록" onclick="goList('${param.curPage }')" class="btn"/>
+       <c:if test="${sessionScope.id!='admin'}">
+   <input type="button" value="새글쓰기" onclick="goWrite()" class="btn"/>
+   </c:if>
   </div>  
  </div>
   
  <table>
  <tr>
-  <th style="width: 60px;">NO</th>
-  <th>TITLE</th>
-  <th style="width: 84px;">DATE</th>
-  <th style="width: 60px;">HIT</th>
+  <th style="width: 60px; color:#2e75b6;">NO</th>
+  <th style="color:#2e75b6;">TITLE</th>
+  <th style="width: 74px; color:#2e75b6;">WRITER</th>
+  <th style="width: 63px; color:#2e75b6;">DATE</th>
+  <th style="width: 30px; color:#2e75b6;">HIT</th>
  </tr>
  <!--  반복 구간 시작 -->
  <c:forEach var="article" items="${list }" varStatus="status"> 
@@ -224,7 +273,8 @@ var email = ${check.email}
     <span class="bbs-strong">[${article.commentNum }]</span>
    </c:if>
   </td>
-  <td style="text-align: center;">${article.writeDate }</td>
+  <td style="text-align: center;">${article.id}</td> 
+  <td style="text-align: center; ">${article.writeDate }</td>
   <td style="text-align: center;">${article.hit }</td>
  </tr>
  </c:forEach>
@@ -255,21 +305,23 @@ var email = ${check.email}
   
  </div> 
  
+ <c:if test="${sessionScope.id!='admin'}">
  <div id="list-menu" style="text-align:  right;">
-  <input type="button" value="새글쓰기" onclick="goWrite()" />
+  <input type="button" value="새글쓰기" onclick="goWrite()" class="btn"/>
  </div>
+ </c:if>
   <div id="search" style="text-align: center;">
   <form id="searchForm" action="./list.nhn" method="get" style="margin: 0;padding: 0;">
    <p style="margin: 0;padding: 0;">
     <input type="hidden" name="boardCd" value="${param.boardCd }" />
+    <br>
     <input type="text" name="searchWord" size="15" maxlength="30" />
-    <input type="submit" value="검색" />
+    <input type="submit" value="검색" class="btn"/>
    </p> 
   </form>
  </div> 
 </div>
 <!--  본문 끝 -->
-
   </div><!-- content 끝 -->
  </div><!--  container 끝 -->
  
@@ -284,9 +336,6 @@ var email = ${check.email}
 <%--  <div id="footer">
   <%@ include file="../inc/footer.jsp" %>
  </div> --%>
-
-</div>
-
 <div id="form-group" style="display: none;">
 <form id="downForm" action="./download" method="post">
   <p>

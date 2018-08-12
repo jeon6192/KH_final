@@ -102,21 +102,22 @@ $(document).ready(function(){
 
 
     // 클릭시 active
-    var aTag = $('.left_menu>div>ul>li>a:not(.li.icon.apt>a)');
+    var aTag = $('.left_menu>ul>li a:not(.li.icon.apt>a), .li.icon.apt>a');
     $(aTag).click(function(){
-        $('.left_menu>div>ul>li>a').removeClass("active"); 
+        $('.left_menu>ul>li a, .li.icon.apt>a').removeClass("active"); 
 
-        let thisClass = $(this).parent().attr('class').substr(-3);
+        $(this).addClass('active');
+        let thisClass = $(this).closest('li').attr('class').substr(-3);
+        console.log(thisClass);
         if (thisClass == 'cpx') {
             $('.li.text.cpx>a').addClass('active');
             $('.li.icon.cpx>a').addClass('active');
+            $('.img_cpx').hide();
+            $('.img_cpx2').show()
             $('.img_apart').show();
             $('.img_apart2').hide();
-            $('.img_cpx').hide();
-            $('.img_cpx2').show();
+            ;
         } else {
-            $('.li.text.apt>a').addClass('active');
-            $('.li.icon.apt>a').addClass('active');
             $('.img_cpx').show();
             $('.img_cpx2').hide();
             $('.img_apart').hide();
@@ -124,26 +125,19 @@ $(document).ready(function(){
         }
     });
 
-    var aTag2 = $('.ul.bottom>.li.bottom>a');
-    $(aTag2).click(function(){
-        $('.ul.bottom>.li.bottom>a').removeClass("active"); 
+    /*
+    $('.ul.apt.icon>li>a').click(function(){
+        console.log('??');
+        $('.img_cpx').show();
+        $('.img_cpx2').hide();
+        $(this).addClass('active');
+    });
+    */
 
-        let thisClass = $(this).parent().attr('class').substr(-3);
-        if (thisClass == 'cpx') {
-            $('.li.text.cpx>a').addClass('active');
-            $('.li.icon.cpx>a').addClass('active');
-            $('.img_apart').show();
-            $('.img_apart2').hide();
-            $('.img_cpx').hide();
-            $('.img_cpx2').show();
-        } else {
-            $('.li.text.apt>a').addClass('active');
-            $('.li.icon.apt>a').addClass('active');
-            $('.img_cpx').show();
-            $('.img_cpx2').hide();
-            $('.img_apart').hide();
-            $('.img_apart2').show();
-        }
+    var aTag2 = $('.div.bottom>a');
+    $(aTag2).click(function(){
+        $('.div.bottom>a').removeClass("active");
+        $(this).addClass('active');
     });
 
 
@@ -185,6 +179,9 @@ $(document).ready(function(){
         
     }, 1000);
 
+    $('.navbar-toggle.collapsed').click(function(){
+
+    });
     
     
 }); // document.ready ///////////
@@ -201,7 +198,7 @@ function showApt(dong) {
     let cpx_id = $('#cpx_id').val();
 
     $.ajax({
-        type : "POST",
+        type : "GET",
         data : {"dong" : dong, "complex_id" : cpx_id},
         url : "./apart_dongdetail.com",
         success: function(data){
@@ -217,14 +214,17 @@ function showApt(dong) {
 
 // 분양신청
 function sellInLots(){
-    let user_id = $('#user_id').val();
-    let cpx_id = $('#cpx_id').val();
-
-    console.log($.trim(user_id));
+    let complex_id = $('#cpx_id').val();
+    let user_no = $('#user_no').val();
+    $.ajax({
+		
+		type:"post",
+		url:"insertEvent.ev",
+		data:{"complex_id":complex_id,"user_no":user_no},
+		success:function(){
+			alert("분양신청이 완료되었습니다.");
+			location.href="apart_contents.com?complex_id="+complex_id;
+		}
+	})
     
-    if( $.trim(user_id) == '') {
-        alert('로그인 후 이용해 주세요');
-    } else {
-        location.href = './insertEvent.ev?complex_id=' + cpx_id;
-    }
 }

@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+
+
+.all{
+    margin-top: 1%;
+    margin-bottom: 5%;
+    color: black;
+}
+
+.cookie
+{
+	background-color : #E7E7E7;
+	min-height : 300px;
+}
+
+#map
+{
+	margin: 0 auto;
+    width: 60%;
+    height: 30em;
+
+}
+
+
+.asc{
+    display: inline-block;
+}
+.desc{
+    display: inline-block;
+}
+
+li{
+    display: inline-block;
+}
+
+.order_by{
+    display: inline-block;
+    float: right;
+    margin-right: 13%;
+    margin-top: 3%;
+}
+
+.apart_name{
+	margin-left : 10%;
+}
+
+h3{
+display: inline-block;
+}
+
+
+
+.buttonsort.desc, .buttonsort.asc
+{
+   border: 0 none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.listbutton{
+    width: 7%;
+    height: 50px;
+    background: white;
+    border: 1px solid;
+}
+.listbutton:hover{
+	background-color : white;
+	background-color : #A6A6A6;
+}
+
+@font-face {
+   font-family: 'test';
+   src: url('../fonts/MALGUN.TTF');
+   font-weight: normal;
+   font-style: normal;
+}
+	*{ font-family: test;}
+	.listSearch{
+	width : 100%;
+	height : 50px;
+	}
+	.search{
+		margin : 0 auto;
+		width : 50%;
+		padding-top: 3%;
+		}
+
+
+	
+
+	.select1,.select2,.select3{
+	background: white;
+	width: 30%;
+	height : 100%;
+	float : left;
+	font-size: 19px;
+    font-weight: bold;
+    border-left: 1px solid #b1b1b1;
+	}
+	
+	
+
+
+	.table{
+	margin : 0 auto;
+	width: 80% !important;
+	  
+	}
+
+span{
+color : #3a72d8 !important;
+}
+
+
+	@media only screen and (max-width: 380px){
+		 th:nth-child(4), td:nth-child(4), th:nth-child(5), td:nth-child(5), th:nth-child(6), td:nth-child(6), th:nth-child(7), td:nth-child(7){
+			display: none;
+		}
+		.table{
+		    width: 95% !important;
+		}
+		
+		.order_by>ul>li:nth-child(4){
+			display : none;
+		}
+		#map{
+		    width: 95%;
+		}
+		
+		.select1, .select2, .select3{
+			width : 100%;
+			height : 60%;
+			background: transparent;
+		}
+		
+		.cookie{
+			margin-top : 10%;
+		}
+		.listbutton{
+			width: 20%;
+    		height: 60%;
+    		border : 1px solid #b4b1b1;
+    		float : right;
+		}
+		
+	}

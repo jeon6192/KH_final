@@ -4,10 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="Keywords" content="게시판 수정하기 폼" />
 <meta name="Description" content="게시판 수정하기 폼" />
 <link rel="stylesheet" href="./resources/css/screen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="./resources/css/screen_min.css" type="text/css" media="screen" />
 <title>${boardNm }</title>
 <script type="text/javascript">
 //<![CDATA[
@@ -33,7 +38,7 @@
  <div id="header">
   <%@ include file="../header.jsp" %>
  </div>
- <div id="wrap" style="padding-top: 200px; padding-left: 100px;  margin: 0 auto;/*  background: url(resources/img/intro-bg.jpg) no-repeat center center;  */">
+ <div id="wrap" >
 <%--  <div id="main-menu">
   <%@ include file="../inc/main-menu.jsp" %>
  </div> --%>
@@ -42,9 +47,11 @@
    <div id="url-navi">BBS</div>
     -->
 <!-- 본문 시작 -->
-<h1>Q&A게시판</h1>
-<div id="bbs">
-<h2>수정</h2>
+<h1  id="text1">Q&A게시판</h1>
+<h3>수정</h3>
+<hr class="two">
+<div style="float:right;"><a class="a_cont" href="./main.com">House</a>&nbsp;>&nbsp;<a class="a_cont" href="./list.nhn">Q&A게시판</a></div>
+<div id="bbs" class="table-responsive">
 <form id="modifyForm" action="modify" method="post" enctype="multipart/form-data" onsubmit="return check()">
 <p style="margin: 0;padding: 0;">
  <input type="hidden"  name="articleNo" value="${param.articleNo }" />
@@ -63,7 +70,7 @@
 </tr>
 <tr>
  <td colspan="2">
-  <textarea name="content" rows="17">${thisArticle.content }</textarea>
+  <textarea name="content" cols="69" rows="17">${thisArticle.content }</textarea>
  </td>
 </tr>
 <tr>
@@ -72,9 +79,9 @@
 </tr>
 </table>
 <div style="text-align: center;padding-bottom: 15px;">
- <input type="submit" value="전송" />
- <input type="button" value="상세보기" onclick="goView()" />
- <input type="button" value="목록" onclick="goList()" />
+ <input type="submit" value="전송" class="btn"/>
+ <input type="button" value="상세보기" onclick="goView()" class="btn"/>
+ <input type="button" value="목록" onclick="goList()" class="btn"/>
 </div>
 </form>
  

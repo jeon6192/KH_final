@@ -302,5 +302,18 @@
 		//값만 히든에 넣어서 보내준다.
 		$('#sel3').val($('.select3 option:selected').text());
 	});
-})
+	
+	$('#searchForm').submit(function(){
+		if($('#select1').val() == "-1"){
+			alert('시/도 를 입력해주세요');
+			return false;
+		}
+	});
+});
+
+
+
+
+		
+		
 

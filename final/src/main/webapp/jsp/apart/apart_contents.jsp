@@ -19,6 +19,7 @@
 		<!-- Image Silder -->
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 	</head>
@@ -43,7 +44,7 @@
 							
 							<ul class="ul apt text">
 								<c:forEach var="dong" items="${dongList}" varStatus="i">
-									<li>
+									<li class="li apt">
 										<a href="#" onclick="showApt(${dong}); return false;">
 											${dong}동
 										</a>
@@ -69,12 +70,12 @@
 								<img class="img_apart2" alt="아파트 정보" src="./resources/image/apart.png">
 							</a>
 							
-							<ul class="ul apt icon">
-								<li class="li apt icon">
+							<ul class="ul icon apt">
+								<li class="li icon apt">
 									아파트 정보
 								</li>
 								<c:forEach var="dong" items="${dongList}" varStatus="i">
-									<li>
+									<li class="li icon apt">
 										<a href="#" onclick="showApt(${dong}); return false;">
 											${dong}동
 										</a>
@@ -99,11 +100,11 @@
 					<input type="hidden" id="apt_name" value="${cpx.complex_apartname}">
 					<input type="hidden" id="cpx_sdate" value="${cpx.complex_sdate}">
 					<input type="hidden" id="cpx_edate" value="${cpx.complex_edate}">
-					<input type="hidden" id="user_id" value="${id}">
+					<input type="hidden" value="${user_no}" id="user_no">
 					
 					<div class="div cpx_aptname">
 						<div class="div apticon">
-							<img alt="아파트~" src="./resources/image/apartment.png">
+							<img alt="아파트~" src="./resources/image/apartment2.png">
 						</div>
 						<div class="div aptname">
 							${cpx.complex_apartname}
@@ -115,22 +116,26 @@
 							<span class="span timer">
 							</span>
 							<div class="button-4">
-								<div class="eff-4"></div>
-								<a href="#" onclick="sellInLots();"> 분양 신청 </a>
+								<c:if test="${state==0 }">
+									<a href="#" onclick="sellInLots();"> 분양 신청 </a>
+								</c:if>
+								<c:if test="${state!=0 }">
+									<a href="#"> 신청 완료</a>
+								</c:if>
 							</div>
 						</div>
 					</div>
 					
 					
-					<div class="cpx_text">
+					<div class="cpx_text loc">
 						<span class="span cpx">위치</span>
 					</div>
 					<div class="map_wrap">
 						<div id="cpx_map" style="width: 95%; height: 330px; margin: 0 auto;">
 						</div>
 						
-						<button onclick="searchCpx();">주변 아파트 검색</button> 
-						<%-- <button onclick="panTo()">${cpx.complex_apartname}로 이동</button> --%> 
+						<button class="searchCpx-button" onclick="searchCpx();">주변 아파트 검색</button> 
+						<%-- <button onclick="panTo()">${cpx.complex_apartname}로 이동</button> --%>
 						
 						<ul id="category">
 					        <li id="BK9" data-order="0"> 
@@ -209,8 +214,10 @@
 							</div>
 						</div>
 						
-						<div class="cpx_text">
-							<span class="span cpx">아파트 소개</span>
+						<div class="div info">
+							<div class="cpx_text">
+								<span class="span cpx">아파트 소개</span>
+							</div>
 							<div class="cpx aptinfo">
 								${cpx.complex_info}
 							</div>
@@ -222,9 +229,67 @@
 						
 				</div>
 				
+				<!-- Compare Modal Contents -->
+				<div id="id01" class="w3-modal">
+					<div class="w3-modal-content">
+						<div class="w3-container">
+							<div class="compare-label">
+								<span class="compare-text">비교하기</span>
+							</div>
+							<span class="w3-button w3-display-topright">&times;</span>
+							
+							<div id="compare-contents-div">
+								<table class="compare-table">
+									<tr>
+										<th style="width:40%">아파트 이름</th>
+										<td style="width:30%">${cpx.complex_apartname}</td>
+										<td style="width:30%" class="compare-aptname"></td>
+									</tr>
+									<tr>
+										<th>주소</th>
+										<td>${cpx.complex_address}</td>
+										<td class="compare-addr"></td>
+									</tr>
+									<tr>
+										<th>분양시기</th>
+										<td>${cpx.complex_pdate}</td>
+										<td class="compare-pdate"></td>
+									</tr>
+									<tr>
+										<th>역세권</th>
+										<td>
+											<c:if test="${cpx.complex_subway!=1}">
+												<i class="fa fa-remove"></i>
+											</c:if>
+											<c:if test="${cpx.complex_subway==1}">
+												${cpx.complex_station} &nbsp; ${cpx.complex_foot}분
+											</c:if>
+										</td>
+										<td class="compare-subway"></td>
+									</tr>
+									<tr>
+										<th>가격</th>
+										<td>${cpx.minprice} ~ ${cpx.maxprice} 만원</td>
+										<td class="compare-price"></td>
+									</tr>
+									<tr>
+										<th>면적</th>
+										<td>${cpx.minarea} ~ ${cpx.maxarea} ㎡</td>
+										<td class="compare-area"></td>
+									</tr>
+									<tr>
+										<th>총 세대수</th>
+										<td>${fn:length(aptList)} 세대</td>
+										<td class="compare-cnt"></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				
 				
 				<div class="detail apt">
-				
 				
 					
 				</div>
@@ -236,28 +301,21 @@
 			
 		</div>
 		
-		
 		<div class="footer">
-			<ul class="ul bottom">
-				<li class="li bottom cpx">
-					<a href="#" class="active" onclick="showCpx(); return false;">
-						단지 정보
-					</a>
-				</li>
-				<li class="li bottom apt">
+			<div class="div bottom">
+				<a href="#" class="active" onclick="showCpx(); return false;">
+					단지 정보
+				</a>
+				<span class="footer-span">
 					아파트 정보
-				</li>
+				</span>
 				<c:forEach var="dong" items="${dongList}" varStatus="i">
-					<li>
-						<a href="#" onclick="showApt(${dong}); return false;">
-							${dong}동
-						</a>
-					</li>
+					<a href="#" onclick="showApt(${dong}); return false;">
+						${dong}동
+					</a>
 				</c:forEach>
-				<li class="actFoot">
-					Test~~
-				</li>
-			</ul>
+				
+			</div>
 		</div>
 		
 		

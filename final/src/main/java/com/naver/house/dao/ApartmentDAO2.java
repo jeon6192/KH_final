@@ -27,10 +27,10 @@ public class ApartmentDAO2 {
 		sqlSession.insert("complex.insert", aptComplexBean);
 	}
 	
-	public AptComplexBean detail_aptComplex(int complex_id) throws Exception {
-		AptComplexBean aptComplexBean = sqlSession.selectOne("complex.select", complex_id);
+	public AptComplexBean2 detail_aptComplex(int complex_id) throws Exception {
+		AptComplexBean2 aptComplexBean2 = sqlSession.selectOne("complex.select", complex_id);
 		
-		return aptComplexBean;
+		return aptComplexBean2;
 	}
 	
 	public List<ApartmentBean> detail_apart(int complex_id) throws Exception {
@@ -49,11 +49,11 @@ public class ApartmentDAO2 {
 		return apartmentBean2;
 	}
 	
-	public List<AptComplexBean2> searchCpx(Map<String, Double> searchCpxMap) throws Exception {
+	public List<AptComplexBean2> searchCpx(Map<String, Object> searchCpxMap) throws Exception {
 		List<AptComplexBean2> searchCpxList = sqlSession.selectList("complex.searchCpx", searchCpxMap);
 		
 		return searchCpxList;
 	}
-	
+
 
 }

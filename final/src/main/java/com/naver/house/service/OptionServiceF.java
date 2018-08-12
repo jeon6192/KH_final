@@ -5,7 +5,9 @@ import java.util.Map;
 
 import com.naver.house.bean.ApartmentBean;
 import com.naver.house.bean.AptComplexBean;
+import com.naver.house.bean.EL_AND_AptBean;
 import com.naver.house.bean.EW_AND_AptBean;
+import com.naver.house.bean.Event_list;
 import com.naver.house.bean.Event_winBean;
 import com.naver.house.bean.Option_fBean;
 import com.naver.house.bean.Option_nfBean;
@@ -42,6 +44,10 @@ public interface OptionServiceF {
 	public List<OptionsInfoBean> getOptionInfo(int complex_id);
 
 	public List<Integer> getDongInfo(int complex_id);
+
+	public List<Event_list> checkEventIn(int user_no);
+
+	public List<EL_AND_AptBean> getEventInList(int user_no);
 
 	
 	 

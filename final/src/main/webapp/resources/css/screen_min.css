@@ -1,0 +1,245 @@
+@media ( max-width: 1023px ) {
+	/*글꼴 불러오기*/
+@font-face{
+	font-family : 'NanumGothic';
+	src : url(../fonts/NanumGothic.ttf) format('truetype');
+}
+
+body{
+	font-family: NanumGothic
+}
+/*** The Essential Code ***/
+/*** 공통 시작***/
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+div, input, select, textarea, td {
+	color: #646464; 
+	font-size: 5px;
+}
+
+img {
+	border: 0; 
+	display:none;
+}
+
+form { 
+	margin: 0;
+	padding: 0; 
+}
+  #bbs table {
+	margin: 5px 0 5px 0;
+	width: 100%;
+	color: #555;
+}
+
+#bbs th {	
+	border-bottom: 2px solid #2e75b6;
+}
+
+
+#bbs td {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	border-bottom: silver 1px solid;
+}
+
+#bbs td a {
+	color: #555;
+	text-decoration: none;
+}
+
+#bbs td a:hover {
+	color:#555;
+	text-decoration: underline;
+}
+
+.bbs-strong {
+	color: #FFA500;
+	font-weight: bold;
+}
+
+#gul-content {
+	border-bottom: 1px solid #ebebeb;
+}
+
+#gul-content h6 {
+	margin: 0;
+	padding: 0;
+	font-size: 11px;
+	color: #555;
+	text-align: right;
+}
+
+#gul-content p {
+	margin: 0 0 15px 0;
+	padding: 0;
+	color: #333;
+}
+
+#paging a {
+	color: #555;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+#paging a:hover {
+	color: #555;
+	text-decoration: underline;
+}
+
+#search {
+	padding-bottom: 15px;
+}
+
+.comments {
+	border-right: 1px solid #ebebeb;
+	border-left: 1px solid #ebebeb;
+	border-bottom: 1px solid #ebebeb;
+}
+
+.comments h4 {
+	float: left;
+	margin: 3px 3px 3px 3px;
+	padding: 0;
+	font-size: 12px;
+	color: #555;
+}
+
+.comments h5 {
+	float: left;
+	margin: 3px 3px 3px 3px;
+	padding: 0;
+	font-size: 12px;
+	font-weight: normal;
+	color: #555;
+}
+
+.comments h6 {
+	float: right;
+	margin: 3px 3px 3px 3px;
+	padding: 0;
+	font-size: 12px;
+	font-weight: normal;
+	color: #555;
+}
+
+.comments a {
+	color: #555;
+	text-decoration: none;
+	font-size: 11px;
+}
+
+.comments a:hover {
+	color: #555;
+	text-decoration: underline;
+}
+
+.comments p {
+	clear: both;
+	margin: 0;
+	padding: 0 3px 3px 3px;
+	color: #555;
+	font-size: 11px;
+}
+
+.modify-comment {
+	clear: both; 
+	padding-top: 0.22em;
+	padding-right: 2.22em; 
+	padding-bottom: 0.22em; 
+	padding-left: 3.22em; 
+}
+
+.modify-comment-ta {
+	border: 1px solid silver;
+	padding: 3px;
+	ime-mode: active; 
+	width: 99%;
+	color:#555;
+	background-color: #eee;
+	font-size: 11px; 
+}
+
+#addComment {
+	margin-top: 10px;
+	margin-bottom: 5px;
+	border-top: #eee 1px solid;
+	border-right: #eee 1px solid;
+	border-bottom: #eee 1px solid;
+	border-left: #eee 1px solid; 
+	padding-top: 0.22em;
+	padding-right: 0.22em;
+	padding-bottom: 0.22em; 
+	padding-left: 0.22em;
+	background-color: #fafbf7;
+}
+
+#addComment textarea {
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+	border-left: 0px;
+	padding-top: 3px;
+	padding-right: 3px;
+	padding-left: 3px;
+	padding-bottom: 3px; 
+	ime-mode: active;
+	width: 99%;
+	color:#555;	
+}
+
+#next-prev {
+	margin-top: 7px;
+	margin-bottom: 7px;
+	border-top: 1px solid #e1e1e1;
+}
+
+#next-prev p {
+	margin: 0;
+	padding: 5px;
+	border-bottom: 1px solid #e1e1e1;
+	font-size: 12px;
+	color: #333;
+}
+#next-prev a {
+	color: #333;
+	text-decoration: none;
+}
+#next-prev a:hover {
+	color: #333;
+	text-decoration: underline;
+}
+
+#view-menu {
+	height: 22px;
+	margin-bottom: 47px;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+hr.two{width:100%; background:#2e75b6; height:3px;}
+
+.qna_cont{color:#0080FF;  font-size:1.2em; font-weight:bold;}
+
+span{font-size:1.2em; font-weight:bold;}
+
+.a_cont{color:#555;  font-size:1.2em; font-weight:bold;}
+
+input.btn{background-color: white; color: black; border: 2px solid #008CBA; }
+
+#text1{font-size: 16px; padding-top:30px;}
+
+#print{display:none;}
+}

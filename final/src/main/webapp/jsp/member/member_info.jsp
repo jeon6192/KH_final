@@ -44,54 +44,106 @@ $(document).ready(function(){
 })
 
 
-
-
-
-
-
 </script>
 
 
 <style>
-	#member_info{padding-top: 200px; padding-left: 200px;  margin: 0 auto; 
-				width:1200px;}
-	tr>td{
-		font-size:13pt;
-	}
-	tr>th{
-	font-size:15pt;
-	}
-	
-	#postcode{
-		margin-bottom:5px;
-	}
-				
-	#tel1{
-		margin-top:-10px;
-		margin-left:-90px;
-	}
-	
-	#tel2{
-		margin-left:-90px;
-	}
-	
-	#tel3{
-		margin-left:10px;
-	}
-	
-	input[type=reset]{
-	
-	background-color : #555555;
-	color: white;
-	border :  2px solid white;
-	padding:10px;
-	border-radius:1em;
-	width: 130px;
-	margin-left: 400px;
-	
+#member_info {
+	margin-top: 10%;
+	margin-bottom: auto ! important;
+	margin-left: auto ! important;
+	margin-right: auto !important;
+	width: 50%;
+	height: 100%;
 }
+
+tr>td {
+	font-size: 13pt;
+}
+
+tr>th {
+	font-size: 15pt;
+}
+
+#member_info input[type=button] {
+	margin-bottom: 0.5em;
+	background-color: #CCCCCC;
+	color: black;
+	border: 2px solid white;
+	padding: 7px;
+	border-radius: 1em;
+	height: 35px;
+}
+
+#info_menu {
+	text-align: center
+}
+
+
+
+#info_menu input[type=reset] {
+	background-color: #555555;
+	color: white;
+	border: 2px solid white;
+	padding: 10px;
+	border-radius: 1em;
+	width: 130px;
+}
+
+#tel4{
+	width:10%
+	}
+	
+#tel3, #tel2, #tel4{ 
+display:inline-block;
+}
+
+@media ( max-width :380px) {
+	#member_info {
+		/* display: inline-block; */
+		margin-top: 30%;
+		margin-bottom: auto ! important;
+		/* margin-left: auto ! important; */
+		margin-right: auto !important;
+		width: 100%;
+		font-size: 9pt;
+		margin-top: 30%;
+		height:110%;
+	}
+	table>tbody, th, td{
 		
-</style>	
+		 display: block;
+
+	width:100%
+		
+	}
+	#id,#address1,#address3{
+	margin-top: 0.2%;
+	}
+	#name{
+		margin-top: 0.6%;
+	}
+	#postcode{
+		margin-top: 2%;
+	}
+	#tel1{
+	margin-left:-6px;
+	}
+	#tel2{
+	margin-left:2px
+	}
+	.form-group{
+	display:inline-block
+	}
+	
+	
+
+
+	#info_menu input[type=reset] {
+	
+	width: 100px;
+}
+</style>
 </head>
 <body>
 <input type = "hidden" id = "homelesschecked" value = "${memberinfo.homelessTerm}">
@@ -145,22 +197,19 @@ $(document).ready(function(){
             </td>
          </tr>
 
-         <tr>
+         <tr id="tel">
             <th>휴대전화번호</th>
             <td>
-            <div class="form-group" id=tel1>
-			        <label for="gender1" class="col-sm-2 control-label"></label>
-			        <div class="col-sm-2">;
-			            
-			        <select class="form-control selcls" id="tel1" name = "tel1">
-						<option>010</option>
-						<option>019</option>
-					</select>
-					</div>
-					</div>
-			             <input name="tel2" id="tel2" size="10" maxlength="4" class="input_box">
-			             <input name="tel3" id="tel3" size="10" maxlength="4" class="input_box">
-			  </td>
+      
+        	
+	            <select class="form-control selcls" id="tel4" readonly="readonly">
+					<option>010</option>
+					<option>019</option>
+				</select>
+		
+               <input name="tel2" id="tel2" size="10" maxlength="4" class="input_box" readonly="readonly">
+               <input name="tel3" id="tel3" size="10" maxlength="4" class="input_box" readonly="readonly">
+            </td>
          </tr>
          
          <tr>

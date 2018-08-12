@@ -109,7 +109,7 @@ public class MemberAction {
 				   session.setAttribute("Admin_no",ad.getAdmin_no());
 				   
 		  
-				   ModelAndView loginAd = new ModelAndView("main");
+				   ModelAndView loginAd = new ModelAndView("redirect:/main.com");
 				   return loginAd;
 			   }else {//비번이 다를 때
 				   out.println("<script>");
@@ -128,7 +128,7 @@ public class MemberAction {
 				 
 				   
 				   //jsp 폴더의 view.jsp로 이동
-				   ModelAndView loginM = new ModelAndView("main");
+				   ModelAndView loginM = new ModelAndView("redirect:/main.com");
 				   return loginM;
 			   }else {//비번이 다를 때
 				   out.println("<script>");

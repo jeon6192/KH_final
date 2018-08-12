@@ -115,7 +115,6 @@
 							<span class="span timer">
 							</span>
 							<div class="button-4">
-								<div class="eff-4"></div>
 								<c:if test="${state==0 }">
 									<a href="#" onclick="sellInLots();"> 분양 신청 </a>
 								</c:if>
@@ -243,17 +242,17 @@
 										<td style="width:30%" class="compare-aptname"></td>
 									</tr>
 									<tr>
-										<td>주소</td>
+										<th>주소</th>
 										<td>${cpx.complex_address}</td>
 										<td class="compare-addr"></td>
 									</tr>
 									<tr>
-										<td>분양시기</td>
+										<th>분양시기</th>
 										<td>${cpx.complex_pdate}</td>
 										<td class="compare-pdate"></td>
 									</tr>
 									<tr>
-										<td>역세권</td>
+										<th>역세권</th>
 										<td>
 											<c:if test="${cpx.complex_subway!=1}">
 												<i class="fa fa-remove"></i>
@@ -265,12 +264,12 @@
 										<td class="compare-subway"></td>
 									</tr>
 									<tr>
-										<td>가격</td>
+										<th>가격</th>
 										<td>${cpx.minprice} ~ ${cpx.maxprice} 만원</td>
 										<td class="compare-price"></td>
 									</tr>
 									<tr>
-										<td>면적</td>
+										<th>면적</th>
 										<td>${cpx.minarea} ~ ${cpx.maxarea} ㎡</td>
 										<td class="compare-area"></td>
 									</tr>

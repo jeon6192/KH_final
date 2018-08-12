@@ -295,7 +295,7 @@ a img{
 .w3-display-right{
     right: 5%;
 }
-.w3-black, .w3-hover-black:hover{
+.div-compare>.w3-black, .div-compare>.w3-hover-black:hover{
     padding: 4px 10px !important;
     height: 28px;
     width: 100%;
@@ -571,30 +571,23 @@ a img{
     float: right;
     text-align: center;
     cursor: pointer;
-    position: relative;
     box-sizing: border-box;
     overflow: hidden;
     margin-left: 20px;
     z-index: -1;
+    transition: all .5s ease;
+}
+.button-4:hover{
+    background: #34495e;
 }
 .button-4 a{
     font-family: arial;
     font-size: 12px;
     color: #34495e;
     text-decoration: none;
-    line-height: 33px;
+    line-height: 30px;
     transition: all .5s ease;
     z-index: 2;
-    position: relative;
-}
-.eff-4{
-    width: 100px;
-    height: 33px;
-    left: -100px;
-    background: #34495e;
-    position: absolute;
-    transition: all .5s ease;
-    z-index: 1;
 }
 .button-4:hover .eff-4{
   left:0;

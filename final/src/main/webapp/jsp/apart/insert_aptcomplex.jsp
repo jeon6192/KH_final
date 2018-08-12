@@ -172,6 +172,7 @@
 			<li class="li_last">
 				<div class="div_last">
 					<button type="submit" class="btn_submit">등록</button>
+					<button type="button" class="btn_home" onclick="location.href='./main.com';">홈으로</button>
 				</div>
 			</li>
 			

@@ -5,7 +5,7 @@ import java.util.Date;
 public class Comment {
  private int commentNo;
  private int articleNo;
- private int ADMIN_no;
+ private int admin_no;
  private String memo;
  private Date regdate;
  
@@ -21,13 +21,13 @@ public class Comment {
  public void setArticleNo(int articleNo) {
   this.articleNo = articleNo;
  }
- public int getADMIN_no() {
-  return ADMIN_no;
- }
- public void setADMIN_no(int ADMIN_no) {
-  this.ADMIN_no = ADMIN_no;
- }
- public String getMemo() {
+ public int getAdmin_no() {
+	return admin_no;
+}
+public void setAdmin_no(int admin_no) {
+	this.admin_no = admin_no;
+}
+public String getMemo() {
   return memo;
  }
  public String getHtmlMemo() {

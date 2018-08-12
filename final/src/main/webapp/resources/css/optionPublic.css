@@ -1,0 +1,15 @@
+
+.optionContainer{width:80%; padding-top:100px; margin:auto ;text-align:center}
+
+#optiontable{  margin:auto; text-align:center}
+
+#optiontable :nth-child(15) td{border-top: 1px solid black;}
+.fourth{ color:red;}
+#optionAptInfo{text-align:right}
+
+#lists{     line-height: 180%; line-text-align:left;}
+
+.Optionbtns{ margin:auto; text-align:center; }
+.Optionbtns input{ border-radius:20px; }
+
+.priceSection{border-style:none; text-align:center;}

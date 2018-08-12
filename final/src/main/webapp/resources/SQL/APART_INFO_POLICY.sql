@@ -1,3 +1,5 @@
+drop table APART_INFO_POLICY;
+
 create table APART_INFO_POLICY(
 	INFO_POLICY_NUM number(10) primary key,
 	Admin_no number(30) not null,
@@ -6,7 +8,8 @@ create table APART_INFO_POLICY(
 	INFO_POLICY_DATE date not null,
 	INFO_POLICY_FILE varchar2(100),
 	INFO_POLICY_CONT varchar2(500) not null,
-	INFO_POLICY_ORIGINAL varchar2(100) 
+	INFO_POLICY_ORIGINAL varchar2(100), 
+	CONSTRAINT id_CONS3 foreign key (Admin_no) references Admin(Admin_no)
 );
 
 create sequence INFO_POLICY_num_seq

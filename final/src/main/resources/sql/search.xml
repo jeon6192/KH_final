@@ -37,9 +37,15 @@
 		<select id="mapList" resultType="complex">
 			select complex_Id, complex_apartname, complex_address, complex_lat, complex_lng
 				from apt_complex
-					where complex_state = 0
 		</select>
 		
+		
+		<select id="newApt" resultType="complex2">
+			select c.complex_id, c.complex_apartname, max(a.apart_area) maxarea , min(a.apart_price) minprice
+					  from apt_complex c, apartment a where c.complex_id = a.complex_id
+					  and a.apart_id = (select max(apart_id) from apartment)
+					  group by c.complex_apartname, c.complex_id
+		</select>
 		
 	
 </mapper>

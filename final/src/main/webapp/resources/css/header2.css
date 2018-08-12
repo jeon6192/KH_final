@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+body{
+    padding-top: 70px !important;
+}
+#menu.navbar-default{
+    background-color: black;
+}
+#menu{
+    padding: 10px;
+    position: fixed;
+    height: 70px;
+    font-family: 'Raleway', sans-serif !important;
+    transition: top 0.2s ease-in-out;
+}
+.navbar{
+    margin-bottom: 0;
+}
+
+.nav-up{
+    top: -70px;
+}

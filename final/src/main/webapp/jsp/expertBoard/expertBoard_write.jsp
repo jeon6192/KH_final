@@ -11,28 +11,22 @@
 
 
 <script src = "http://code.jquery.com/jquery-3.3.1.js"></script>
-<link href="./resources/css/expertBoardWhite.css" rel="stylesheet" type="text/css">
+<link href="./resources/css/expertCss/expertBoardWhite.css" rel="stylesheet" type="text/css">
+
 <!-- 파일 api  -->
 <script charset="utf-8" src="//ucarecdn.com/libs/widget/3.3.0/uploadcare.full.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script src="./resources/js/expertBoardWhite.js"></script>
 <!-- 파일 api  -->
 
-<!-- 부트스트랩  -->
+<!-- font  -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- 부트스트랩  -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!-- 부트스트랩  -->
 
-<style>
-@font-face {
-   font-family: 'test';
-   src: url('./resources/fonts/MALGUN.TTF');
-   font-weight: normal;
-   font-style: normal;
-}
-	*{ font-family: test;}
-</style>
 
 </head>
 <body>

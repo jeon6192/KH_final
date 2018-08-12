@@ -1,0 +1,217 @@
+@charset "UTF-8";
+
+@media ( max-width: 1024px ) {
+	table {border-collapse:collapse; margin: 0 auto}
+	#infotable tr{padding: 5px; height:15pt}
+	#infotable td {color:#000000; }
+	#infotable tr:last-child td {text-align:center;}
+	#write {float:right;}
+	p {text-align:center}
+	#info_menu input[type=button] {background-color:white; border:1.5px solid #008CBA; }
+	#infotable {border-collapse:collapse; width:70%; margin:0 auto}
+	#inhr{width:100%}
+	#ohr{margin-top:20px}
+	#ohr hr{background-color: #2e75b6;}
+	#findline {width:100%}
+	#findline select{float:left; padding:2px}
+	#findline form{float:right}
+	#findline a{color:#000000}
+	#findline a:hover, a:focus {
+		text-decoration: none;
+		color: #2e75b6;
+	}
+	#infodel_menu{
+		text-align:center; padding-top: 60px;width:40%
+	}
+ 	.infowrap{
+ 		padding-top: 12%; width:100%; padding-bottom:5%;  margin: 0 auto;
+ 	}
+ 	
+ 	#findline{
+ 		width:100%
+ 	}
+ 	
+ 	#contentdown{
+ 		width:50%; margin:0 auto
+ 	}
+ 	
+ 	#infotable_wrap{
+ 		width:70%;margin:0 auto
+ 	}
+ 	
+ 	#infodel_menu #delete{
+		background-color:#2e75b6; color:white;border:none; border-radius:3px; width:30%; height:30%; border:1.5px solid #008CBA;
+	}
+	#infodel_menu #delreset{
+		background-color:#ffffff; color:#828282;border:none; border-radius:3px; width:30%; height:30%; border:1.5px solid #008CBA;
+	}
+	.prevnexttable {
+		border-collapse:seperate;
+		border-spacing: 0.5%;
+		text-align: left;
+		line-height: 1%;
+		width:100%;
+		border-top:1px solid #747474;
+		margin : 20px 10px;
+	}
+	.prevnexttable th{
+		width:20%;
+		padding:10px;
+		font-weight:bold;
+		vertical-align:top;
+		text-align:right;
+		border-bottom: 1px solid #ccc;
+	}
+	.prevnexttable td{
+		width: 80%;
+		padding: 10px;
+		vertical-align:top;
+		border-bottom:1px solid #ccc;
+	}
+	
+	#infoEtccont_t td{width:70%}
+	#infoEtccont_t th{width:30%}
+	
+	#listOpentable table {
+		border-collapse:collapse;
+		text-align:left;
+		line-height: 1.5; 
+		width: 100%; 
+	}
+	#listOpenClose thead th {
+		padding: 10px;
+		font-weight: bold;
+    	vertical-align: top;
+   		color: #369;
+    	border-bottom: 3px solid #036;
+	}
+	#listOpenClose tr td:first-child {
+		width:30%;
+		padding: 5px;
+		vertical-align: top;
+		border-bottom: 1px solid #828282;
+	}
+	#listOpenClose tr td:last-child {
+		width:70%;
+		padding: 5px;
+		vertical-align: top;
+		border-bottom: 1px solid #828282;
+	}
+	#listOpenClose tr:last-child td{
+		text-align:center;
+	}
+	
+	#infoPolicycont {width: 100%}
+	
+	#policylist {float:right; border: 0 none; background-color: transparent;}
+	#infoPolicycont_wrap {margin:0 auto}
+	#wrap a:first-child{float:left}
+	#wrap a:last-child{float:right}
+ 	/* 스마트폰 480px 노트북 1280px 데스크탑 1920px */
+}
+
+
+@media (min-width: 1024px) {
+	table {border-collapse:collapse}
+	#infotable {border-collapse:collapse; width:70%; margin:0 auto}
+	#infotable tr{padding: 5px; height:15pt}
+	#infotable td {color:#000000; }
+	#infotable tr:last-child td {text-align:center;}
+	#info_menu input[type=button] {background-color:white; border:1.5px solid #008CBA; }
+	#write {float:right; padding-right:15%}
+	p {text-align:center}
+	#inhr{width:100%}
+	#findline table {width:100%}
+	#ohr{margin-top:20px}
+	#ohr hr{background-color: #2e75b6;}
+	#findline {width:100%}
+	#findline select{float:left; padding:2px}
+	#findline form{float:right}
+	#findline a{color:#000000}
+	#findline a:hover, a:focus {
+		text-decoration: none;
+		color: #2e75b6;
+	}
+	#infodel_menu{
+		text-align:center; padding-top: 60px;width:40% 
+	}
+	
+	@font-face{
+  		font-family : 'NanumGothic';
+  		src : url(../fonts/NanumGothic.ttf) format('truetype');
+	}
+	
+	.infowrap{
+    	padding-top: 12%; width:1000px; padding-bottom:5%;  margin: 0 auto;
+	}
+	
+	#infodel_menu #delete{
+		background-color:#2e75b6; color:white;border:none; border-radius:3px; width:40%; height:40%; border:1.5px solid #008CBA;
+	}
+	#infodel_menu #delreset{
+		background-color:#ffffff; color:#828282;border:none; border-radius:3px; width:40%; height:40%; border:1.5px solid #008CBA;
+	}
+	.prevnexttable {
+		border-collapse:seperate;
+		border-spacing: 0.5%;
+		text-align: left;
+		line-height: 1%;
+		width:100%;
+		border-top:1px solid #747474;
+		margin : 20px 10px;
+	}
+	.prevnexttable th{
+		width:20%;
+		padding:10px;
+		font-weight:bold;
+		vertical-align:top;
+		text-align:right;
+		border-bottom: 1px solid #ccc;
+	}
+	.prevnexttable td{
+		width: 80%;
+		padding: 10px;
+		vertical-align:top;
+		border-bottom:1px solid #ccc;
+	}
+	#infoEtccont_t td{width:70%}
+	#infoEtccont_t th{width:30%}
+	
+	#listOpentable table {
+		border-collapse:collapse;
+		text-align:left;
+		line-height: 1.5; 
+		width: 100%; 
+	}
+	#listOpenClose thead th {
+		padding: 10px;
+		font-weight: bold;
+    	vertical-align: top;
+   		color: #369;
+    	border-bottom: 3px solid #036;
+	}
+	#listOpenClose tr td:first-child {
+		width:30%;
+		padding: 5px;
+		vertical-align: top;
+		border-bottom: 1px solid #828282;
+	}
+	#listOpenClose tr td:last-child {
+		width:70%;
+		padding: 5px;
+		vertical-align: top;
+		border-bottom: 1px solid #828282;
+	}
+	#listOpenClose tr:last-child td{
+		text-align:center;
+	}
+	
+	#infoPolicycont {width: 100%}
+	
+	#policylist {float:right; border: 0 none; background-color: transparent;}
+	#infoPolicycont_wrap {margin:0 auto}
+	#wrap a:first-child{float:left}
+	#wrap a:last-child{float:right}
+	
+	
+}

@@ -92,10 +92,24 @@
 		from member
 		where id=#{id}
 	</select>
+	
 	<select id="member_info" resultType="M">
 		select * from member 
 		where id=#{id}
 	</select>
+	
+	<!-- 비번검색 -->
+	<select id = "password_find" resultType="M" parameterType="java.util.Map">
+		select password from member
+		where id=#{id} and name=#{name}
+	</select>
+	
+	<!-- QnA 리스트 -->
+	<select id="member_qnalist" parameterType="String" resultType="Article">
+		select * from Article 
+		where id = #{id}
+	</select>
+	
 	
 </mapper>
 

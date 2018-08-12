@@ -8,6 +8,8 @@
 </head>
 <link  href="http://fonts.googleapis.com/css?family=Cabin:400,500,600,bold" rel="stylesheet" type="text/css" >
 <link  href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:regular,bold" rel="stylesheet" type="text/css" >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <script>
 	function admin(){
 		location.href="./admin_join.nhn";
@@ -19,51 +21,21 @@
 </script>
 <style>
 
-	.pagegradient{
-
-	margin:0 auto;
-	text-align: center;
-    margin-top: 300px;
-    margin-left:800px;
 	
-	} 
-	
-	body {
-    background: #A7A9AC;
-    background-image: -webkit-gradient(
-        linear,
-        left top,
-        right top,
-        color-stop(.34, rgba(230,237,241,.05)),
-        color-stop(.67, rgba(230,237,241,0)));
-    -webkit-background-size: 5px 5px;
-}
 
 #pagegradient {
-  background-image:
-        -webkit-gradient(
-            radial, 
-            50% -50, 
-            300, 
-            50% 0, 
-            0, 
-            from(rgba(230, 237, 241, 0)), 
-            to(rgba(230, 237, 241, 0.8)));
-    
-  height:100%;
-  left:0px;
-  position:absolute;
-  top:0;
-  width: 600px;
+  margin:0 auto;  
+  text-align:center;
+  width: 200px;
+  padding-top: 250px;
+  
 }
 
 .button {
-    position: absolute;
-    top: 100px;
-    left: 200px;
-    display: inline-block;
+    display: block;
+    width: 100%;
     margin: 0 auto;
-    
+    margin-top: 30px;
     -webkit-border-radius: 10px;
     
     -webkit-box-shadow: 
@@ -80,7 +52,8 @@
 
 .button span {
     background-color: #E8E8E8;
-    
+    width: 100%;
+    box-sizing: border-box;
     background-image: 
         /* gloss gradient */
         -webkit-gradient(
@@ -139,7 +112,7 @@
     text-transform: uppercase;
     font-family: 'TradeGothicLTStd-BdCn20','PT Sans Narrow';
     font-weight: 700;
-    font-size: 32px;
+    font-size: 22px;
     
     text-shadow: 0px 1px #fff, 0px -1px #262F33;
 }
@@ -182,9 +155,6 @@
         font-size: 26px;
     }
     
-   #button1{
-		padding-top: 100px
-    }
 </style>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>

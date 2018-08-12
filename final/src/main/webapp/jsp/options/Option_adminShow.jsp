@@ -4,9 +4,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<jsp:include page="../header.jsp"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>관리자 아파트 옵션 관리</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link href="./resources/css/optionPublic.css" rel="stylesheet">
+<script src="http://code.jQuery.com/jquery-latest.js">
+</script>
 <script>
 $(document).ready(function(){
 		function find_check(){
@@ -46,6 +50,7 @@ $(document).ready(function(){
 		</script>
 </head>
 <body>
+<div class="optionContainer">
 	<table id="bbslist_wrap" border='1'>
 
 		<c:if test="${listcount>0}">
@@ -143,6 +148,7 @@ $(document).ready(function(){
 				</tr>
 			</table>
 		</form>
+	</div>
 	</div>
 	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>

@@ -1,79 +1,126 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
 		
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
-		<link href="./resources/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
 		<style>
-			.mdi:before, .mdi-set{
-				font-size: 20px;
+			.compare-table {
+			    border-collapse: collapse;
+			    border-spacing: 0;
+			    width: 100%;
+			    border: 1px solid #ddd;
+			    color: black;
 			}
-    		.test-div{
-    			width: 100px;
-    			height: 100px;
-    			box-sizing: border-box;
-    			padding: 0.2em;
-    		}
-    		.dong-direction{
-    			width: 100%;
-    			height: 100%;
-    		}
-    		.dong-direction>li{
-    			list-style: none;
-    			width: 33%;
-    			height: 33%;
-    			display: inline;
-    		}
-    		.direction-t{
-    			text-decoration: none;
-    			color: black;
-    		}
-    		.activeArrow{
-    			color: #47e088;
-    			text-shadow: 1px 1px 5px #4a4a4a;
-    		}
+			
+			.compare-table th, .compare-table td {
+			    text-align: center !important;
+			    padding: 16px !important;
+			}
+			
+			
+			.compare-table th:first-child, .compare-table td:first-child {
+			    text-align: left;
+			}
+			
+			.compare-table tr:nth-child(even) {
+			    background-color: #f2f2f2
+			}
+			
+			.compare-table .fa-check {
+			    color: green;
+			}
+			
+			.compare-table .fa-remove {
+			    color: red;
+			}
 		</style>
-		<script>
-			$(document).ready(function(){
-				$('.direction-t').click(function(){
-					$('.direction-t').not(this).removeClass('activeArrow');
-					$(this).toggleClass('activeArrow');
-				});
-				
-				
-				/* $(window).scroll(function(){
-					console.log($(window).scrollTop());
-				}); */
-				
-			})
-		</script>
 	</head>
 	<body>
-		<jsp:include page="../header.jsp"/>
-		<div class="div-direction">
+		<jsp:include page="../header2.jsp"/>
 		
-			<ul class="dong-direction">
-				<li><a id="direction1" class="direction-t" href="#"><span class="mdi mdi-arrow-top-left"></span></a></li>
-				<li><a id="direction2" class="direction-t" href="#"><span class="mdi mdi-arrow-up"></span></a></li>
-				<li><a id="direction3" class="direction-t" href="#"><span class="mdi mdi-arrow-top-right"></span></a></li>
-				<li><a id="direction4" class="direction-t" href="#"><span class="mdi mdi-arrow-left"></span></a></li>
-				<li><a id="direction5" class="direction-t" href="#"><span class="mdi">&nbsp;&nbsp;&nbsp;&nbsp;</span></a></li>
-				<li><a id="direction6" class="direction-t" href="#"><span class="mdi mdi-arrow-right"></span></a></li>
-				<li><a id="direction7" class="direction-t" href="#"><span class="mdi mdi-arrow-bottom-left"></span></a></li>
-				<li><a id="direction8" class="direction-t" href="#"><span class="mdi mdi-arrow-down"></span></a></li>
-				<li><a id="direction9" class="direction-t" href="#"><span class="mdi mdi-arrow-bottom-right"></span></a></li>
-			</ul>
-		
-		</div>
-		
-		<br><br><br><br><br><br><br><br><br><br>
-		<br><br><br><br><br>
-		<br><br><br><br><br>
-		<br><br><br><br><br><br><br><br><br><br>
+		  <h2>Comparison Table</h2>
+
+			<table class="compare-table">
+			  <tr>
+			    <th style="width:40%">Features</th>
+			    <th style="width:30%">Basic</th>
+			    <th style="width:30%">Pro</th>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-remove"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-remove"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			  <tr>
+			    <td>Sample text</td>
+			    <td><i class="fa fa-check"></i></td>
+			    <td><i class="fa fa-check"></i></td>
+			  </tr>
+			</table>
+			
+			<br><br><br>zz
+			<br><br><br>zz
+			<br><br><br>zz
+			<br><br><br>zz
+			<br><br><br>zz
+			<br><br><br>zz
+			<br><br><br>zz
+			<br><br><br>zz
+			<br><br><br>zz
+			<br><br><br>zz
+			<br><br><br>zz
+			<br><br><br>zz<br><br><br>zz<br><br><br>zz<br><br><br>zz<br><br><br>zz
+			<br><br><br>zz<br><br><br>zz<br><br><br>zz<br><br><br>zz<br><br><br>zz<br><br><br>zz<br><br><br>zz<br><br><br>zz
+			<br><br><br>zz<br><br><br>zz<br><br><br>zz<br><br><br>zz<br><br><br>zz
 		
 	</body>
 </html>

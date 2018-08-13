@@ -54,8 +54,7 @@
 					
 					<tr>
 						<th>내용</th>
-						<td><textarea rows="30" cols="50" class="textarea" name="eb_content">
-						</textarea></td>
+						<td><textarea rows="30" cols="50" class="textarea" name="eb_content"></textarea></td>
 					</tr>		
 				</table>	
 						<div class ="btn">

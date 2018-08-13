@@ -118,7 +118,7 @@
 				</td>
 			</tr>
 			
-	        	<c:if test="${!empty Admin_id}">
+	        	<c:if test="${!empty Admin_no}">
 				<tr>
 			<td colspan="5" style="text-align: right">
 			<a style="color : #2a6496" href="./expertBoard_write.com">[글쓰기]</a></td>

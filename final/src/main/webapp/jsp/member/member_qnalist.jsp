@@ -139,7 +139,7 @@ body{margin:0}
 		<tbody>
 			<c:forEach var="q" items="${totallist}">
 				<tr>
-					<td><a href="./view.nhn?articleNo=${q.getArticleNo()}">${q.subject}</a></td>
+					<td><a href="./view.nhn?articleNo=${q.getArticleNo()}">${q.title}</a></td>
 					
 				</tr>
 				

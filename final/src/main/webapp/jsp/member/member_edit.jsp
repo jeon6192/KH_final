@@ -23,8 +23,9 @@
 	margin-bottom: auto ! important;
 	margin-left: auto ! important;
 	margin-right: auto !important;
-	width: 50%;
-	height: 100%;
+    width: 65%;
+    height: 100%;
+    max-width: 950px;
 }
 
 tr>td {
@@ -67,11 +68,11 @@ tr>th {
 	width: 130px;
 }
 
-#tel4{
+#tel1{
 	width:10%
 	}
 	
-#tel3, #tel2, #tel4{ 
+#tel3, #tel2, #tel1{ 
 	display:inline-block;
 	}
 
@@ -123,6 +124,29 @@ tr>th {
 </style>
 
 <script>
+
+$(document).ready(function(){
+	var tema = "home"+$('#homelesschecked').val();//회원의 무주택기간에 대한 점수를 가져와서 점수값과 같이 설정해놓은 id값에대하여 체크하게하는 스크립트 문입니다.
+	var tem ="#"+tema; //# jquery 아이디 # 클레스 .  home0 home10 home 30 
+	
+	$(tem).attr("checked", true);
+	
+	var tema1 = "age"+$('#agechecked').val();
+	var tem1 ="#"+tema1;
+	$(tem1).attr("checked", true);
+	
+	var tema2 = "family"+$('#familysizechecked').val();
+	var tem2 = "#"+tema2;
+	$(tem2).attr("checked", true);
+	
+	var tema3 = $('#telchecked').val();
+	$('.tel1').val(tema3).prop("checked",true);
+	
+	
+})
+
+
+
 function Postcode() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -203,10 +227,7 @@ function Postcode() {
 	    	  $("#id").val("").focus();
 	    	  return false;
 	      } 
-	      if(checkconfirm==false||checkid != $("#id").val()) {
-	    	  alert("아이디 중복체크 하세요!");
-	    	  return false;
-	      }
+	      
 	      if($.trim($("#password").val())==""){
 	    	  alert("회원비번을 입력하세요!");
 	    	  $("#password").val("").focus();
@@ -321,6 +342,22 @@ function Postcode() {
 	        
 	
 	 }
+	 
+	 function showConfirm(){
+		 
+		 if(confirm("정말로 탈퇴하시겠습니까?")){
+			 
+		 	$.ajax({
+		 		
+		 		type:"post",
+		 		url:"member_del.nhn",
+		 		success:function(data){
+		 			alert("탈퇴되었습니다.");
+		 			location.href="member_login.nhn";
+		 			}
+		 		})
+		 	}
+		 }
 </script>
 <style>
 </style>
@@ -328,8 +365,8 @@ function Postcode() {
 <body>
 	<jsp:include page="../header.jsp"></jsp:include> 
 
-	<input type="hidden" id="homelesschecked" value="${editm.homelessTerm}">
-	<input type="hidden" id="familysizechecked" value="${editm.familySize}">
+	<input type="hidden" id="homelesschecked" value="${editm.homelessTerm}">  <!-- 무주택 기간의 점수 -->
+	<input type="hidden" id="familysizechecked" value="${editm.familySize}"> <!--  부양가족수에대한 점수 -->
 	<input type="hidden" id="agechecked" value="${editm.age}">
 	<input type="hidden" id="telchecked" value="${edtim.getTel()}">
 	<input type="hidden" id="user_no" value="${sessionScope.user_no}">
@@ -382,13 +419,13 @@ function Postcode() {
 		            <td>
 		      
 		        	
-			            <select class="form-control selcls" id="tel4">
+			            <select class="form-control selcls" id="tel1" name = "tel1">
 							<option>010</option>
 							<option>019</option>
 						</select>
 				
-		               <input name="tel2" id="tel2" size="10" maxlength="4" class="input_box">
-		                <input name="tel3" id="tel3" size="10" maxlength="4" class="input_box">
+		               <input name="tel2" id="tel2" size="10" maxlength="4" class="input_box"  value="${tel2}">
+		                <input name="tel3" id="tel3" size="10" maxlength="4" class="input_box" value="${tel3}">
 		            </td>
          		</tr>
 

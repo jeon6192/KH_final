@@ -12,10 +12,9 @@
 	<style>
 	
 	#mypages{
-		padding-top: 300px;
+		padding-top: 100px;
 		text-align:center;
 	}
-	
 	#mypageSquare{
 		display:inline-block;
 		width: 300px; height: 300px; border: 3px solid silver; margin: 10px; 

@@ -50,7 +50,6 @@ li{list-style: none;}
     overflow: hidden;
     box-sizing: border-box;
     font-family: 'test', sans-serif;
-   background-color: #ebebeb;
     margin: 0;
     color: #4c5667;
     overflow-x: hidden !important;
@@ -63,6 +62,7 @@ li{list-style: none;}
     background: #2e75b6;
     z-index: 2;
 }
+
 
 #fotter3{
 	background: #2e75b6;
@@ -85,7 +85,6 @@ li{list-style: none;}
 .optionContainer{display:inline-block; overflow-y:scroll; font-family:'test';
 	 height: 100%;
     overflow: auto;
-    background-color: #ebebeb;
     padding-top:30px}
    
   .left-menu li{ width:100%; height:40px; margin:auto; text-align:center; font-size:20px;font-family: 'test'; line-height: 40px;}

@@ -15,6 +15,13 @@
 </head>
 
 <style>
+
+.text1 {
+    color: white;
+    background-color: #002060;
+}
+.ul.left{ padding:0px}
+
 ul{ list-style:none;}
 @media (min-width: 1024px){
     .left-menu{
@@ -42,11 +49,11 @@ ul{ list-style:none;}
 body{margin:0}
 #wrapper {
     width: 100%;
-    height: 100%;
+    height: 800px;
     overflow: hidden;
     box-sizing: border-box;
     font-family: 'test', sans-serif;
-   background-color: #ebebeb;
+  
     margin: 0;
     color: #4c5667;
     overflow-x: hidden !important;
@@ -75,9 +82,9 @@ body{margin:0}
 #fotter3 a{color:white; font-family: 'test'; text-decoration:none;}
 
 .left-menu ul{ margin-top:10px;}
-.left-menu li a{font-family: 'test';}
- .left-menu li{ width:100%; height:40px; margin:auto; text-align:center; font-size:20px;font-family: 'test'}
- .text4 a{color:lightgray}
+.left-menu li a{font-family: 'test'; color:white}
+ .left-menu li{     line-height: 40px; width:100%; height:40px; margin:auto; text-align:center; font-size:20px;font-family: 'test'}
+ .text4 a{color:#4c5667;}
 
 #qnalist{
 	margin-top:100px;
@@ -105,7 +112,8 @@ body{margin:0}
 	text-align:center;
 }
 
-#detail_menu:hover{background-color:white; color:#2e75b6}
+.input_button:hover{background-color:white; color:#2e75b6}
+
 </style>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>

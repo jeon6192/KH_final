@@ -101,7 +101,4 @@ public class ApartmentBean {
 	public void setApart_interior(String apart_interior) {
 		this.apart_interior = apart_interior;
 	}
-
-	
-
 }

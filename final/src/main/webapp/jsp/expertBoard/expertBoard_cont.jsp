@@ -61,7 +61,7 @@
 	
 	
 	<div class="btnList">
-<c:if test="${!empty Admin_id}">
+<c:if test="${!empty Admin_no}">
 	<input type="button" value="수정" class="input_button" 
 onclick="location.href='expertBoard_cont.com?num=${bcont.eb_num}&page=${page}&state=edit'">
 

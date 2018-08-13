@@ -98,6 +98,7 @@
 					<input type="hidden" id="cpx_lng" value="${cpx.complex_lng}">
 					<input type="hidden" id="cpx_id" value="${cpx.complex_id}">
 					<input type="hidden" id="apt_name" value="${cpx.complex_apartname}">
+					<input type="hidden" id="cpx_sdate" value="${cpx.complex_sdate}">
 					<input type="hidden" id="cpx_edate" value="${cpx.complex_edate}">
 					<input type="hidden" value="${user_no}" id="user_no">
 					
@@ -110,7 +111,7 @@
 						</div>
 						<div class="div timer-btn">
 							<span class="span timer-name">
-								신청 종료 : -  
+								신청 종료 : 
 							</span>
 							<span class="span timer">
 							</span>
@@ -195,6 +196,9 @@
 							<div class="cpx subway">
 								<c:if test="${cpx.complex_subway != 0}">
 									${cpx.complex_station} &nbsp;&nbsp; <b>${cpx.complex_foot} 분</b>
+								</c:if>
+								<c:if test="${cpx.complex_subway == 0}">
+									등록된 정보가 없습니다.
 								</c:if>
 							</div>
 						</div>

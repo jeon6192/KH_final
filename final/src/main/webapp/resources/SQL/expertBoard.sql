@@ -25,3 +25,5 @@ select * from
 from
 (select * from expertBoard order by eb_num))
 where rnum >= 1 and rnum <= 10
+
+alter table expertBoard modify(eb_source varchar2(500), eb_subject varchar2(500))

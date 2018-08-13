@@ -258,11 +258,11 @@ function Postcode() {
 </script>
 <style>
 	
-	#tel4{
+	#tel1{
 	width:10%
 	}
 	
-	#tel3, #tel2, #tel4{ display:inline-block;}
+	#tel3, #tel2, #tel1{ display:inline-block;}
 	#join_wrap{
 	 
 		margin: 5% auto; 
@@ -395,7 +395,7 @@ function Postcode() {
             <td>
       
         	
-	            <select class="form-control selcls" id="tel4">
+	            <select class="form-control selcls" id="tel1" name = "tel1">
 					<option>010</option>
 					<option>019</option>
 				</select>

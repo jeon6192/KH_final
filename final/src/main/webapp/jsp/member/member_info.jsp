@@ -53,8 +53,9 @@ $(document).ready(function(){
 	margin-bottom: auto ! important;
 	margin-left: auto ! important;
 	margin-right: auto !important;
-	width: 50%;
-	height: 100%;
+    width: 65%;
+    height: 100%;
+    max-width: 950px;
 }
 
 tr>td {

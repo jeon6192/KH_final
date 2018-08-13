@@ -109,7 +109,7 @@ public class MemberAction {
 				   session.setAttribute("Admin_no",ad.getAdmin_no());
 				   
 		  
-				   ModelAndView loginAd = new ModelAndView("redirect:/main.com");
+				   ModelAndView loginAd = new ModelAndView("main");
 				   return loginAd;
 			   }else {//비번이 다를 때
 				   out.println("<script>");
@@ -128,7 +128,7 @@ public class MemberAction {
 				 
 				   
 				   //jsp 폴더의 view.jsp로 이동
-				   ModelAndView loginM = new ModelAndView("redirect:/main.com");
+				   ModelAndView loginM = new ModelAndView("main");
 				   return loginM;
 			   }else {//비번이 다를 때
 				   out.println("<script>");
@@ -175,12 +175,12 @@ public class MemberAction {
 		// interceptor로 처리
 		MemberBean editm = this.memberService.userCheck(id);
 		String tel = editm.getTel();
-		
+		System.out.println("tel "+tel);
 		StringTokenizer st01 = new StringTokenizer(tel, "-");
 		String tel1 = st01.nextToken();// 첫번째(국번 집전화번호 저장)
 		String tel2 = st01.nextToken();// 두번째(가운데 자리)
 		String tel3 = st01.nextToken();// 세번째(뒷자리)
-
+		System.out.println(tel1+tel2+tel3);
 		
 
 		ModelAndView m = new ModelAndView("member/member_edit");
@@ -243,7 +243,10 @@ public class MemberAction {
 
 		
 		this.memberService.deleteMember(id);
-
+		session.invalidate();
+		
+		PrintWriter out = response.getWriter();
+		out.println(1);
 		
 
 	}

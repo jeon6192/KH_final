@@ -21,15 +21,16 @@
 <title>정보 게시판</title>
 <script src = "http://code.jquery.com/jquery-latest.js"></script>
 <script src="resources/js/infoDoclist_line.js"></script>
-<!-- <script>
+<script>
 $(function(){
 	$("#viewcount").val('${limit}');
 })
-$("#infomenu").onmousedown(function(){
+</script>
+<!-- $("#infomenu").onmousedown(function(){
 	$("#infomenu").style.background='blue';
 	$("#infomenu").style.color='white';
 })
-</script> -->
+</script> --> -->
 </head>
 <body>
 	<%-- <jsp:include page="../header.jsp"/> --%>
@@ -106,12 +107,12 @@ $("#infomenu").onmousedown(function(){
    		 			<tr>
        					<td>
        						<c:if test="${!empty sessionScope.Admin_no}">
-       							<a class="doc_admin" href = "infoDoc_cont.nhn?infoDoc_num=${b.INFO_DOC_NUM}&page=${page}&state=cont">
+								<a href = "infoDoc_cont.nhn?infoDoc_num=${b.INFO_DOC_NUM}&page=${page}&state=cont">
           						<c:out value = "${infoDoc_num}"/><%--num 출력 --%></a>
-       						</c:if>
-       						<c:if test="${empty sessionScope.Admin_no}">
-       							<c:out value = "${infoDoc_num}"/>
-       						</c:if>
+          					</c:if>
+          					<c:if test="${empty sessionScope.Admin_no}">
+          						<c:out value = "${infoDoc_num}"/>
+          					</c:if>
           					<c:set var = "infoDoc_num" value = "${infoDoc_num-1}"/><%-- num = num-1 --%>
        					</td>
        
@@ -171,6 +172,7 @@ $("#infomenu").onmousedown(function(){
     		
     	</form>
     	</div>
+    	</table>
 	</div>
 </body>
 </html>

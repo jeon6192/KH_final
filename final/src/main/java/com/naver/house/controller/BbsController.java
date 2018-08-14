@@ -347,12 +347,22 @@ public class BbsController {
      boardService.update(article);
      
      //파일업로드
-     List<MultipartFile> fileList = mpRequest.getFiles("upload");
+     List<MultipartFile> fileList = mpRequest.getFiles("upload");        
+      
+     System.out.println("업로드 파일 갯수 = " + fileList.size() );
+    
+     
      for(MultipartFile mf : fileList){
       String filename = mf.getOriginalFilename();
+     
+      if(filename.equals("")) {
+    	  System.out.println("업로드 파일 이름 ('') " + filename);
+    	  break;
+      }
       mf.transferTo(new File(WebContants.BASE_PATH + filename));
      }
      
+
      //파일데이터 삽입
      int size = fileList.size();
      for (int i = 0; i < size; i++) {
@@ -363,13 +373,15 @@ public class BbsController {
       attachFile.setFiletype(mpFile.getContentType());
       attachFile.setFilesize(mpFile.getSize());
       attachFile.setArticleNo(article.getArticleNo());
+      if(attachFile.getFilesize() == 0) {
+      attachFile.setArticleNo(0);
+      attachFile.setAttachFileNo(0);
+    }
       boardService.insertAttachFile(attachFile);
-     }  
-     return "redirect:/view.nhn?articleNo=" + article.getArticleNo() + 
-    		    "&boardCd=" + article.getBoardCd() + 
-    		    "&curPage=" + curPage +
-    		    "&searchWord=" + searchWord;
-    		 }
+     }     
+     
+     return "redirect:/list.nhn?boardCd=" + article.getBoardCd();
+    }
     
     @RequestMapping(value="/download", method=RequestMethod.POST)
     public String download(String filename, Model model){

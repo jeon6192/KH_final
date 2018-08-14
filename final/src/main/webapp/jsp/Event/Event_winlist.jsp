@@ -14,7 +14,7 @@
 	function search(){
 		var keyword=$('#keyword').val();
 		var complex_id = $('#complex_id').val();
-		alert(complex_id);
+		
 		$.ajax({
 			type:"post",
 			url:"event_win_search.ev",
@@ -34,7 +34,7 @@
 		$.ajax({
 			type:"post",
 			url:"update_up.ev",
-			data:{"apart_id":a,"user_no":b},
+			data:{"apart_id":b,"user_no":a},
 			success:function(){
 				alert("확정완료 되었습니다.");
 				location.href="event_win_list.ev?complex_id="+complex_id;

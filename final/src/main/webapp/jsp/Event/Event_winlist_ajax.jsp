@@ -19,10 +19,18 @@
           		<td class="text-center">${event.apart_ho }</td>
           		<td class="text-center">${event.id }(${event.name })</td>
 				<td class="text-center">
+				<c:if test="${event.event_con ==0 }">
 				<button onclick="up(${event.user_no},${event.apart_id })">확정하기</button>
 				<button onclick="down(${event.user_no},${event.apart_id })">취소하기</button>
+				</c:if>
+				<c:if test="${event.event_con ==1 }">
+				확정완료
+				</c:if>
+				<c:if test="${event.event_con ==2 }">
+				분양취소
+				</c:if>
 				</td>
 			</tr>
           	</c:forEach>
           	 </tbody>
-</table>
+        </table>

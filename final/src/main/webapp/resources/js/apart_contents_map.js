@@ -230,24 +230,25 @@ function panTo() {
     map.panTo(moveLatLon);            
 }
 
-// 주변 아파트 검색
-var positions = [];
-var markers = [];
-var selectedMarker = null;
-var ajaxData = {};
+//주변 아파트 검색
+let positions = [];
+let selectedMarker = null;
+let ajaxData = {};
+const imageSrc = "https://i.pinimg.com/originals/dd/be/1f/ddbe1f911d676f198bdfc9b2346ac1e4.gif"; 
+const imageSize = new daum.maps.Size(35, 43); 
+const clickedImageSize = new daum.maps.Size(45, 55);
 
 function searchCpx() {
     // 지도의 현재 영역을 얻어온다
-    var bounds = map.getBounds();
+    const bounds = map.getBounds();
 
-    var swLatLng = bounds.getSouthWest(); 
-    var neLatLng = bounds.getNorthEast(); 
-    var complex_id = $('#cpx_id').val();
+    const swLatLng = bounds.getSouthWest(); 
+    const neLatLng = bounds.getNorthEast(); 
+    const complex_id = $('#cpx_id').val();
 
     // 지도의 꼭지점 좌표와 현재 보고있는 아파트단지의 id를 json 타입으로 변환 
-    var searchLocation = {'swLat' : swLatLng.getLat(), 'swLng' : swLatLng.getLng(), 
+    const searchLocation = {'swLat' : swLatLng.getLat(), 'swLng' : swLatLng.getLng(), 
                     'neLat' : neLatLng.getLat(), 'neLng' : neLatLng.getLng(), 'complex_id' : complex_id};
-    console.log(searchLocation);
     
     $.ajax({
         type : 'POST', 
@@ -255,29 +256,24 @@ function searchCpx() {
         data : searchLocation,
         url : "./search_cpx.net",
         beforeSend : function() {
-        	// ajax 실행 전 지도에 있는 마커들을 삭제함
+           // ajax 실행 전 지도에 있는 마커들을 삭제함
             removeMarkers();
         },
         success : function(data) {
-        	// ajax의 결과 값을 json 타입의 변수에 넣어줌
+           // ajax의 결과 값을 json 타입의 변수에 넣어줌
             ajaxData = data;
-            console.log(ajaxData);
+            
+            markers = [];
 
             // 결과 개수만큼 마커를 찍어주기 위해 배열로 저장
-            for (var i = 0; i < data.length; i++) {
+            for (let i = 0; i < data.length; i++) {
                 positions.push({title : data[i].complex_apartname, 
                     latlng : new daum.maps.LatLng(data[i].complex_lat, data[i].complex_lng)});
             }
 
-            console.log(positions);
-
-            // 마커 이미지 설정
-            var imageSrc = "https://i.pinimg.com/originals/dd/be/1f/ddbe1f911d676f198bdfc9b2346ac1e4.gif"; 
-
-            for (var i = 0; i < positions.length; i ++) {
-                var imageSize = new daum.maps.Size(35, 43); 
+            for (let i = 0; i < positions.length; i ++) {
                 
-                var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize); 
+                const markerImage = new daum.maps.MarkerImage(imageSrc, imageSize); 
                 
                 markers.push(new daum.maps.Marker({
                     map: map, // 마커를 표시할 지도
@@ -287,7 +283,7 @@ function searchCpx() {
                     clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정
                 }));
 
-                addMarkerClickEvent(markers[i], imageSrc, imageSize, data[i]);
+                addMarkerClickEvent(markers[i],data[i]);
                 
             }
         },
@@ -297,7 +293,7 @@ function searchCpx() {
     });
 }
 
-function addMarkerClickEvent(marker, imageSrc, imageSize, data) {
+function addMarkerClickEvent(marker, data) {
     // marker에 click event 추가
     daum.maps.event.addListener(marker, 'click', function() {
         // 클릭된 마커가 없고, 새로운 마커를 클릭하면 마커의 이미지를 클릭 이미지로 변경합니다
@@ -307,12 +303,11 @@ function addMarkerClickEvent(marker, imageSrc, imageSize, data) {
             !!selectedMarker && selectedMarker.setImage(new daum.maps.MarkerImage(imageSrc, imageSize));
 
             // 현재 클릭된 마커의 이미지는 이미지 크기를 늘려줌
-            marker.setImage(new daum.maps.MarkerImage(imageSrc, new daum.maps.Size(45, 55)));
+            marker.setImage(new daum.maps.MarkerImage(imageSrc, clickedImageSize));
         }
 
         // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
         selectedMarker = marker;
-
 
         // 마커 클릭 시 보여줄 인포윈도우창 설정
         new daum.maps.InfoWindow({
@@ -335,7 +330,7 @@ function removeMarkers() {
 }
 
 function compareCpx(complex_id) {
-	// 지도에 가져온 데이터중에서 같은 complex_id를 가진 데이터를 선택하여 findCpx에 넣어줌
+   // 지도에 가져온 데이터중에서 같은 complex_id를 가진 데이터를 선택하여 findCpx에 넣어줌
     var findCpx = ajaxData.find((item, index) => {
         return item.complex_id === complex_id;
     });
@@ -343,6 +338,7 @@ function compareCpx(complex_id) {
     $('.compare-aptname').empty().append(findCpx.complex_apartname);
     $('.compare-addr').empty().append(findCpx.complex_address);
     $('.compare-pdate').empty().append(findCpx.complex_pdate);
+    
     if (findCpx.complex_subway != 1) {
         $('.compare-subway').html('<i class="fa fa-remove"></i>');
     } else {

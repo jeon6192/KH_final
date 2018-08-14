@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -103,9 +104,11 @@ h4 {
 	
 	$(document).ready(function(){
 	$(".filebtn").click(function(){
+		
         location.href='./downoptions.op?aptXid='+$(this).val();
      })
 	})
+
 	
 </script>
 <body>
@@ -172,17 +175,17 @@ h4 {
 					<td class="text-center">${apt.complex_address }</td>
 					<td class="text-center"><a href="apartdetail.ev?complex_id=${apt.complex_id }">${apt.complex_apartname }</a>
 					</td>
-					<td class="text-center">${apt.complex_sdate }~ ${apt.complex_edate}</td>
+					<td class="text-center">${fn:substring(apt.complex_sdate, 0, 10)} ~ ${fn:substring(apt.complex_edate, 0, 10)}</td>
 					<c:if test="${apt.complex_state == 0 }">
-						<td class="text-center">${apt.complex_pdate}</td>
+						<td class="text-center">${fn:substring(apt.complex_pdate, 0, 10)}</td>
 						<td class="text-center"> x </td>
 					</c:if>
 
 					<c:if test="${apt.complex_state != 0 }">
 						<td class="text-center">분양 마감</td>
 						<td class="text-center"> 
-						<input type="image" class="filebtn" value="${apt.getComplex_id()}" src="resources/img/excel.png" width="44px" height="26px">
-					<%-- 	<button id="filebtn" class="filebtn" value="${bo.getComplex_id()}">파일</button> --%>
+						<input type="image" class="filebtn" value="${apt.complex_id}" src="resources/img/excel.png" width="44px" height="26px">
+					
 						</td>
 					</c:if>
 				</tr>

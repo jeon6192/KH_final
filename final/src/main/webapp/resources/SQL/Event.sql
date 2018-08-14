@@ -59,6 +59,9 @@ create table Member(
  select * from event_win natural join apartment where user_no=0;
  
  
+  select event_win_no, ew.user_no, apt.apart_id, event_con, complex_id,apart_dong, apart_ho from event_win ew , apartment apt
+ 		 where ew.apart_id=apt.apart_id and ew.user_no=17 and (event_con=0 or event_con=1)
+ 		 
  create sequence event_win_no_seq;
  
  insert into event_win values(0,0,0,0);
@@ -85,5 +88,7 @@ create table Member(
  
  select * from event_win;
  drop table event_win;
- 
+ select * from member;
  select * from event_win;
+ delete from event_win where apart_id=2388;
+ select event_win_no_seq.nextval from dual;

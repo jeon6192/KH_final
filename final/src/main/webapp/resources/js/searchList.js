@@ -87,20 +87,6 @@
 				$(this).prop('selected', true)
 			}
 		})
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		//======== ajax 정렬된 값 받아오기================================
 			//처음 화면에서 desc 를 보여주기위해 display none 설정
 		$('.buttonsort.asc').css('display', 'none');

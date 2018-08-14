@@ -183,7 +183,7 @@ public class BbsController {
 
     public String view(int articleNo,
       String boardCd,
-      @RequestParam (value ="curPage", defaultValue = "1" )Integer curPage,
+      @RequestParam (value="curPage", defaultValue = "1") Integer curPage,
       String searchWord,
       Model model, String id,HttpServletRequest request,Article article) throws Exception {
      

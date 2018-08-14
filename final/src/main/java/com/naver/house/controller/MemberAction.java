@@ -215,7 +215,7 @@ public class MemberAction {
 		m.setTel(tel);
 		m.setId(id);
 		
-		response.sendRedirect("member_edit.nhn");
+		response.sendRedirect("mypage_main.nhn");
 		
 	}
 

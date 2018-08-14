@@ -33,7 +33,7 @@ public class ApartInfoEtcAction {
 	@Resource(name="infoEtcService")
 	private ApartInfoEtcService infoEtcService;
 	
-	private String saveFolder ="C:\\Users\\user1\\git\\KH_final\\final\\src\\main\\webapp\\resources\\upload\\";
+	private String saveFolder ="C:\\Users\\user1\\git\\KH_final\\final\\src\\main\\webapp\\resources\\upload";
 	
 	@RequestMapping(value="/infoEtc_write.nhn")
 	public String infoEtc_wirte() {

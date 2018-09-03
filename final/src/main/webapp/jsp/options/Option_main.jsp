@@ -149,7 +149,7 @@ li{list-style: none;}
 					<ul>
 						<c:forEach var="item" items="${EventInList}">
 							<li>
-								<a href="./apart_contents.com?complex_id=${item.getComplex_id()}">${item.getComplex_apartname()}아파트</a>
+								<a href="./complex/${item.getComplex_id()}">${item.getComplex_apartname()}아파트</a>
 							| 주소 : ${item.getComplex_address()}
 							|분양 상태 : <c:if test="${item.complex_state==0}"> 분양 중 </c:if>
 										<c:if test="${item.complex_state==1}"> 1차 분양 중 </c:if>
@@ -181,7 +181,7 @@ li{list-style: none;}
 					<ul>
 						<c:forEach var="item" items="${winList}">
 							<li>
-								<a href="./apart_contents.com?complex_id=${item.getComplex_id()}">${item.getComplex_apartname()}아파트</a> 
+								<a href="./complex/${item.getComplex_id()}">${item.getComplex_apartname()}아파트</a> 
 								${item.getApart_dong()} 동 ${item.getApart_ho()}호 | 주소 :
 								${item.getComplex_address()} | <a
 								href="./option.op?apt_id=${item.getApart_id()}">옵션신청하기</a>

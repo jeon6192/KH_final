@@ -251,10 +251,10 @@ function searchCpx() {
                     'neLat' : neLatLng.getLat(), 'neLng' : neLatLng.getLng(), 'complex_id' : complex_id};
     
     $.ajax({
-        type : 'POST', 
+        type : 'GET', 
         dataType : 'json', 
         data : searchLocation,
-        url : "./search_cpx.net",
+        url : "/house/complexes",
         beforeSend : function() {
            // ajax 실행 전 지도에 있는 마커들을 삭제함
             removeMarkers();

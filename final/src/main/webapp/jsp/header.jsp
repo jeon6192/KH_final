@@ -19,25 +19,25 @@
 	<body>
 		<div class="topnav" id="myTopnav">
 	        
-			<a href="./main.com" class="active">House</a>
+			<a href="${pageContext.request.contextPath}/main.com" class="active">House</a>
 			
 			<c:if test="${empty sessionScope.id}">
-				<a href="join_check.nhn" class="page-scroll">회원가입</a>
-				<a href="member_login.nhn" class="page-scroll">로그인</a>
+				<a href="${pageContext.request.contextPath}/join_check.nhn" class="page-scroll">회원가입</a>
+				<a href="${pageContext.request.contextPath}/member_login.nhn" class="page-scroll">로그인</a>
 	        </c:if>
 			
 			<c:if test="${!empty sessionScope.id}">
 			
-				<a href="member_logout.nhn" class="page-scroll">로그아웃</a>
+				<a href="${pageContext.request.contextPath}/member_logout.nhn" class="page-scroll">로그아웃</a>
 				
 				<c:if test="${empty sessionScope.Admin_no}">
-					<a href="mypage_main.nhn" class="page-scroll">마이페이지</a>
+					<a href="${pageContext.request.contextPath}/mypage_main.nhn" class="page-scroll">마이페이지</a>
 				</c:if>
 				
 				<c:if test="${!empty sessionScope.Admin_no}">
-					<a href="apart_insertform.com" class="page-scroll">매물 등록</a>
-					<a href="total_eventlist.ev" class="page-scroll">분양 관리</a>
-					<a href="admin_detail.nhn" class="page-scroll">회원 관리</a>
+					<a href="${pageContext.request.contextPath}/complex/new" class="page-scroll">매물 등록</a>
+					<a href="${pageContext.request.contextPath}/total_eventlist.ev" class="page-scroll">분양 관리</a>
+					<a href="${pageContext.request.contextPath}/admin_detail.nhn" class="page-scroll">회원 관리</a>
 				</c:if>
 				
 				
@@ -45,9 +45,9 @@
 			
 			
 	        
-	        <a href="./list.nhn">Q&A</a>
-	        <a href="./infoDoc_list.nhn">정보</a>
-	        <a href="./aptSearch.com">아파트 분양</a>
+	        <a href="${pageContext.request.contextPath}/list.nhn">Q&A</a>
+	        <a href="${pageContext.request.contextPath}/infoDoc_list.nhn">정보</a>
+	        <a href="${pageContext.request.contextPath}/aptSearch.com">아파트 분양</a>
 	        
 			<a href="javascript:void(0);" class="icon" onclick="myFunction()">
 				<i class="fa fa-bars"></i>

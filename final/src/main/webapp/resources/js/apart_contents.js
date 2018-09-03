@@ -199,8 +199,7 @@ function showApt(dong) {
 
     $.ajax({
         type : "GET",
-        data : {"dong" : dong, "complex_id" : cpx_id},
-        url : "./apart_dongdetail.com",
+        url : "/house/apart/" + cpx_id + "/" + dong,
         success: function(data){
             $('.detail.apt').empty().append(data);
            
@@ -223,7 +222,7 @@ function sellInLots(){
 		data:{"complex_id":complex_id,"user_no":user_no},
 		success:function(){
 			alert("분양신청이 완료되었습니다.");
-			location.href="apart_contents.com?complex_id="+complex_id;
+			location.href="complex/"+complex_id;
 		}
 	})
     

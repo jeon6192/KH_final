@@ -10,7 +10,7 @@
 <div class="apt-info">
 	<div class="apt-area">
 		<div class="apt-info-img">
-			<img alt="면적" src="./resources/image/blueprint.png">
+			<img alt="면적" src="../resources/image/blueprint.png">
 		</div>
 		<div class="apt info text">면적</div>
 		<div class="div dong_detail">
@@ -19,7 +19,7 @@
 	</div>
 	<div class="apt-floor">
 		<div class="apt-info-img">
-			<img alt="층" src="./resources/image/stairs.png">
+			<img alt="층" src="../resources/image/stairs.png">
 		</div>
 		<div class="apt info text">층</div>
 		<div class="div dong_detail">
@@ -28,7 +28,7 @@
 	</div>
 	<div class="apt-room">
 		<div class="apt-info-img">
-			<img alt="방" src="./resources/image/bed.png">
+			<img alt="방" src="../resources/image/bed.png">
 		</div>
 		<div class="apt info text">방 개수</div>
 		<div class="div dong_detail">
@@ -37,7 +37,7 @@
 	</div>
 	<div class="apt-toilet">
 		<div class="apt-info-img">
-			<img alt="화장실" src="./resources/image/shower.png"> 
+			<img alt="화장실" src="../resources/image/shower.png"> 
 		</div>
 		<div class="apt info text">화장실 개수</div>
 		<div class="div dong_detail">
@@ -46,7 +46,7 @@
 	</div>
 	<div class="apt-price">
 		<div class="apt-info-img">
-			<img alt="가격" src="./resources/image/piggy-bank.png">
+			<img alt="가격" src="../resources/image/piggy-bank.png">
 		</div>
 		<div class="apt info text">가격</div>
 		<div class="div dong_detail">
@@ -62,7 +62,7 @@
 	</div>
 	<div class="apt-compass">
 		<div class="apt-info-img">
-			<img alt="방향" src="./resources/image/compass.png"> 
+			<img alt="방향" src="../resources/image/compass.png"> 
 		</div>
 		<div class="apt info text">집 방향</div>
 		<div class="div dong_detail">

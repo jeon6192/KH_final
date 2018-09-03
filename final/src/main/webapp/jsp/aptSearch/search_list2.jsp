@@ -45,7 +45,7 @@
 			<tr>
 				<td>${aptList.complex_pdate}</td>
 				<td>${aptList.complex_address}</td>
-				<td><a style="color: #2a6496;" href="apart_contents.com?complex_id=${aptList.complex_id}">${aptList.complex_apartname}</a></td>
+				<td><a style="color: #2a6496;" href="complex/${aptList.complex_id}">${aptList.complex_apartname}</a></td>
 				<c:choose>
 				<c:when test="${aptList.minprice == aptList.maxprice}">
 				<td>${aptList.maxprice}만원</td>

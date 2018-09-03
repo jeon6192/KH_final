@@ -9,13 +9,13 @@
 		
 		
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
-		<link href="./resources/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+		<link href="${pageContext.request.contextPath}/resources/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
 		<!-- Daum Map -->
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4d8e47b00c2f9c5701d6a158cfe8df08&libraries=services,clusterer,drawing"></script>
 		
 		
-		<script src="./resources/js/insert_apart.js"></script>
-		<link href="./resources/css/insert_apart.css" rel="stylesheet" type="text/css">
+		<script src="${pageContext.request.contextPath}/resources/js/insert_apart.js"></script>
+		<link href="${pageContext.request.contextPath}/resources/css/insert_apart.css" rel="stylesheet" type="text/css">
 		
 		<!-- Image API -->
 		<script charset="utf-8" src="//ucarecdn.com/libs/widget/3.3.0/uploadcare.full.min.js"></script>
@@ -25,17 +25,17 @@
 		
 		<!-- DatePicker -->
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-		<link rel="stylesheet" href="./resources/css/datepicker.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/datepicker.css" />
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
 		<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
-		<script type="text/javascript" src="./resources/js/datepicker.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/datepicker.js"></script>
 		
 		
 	</head>
 	
 	<body>
-		<form action="./apart_insert.com" method="post" id="insert_apt" onsubmit="return insert();">	
+		<form action="/house/complex" method="post" id="insert_apt" onsubmit="return insert();">	
 		<ul class="ul_insert">
 		
 			<li class="li_map">
@@ -172,7 +172,7 @@
 			<li class="li_last">
 				<div class="div_last">
 					<button type="submit" class="btn_submit">등록</button>
-					<button type="button" class="btn_home" onclick="location.href='./main.com';">홈으로</button>
+					<button type="button" class="btn_home" onclick="location.href='/house/main.com';">홈으로</button>
 				</div>
 			</li>
 			

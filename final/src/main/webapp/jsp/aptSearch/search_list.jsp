@@ -45,7 +45,7 @@
 var positions = [
 	<c:forEach items="${mapList}" var="list">
 {
-	content :'<a style="color : black" href="apart_contents.com?complex_id=${list.complex_id}"<div>${list.complex_apartname}</div></a>',
+	content :'<a style="color : black" href="complex/${list.complex_id}"<div>${list.complex_apartname}</div></a>',
     latlng : new daum.maps.LatLng(${list.complex_lat},${list.complex_lng}),
 },
 		</c:forEach>
@@ -194,7 +194,7 @@ var positions = [
 			<tr>
 				<td>${aptList.complex_pdate}</td>
 				<td>${aptList.complex_address}</td>
-				<td><a style="color: #2a6496;" href="apart_contents.com?complex_id=${aptList.complex_id}">${aptList.complex_apartname}</a></td>
+				<td><a style="color: #2a6496;" href="complex/${aptList.complex_id}">${aptList.complex_apartname}</a></td>
 				<c:choose>
 				<c:when test="${aptList.minprice == aptList.maxprice}">
 				<td>${aptList.maxprice}만원</td>

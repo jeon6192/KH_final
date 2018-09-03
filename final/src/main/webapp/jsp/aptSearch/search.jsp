@@ -71,7 +71,7 @@
 	<div class="name"> 
 		<font style="font-size: 20px; color: #2490af; font-weight: bold;">새로 등록된 아파트</font>
 		<div class="name">
-			<a style="color: #31708f; font-size: 28px;" href="apart_contents.com?complex_id=${newapt.complex_id}">${newapt.complex_apartname}</a>		
+			<a style="color: #31708f; font-size: 28px;" href="complex/${newapt.complex_id}">${newapt.complex_apartname}</a>		
 		</div>
 	</div>
 		<div class="price">

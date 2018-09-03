@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,13 +46,13 @@ public class ApartmentController2 {
 		return new ModelAndView("main");
 	}
 	
-	@RequestMapping(value = "/apart_insertform.com", method = RequestMethod.GET)
+	@RequestMapping(value = "/complex/new", method = RequestMethod.GET)
 	public ModelAndView insertform_apart() {
 		
 		return new ModelAndView("apart/insert_aptcomplex");
 	}
 	
-	@RequestMapping(value = "/apart_insert.com", method = RequestMethod.POST)
+	@RequestMapping(value = "/complex", method = RequestMethod.POST)
 	public ModelAndView insert_apart(AptComplexBean aptComplexBean, 
 			ApartListBean apartListBean, 
 			@RequestParam(value="chk_subway", defaultValue="false") boolean chk_subway) throws Exception {
@@ -127,9 +128,10 @@ public class ApartmentController2 {
 		return new ModelAndView("redirect:/aptSearch.com");
 	}
 	
-	@RequestMapping(value = "/apart_contents.com",  method = RequestMethod.GET)
-	   public ModelAndView detail_apart(@RequestParam("complex_id") int complex_id, 
-	         @RequestParam(value = "page", defaultValue = "1") int page,HttpServletRequest request) throws Exception {
+	@ResponseBody
+	@RequestMapping(value = "/complex/{complex_id}", method = RequestMethod.GET)
+	   public ModelAndView detail_apart(@PathVariable("complex_id") int complex_id, 
+	         @RequestParam(value = "page", defaultValue = "1") int page, HttpServletRequest request) throws Exception {
 	      ModelAndView mav = new ModelAndView("apart/apart_contents");
 	      
 	      Map<String, Object> apartMap = apartmentService.detail_complex(complex_id);
@@ -164,9 +166,9 @@ public class ApartmentController2 {
 	      return mav;
 	   }
 	
-	@RequestMapping(value = "/apart_dongdetail.com",  method = RequestMethod.GET)
-	public ModelAndView detail_dong(@RequestParam("dong") int dong, 
-			@RequestParam("complex_id") int complex_id, 
+	@RequestMapping(value = "/apart/{complex_id}/{dong}", method = RequestMethod.GET)
+	public ModelAndView detail_dong(@PathVariable("dong") int dong, 
+			@PathVariable("complex_id") int complex_id, 
 			HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("apart/dong_detail");
 		
@@ -178,7 +180,7 @@ public class ApartmentController2 {
 		return mav;
 	}
 	
-	@RequestMapping(value= {"/search_cpx.net"},method=RequestMethod.POST,headers="Accept=*/*",produces = "application/json")
+	@RequestMapping(value= {"/complexes"},method=RequestMethod.GET, headers="Accept=*/*", produces = "application/json")
 	@ResponseBody
 	public List<AptComplexBean2> search_cpx(@RequestParam Map<String,Object> searchLocation) throws Exception {
 		System.out.println(searchLocation.get("swLat"));

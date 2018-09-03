@@ -60,14 +60,14 @@
 					<ul class="ul left">
 						<li class="li icon cpx">
 							<a href="#" class="active" onclick="showCpx(); return false;">
-								<img class="img_cpx" alt="단지 정보" src="./resources/image/apt_complex_s.png">
-								<img class="img_cpx2" alt="단지 정보" src="./resources/image/apt_complex.png">
+								<img class="img_cpx" alt="단지 정보" src="../resources/image/apt_complex_s.png">
+								<img class="img_cpx2" alt="단지 정보" src="../resources/image/apt_complex.png">
 							</a>
 						</li>
 						<li class="li icon apt">
 							<a href="#" id="aptIcon">
-								<img class="img_apart" alt="아파트 정보" src="./resources/image/apart_s.png">
-								<img class="img_apart2" alt="아파트 정보" src="./resources/image/apart.png">
+								<img class="img_apart" alt="아파트 정보" src="../resources/image/apart_s.png">
+								<img class="img_apart2" alt="아파트 정보" src="../resources/image/apart.png">
 							</a>
 							
 							<ul class="ul icon apt">
@@ -104,7 +104,7 @@
 					
 					<div class="div cpx_aptname">
 						<div class="div apticon">
-							<img alt="아파트~" src="./resources/image/apartment2.png">
+							<img alt="아파트~" src="../resources/image/apartment2.png">
 						</div>
 						<div class="div aptname">
 							${cpx.complex_apartname}

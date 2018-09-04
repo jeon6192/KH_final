@@ -33,12 +33,6 @@ public class MemberAction {
 	@Autowired
 	private MemberService memberService;
 
-	@RequestMapping(value = "/member_join.nhn")
-	public String member_join() throws Exception {
-		return "member/member_join";
-
-	}
-
 	@RequestMapping(value = "/member_join_ok.nhn", method = RequestMethod.POST)
 	public ModelAndView member_join_ok(MemberBean m, HttpServletResponse response, HttpServletRequest request)
 			throws Exception {

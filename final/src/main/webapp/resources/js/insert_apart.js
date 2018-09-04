@@ -25,7 +25,7 @@ $(document).ready(function() {
         source: function(request, response){
         	var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
         	$.ajax({
-				url : './resources/json/subway.json',
+				url : '${pageContext.request.contextPath}/resources/json/subway.json',
 				dataType : "json",
 				data : request.term,
 				success : function(data) {

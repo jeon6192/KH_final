@@ -234,6 +234,7 @@ function panTo() {
 let positions = [];
 let selectedMarker = null;
 let ajaxData = {};
+let infowindowArr = [];
 const imageSrc = "https://i.pinimg.com/originals/dd/be/1f/ddbe1f911d676f198bdfc9b2346ac1e4.gif"; 
 const imageSize = new daum.maps.Size(35, 43); 
 const clickedImageSize = new daum.maps.Size(45, 55);
@@ -249,6 +250,8 @@ function searchCpx() {
     // 지도의 꼭지점 좌표와 현재 보고있는 아파트단지의 id를 json 타입으로 변환 
     const searchLocation = {'swLat' : swLatLng.getLat(), 'swLng' : swLatLng.getLng(), 
                     'neLat' : neLatLng.getLat(), 'neLng' : neLatLng.getLng(), 'complex_id' : complex_id};
+    
+    console.log(searchLocation);
     
     $.ajax({
         type : 'GET', 
@@ -282,8 +285,15 @@ function searchCpx() {
                     image : markerImage, // 마커 이미지 
                     clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정
                 }));
+                
+                infowindowArr[i] = new daum.maps.InfoWindow({
+                    content : '<div style="width: 150px; height: 100%; text-align: center;" class="div-compare">'
+                        + '<button type="button" class="w3-button w3-black compare-btn"'
+                        + 'onclick="compareCpx('+data[i].complex_id+')">'+data[i].complex_apartname+'</button></div>', 
+                    removable : true
+                });
 
-                addMarkerClickEvent(markers[i],data[i]);
+                addMarkerClickEvent(markers[i], data[i], infowindowArr[i]);
                 
             }
         },
@@ -293,7 +303,7 @@ function searchCpx() {
     });
 }
 
-function addMarkerClickEvent(marker, data) {
+function addMarkerClickEvent(marker, data, infowindow) {
     // marker에 click event 추가
     daum.maps.event.addListener(marker, 'click', function() {
         // 클릭된 마커가 없고, 새로운 마커를 클릭하면 마커의 이미지를 클릭 이미지로 변경합니다
@@ -310,18 +320,14 @@ function addMarkerClickEvent(marker, data) {
         selectedMarker = marker;
 
         // 마커 클릭 시 보여줄 인포윈도우창 설정
-        new daum.maps.InfoWindow({
-            content : '<div style="width: 150px; height: 100%; text-align: center;" class="div-compare">'
-                + '<button type="button" class="w3-button w3-black compare-btn"'
-                + 'onclick="compareCpx('+data.complex_id+')">'+data.complex_apartname+'</button></div>', 
-            removable : true
-        }).open(map, marker);
+        infowindow.open(map, marker);
     });
 }
 
 function removeMarkers() {
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
+        infowindowArr[i].close();
     }
 
     positions = [];

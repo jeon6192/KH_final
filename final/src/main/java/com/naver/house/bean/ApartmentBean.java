@@ -1,17 +1,17 @@
 package com.naver.house.bean;
 
 public class ApartmentBean {
-	private long apart_id;
-	private long complex_id;
-	private int apart_dong;
-	private int apart_ho;
-	private int apart_floor;
-	private int apart_area;
-	private int apart_price;
-	private int apart_room;
-	private int apart_toilet;
-	private String apart_direction;
-	private String apart_interior;
+	private long apart_id;					//아파트고유번호		
+	private long complex_id;				//단지고유번호 fk
+	private int apart_dong;					//동
+	private int apart_ho;					//호
+	private int apart_floor;				//층
+	private int apart_area;					//면적
+	private int apart_price;				//가격
+	private int apart_room;					//방개수
+	private int apart_toilet;				//집 방향
+	private String apart_direction;			//인테리어사진
+	private String apart_interior;			//유저넘버
 
 	
 	public long getApart_id() {

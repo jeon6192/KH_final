@@ -1,19 +1,19 @@
 package com.naver.house.bean;
 
 public class AptComplexBean {
-	private long complex_id;
-	private String complex_address;
-	private double complex_lat;
-	private double complex_lng;
-	private String complex_apartname;
-	private String complex_sdate;
-	private String complex_edate;
-	private String complex_pdate;
-	private int complex_state;
-	private String complex_info;
-	private int complex_subway;
-	private String complex_station;
-	private int complex_foot;
+	private long complex_id; 					//단지 고유 번호
+	private String complex_address;				//주소
+	private double complex_lat;					//위도
+	private double complex_lng;					//경도
+	private String complex_apartname;			//아파트이름
+	private String complex_sdate;				//분양 시작일
+	private String complex_edate;				//분양 종료일
+	private String complex_pdate;				// 분양시기
+	private int complex_state;					// 분양상태
+	private String complex_info;				//아파트 소개
+	private int complex_subway;					//역세권
+	private String complex_station;				//근처역
+	private int complex_foot;					//도보 소요시간
 	
   
 	public long getComplex_id() {

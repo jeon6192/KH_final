@@ -22,7 +22,6 @@ function map(){
 var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 //"http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"
 	
-  var iwRemoveable = true;
 	
 for (var i = 0; i < positions.length; i ++) {"http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
     //마커 이미지의 이미지 크기 입니다.
@@ -39,6 +38,7 @@ for (var i = 0; i < positions.length; i ++) {"http://t1.daumcdn.net/localimg/loc
         image : markerImage, // 마커 이미지
         clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
     });
+     //속성을 true 로 설정하면 인포윈도우를 닫을 수 있는 x 표시 가 생깁니다.
     var iwRemoveable = true;
     //마커에 표시할 인포윈도우 생성합니다.
     var infowindow = new daum.maps.InfoWindow({
